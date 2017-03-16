@@ -1,0 +1,51 @@
+# デフォルトの bind generic G !git gc を無効化する
+bind generic G none
+bind generic h none
+bind generic l none
+bind generic S none
+bind generic r none
+
+#全体設定
+bind generic <Ctrl-f> scroll-page-down
+bind generic <Ctrl-b> scroll-page-up
+bind generic l scroll-right
+bind generic h scroll-left
+bind generic H view-help
+bind generic L view-log
+bind generic R view-refs
+bind generic r refresh
+
+# rebaseを可能にする
+bind main    <Ctrl-r> !git rebase -i %(commit)
+bind diff    <Ctrl-r> !git rebase -i %(commit)
+
+#commitのショートカット
+bind diff    U ?!git commit --fixup %(commit)
+bind main    U ?!git commit --fixup %(commit)
+bind diff    S ?!git commit --squash %(commit)
+bind main    S ?!git commit --squash %(commit)
+
+#stash
+bind diff P !git stash pop %(stash)
+
+#status
+bind status r refresh
+bind status C !git commit -v
+# refs
+bind refs F @!git fetch
+bind refs B @!git branch '%(prompt Enter new branch name: )' %(remote)/%(branch)
+#bind refs B !echo %(remote)/%(branch)
+#移動の単位をコミットや変更差分単位にする
+
+#search「:」を利用して移動する
+bind diff    ` :?^@@
+bind log     @ :/^commit
+bind log     ` :?^commit
+bind stage   ` :?^@@
+bind pager   @ :/^commit
+bind pager   ` :?^commit
+
+#view
+set main-view = id date author commit-title:graph=yes,refs=yes
+set vertical-split = no
+set split-view-height = 80%

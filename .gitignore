@@ -1,0 +1,14 @@
+.DS_Store
+local.rb
+Vagrantfile
+development.rb
+.envault.yml
+.Gemfile.lock.tags
+.tags
+tags
+.ruby-version
+Session.vim
+GPATH
+GRTAGS
+GTAGS
+

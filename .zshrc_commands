@@ -1,0 +1,234 @@
+#load fzf plugin and keybindings
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# DEFAULTでfzf.vimも反映する
+# export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
+# .ignoreファイルで無視リストを作成できる
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob --no-messages "!.git/*" --glob "!.DS_Store"'
+
+export FZF_DEFAULT_OPTS="
+  --reverse
+  --tiebreak=index
+  --color bg+:239
+"
+export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(pygmentize -g {} || tree -C {}) 2> /dev/null | head -200'"
+
+function fbacklog() {
+  #順番：標準入力、expectのコマンド、取得結果
+  local out="$(ruby -S backlog_access.rb myissue | fzf-tmux  --ansi --no-sort --reverse --print-query --expect=ctrl-s,ctrl-o,ctrl-b,ctrl-y,enter)"
+
+  local q="$(head -1 <<< $out)" #標準入力
+  local k="$(head -2 <<< $out | tail -1)" #except指定の文字列
+  local str="$(head -3 <<< "$out" | tail -1)" #取得結果
+  local issue_num="$(echo $str | cut -d' ' -f1)"
+
+  case "$k" in
+    "ctrl-y" | "enter")
+        echo $str C
+        echo "Copy to ClipBoard!"
+        ;;
+    "ctrl-s" | "ctrl-o")
+        open "${BACKLOG_PROJECT}/view/${issue_num}"
+        ;;
+    "ctrl-b" )
+        local tracking=`git tracking-branch`
+        local cmd="git branch feature/${issue_num}"
+        if [[ -z "${issue_num}" ]]; then
+          return 0;
+        fi
+        print -z "${cmd} ${tracking}"
+        ;;
+  esac
+}
+## history incremental search peco ###
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER" --prompt "HISTORY>")
+    CURSOR=$#BUFFER
+    zle clear-screen
+    #zle accept-line
+}
+
+ftpane() {
+  local panes current_window current_pane target target_window target_pane
+  panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+  current_pane=$(tmux display-message -p '#I:#P')
+  current_window=$(tmux display-message -p '#I')
+
+  target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
+
+  target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+  target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+
+  if [[ $current_window -eq $target_window ]]; then
+    tmux select-pane -t ${target_window}.${target_pane}
+  else
+    tmux select-pane -t ${target_window}.${target_pane} &&
+    tmux select-window -t $target_window
+  fi
+}
+
+function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
+function is_osx() { [[ $OSTYPE == darwin* ]]; }
+function is_screen_running() { [ ! -z "$STY" ]; }
+function is_tmux_runnning() { [ ! -z "$TMUX" ]; }
+function is_screen_or_tmux_running() { is_screen_running || is_tmux_runnning; }
+function shell_has_started_interactively() { [ ! -z "$PS1" ]; }
+function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
+
+function tmux_attach_session()
+{
+    if is_screen_or_tmux_running; then
+        ! is_exists 'tmux' && return 1
+
+        if is_tmux_runnning; then
+            #echo "${fg_bold[red]} _____ __  __ _   ___  __ ${reset_color}"
+            #echo "${fg_bold[red]}|_   _|  \/  | | | \ \/ / ${reset_color}"
+            #echo "${fg_bold[red]}  | | | |\/| | | | |\  /  ${reset_color}"
+            #echo "${fg_bold[red]}  | | | |  | | |_| |/  \  ${reset_color}"
+            #echo "${fg_bold[red]}  |_| |_|  |_|\___//_/\_\ ${reset_color}"
+        elif is_screen_running; then
+            echo "This is on screen."
+        fi
+    else
+        if shell_has_started_interactively && ! is_ssh_running; then
+            if ! is_exists 'git'; then
+                echo 'Error: tmux command not found' 2>&1
+                return 1
+            fi
+
+            if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
+                # detached session exists
+                tmux list-sessions
+                echo -n "Tmux: attach? (y/N/num/string) "
+                read
+                if [[ "$REPLY" =~ ^[Yy]$ ]] || [[ "$REPLY" == '' ]]; then
+                    tmux attach-session
+                    if [ $? -eq 0 ]; then
+                        echo "$(tmux -V) attached session"
+                        return 0
+                    fi
+                elif [[ "$REPLY" =~ ^[0-9]+$ ]]; then
+                    tmux attach -t "$REPLY"
+                    if [ $? -eq 0 ]; then
+                        echo "$(tmux -V) attached session"
+                        return 0
+                    fi
+                elif [[ "$REPLY" =~ ^[a-zA-Z]+$ ]]; then
+                    tmux attach -t "$REPLY"
+                    if [ $? -eq 0 ]; then
+                        echo "$(tmux -V) attached session"
+                        return 0
+                    fi
+                fi
+            fi
+
+            if is_osx && is_exists 'reattach-to-user-namespace'; then
+                # on OS X force tmux's default command
+                # to spawn a shell in the user's namespace
+                tmux_config=$(cat $HOME/.tmux.conf <(echo 'set-option -g default-command "reattach-to-user-namespace -l $SHELL"'))
+                tmux -f <(echo "$tmux_config") new-session && echo "$(tmux -V) created new session supported OS X"
+            else
+                tmux new-session && echo "tmux created new session"
+            fi
+        fi
+    fi
+}
+
+# rakeの補完が重いので別途作る(コピペ)
+_rake_does_task_list_need_generating () {
+  if [ ! -f .rake_tasks ]; then return 0;
+  else
+    accurate=$(stat -f%m .rake_tasks)
+    changed=$(stat -f%m Rakefile)
+    return $(expr $accurate '>=' $changed)
+  fi
+}
+
+_rake () {
+  if [ -f Rakefile ]; then
+    if _rake_does_task_list_need_generating; then
+      echo "\nGenerating .rake_tasks..." > /dev/stderr
+      rake --silent --tasks | cut -d " " -f 2 > .rake_tasks
+    fi
+    compadd `cat .rake_tasks`
+  fi
+}
+
+compdef _rake rake
+
+#function ssh() {
+#    local ssh_server=$@
+#    local local_window_name=$(tmux display -p '#{window_name}')
+#    #tmux rename-window $ssh_server
+#    command ssh $@
+#    tmux rename-window $local_window_name
+#}
+
+function mssh ()
+{
+    #
+    if [ -z ${TMUX} ] ; then
+      echo "tmux is not running."
+      #tmux new-session && echo "tmux created new session"
+    fi
+
+    PROG_TMUX=tmux
+
+    ${PROG_TMUX} send-keys "ssh $1" C-m
+    shift
+
+    for host in "$@"; do
+      ${PROG_TMUX} split-window "exec ssh $host"
+      ${PROG_TMUX} select-layout even-vertical
+      # ${PROG_TMUX} select-layout tiled > /dev/null
+      # ${PROG_TMUX} select-layout even-horizontal
+    done
+
+    ${PROG_TMUX} select-pane -t 0
+}
+compdef mssh=ssh
+tmux_attach_session
+
+# MacVimの起動設定
+gvim() {
+    if [ $# -eq 0 ]; then
+        open -a MacVim
+    elif [ $# -eq 1 ]; then
+        if [ ! -f "$1" ]; then
+            touch "$1" || return 1
+        fi
+        touch -t $( date -v+1S +'%Y%m%d%H%M' ) ~/.compare
+        open -a MacVim "$1" && {
+            sleep 0.2
+            if [ ~/.compare -ot "$1" ]; then
+                [ ! -s "$1" ] && rm "$1"
+            fi
+            rm ~/.compare
+        }
+    else
+        echo "$@: invalid arguments"
+        return 1
+    fi
+    return 0
+}
+#zsh + tmux で端末に表示されてる文字列を補完する
+HARDCOPYFILE=/tmp/tmux-hardcopy
+touch $HARDCOPYFILE
+dabbrev-complete () {
+  tmux capture-pane -b 0 && tmux save-buffer -b 0 $HARDCOPYFILE && tmux delete-buffer -b 0
+  local reply=($(sed '/^$/d' $HARDCOPYFILE | sed '$ d'))
+  compadd -Q - "${reply[@]%[*/=@|]}"
+}
+zle -C dabbrev-complete menu-complete dabbrev-complete
+bindkey '^O' dabbrev-complete
+bindkey '^O^_' reverse-menu-complete

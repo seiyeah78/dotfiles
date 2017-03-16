@@ -1,0 +1,68 @@
+[color]
+  #status = auto
+  #diff = auto
+  #branch = auto
+  #interactive = auto
+  #grep = auto
+[push]
+  default = simple
+[core]
+  excludesfile = ~/.gitignore  # global.gitignore setting
+  #autoCRLF = false
+  #quotepath = false
+  #safecrlf = true
+  editor = vim
+  quotepath = false
+  whitespace = cr-at-eol
+[branch]
+  autosetuprebase = always
+  autosetupmerge = always
+[pull]
+  rebase = true
+[http]
+  sslVerify = false
+[i18n]
+  #commitencoding = UTF-8
+[alias]
+  st = status
+  amend = cm --amend
+  diffc = diff --cached
+  show-merged-branches = !git branch --merged | grep -v '\\*\\|master'
+  co = checkout
+  cop = !git checkout $(git branch | peco | sed -e \"s/\\* //g\" | awk \"{print \\$1}\")
+  fetch-pr-upstream = !sh -c 'git fetch upstream pull/$1/head:pr-$1' -
+  lg = log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  d = diff
+  dc = !git diffc
+  cm = commit -v
+  ss = status --short
+  pl = pull
+  tracking-branch = !git rev-parse --abbrev-ref --symbolic-full-name @{upstream}
+  tracking-name = !git tracking-branch | cut -d / -f2-
+  tracking = !git co $(git tracking-name)
+  bro = browse
+  pr = !hub pull-request -o -b $(git tracking-name)
+  undo = '!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}};}; f'
+
+  #カレントブランチとリモートのコミットの差分だけをlogで出力
+  lcu = !git log $(git tracking-branch)..
+  dcu = !git diff $(git tracking-branch)..
+  fp = fetch --prune
+  rbi = rebase -i
+  resetcu = !git lcu --oneline | grep -c '' | xargs -I % git reset HEAD~%
+  aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+[merge]
+  tool = vimdiff
+[rebase]
+  autosquash = false
+[pager]
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
+[diff]
+  compactionHeuristic = true
+	algorithm = histogram
+[ghq]
+  root = ~/src
+[include]
+  path = ~/.gitconfig.local

@@ -1,0 +1,110 @@
+" ランタイムを読み込む
+set rtp+=/usr/local/opt/fzf
+" set rtp+=~/.fzf
+
+" This is the default extra key bindings
+" fzf中に実行できるコマンド
+let g:fzf_action = {
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-g': 'tabnew'}
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = {'down': '~40%' }
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <C-f><C-w> <plug>(fzf-complete-word)
+" Fileパスをfileコマンドでcomp
+" imap <C-f><C-p> <plug>(fzf-complete-path)
+" Fileパスをagコマンドでcomp
+imap <C-f><C-p> <plug>(fzf-complete-file-ag)
+imap <C-f><C-l> <plug>(fzf-complete-line)
+
+" :Filesによる表示の変更
+let g:fzf_files_options =
+  \ '--preview "(pygmentize -g {} || tree -C {}) 2> /dev/null | head -'.&lines.'"'
+
+if !has('gui_running')
+  augroup term_vim_ctrlp
+    autocmd!
+    autocmd VimEnter * nnoremap <silent><expr><Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+    autocmd VimEnter * nnoremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+  augroup END
+endif
+
+":Colorsによる表示の変更
+autocmd VimEnter * command! -bang Colors
+  \ call fzf#vim#colors({'left': '~15%', 'options': '--reverse --margin 20%,0'}, <bang>0)
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+"   * Preview script requires Ruby
+"   * Install Highlight or CodeRay to enable syntax highlighting
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?"
+"   key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+autocmd VimEnter * command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" command for git grep
+" fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0, <bang>0)
+
+" [Tags] Command to generate tags file
+" function! s:update_tags_command()
+"   if (&filetype == 'ruby')
+"     let g:fzf_tags_command = 'ripper-tags -R'
+"   else
+"     let g:fzf_tags_command = 'ctags -R'
+"   endif
+" endfunction
+" autocmd BufRead,BufNewFile,WinEnter * call s:update_tags_command()
+
+function! s:tags_sink(line)
+  let parts = split(a:line, '\t\zs')
+  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+  execute 'silent e' parts[1][:-2]
+  let [magic, &magic] = [&magic, 0]
+  execute excmd
+  let &magic = magic
+endfunction
+
+function! s:tags()
+  if empty(tagfiles())
+    echohl WarningMsg
+    echom 'Preparing tags'
+    echohl None
+    call g:fzf_tags_command
+  endif
+  " 優先度の高いtagfileだけ使う
+  let tagfile = tagfiles()[0]
+  " let proc = 'perl -ne ''unless (/^\!/) { s/^(.*?)\t(.*?)\t/'.s:yellow('\1', 'Function').'\t'.s:blue('\2', 'String').'\t/; print }'' '
+  let copt = '--ansi '
+
+  call fzf#run({
+  \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+  \            '| grep -v -a ^!',
+  \ 'options': copt.'+m -d "\t" --with-nth 1,2,4.. -n 1 --tiebreak=index --prompt "Tags> "'.s:q(a:query)',
+  \ 'down':    '40%',
+  \ 'sink':    function('s:tags_sink')})
+endfunction
+command! TTags call s:tags()
+
