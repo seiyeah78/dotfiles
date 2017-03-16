@@ -4,7 +4,7 @@
 # DEFAULTでfzf.vimも反映する
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
 # .ignoreファイルで無視リストを作成できる
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob --no-messages "!.git/*" --glob "!.DS_Store"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --no-messages --glob "!.git/*" --glob "!.DS_Store"'
 
 export FZF_DEFAULT_OPTS="
   --reverse
