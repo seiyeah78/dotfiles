@@ -19,7 +19,8 @@ setopt prompt_subst
 # User configuration
 GIT_DIFF_HIGHLIGHT="/usr/local/share/git-core/contrib/diff-highlight"
 MYSCRIPT_DIR="/project/macro/scripts"
-CORE_PATH="$PATH:${GIT_DIFF_HIGHLIGHT}:${JAVA_HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${MYSCRIPT_DIR}/bin:$HOME/.phpenv/bin"
+OPENSSL_PATH="/usr/local/opt/openssl/bin"
+CORE_PATH="$PATH:${GIT_DIFF_HIGHLIGHT}:${JAVA_HOME}/bin:${OPENSSL_PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${MYSCRIPT_DIR}/bin:$HOME/.phpenv/bin"
 
 export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
@@ -136,9 +137,6 @@ bindkey '^O' down-history
 bindkey '^J' backward-word
 bindkey '^K' forward-word
 bindkey "\e[Z" reverse-menu-complete
-
-#zle -N peco-select-history
-#bindkey '^R' peco-select-history
 
 #########################################
 
