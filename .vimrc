@@ -19,16 +19,18 @@ set splitright
 set number
 set list
 set listchars=tab:¦_
+set scrolloff=3
 set guifont=Ricty\ Regular\ for\ Powerline:h5
 set guifontwide=Ricty\ Regular\ for\ Powerline:h5
 "normalモードへの時間を短縮する
 set timeout timeoutlen=1000 ttimeoutlen=50
 set noswapfile
+set nobackup
 set nocompatible
 set switchbuf+=useopen
-
+" .un(undoファイル)の保存場所
+set undodir=$HOME/.vim/undodir
 filetype off " be iMproved
-
 if has('vim_starting')
   set rtp+=~/.vim/plugged/vim-plug
   if !isdirectory(expand('~/.vim/plugged/vim-plug'))
@@ -51,15 +53,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/unite.vim' | Plug 'Shougo/neoyank.vim'
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
   Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
-  Plug 'basyura/unite-rails'
+  " Plug 'basyura/unite-rails'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'ntpeters/vim-better-whitespace'
-  Plug 'shougo/vimproc.vim', { 'do': 'make' }
+  Plug 'shougo/vimproc.vim', { 'do': 'make' } | Plug 'Shougo/vimshell.vim'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
   Plug 'tomtom/tcomment_vim'
@@ -93,7 +96,7 @@ call plug#end()
 
 "vimのcolorschemeの背景色と同じにするためにnone
 autocmd ColorScheme * highlight Normal ctermbg=none
-" let g:hybrid_reduced_contrast = 1
+let g:hybrid_reduced_contrast = 1
 colorscheme hybrid
 
 filetype plugin indent on    " required!
@@ -259,24 +262,35 @@ let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_use_migemo = 1
 " jump用のキーを設定する
 let g:EasyMotion_keys='azwsxedcrfvtgbyhnujmikol'
+
+" 最初のマッチにEnterかスペースでジャンプする
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+
 " prefix(trigger)
 map <Leader><Leader> <Plug>(easymotion-prefix)
 
 " s{char}{char} to move to {char}{char}
 map  s <Plug>(easymotion-s2)
-nmap s <Plug>(easymotion-overwin-f2)
+" nmap s <Plug>(easymotion-overwin-f2)
+nmap S <Plug>(easymotion-overwin-f2)
 
-" <Leader>f{char} to move to {char}
-map f <Plug>(easymotion-bd-f)
-" nmap <Leader>f <Plug>(easymotion-overwin-f)
+map  <leader>f <Plug>(easymotion-bd-f)
 
 " Move to line
-map L <Plug>(easymotion-bd-jk)
+map  L <Plug>(easymotion-bd-jk)
 nmap L <Plug>(easymotion-overwin-line)
 
 " Move to word
-map <Leader>w <Plug>(easymotion-w)
+map  <Leader>w <Plug>(easymotion-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+" Move to target within line
+" lはline(１行)の意味
+map  f <Plug>(easymotion-fl)
+map  F <Plug>(easymotion-Fl)
+map  t <Plug>(easymotion-tl)
+map  T <Plug>(easymotion-Tl)
 
 " 検索系の拡張
 " You can use other keymappings like <C-l> instead of <CR> if you want to
@@ -308,11 +322,6 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
-" map f <Plug>(easymotion-f)
-" map F <Plug>(easymotion-F)
-" map t <Plug>(easymotion-tl) # lはline(１行)の意味
-" map T <Plug>(easymotion-Tl)
-
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/', '.vimrc_*'),'\n')
 for filename in s:vim_dotfiles
@@ -323,11 +332,8 @@ endfor
 
 hi ExtraWhitespace ctermbg=red
 autocmd BufWritePre * StripWhitespace
-
 " ?つきメソッド、@@インスタンスを単語とみなす
 autocmd FileType ruby set isk+=@-@
-
 autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
 autocmd BufNewFile,BufRead Guardfile  set filetype=ruby
 autocmd BufNewFile,BufRead .pryrc     set filetype=ruby
-
