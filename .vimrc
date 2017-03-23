@@ -78,13 +78,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   " Plug 'mhinz/vim-startify'
   Plug 'tsukkee/unite-tag'
-  Plug 'junegunn/vim-easy-align'
+  Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+  Plug 'junegunn/vim-after-object'
   Plug 'haya14busa/incsearch.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'haya14busa/incsearch-fuzzy.vim'
   Plug 'tpope/vim-repeat'
-  " Plug 't9md/vim-textmanip'
 
+  " Plug 't9md/vim-textmanip'
   " colorschemes plugins
   Plug 'jpo/vim-railscasts-theme'
   Plug 'w0ng/vim-hybrid'
@@ -107,6 +108,7 @@ syntax on
 noremap <C-Y><C-Y> :<C-U>Unite history/yank<CR>
 let g:neoyank#limit = 100
 let g:neoyank#file = $HOME.'/.vim/yankring.txt'
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
 
 let g:AutoPairsMapCR = 0
 
