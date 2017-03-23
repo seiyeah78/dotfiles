@@ -108,6 +108,8 @@ noremap <C-Y><C-Y> :<C-U>Unite history/yank<CR>
 let g:neoyank#limit = 100
 let g:neoyank#file = $HOME.'/.vim/yankring.txt'
 
+let g:AutoPairsMapCR = 0
+
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -126,7 +128,6 @@ nmap <silent><leader>T :TagbarToggle<CR>
 set tags=./tags,.Gemfile.lock.tags
 let g:easytags_by_filetype = '~/.vim/tag/'
 let g:easytags_dynamic_files = 1
-let b:easytags_auto_highlight = 1
 let g:easytags_async = 1
 " 言語別easytag実行オプション
 " let g:easytags_languages = {
@@ -160,8 +161,8 @@ noremap <silent><C-w>v :<C-u>vsplit<CR>
 
 " ============winresizer setting============
 let g:winresizer_start_key = '<C-w>e'
-let g:winresizer_horiz_resize = 2
 let g:winresizer_vert_resize = 3
+let g:winresizer_horiz_resize = 2
 
 " Move visual block (eclipseみたいなアレ)
 vnoremap <silent>J :m'>+1<CR>gv=gv
