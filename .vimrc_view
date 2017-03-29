@@ -127,8 +127,8 @@ augroup vimrc-auto-cursorline
   autocmd WinLeave * call s:auto_cursorline('WinLeave')
 
   " number の highlight は常に有効にする
-  "setlocal cursorline
-  "hi clear CursorLine
+  " setlocal cursorline
+  " hi clear CursorLine
 
   let s:cursorline_lock = 0
   function! s:auto_cursorline(event)
@@ -155,7 +155,6 @@ augroup vimrc-auto-cursorline
     endif
   endfunction
 augroup END
-
 
 " ===============Goyoセッティング===============
 let g:goyo_width = '100%'

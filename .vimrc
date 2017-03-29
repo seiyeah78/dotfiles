@@ -52,8 +52,8 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'Shougo/unite.vim' | Plug 'Shougo/neoyank.vim'
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
-  " Plug 'basyura/unite-rails'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive'
@@ -76,7 +76,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'simeji/winresizer'
   Plug 'easymotion/vim-easymotion'
   Plug 'Yggdroot/indentLine'
-  " Plug 'mhinz/vim-startify'
   Plug 'tsukkee/unite-tag'
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
   Plug 'junegunn/vim-after-object'
@@ -106,12 +105,18 @@ syntax on
 " ~~~~~~~~~~~~~~~~~共通mapping~~~~~~~~~~~~~~
 " historyの管理
 noremap <C-Y><C-Y> :<C-U>Unite history/yank<CR>
+noremap <space><space> :<C-U>w<CR>
 let g:neoyank#limit = 100
 let g:neoyank#file = $HOME.'/.vim/yankring.txt'
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
 
-let g:AutoPairsMapCR = 0
+if !exists('loaded_matchit')
+  " matchitを有効化
+  runtime macros/matchit.vim
+endif
 
+let g:AutoPairsMapCR = 0
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '|':'|'}
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -127,10 +132,11 @@ nmap <C-W><C-]> <C-W>g<C-]>
 
 nmap <silent><leader>T :TagbarToggle<CR>
 
-set tags=./tags,.Gemfile.lock.tags
+set tags=tags,.Gemfile.lock.tags;
 let g:easytags_by_filetype = '~/.vim/tag/'
 let g:easytags_dynamic_files = 1
 let g:easytags_async = 1
+let b:easytags_auto_highlight = 0
 " 言語別easytag実行オプション
 " let g:easytags_languages = {
 " \   'ruby': {
