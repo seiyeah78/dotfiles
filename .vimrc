@@ -20,6 +20,8 @@ set number
 set list
 set listchars=tab:¦_
 set scrolloff=3
+"１行辺りsyntax解析する文字数
+set synmaxcol=600
 set guifont=Ricty\ Regular\ for\ Powerline:h5
 set guifontwide=Ricty\ Regular\ for\ Powerline:h5
 "normalモードへの時間を短縮する
@@ -92,6 +94,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'flazz/vim-colorschemes'
   Plug 'chriskempson/vim-tomorrow-theme'
   Plug 'junegunn/limelight.vim'
+  Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 "vimのcolorschemeの背景色と同じにするためにnone
@@ -102,25 +105,59 @@ colorscheme hybrid
 filetype plugin indent on    " required!
 syntax on
 
-" ~~~~~~~~~~~~~~~~~共通mapping~~~~~~~~~~~~~~
-" historyの管理
-noremap <C-Y><C-Y> :<C-U>Unite history/yank<CR>
-noremap <space><space> :<C-U>w<CR>
-let g:neoyank#limit = 100
-let g:neoyank#file = $HOME.'/.vim/yankring.txt'
-autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
-
+" ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 if !exists('loaded_matchit')
   " matchitを有効化
   runtime macros/matchit.vim
 endif
 
+command Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
+command Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
+
+" ---- Yank and send to clipbord --------
+noremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
+
+" ---- Press space twice to save --------
+noremap <space><space> :<C-U>w<CR>
+
+" ----- Tabs ----
+nnoremap ]t :tabn<CR>
+nnoremap [t :tabp<CR>
+
+" ----- Buffers ----
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprev<CR>
+
+" ----------------------------------------------------------------------------
+" Quickfix
+" ----------------------------------------------------------------------------
+nnoremap ]q :cnext<CR>zz
+nnoremap [q :cprev<CR>zz
+nnoremap ]l :lnext<CR>zz
+nnoremap [l :lprev<CR>zz
+
+" Zoom
+function! s:zoom()
+  if winnr('$') > 1
+    tab split
+  elseif len(filter(map(range(tabpagenr('$')), 'tabpagebuflist(v:val + 1)'),
+                  \ 'index(v:val, '.bufnr('').') >= 0')) > 1
+    tabclose
+  endif
+endfunction
+nnoremap <silent> <leader>z :call <sid>zoom()<CR>
+
+" historyの管理
+noremap <C-Y><C-Y> :<C-U>Unite history/yank<CR>
+let g:neoyank#limit = 100
+let g:neoyank#file = $HOME.'/.vim/yankring.txt'
+
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
+
 let g:AutoPairsMapCR = 0
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '|':'|'}
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
+
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
 " ~~~~~~~~~~~~~~ctag setting~~~~~~~~~~~~~~
 let g:tagbar_width = 30
@@ -137,16 +174,7 @@ let g:easytags_by_filetype = '~/.vim/tag/'
 let g:easytags_dynamic_files = 1
 let g:easytags_async = 1
 let b:easytags_auto_highlight = 0
-" 言語別easytag実行オプション
-" let g:easytags_languages = {
-" \   'ruby': {
-" \     'cmd': 'ripper-tags',
-" \       'args': [],
-" \       'fileoutput_opt': '-f',
-" \       'stdout_opt': '-f-',
-" \       'recurse_flag': '-R'
-" \   }
-" \}
+
 " ===================gtags.vim setting==================
 " Suggested map:
 nmap <F2> :copen<CR>
@@ -237,24 +265,6 @@ let g:NERDTreeWinSize=25
 hi Visual ctermbg=239
 hi multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 hi link multiple_cursors_visual Visual
-
-" " ==============vim smartinput setting==========
-" call smartinput#map_to_trigger('i', '#', '#', '#')
-" call smartinput#define_rule({
-"     \   'at': '\%#',
-"     \   'char': '#',
-"     \   'input': '#{}<Left>',
-"     \   'filetype': ['ruby'],
-"     \   'syntax': ['Constant', 'Special'],
-"     \ })
-" call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
-" call smartinput#define_rule({
-"     \   'at' : '\({\|\<do\>\)\s*\%#',
-"     \   'char' : '<Bar>',
-"     \   'input' : '<Bar><Bar><Left>',
-"     \   'filetype' : ['ruby'],
-"     \    })
-
 
 "=============vim-easy-align setting============
 " Start interactive EasyAlign in visual mode (e.g. vipga)

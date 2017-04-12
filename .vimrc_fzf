@@ -26,6 +26,11 @@ imap <C-f><C-w> <plug>(fzf-complete-word)
 imap <C-f><C-p> <plug>(fzf-complete-file-ag)
 imap <C-f><C-l> <plug>(fzf-complete-line)
 
+" Agコマンドで検索する
+nnoremap <silent> <Leader>ag  :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>AG  :Ag <C-R><C-A><CR>
+xnoremap <silent> <Leader>ag  y:Ag <C-R>"<CR>
+
 " :Filesによる表示の変更
 let g:fzf_files_options =
   \ '--preview "(pygmentize -g {} || tree -C {}) 2> /dev/null | head -'.&lines.'"'
