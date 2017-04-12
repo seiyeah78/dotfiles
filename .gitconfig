@@ -61,7 +61,7 @@
   diff = diff-highlight | less
 [diff]
   compactionHeuristic = true
-	algorithm = histogram
+	algorithm = patience
 [ghq]
   root = ~/src
 [include]
