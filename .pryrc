@@ -5,3 +5,5 @@ Pry.config.prompt_name = File.basename(Dir.pwd)
 Pry.history.load
 # Pry.config.prompt = proc { |obj, nest_level, _| "#{obj}:#{nest_level}>  " }
 Pry.config.prompt_name = File.basename(Dir.pwd)
+
+require 'json'
