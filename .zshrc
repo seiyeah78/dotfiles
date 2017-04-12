@@ -20,20 +20,21 @@ setopt prompt_subst
 GIT_DIFF_HIGHLIGHT="/usr/local/share/git-core/contrib/diff-highlight"
 MYSCRIPT_DIR="/project/macro/scripts"
 OPENSSL_PATH="/usr/local/opt/openssl/bin"
-CORE_PATH="$PATH:${GIT_DIFF_HIGHLIGHT}:${JAVA_HOME}/bin:${OPENSSL_PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${MYSCRIPT_DIR}/bin:$HOME/.phpenv/bin"
+MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
+CORE_PATH="$PATH:${MYSQL_PATH}:${GIT_DIFF_HIGHLIGHT}:${JAVA_HOME}/bin:${OPENSSL_PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${MYSCRIPT_DIR}/bin:$HOME/.phpenv/bin"
 
 export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export PATH="${CORE_PATH}"
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
-export NODE_PATH=$(npm root -g)
+export NODE_PATH="/usr/local/lib/node_modules"
 
 export EDITOR=vim
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export LESS='-R'
 export GTAGSLABEL=pygments
-source $(brew --prefix)/etc/profile.d/z.sh
+source /usr/local/etc/profile.d/z.sh
 
 # load zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
@@ -47,7 +48,6 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 zplug zsh-users/zsh-completions
 zplug plugins/common-aliases, from:oh-my-zsh, defer:2
 zplug plugins/git,            from:oh-my-zsh
-zplug plugins/svn,            from:oh-my-zsh
 zplug lib/completion,         from:oh-my-zsh
 
 # prompt theme
@@ -60,26 +60,21 @@ zplug zsh-users/zsh-syntax-highlighting, defer:2
 zplug github/hub, defer:2
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-      echo; zplug install
-  fi
-fi
+# if ! zplug check --verbose; then
+#   printf "Install? [y/N]: "
+#   if read -q; then
+#       echo; zplug install
+#   fi
+# fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-# use rbenv
-eval "$(rbenv init -)"
-# use phpenv
-eval "$(phpenv init -)"
-# use hub
-eval "$(hub alias -s)"
-# use pyenv
 PYENV_ROOT=~/.pyenv
 export PATH=$PATH:$PYENV_ROOT/bin
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# use env language manager
+eval "$(rbenv init --no-rehash -; phpenv init --no-rehash -; pyenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"
+# use hub
+eval "$(hub alias -s)"
 
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
@@ -143,16 +138,18 @@ bindkey "\e[Z" reverse-menu-complete
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-autoload -Uz colors
-colors
+#autoload -Uz colors
+#colors
 
-autoload -Uz compinit
-compinit -C
+# autoload -Uz compinit
+# compinit -C
 
-autoload -Uz promptinit && promptinit
+#autoload -Uz promptinit && promptinit
 #prompt pure
 
 # include other zshrc files
 [ -f ~/dotfiles/.zshrc_commands ] && source ~/dotfiles/.zshrc_commands
 
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# if (which zprof > /dev/null 2>&1) ;then
+#   zprof
+# fi
