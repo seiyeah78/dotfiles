@@ -113,3 +113,15 @@ function! s:tags()
 endfunction
 command! TTags call s:tags()
 
+" ------------- Backlogのissueを無名レジスタにコピー---------""
+function s:add_latest_register(line)
+  let @" = a:line
+  echomsg "Add Register!!"
+endfunction
+
+command! -nargs=* BacklogIssues call fzf#run({
+  \ 'source': 'ruby -S backlog_access.rb myissue',
+  \ 'options': '--ansi ',
+  \ 'down':    '40%',
+  \ 'sink': function('s:add_latest_register')
+  \ })
