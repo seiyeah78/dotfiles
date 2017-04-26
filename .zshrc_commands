@@ -199,14 +199,3 @@ gvim() {
     fi
     return 0
 }
-#zsh + tmux で端末に表示されてる文字列を補完する
-HARDCOPYFILE=/tmp/tmux-hardcopy
-touch $HARDCOPYFILE
-dabbrev-complete () {
-  tmux capture-pane -b 0 && tmux save-buffer -b 0 $HARDCOPYFILE && tmux delete-buffer -b 0
-  local reply=($(sed '/^$/d' $HARDCOPYFILE | sed '$ d'))
-  compadd -Q - "${reply[@]%[*/=@|]}"
-}
-zle -C dabbrev-complete menu-complete dabbrev-complete
-bindkey '^O' dabbrev-complete
-bindkey '^O^_' reverse-menu-complete

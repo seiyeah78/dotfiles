@@ -52,7 +52,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-plug',
         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
-  Plug 'Shougo/unite.vim' | Plug 'Shougo/neoyank.vim'
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
@@ -71,7 +70,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags' | Plug 'vim-scripts/gtags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'Shougo/neocomplete.vim'
-  " Plug 'kana/vim-smartinput'
   Plug 'jiangmiao/auto-pairs'
   Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] }
   Plug 'tpope/vim-surround'
@@ -84,7 +82,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'haya14busa/incsearch.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'haya14busa/incsearch-fuzzy.vim'
-  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -111,8 +109,8 @@ if !exists('loaded_matchit')
   runtime macros/matchit.vim
 endif
 
-command Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
-command Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
+command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
+command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
 
 " ---- Yank and send to clipbord --------
 noremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
@@ -147,11 +145,12 @@ function! s:zoom()
 endfunction
 nnoremap <silent> <leader>z :call <sid>zoom()<CR>
 
-" historyの管理
-noremap <C-Y><C-Y> :<C-U>Unite history/yank<CR>
-let g:neoyank#limit = 100
-let g:neoyank#file = $HOME.'/.vim/yankring.txt'
-
+"------------ vim-easyclip------------"
+imap <c-v> <plug>EasyClipInsertModePaste
+cmap <c-v> <plug>EasyClipCommandModePaste
+let g:EasyClipEnableBlackHoleRedirect = 0
+let g:EasyClipShareYanks = 1
+let g:EasyClipAutoFormat=1
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
 
 let g:AutoPairsMapCR = 0
@@ -169,7 +168,7 @@ nmap <C-W><C-]> <C-W>g<C-]>
 
 nmap <silent><leader>T :TagbarToggle<CR>
 
-set tags=tags,.Gemfile.lock.tags;
+set tags=./tags;,.Gemfile.lock.tags;
 let g:easytags_by_filetype = '~/.vim/tag/'
 let g:easytags_dynamic_files = 1
 let g:easytags_async = 1
