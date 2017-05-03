@@ -59,6 +59,8 @@ zplug zsh-users/zsh-syntax-highlighting, defer:2
 # load hub comp
 zplug github/hub, defer:2
 
+zplug "b4b4r07/emoji-cli"
+
 # Install plugins if there are plugins that have not been installed
 # if ! zplug check --verbose; then
 #   printf "Install? [y/N]: "
