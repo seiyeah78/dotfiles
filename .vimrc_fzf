@@ -17,7 +17,6 @@ let g:fzf_layout = {'down': '~40%' }
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-
 " Insert mode completion
 imap <C-f><C-w> <plug>(fzf-complete-word)
 " Fileパスをfileコマンドでcomp
@@ -72,16 +71,6 @@ command! -bang -nargs=* Rg
 " fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0, <bang>0)
-
-" [Tags] Command to generate tags file
-" function! s:update_tags_command()
-"   if (&filetype == 'ruby')
-"     let g:fzf_tags_command = 'ripper-tags -R'
-"   else
-"     let g:fzf_tags_command = 'ctags -R'
-"   endif
-" endfunction
-" autocmd BufRead,BufNewFile,WinEnter * call s:update_tags_command()
 
 function! s:tags_sink(line)
   let parts = split(a:line, '\t\zs')
@@ -145,7 +134,7 @@ endfunction
 command! FZFYank call fzf#run({
 \ 'source': <sid>yank_list(),
 \ 'sink': function('<sid>yank_handler'),
-\ 'options': '-m'
+\ 'options': '-m',
 \ 'down':    '40%'
 \ })
 
