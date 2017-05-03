@@ -1,3 +1,4 @@
+" vim: set foldmethod=marker foldlevel=0:
 scriptencoding utf-8
 set encoding=utf-8
 set fenc=utf-8
@@ -30,9 +31,16 @@ set noswapfile
 set nobackup
 set nocompatible
 set switchbuf+=useopen
+" 初期表示時は通常通り開いている状態にする
+set nofoldenable
+set foldmethod=syntax
+set foldlevel=1
+
 " .un(undoファイル)の保存場所
 set undodir=$HOME/.vim/undodir
+
 filetype off " be iMproved
+
 if has('vim_starting')
   set rtp+=~/.vim/plugged/vim-plug
   if !isdirectory(expand('~/.vim/plugged/vim-plug'))
