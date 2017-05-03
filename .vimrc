@@ -92,7 +92,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'AndrewRadev/splitjoin.vim'
-  Plug 'terryma/vim-expand-region'
+  Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -168,7 +168,7 @@ let g:EasyClipAutoFormat=1
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
 
 let g:AutoPairsMapCR = 0
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '|':'|'}
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
