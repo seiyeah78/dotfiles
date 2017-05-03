@@ -216,18 +216,21 @@ let g:winresizer_horiz_resize = 2
 " Move visual block (eclipseみたいなアレ)
 vnoremap <silent>J :m'>+1<CR>gv=gv
 vnoremap <silent>K :m-2<CR>gv=gv
-nnoremap  <silent>J :m+<CR>==
-nnoremap  <silent>K :m-2<CR>==
+nnoremap <silent>J :m+<CR>==
+nnoremap <silent>K :m-2<CR>==
 
 " insertモード移行時にインデント調整
-function! IndentWithI()
-    if len(getline('.')) == 0
-        return "cc"
-    else
-        return "i"
-    endif
+function! IndentWith(type)
+  if len(getline('.')) == 0
+    return "cc"
+  else
+    return a:type
+  endif
 endfunction
-nnoremap <expr> i IndentWithI()
+
+noremap <expr> i IndentWith('i')
+noremap <expr> I IndentWith('I')
+noremap <expr> A IndentWith('A')
 
 " Open current line on GitHub
 nnoremap <Leader>go :.Gbrowse<CR>
@@ -339,20 +342,21 @@ function! s:incsearch_config(...) abort
 endfunction
 " configは以下
 " https://github.com/haya14busa/incsearch.vim/blob/161c5b66542e767962ca5f6998a22e984f8d8a60/autoload/incsearch/config.vim
-noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'prompt':'Search words overwin:'}))
-noremap <silent><expr> g? incsearch#go(<SID>incsearch_config({'prompt':'Search words overwin:','command':'?'}))
-" noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+noremap <silent><expr> / incsearch#go(<SID>incsearch_config({'prompt':'Search: '}))
+noremap <silent><expr> ? incsearch#go(<SID>incsearch_config({'prompt':'Search: ','command':'?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'prompt':'Search: ','is_stay': 1}))
 
-" Gif config
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
 
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to
-" EasyMotion.
-" Without these mappings, `n` & `N` works fine. (These mappings just provide
-" different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion({'prompt':'Fuzzy: '}))
 
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/', '.vimrc_*'),'\n')
