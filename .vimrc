@@ -62,14 +62,16 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-  Plug 'osyo-manga/vim-monster', { 'for': 'ruby' }
+  Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf.vim'
-  Plug 'ctrlpvim/ctrlp.vim'
+  if !has('gui_running')
+    Plug 'ctrlpvim/ctrlp.vim'
+  endif
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'shougo/vimproc.vim', { 'do': 'make' } | Plug 'Shougo/vimshell.vim'
   Plug 'tpope/vim-obsession'
@@ -77,26 +79,25 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags' | Plug 'vim-scripts/gtags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
-  Plug 'Shougo/neocomplete.vim'
+  Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
   Plug 'jiangmiao/auto-pairs'
   Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] }
   Plug 'tpope/vim-surround'
   Plug 'simeji/winresizer'
   Plug 'easymotion/vim-easymotion'
   Plug 'Yggdroot/indentLine'
-  Plug 'tsukkee/unite-tag'
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
   Plug 'junegunn/vim-after-object'
-  Plug 'haya14busa/incsearch.vim'
-  Plug 'haya14busa/incsearch-easymotion.vim'
-  Plug 'haya14busa/incsearch-fuzzy.vim'
+  Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/incsearch-fuzzy.vim' | Plug 'haya14busa/incsearch-migemo.vim'
+  Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
+  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'terryma/vim-expand-region'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
   Plug 'jpo/vim-railscasts-theme'
   Plug 'w0ng/vim-hybrid'
-  Plug 'ujihisa/unite-colorscheme'
   Plug 'flazz/vim-colorschemes'
   Plug 'chriskempson/vim-tomorrow-theme'
   Plug 'junegunn/limelight.vim'
@@ -159,6 +160,11 @@ cmap <c-v> <plug>EasyClipCommandModePaste
 let g:EasyClipEnableBlackHoleRedirect = 0
 let g:EasyClipShareYanks = 1
 let g:EasyClipAutoFormat=1
+
+" va=  visual after =
+" ca=  change after =
+" da=  delete after =
+" ya=  yank after =
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
 
 let g:AutoPairsMapCR = 0
@@ -193,12 +199,12 @@ nmap <F5> :Gtags<SPACE>
 " nmap <C-n> :cn<CR>
 " nmap <C-p> :cp<CR>
 nmap <leader><C-]> :<C-U>execute 'Gtags -r '.expand('<cword>')<CR>
+
 " Switching windows
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 nmap <C-h> <C-w>h
-" ウィンドウ操作系
 noremap <silent><C-w>s :<C-u>split<CR>
 noremap <silent><C-w>v :<C-u>vsplit<CR>
 
