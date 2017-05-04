@@ -34,7 +34,8 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 " inoremap <expr><C-Space>     neocomplete#complete_common_string()
 
 " crtl + spaceのmappingはtermnalvimはできないらしい
-inoremap <silent><expr><C-Space> neocomplete#start_manual_complete()
+" マッピングを仲介してできるようにする
+inoremap <silent><expr><C-Space> neocomplete#start_manual_complete
 imap <silent><C-@> <C-Space>
 
 " Recommended key-mappings.

@@ -121,6 +121,20 @@ endif
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
 
+" Use <C-Space>. 使うときは<C-@>にマッピングする
+map <C-Space>  <C-@>
+cmap <C-Space>  <C-@>
+
+" コマンドラインウィンドウとQuickfixでは実行できるようにする
+function! s:returnkey()
+  if expand('%h') == '[Command Line]' || &filetype == 'qf'
+    execute "normal! \<CR>"
+  else
+    execute 'normal! '.append(expand('.'), '')."\<CR>"
+  endif
+endfunction
+nnoremap <silent><CR> :call <sid>returnkey()<CR>
+
 " ---- Yank and send to clipbord --------
 noremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 
