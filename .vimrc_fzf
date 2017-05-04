@@ -30,6 +30,11 @@ nnoremap <silent> <Leader>ag  :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader>AG  :Ag <C-R><C-A><CR>
 xnoremap <silent> <Leader>ag  y:Ag <C-R>"<CR>
 
+" Rgコマンドで検索する
+nnoremap <silent> <Leader>rg  :Rg <C-R><C-W><CR>
+nnoremap <silent> <Leader>RG  :Rg <C-R><C-A><CR>
+xnoremap <silent> <Leader>rg  y:Rg <C-R>"<CR>
+
 " :Filesによる表示の変更
 let g:fzf_files_options =
   \ '--preview "(pygmentize -g {} || tree -C {}) 2> /dev/null | head -'.&lines.'"'
@@ -134,7 +139,7 @@ endfunction
 command! FZFYank call fzf#run({
 \ 'source': <sid>yank_list(),
 \ 'sink': function('<sid>yank_handler'),
-\ 'options': '-m',
+\ 'options': '-m --prompt="FZFYank> "',
 \ 'down':    '40%'
 \ })
 
