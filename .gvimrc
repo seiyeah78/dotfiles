@@ -40,9 +40,11 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+if has("gui_running")
+  noremap <leader>b :CtrlPBuffer<CR>
+  noremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":CtrlP\<CR>"
+endif
 
-noremap <leader>b :CtrlPBuffer<CR>
-noremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":CtrlP\<CR>"
 " noremap <silent><C-p> :CtrlP
 let g:ctrlp_map = '<leader>e'
 let g:ctrlp_open_new_file = 'r'
