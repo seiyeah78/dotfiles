@@ -33,9 +33,10 @@ set nocompatible
 set switchbuf+=useopen
 " 初期表示時は通常通り開いている状態にする
 set nofoldenable
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevel=1
-
+" don't open scratch window when start complete
+set completeopt-=preview
 " .un(undoファイル)の保存場所
 set undodir=$HOME/.vim/undodir
 
@@ -65,7 +66,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
-  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-fugitive' | Plug 'tpope/tpope/vim-rhubarb'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf.vim'
@@ -73,13 +74,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
   endif
   Plug 'ntpeters/vim-better-whitespace'
-  Plug 'shougo/vimproc.vim', { 'do': 'make' } | Plug 'Shougo/vimshell.vim'
+  Plug 'shougo/vimproc.vim', { 'do': 'make' }
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
   Plug 'tomtom/tcomment_vim'
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags' | Plug 'vim-scripts/gtags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
-  Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
+  Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   Plug 'jiangmiao/auto-pairs'
   Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] }
   Plug 'tpope/vim-surround'
@@ -171,7 +172,6 @@ nnoremap <silent> <leader>z :call <sid>zoom()<CR>
 "------------ vim-easyclip------------"
 imap <c-v> <plug>EasyClipInsertModePaste
 cmap <c-v> <plug>EasyClipCommandModePaste
-let g:EasyClipEnableBlackHoleRedirect = 0
 let g:EasyClipShareYanks = 1
 let g:EasyClipAutoFormat=1
 
@@ -358,12 +358,11 @@ endfunction
 " https://github.com/haya14busa/incsearch.vim/blob/161c5b66542e767962ca5f6998a22e984f8d8a60/autoload/incsearch/config.vim
 noremap <silent><expr> / incsearch#go(<SID>incsearch_config({'prompt':'Search: '}))
 noremap <silent><expr> ? incsearch#go(<SID>incsearch_config({'prompt':'Search: ','command':'?'}))
-noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'prompt':'Search: ','is_stay': 1}))
 
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
   \   'converters': [incsearch#config#fuzzyword#converter()],
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'modules': [incsearch#config#easymotion#module()],
   \   'keymap': {"\<CR>": '<Over>(easymotion)'},
   \   'is_expr': 0,
   \   'is_stay': 1
@@ -387,3 +386,7 @@ autocmd FileType ruby set isk+=@-@
 autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
 autocmd BufNewFile,BufRead Guardfile  set filetype=ruby
 autocmd BufNewFile,BufRead .pryrc     set filetype=ruby
+
+" change foldmethod when insertmode
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
