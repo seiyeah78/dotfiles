@@ -1,6 +1,6 @@
 " ~~~~~~~~~~~~~~~自動補完~~~~~~~~~~~~~~~~~~
 "  Disable AutoComplPop.(標準の補完を無効にする)
-" let g:acp_enableAtStartup = 0
+let g:acp_enableAtStartup = 0
 " 起動時に有効にする.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
@@ -35,7 +35,7 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " crtl + spaceのmappingはtermnalvimはできないらしい
 " マッピングを仲介してできるようにする
-inoremap <silent><expr><C-Space> neocomplete#start_manual_complete
+inoremap <silent><expr><C-Space> neocomplete#start_manual_complete()
 imap <silent><C-@> <C-Space>
 
 " Recommended key-mappings.
@@ -57,11 +57,11 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " AutoComplPop like behavior.
 let g:neocomplete#enable_auto_select = 1
 " Set async completion.
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
+" let g:monster#completion#rcodetools#backend = "async_rct_complete"
 " With neocomplete.vim
 let g:neocomplete#sources#omni#input_patterns = {
-   \   "ruby" : '[^. *\t]\.\w*\|\h\w*::'
-   \}
+  \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+  \}
 " if !exists('g:neocomplete#force_omni_input_patterns')
 "   let g:neocomplete#force_omni_input_patterns = {}
 " endif
