@@ -41,7 +41,7 @@
   tracking-name = !git tracking-branch | cut -d / -f2-
   tracking = !git co $(git tracking-name)
   bro = browse
-  pr = !hub pull-request -o -b $(git tracking-branch)
+  pr = !hub pull-request -o -b $(git tracking-name)
   # reflogから復元するalias
   undo = "!f() { \\\n    git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; \\\n}; f"
 
