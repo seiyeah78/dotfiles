@@ -20,7 +20,7 @@ set splitright
 set number
 set list
 set listchars=tab:¦_
-set scrolloff=3
+set scrolloff=4
 "１行辺りsyntax解析する文字数
 set synmaxcol=600
 set guifont=Ricty\ Regular\ for\ Powerline:h5
@@ -32,9 +32,9 @@ set nobackup
 set nocompatible
 set switchbuf+=useopen
 " 初期表示時は通常通り開いている状態にする
-set nofoldenable
+" set nofoldenable
 set foldmethod=indent
-set foldlevel=1
+set foldlevel=2
 " don't open scratch window when start complete
 set completeopt-=preview
 " .un(undoファイル)の保存場所
@@ -63,10 +63,10 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-  Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
+  " Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
-  Plug 'tpope/vim-fugitive' | Plug 'tpope/tpope/vim-rhubarb'
+  Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf.vim'
@@ -169,6 +169,20 @@ function! s:zoom()
 endfunction
 nnoremap <silent> <leader>z :call <sid>zoom()<CR>
 
+" ----------------------------------------------------------------------------
+" <Leader>?/! | Google it / Feeling lucky
+" ----------------------------------------------------------------------------
+function! s:goog(pat, lucky)
+  let q = '"'.substitute(a:pat, '["\n]', ' ', 'g').'"'
+  let q = substitute(q, '[[:punct:] ]',
+       \ '\=printf("%%%02X", char2nr(submatch(0)))', 'g')
+  call system(printf('open "https://www.google.com/search?%sq=%s"',
+                   \ a:lucky ? 'btnI&' : '', q))
+endfunction
+
+nnoremap <leader>? :call <SID>goog(expand("<cWORD>"), 0)<cr>
+nnoremap <leader>! :call <SID>goog(expand("<cWORD>"), 1)<cr>
+
 "------------ vim-easyclip------------"
 imap <c-v> <plug>EasyClipInsertModePaste
 cmap <c-v> <plug>EasyClipCommandModePaste
@@ -221,6 +235,13 @@ nmap <C-l> <C-w>l
 nmap <C-h> <C-w>h
 noremap <silent><C-w>s :<C-u>split<CR>
 noremap <silent><C-w>v :<C-u>vsplit<CR>
+
+" ft-ruby-syntax
+" see: http://vim-jp.org/vimdoc-ja/syntax.html
+let ruby_operators = 1
+let ruby_space_errors = 1
+" let ruby_no_expensive = 1
+" let ruby_spellcheck_strings = 1
 
 " ============winresizer setting============
 let g:winresizer_start_key = '<C-w>e'
