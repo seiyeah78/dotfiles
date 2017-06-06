@@ -183,3 +183,10 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+" indent setting
+augroup fileTypeIndent
+  autocmd!
+  autocmd BufNewFile,BufRead *.py     setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead *.java   setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead *.groovy setlocal tabstop=4 softtabstop=4 shiftwidth=4
+augroup END

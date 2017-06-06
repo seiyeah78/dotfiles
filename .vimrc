@@ -63,6 +63,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+  Plug 'modille/groovy.vim', { 'for': 'groovy' }
   " Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
@@ -254,19 +255,6 @@ vnoremap <silent>K :m-2<CR>gv=gv
 nnoremap <silent>J :m+<CR>==
 nnoremap <silent>K :m-2<CR>==
 
-" insertモード移行時にインデント調整
-function! IndentWith(type)
-  if len(getline('.')) == 0
-    return "cc"
-  else
-    return a:type
-  endif
-endfunction
-
-noremap <expr> i IndentWith('i')
-noremap <expr> I IndentWith('I')
-noremap <expr> A IndentWith('A')
-
 " Open current line on GitHub
 nnoremap <Leader>go :.Gbrowse<CR>
 
@@ -407,13 +395,6 @@ autocmd FileType ruby set isk+=@-@
 autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
 autocmd BufNewFile,BufRead Guardfile  set filetype=ruby
 autocmd BufNewFile,BufRead .pryrc     set filetype=ruby
-
-augroup fileTypeIndent
-    autocmd!
-    autocmd BufNewFile,BufRead *.py     setlocal tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd BufNewFile,BufRead *.java   setlocal tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd BufNewFile,BufRead *.groovy setlocal tabstop=4 softtabstop=4 shiftwidth=4
-augroup END
 
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
