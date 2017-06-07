@@ -122,7 +122,7 @@ precmd() {
 }
 
 
-###############キーバインド##############
+###############Custom KeyBind##############
 bindkey -e
 
 autoload history-search-end
@@ -135,7 +135,7 @@ bindkey '^O' down-history
 bindkey '^J' backward-word
 bindkey '^K' forward-word
 bindkey "\e[Z" reverse-menu-complete
-
+bindkey '\e[3~' delete-char
 #########################################
 
 HISTFILE=~/.zsh_history
