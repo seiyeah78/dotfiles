@@ -72,7 +72,7 @@ zplug "takaaki-kasai/git-foresta", as:"command", use:"git-foresta"
 # Then, source plugins and add commands to $PATH
 zplug load
 
-PYENV_ROOT=~/.pyenv
+export PYENV_ROOT=~/.pyenv
 export PATH=$PATH:$PYENV_ROOT/bin
 # use env language manager
 eval "$(rbenv init --no-rehash -; phpenv init --no-rehash -; pyenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"

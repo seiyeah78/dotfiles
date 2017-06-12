@@ -1,4 +1,8 @@
 " vim: set foldmethod=marker foldlevel=0:
+language en_us
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+let g:python_host_prog = $PYENV_ROOT . '/versions/anaconda2-4.2.0/bin/python2'
+set guicursor=a:block-Cursor-blinkon0
 scriptencoding utf-8
 set encoding=utf-8
 set fenc=utf-8
@@ -62,9 +66,7 @@ call plug#begin('~/.vim/plugged')
         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
-  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
-  " Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
@@ -81,7 +83,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags' | Plug 'vim-scripts/gtags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
-  Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   Plug 'jiangmiao/auto-pairs'
   Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] }
   Plug 'tpope/vim-surround'
@@ -95,12 +96,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
+  if has("nvim")
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+    Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
+  else
+    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+    Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
+  endif
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
   Plug 'jpo/vim-railscasts-theme'
   Plug 'w0ng/vim-hybrid'
-  Plug 'flazz/vim-colorschemes'
   Plug 'chriskempson/vim-tomorrow-theme'
   Plug 'junegunn/limelight.vim'
   Plug 'junegunn/seoul256.vim'
@@ -108,7 +116,8 @@ call plug#end()
 
 "vimのcolorschemeの背景色と同じにするためにnone
 autocmd ColorScheme * highlight Normal ctermbg=none
-let g:hybrid_reduced_contrast = 1
+"let g:hybrid_reduced_contrast = 1
+set background=dark
 colorscheme hybrid
 
 filetype plugin indent on    " required!
