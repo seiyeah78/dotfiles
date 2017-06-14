@@ -44,7 +44,11 @@ set completeopt-=preview
 " .un(undoファイル)の保存場所
 set undodir=$HOME/.vim/undodir
 
-filetype off " be iMproved
+if has('termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]]"
+  set termguicolors
+endif
 
 if has('vim_starting')
   set rtp+=~/.vim/plugged/vim-plug
@@ -58,6 +62,7 @@ if !has('gui_running')
   set ttyfast
   set lazyredraw
 endif
+
 " Setting Vim-Plug
 " on : loading when execute commands
 " do : execute commands after install plugins
@@ -114,14 +119,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/seoul256.vim'
 call plug#end()
 
-"vimのcolorschemeの背景色と同じにするためにnone
-autocmd ColorScheme * highlight Normal ctermbg=none
-"let g:hybrid_reduced_contrast = 1
 set background=dark
 colorscheme hybrid
-
-filetype plugin indent on    " required!
-syntax on
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 if !exists('loaded_matchit')
@@ -310,7 +309,7 @@ let g:NERDTreeWinSize=25
 "autocmd vimenter * NERDTree
 
 " 選択範囲の色をVisualモードと同じにする
-hi Visual ctermbg=239
+hi Visual ctermbg=238 guibg=#405058
 hi multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 hi link multiple_cursors_visual Visual
 
