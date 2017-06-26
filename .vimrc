@@ -101,6 +101,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
+  Plug 'elzr/vim-json', { 'for': 'json' }
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
@@ -123,6 +124,8 @@ set background=dark
 colorscheme hybrid
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
+let g:vim_json_syntax_conceal = 0
+
 if !exists('loaded_matchit')
   " matchitを有効化
   runtime macros/matchit.vim
@@ -202,7 +205,7 @@ let g:EasyClipAutoFormat=1
 " ca=  change after =
 " da=  delete after =
 " ya=  yank after =
-autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(')
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(', ',')
 
 let g:AutoPairsMapCR = 0
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
