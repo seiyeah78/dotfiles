@@ -72,6 +72,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
+  Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
@@ -122,6 +123,12 @@ call plug#end()
 
 set background=dark
 colorscheme hybrid
+
+if ( g:colors_name == "hybrid" )
+  hi NonText    ctermfg=243 guifg=#707880
+  hi VertSplit  ctermfg=243 guifg=#707880
+  hi SignColumn ctermfg=243 guifg=#707880
+end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
