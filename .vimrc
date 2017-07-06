@@ -132,6 +132,7 @@ end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
+let g:pymode_indent = 0
 
 if !exists('loaded_matchit')
   " matchitを有効化

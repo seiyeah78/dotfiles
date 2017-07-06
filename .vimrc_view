@@ -81,6 +81,7 @@ function! MyGitGutter()
   endfor
   return join(ret, ' ')
 endfunction
+
 "=================全角スペースの表示=================
   function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=214  guibg=darkgray
