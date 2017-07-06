@@ -12,6 +12,11 @@ let g:fzf_action = {
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = {'down': '~40%' }
+" In Neovim, you can set up fzf window using a Vim command
+if has('gui_running')
+  let g:fzf_layout = { 'window': 'enew' }
+  let g:fzf_layout = { 'window': '-tabnew' }
+endif
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
