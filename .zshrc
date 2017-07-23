@@ -28,7 +28,6 @@ export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export PATH="${CORE_PATH}"
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
-export NODE_PATH="/usr/local/lib/node_modules"
 
 export EDITOR=vim
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
@@ -72,8 +71,11 @@ zplug "takaaki-kasai/git-foresta", as:"command", use:"git-foresta"
 # Then, source plugins and add commands to $PATH
 zplug load
 
+export NODEBREW_ROOT=$HOME/.nodebrew
 export PYENV_ROOT=~/.pyenv
 export PATH=$PATH:$PYENV_ROOT/bin
+export PATH=$NODEBREW_ROOT/current/bin:$PATH
+
 # use env language manager
 eval "$(rbenv init --no-rehash -; phpenv init --no-rehash -; pyenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"
 # use hub
@@ -156,3 +158,10 @@ SAVEHIST=100000
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
 # fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f $NODEBREW_ROOT/node/v8.1.4/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . $NODEBREW_ROOT/node/v8.1.4/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f $NODEBREW_ROOT/node/v8.1.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . $NODEBREW_ROOT/node/v8.1.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh

@@ -192,6 +192,11 @@ function mssh ()
 compdef mssh=ssh
 tmux_attach_session
 
+function rgl()
+{
+     rg --no-ignore --hidden --follow --no-messages -p "$@" | less -RSX
+}
+
 # MacVimの起動設定
 gvim() {
     if [ $# -eq 0 ]; then
