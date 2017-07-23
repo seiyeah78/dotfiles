@@ -67,13 +67,13 @@ autocmd VimEnter * command! -bang Colors
 
 " プロンプト表示を「コマンド名（検索文字列）> 」みたいにする
 function! s:exec_grep_command(arg, is_bang, command_name)
-  let fzf_options = {}
-  let cul_dir = ' (' .expand("%:p:h"). ') '
+  let fzf_options = {'options': ''}
+  let cul_dir = ' (' . getcwd() . ') '
 
   if !empty(a:arg)
-    let fzf_options.options = ' --prompt="'.a:command_name. cul_dir. '['.a:arg.']> "'
+    let fzf_options.options .= ' --prompt="'.a:command_name. cul_dir. '['.a:arg.']> "'
   else
-    let fzf_options.options = ' --prompt="'.a:command_name. cul_dir. '> "'
+    let fzf_options.options .= ' --prompt="'.a:command_name. cul_dir. '> "'
   endif
 
   if a:is_bang

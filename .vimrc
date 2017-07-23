@@ -73,6 +73,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+  Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+  Plug 'thinca/vim-ref'
+  Plug 'jwalton512/vim-blade'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
@@ -111,6 +114,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   endif
+  " Plug 'osyo-manga/vim-brightest'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -119,8 +123,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'chriskempson/vim-tomorrow-theme'
   Plug 'junegunn/limelight.vim'
   Plug 'junegunn/seoul256.vim'
+  Plug 'lifepillar/vim-solarized8'
+  Plug 'kristijanhusak/vim-hybrid-material'
+
+  " lint engine
+  Plug 'w0rp/ale'
+
 call plug#end()
 
+syntax enable
 set background=dark
 colorscheme hybrid
 
@@ -133,6 +144,14 @@ end
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
+
+" let g:brightest#highlight = {
+"       \ "group" : "BrightestUnderline",
+"       \}
+"
+" let g:brightest#highlight_in_cursorline = {
+"       \ "group" : "BrightestNONE",
+"       \}
 
 if !exists('loaded_matchit')
   " matchitを有効化
@@ -200,8 +219,8 @@ function! s:goog(pat, lucky)
                    \ a:lucky ? 'btnI&' : '', q))
 endfunction
 
-nnoremap <leader>? :call <SID>goog(expand("<cWORD>"), 0)<cr>
-nnoremap <leader>! :call <SID>goog(expand("<cWORD>"), 1)<cr>
+nnoremap <leader>? :call <SID>goog(expand("<cword>"), 0)<cr>
+nnoremap <leader>! :call <SID>goog(expand("<cWord>"), 1)<cr>
 
 "------------ vim-easyclip------------"
 imap <c-v> <plug>EasyClipInsertModePaste
