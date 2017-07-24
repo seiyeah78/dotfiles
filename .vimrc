@@ -43,6 +43,7 @@ set foldlevel=2
 set completeopt-=preview
 " .un(undoファイル)の保存場所
 set undodir=$HOME/.vim/undodir
+set undofile
 
 if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -75,7 +76,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
   Plug 'thinca/vim-ref'
-  Plug 'jwalton512/vim-blade'
+  Plug 'jwalton512/vim-blade', { 'for': 'blade' }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
