@@ -140,6 +140,7 @@ if ( g:colors_name == "hybrid" )
   hi NonText    ctermfg=243 guifg=#707880
   hi VertSplit  ctermfg=243 guifg=#707880
   hi SignColumn ctermfg=243 guifg=#707880
+  hi Search     guibg=yellowgreen
 end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
@@ -392,12 +393,12 @@ map  T <Plug>(easymotion-Tl)
 " :h g:incsearch#auto_nohlsearch
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+map n  <Plug>(incsearch-nohl-n)zz
+map N  <Plug>(incsearch-nohl-N)zz
+map *  <Plug>(incsearch-nohl-*)zz
+map #  <Plug>(incsearch-nohl-#)zz
+map g* <Plug>(incsearch-nohl-g*)zz
+map g# <Plug>(incsearch-nohl-g#)zz
 
 " 検索系の拡張
 " You can use other keymappings like <C-l> instead of <CR> if you want to
