@@ -4,59 +4,59 @@ let g:acp_enableAtStartup = 0
 if !has("nvim")
   " 起動時に有効にする.
   let g:neocomplete#enable_at_startup = 1
-  " Use smartcase.
-  let g:neocomplete#enable_smart_case = 1
-  " 補完を開始する入力文字数.
-  let g:neocomplete#auto_completion_start_length = 2
-  " シンタックスをキャッシュするときの最小文字長
-  let g:neocomplete#sources#syntax#min_keyword_length = 3
-  " ポップアップメニューで表示される候補の数
-  let g:neocomplete#max_list = 20
-  " neocompleteを自動的にロックするバッファ名のパターン
-  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-  " Define dictionary.
-  let g:neocomplete#sources#dictionary#dictionaries = {
-        \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-        \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-  " Define keyword.
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-  " Plugin key-mappings.
-  " 補完中に入力文字列を削除して再度補完する
-  " inoremap <expr><C-g>     neocomplete#undo_completion()
-  " 共通する部分まで一気に補完する
-  inoremap <expr><C-l>     neocomplete#complete_common_string()
-  " inoremap <expr><C-Space>     neocomplete#complete_common_string()
-
-  " crtl + spaceのmappingはtermnalvimはできないらしい
-  " マッピングを仲介してできるようにする
-  inoremap <silent><expr><C-Space> neocomplete#start_manual_complete()
-  imap <silent><C-@> <C-Space>
-
-  " Recommended key-mappings.
-  " <CR>: close popup and save indent.
-  inoremap <silent><CR> <C-r>=<SID>my_cr_function()<CR>
-  function! s:my_cr_function()
-    "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-    " For no inserting <CR> key.
-    " 補完が表示されているときは補完の確定、そうでない場合は改行
-    return pumvisible() ? "\<C-y>" : "\<CR>"
-  endfunction
-  " <TAB>: completion.
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-  " Close popup by ESC.方向キーがABCDになるためコメントアウト
-  " inoremap <expr><ESC> pumvisible() ? "\<C-e>" : "\<ESC>"
-  " AutoComplPop like behavior.
-  let g:neocomplete#enable_auto_select = 1
+  " " Use smartcase.
+  " let g:neocomplete#enable_smart_case = 1
+  " " 補完を開始する入力文字数.
+  " let g:neocomplete#auto_completion_start_length = 2
+  " " シンタックスをキャッシュするときの最小文字長
+  " let g:neocomplete#sources#syntax#min_keyword_length = 3
+  " " ポップアップメニューで表示される候補の数
+  " let g:neocomplete#max_list = 20
+  " " neocompleteを自動的にロックするバッファ名のパターン
+  " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+  " " Define dictionary.
+  " let g:neocomplete#sources#dictionary#dictionaries = {
+  "       \ 'default' : '',
+  "       \ 'vimshell' : $HOME.'/.vimshell_hist',
+  "       \ 'scheme' : $HOME.'/.gosh_completions'
+  "       \ }
+  "
+  " " Define keyword.
+  " if !exists('g:neocomplete#keyword_patterns')
+  "   let g:neocomplete#keyword_patterns = {}
+  " endif
+  " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+  "
+  " " Plugin key-mappings.
+  " " 補完中に入力文字列を削除して再度補完する
+  " " inoremap <expr><C-g>     neocomplete#undo_completion()
+  " " 共通する部分まで一気に補完する
+  " inoremap <expr><C-l>     neocomplete#complete_common_string()
+  " " inoremap <expr><C-Space>     neocomplete#complete_common_string()
+  "
+  " " crtl + spaceのmappingはtermnalvimはできないらしい
+  " " マッピングを仲介してできるようにする
+  " inoremap <silent><expr><C-Space> neocomplete#start_manual_complete()
+  " imap <silent><C-@> <C-Space>
+  "
+  " " Recommended key-mappings.
+  " " <CR>: close popup and save indent.
+  " inoremap <silent><CR> <C-r>=<SID>my_cr_function()<CR>
+  " function! s:my_cr_function()
+  "   "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  "   " For no inserting <CR> key.
+  "   " 補完が表示されているときは補完の確定、そうでない場合は改行
+  "   return pumvisible() ? "\<C-y>" : "\<CR>"
+  " endfunction
+  " " <TAB>: completion.
+  " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " " <C-h>, <BS>: close popup and delete backword char.
+  " inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  " " Close popup by ESC.方向キーがABCDになるためコメントアウト
+  " " inoremap <expr><ESC> pumvisible() ? "\<C-e>" : "\<ESC>"
+  " " AutoComplPop like behavior.
+  " let g:neocomplete#enable_auto_select = 1
   " Set async completion.
   " let g:monster#completion#rcodetools#backend = "async_rct_complete"
   " With neocomplete.vim
@@ -68,25 +68,25 @@ if !has("nvim")
   " endif
 
   " neosnippetの設定
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-  " SuperTab like snippets behavior.
-  "imap <expr><TAB>
-  " \ pumvisible() ? "\<C-n>" :
-  " \ neosnippet#expandable_or_jumpable() ?
-  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-  " For conceal markers.
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
-
-  "set snippet file dir
-  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+  " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  " xmap <C-k>     <Plug>(neosnippet_expand_target)
+  "
+  " " SuperTab like snippets behavior.
+  " "imap <expr><TAB>
+  " " \ pumvisible() ? "\<C-n>" :
+  " " \ neosnippet#expandable_or_jumpable() ?
+  " " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  "       \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  "
+  " " For conceal markers.
+  " if has('conceal')
+  "   set conceallevel=2 concealcursor=niv
+  " endif
+  "
+  " "set snippet file dir
+  " let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
   " Shell like behavior(not recommended).
   "set completeopt+=longest

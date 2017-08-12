@@ -1,6 +1,6 @@
 " vim: set foldmethod=marker foldlevel=0:
 language en_us
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+let g:python3_host_prog = $PYENV_ROOT . '/versions/3.6.1/bin/python3'
 let g:python_host_prog = $PYENV_ROOT . '/versions/anaconda2-4.2.0/bin/python2'
 set guicursor=a:block-Cursor-blinkon0
 scriptencoding utf-8
@@ -110,11 +110,11 @@ call plug#begin('~/.vim/plugged')
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-    Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
   else
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   endif
+  Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
   " Plug 'osyo-manga/vim-brightest'
 
   " Plug 't9md/vim-textmanip'
@@ -430,7 +430,7 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion({'prompt':'Fuzzy: '}))
 
 " 他の.vimrcの読み込み
-let s:vim_dotfiles = split(globpath('~/dotfiles/', '.vimrc_*'),'\n')
+let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
 for filename in s:vim_dotfiles
   if filereadable(expand(filename))
     execute 'source' filename
