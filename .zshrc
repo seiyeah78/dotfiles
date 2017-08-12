@@ -153,7 +153,7 @@ SAVEHIST=100000
 #prompt pure
 
 # include other zshrc files
-[ -f ~/dotfiles/.zshrc_commands ] && source ~/dotfiles/.zshrc_commands
+[ -f ~/dotfiles/include_zshrc/.zshrc_commands ] && source ~/dotfiles/include_zshrc/.zshrc_commands
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
