@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Mouse Mode With Alt key</name>
+    <appendix>Alt + up/down/left/right to cursor Left/Down/Up/Right</appendix>
+    <identifier>private.my_cursor</identifier>
+    <autogen>__KeyToKey__ KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L, ModifierFlag::NONE, KeyCode::VK_MOUSEKEY_LEFT</autogen>
+    <autogen>__KeyToKey__ KeyCode::CURSOR_DOWN, ModifierFlag::OPTION_L, ModifierFlag::NONE, KeyCode::VK_MOUSEKEY_DOWN</autogen>
+    <autogen>__KeyToKey__ KeyCode::CURSOR_UP, ModifierFlag::OPTION_L, ModifierFlag::NONE, KeyCode::VK_MOUSEKEY_UP</autogen>
+    <autogen>__KeyToKey__ KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L, ModifierFlag::NONE, KeyCode::VK_MOUSEKEY_RIGHT</autogen>
+    <autogen>__KeyToKey__ KeyCode::RETURN, ModifierFlag::OPTION_L, PointingButton::LEFT</autogen>
+  </item>
+  <item>
+    <name>Move Window with Key</name>
+    <appendix>AppleScriptを実行してアクティブウィンドウを移動</appendix>
+    <appendix> D + H/J/K/L 左下上右</appendix>
+    <appendix>ウィンドウの左右の幅を変更する</appendix>
+    <appendix> D + Y/U/I/O 左側、右側を内側または外側に移動</appendix>
+    <identifier>private.applescript</identifier>
+    <!-- 識別子の定義 -->
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.move_left</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/WindowMove/windowMoveLeft.scpt ]]>
+      </url>
+    </vkopenurldef>
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.move_right</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/WindowMove/windowMoveRight.scpt ]]>
+      </url>
+    </vkopenurldef>
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.move_up</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/WindowMove/windowMoveUp.scpt ]]>
+      </url>
+    </vkopenurldef>
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.move_down</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/WindowMove/windowMoveDown.scpt ]]>
+      </url>
+    </vkopenurldef>
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.resize_right_out</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/window_control_scripts_v2/resize-right-out.scpt ]]>
+      </url>
+    </vkopenurldef>
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.resize_right_in</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/window_control_scripts_v2/resize-right-in.scpt ]]>
+      </url>
+    </vkopenurldef>
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.resize_left_out</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/window_control_scripts_v2/resize-left-out.scpt]]>
+      </url>
+    </vkopenurldef>
+    <vkopenurldef>
+      <name>KeyCode::VK_OPEN_URL_SHELL.window.resize_left_in</name>
+      <url type="shell">
+        <![CDATA[ osascript /Library/Scripts/window_control_scripts_v2/resize-left-in.scpt]]>
+      </url>
+    </vkopenurldef>
+    <autogen>
+      __KeyOverlaidModifier__
+      KeyCode::D, ModifierFlag::NONE
+
+      @begin
+      KeyCode::VK_CONFIG_SYNC_KEYDOWNUP_window_event,
+      @end
+
+      @begin
+      KeyCode::D,
+      @end
+    </autogen>
+  </item>
+
+  <item hidden="true">
+    <identifier vk_config="true">window_event</identifier>
+    <autogen>
+      __BlockUntilKeyUp__ KeyCode::D
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::H,
+      KeyCode::VK_OPEN_URL_SHELL.window.move_left,
+      <!-- キーを離すまで次のイベントが発火されないので以下を追加 -->
+      KeyCode::VK_NONE,
+      KeyRepeat::RawValue::105,
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::L,
+      KeyCode::VK_OPEN_URL_SHELL.window.move_right,
+      <!-- キーを離すまで次のイベントが発火されないので以下を追加 -->
+      KeyCode::VK_NONE,
+      KeyRepeat::RawValue::105,
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::K,
+      KeyCode::VK_OPEN_URL_SHELL.window.move_up,
+      <!-- キーを離すまで次のイベントが発火されないので以下を追加 -->
+      KeyCode::VK_NONE,
+      KeyRepeat::RawValue::105,
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::J,
+      KeyCode::VK_OPEN_URL_SHELL.window.move_down,
+      <!-- キーを離すまで次のイベントが発火されないので以下を追加 -->
+      KeyCode::VK_NONE,
+      KeyRepeat::RawValue::105,
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::Y,
+      KeyCode::VK_OPEN_URL_SHELL.window.resize_left_out,
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::U,
+      KeyCode::VK_OPEN_URL_SHELL.window.resize_left_in,
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::O,
+      KeyCode::VK_OPEN_URL_SHELL.window.resize_right_out,
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::I,
+      KeyCode::VK_OPEN_URL_SHELL.window.resize_right_in,
+      <!-- キーを離すまで次のイベントが発火されないので以下を追加 -->
+    </autogen>
+  </item>
+  <!-- For HammerSpoon -->
+  <!--
+  nameタグは、KeyCode::VK_OPEN_URL_HS_から始めること
+  urlタグは、hammerspoon://「hs.urlevent.bind第一引数名」とすること
+   -->
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_HS_maximize_window</name>
+    <url>hammerspoon://maximize_window</url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_HS_half_window_left</name>
+    <url>hammerspoon://half_window?position=left</url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_HS_half_window_right</name>
+    <url>hammerspoon://half_window?position=right</url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_HS_half_window_top</name>
+    <url>hammerspoon://half_window_h?position=top</url>
+  </vkopenurldef>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_HS_half_window_bottom</name>
+    <url>hammerspoon://half_window_h?position=bottom</url>
+  </vkopenurldef>
+  <item>
+    <name>Maximize FocusWindow</name>
+    <identifier>hammerspoon.maximize_focuswindow</identifier>
+    <appendix>アクティブになっているウィンドウのサイズを最大化します</appendix>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F11, ModifierFlag::NONE, KeyCode::VK_OPEN_URL_HS_maximize_window
+    </autogen>
+  </item>
+  <item>
+    <name>Half Window Size With F10,12</name>
+    <identifier>hammerspoon.half_window</identifier>
+    <appendix>F10:幅を半分、高さを最大にしたウィンドウを左に配置</appendix>
+    <appendix>F12:幅を半分、高さを最大にしたウィンドウを右に配置</appendix>
+    <appendix>Alt+F10:幅を最大、高さを半分にしたウィンドウを上に配置</appendix>
+    <appendix>Alt+F12:幅を最大、高さを半分にしたウィンドウを下に配置</appendix>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F10, ModifierFlag::NONE, KeyCode::VK_OPEN_URL_HS_half_window_left
+    </autogen>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F12, ModifierFlag::NONE, KeyCode::VK_OPEN_URL_HS_half_window_right
+    </autogen>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F12, ModifierFlag::OPTION_L, KeyCode::VK_OPEN_URL_HS_half_window_top
+    </autogen>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F10, ModifierFlag::OPTION_L, KeyCode::VK_OPEN_URL_HS_half_window_bottom
+    </autogen>
+  </item>
+  <item>
+    <name>Zoom In Out With F7,F8,F9</name>
+    <identifier>hammerspoon.zoom_window</identifier>
+    <appendix>F7:ズームアウト</appendix>
+    <appendix>F8:デフォルト</appendix>
+    <appendix>F9:ズームイン</appendix>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F7, ModifierFlag::NONE,
+      KeyCode::MINUS, ModifierFlag::COMMAND_L
+    </autogen>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F8, ModifierFlag::NONE,
+      KeyCode::0, ModifierFlag::COMMAND_L
+    </autogen>
+    <autogen>
+      --KeyToKey--
+      KeyCode::F9, ModifierFlag::NONE,
+      KeyCode::SEMICOLON, ModifierFlag::SHIFT_L, ModifierFlag::COMMAND_L
+    </autogen>
+  </item>
+
+  <appdef>
+    <appname>SequelPro</appname>
+    <equal>com.sequelpro.SequelPro</equal>
+  </appdef>
+  <item>
+    <name>Ctrl-h = Delete Key SequelPro</name>
+    <identifier>private.ignore_sequelpro</identifier>
+    <only>SequelPro</only>
+    <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::CONTROL_L, ModifierFlag::NONE, KeyCode::DELETE </autogen>
+  </item>
+</root>
+
