@@ -82,16 +82,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'airblade/vim-gitgutter'
-  Plug 'junegunn/fzf.vim'
-  if !has('gui_running')
+  if has('gui_running')
     Plug 'ctrlpvim/ctrlp.vim'
+  else
+    Plug 'junegunn/fzf.vim'
   endif
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
   Plug 'tomtom/tcomment_vim'
-  Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags' | Plug 'vim-scripts/gtags.vim'
+  " Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
+  Plug 'vim-scripts/gtags.vim'
+  Plug 'soramugi/auto-ctags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'jiangmiao/auto-pairs'
   Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] }
@@ -103,6 +106,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-after-object'
   Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/incsearch-fuzzy.vim'
   Plug 'tpope/vim-abolish'
+  Plug 'pelodelfuego/vim-swoop'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
@@ -111,7 +115,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
   else
-    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+    " Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   endif
   Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
@@ -146,6 +150,7 @@ end
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
+let g:swoopAutoInsertMode = 0
 
 " let g:brightest#highlight = {
 "       \ "group" : "BrightestUnderline",
@@ -199,6 +204,10 @@ nnoremap [q :cprev<CR>zz
 nnoremap ]l :lnext<CR>zz
 nnoremap [l :lprev<CR>zz
 
+function! Strip(input_string)
+  return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
+endfunction
+
 " Zoom
 function! s:zoom()
   if winnr('$') > 1
@@ -251,11 +260,8 @@ nmap <C-W><C-]> <C-W>g<C-]>
 
 nmap <silent><leader>T :TagbarToggle<CR>
 
-set tags=./tags;,.Gemfile.lock.tags;
-let g:easytags_by_filetype = '~/.vim/tag/'
-let g:easytags_dynamic_files = 1
-let g:easytags_async = 1
-let b:easytags_auto_highlight = 0
+set tags+=.git/tags;
+let g:auto_ctags_directory_list = ['.git', '.svn']
 
 " ===================gtags.vim setting==================
 " Suggested map:
@@ -267,7 +273,7 @@ nmap <F5> :Gtags<SPACE>
 " nmap <F8> :Gozilla<CR>
 " nmap <C-n> :cn<CR>
 " nmap <C-p> :cp<CR>
-nmap <leader><C-]> :<C-U>execute 'Gtags -r '.expand('<cword>')<CR>
+nmap <leader><C-]> :<C-U>execute 'Gtags -r '.expand('<cWORD>')<CR>
 
 " Switching windows
 nmap <C-j> <C-w>j

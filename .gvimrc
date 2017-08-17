@@ -40,6 +40,13 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files  --no-ignore --hidden --follow --no-messages --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
 if has("gui_running")
   noremap <leader>b :CtrlPBuffer<CR>
   noremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":CtrlP\<CR>"

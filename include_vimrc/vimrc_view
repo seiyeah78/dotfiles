@@ -214,7 +214,7 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead Gemfile.lock set filetype=ruby
   autocmd BufNewFile,BufRead .pryrc       set filetype=ruby
   " ?つきメソッド、@@インスタンスを単語とみなす
-  autocmd FileType ruby                 set isk+=@-@
+  autocmd FileType ruby                 set isk+=@-@,?
   autocmd FileType python               setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType blade                setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType php                  setlocal tabstop=4 softtabstop=4 shiftwidth=4

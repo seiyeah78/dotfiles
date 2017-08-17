@@ -3,6 +3,7 @@
 --exclude=log
 --append=no
 --recurse=yes
+--sort=yes
 
 --regex-ruby=/(^|[:;])[ \t]*([A-Z][[:alnum:]_]+) *=/\2/c,class,constant/
 
