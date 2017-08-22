@@ -113,9 +113,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'elzr/vim-json', { 'for': 'json' }
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
   else
-    " Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   endif
   Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
@@ -181,6 +179,11 @@ function! s:returnkey()
   endif
 endfunction
 nnoremap <silent><CR> :call <sid>returnkey()<CR>
+
+" ---- setting ale.vim ----
+" check only file save
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 
 " ---- Yank and send to clipbord --------
 noremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
