@@ -6,20 +6,22 @@ if !has("nvim")
   let g:neocomplete#enable_at_startup = 1
   " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
-  " 補完を開始する入力文字数.
-  let g:neocomplete#auto_completion_start_length = 2
   " シンタックスをキャッシュするときの最小文字長
   let g:neocomplete#sources#syntax#min_keyword_length = 3
   " ポップアップメニューで表示される候補の数
-  let g:neocomplete#max_list = 20
+  let g:neocomplete#max_list = 15
   " neocompleteを自動的にロックするバッファ名のパターン
   let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
   " Define dictionary.
-  let g:neocomplete#sources#dictionary#dictionaries = {
-        \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-        \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+  let s:dicts_dir = $HOME . '.vim/dicts'
+  if isdirectory(s:dicts_dir)
+    let g:neocomplete#sources#dictionary#dictionaries = {
+          \ 'default' : '',
+          \ 'ruby' : s:dicts_dir . '/ruby.dict',
+          \ 'vimshell' : $HOME . '/.vimshell_hist',
+          \ 'scheme' : $HOME.'/.gosh_completions'
+          \ }
+  endif
 
   " Define keyword.
   if !exists('g:neocomplete#keyword_patterns')
@@ -55,30 +57,18 @@ if !has("nvim")
   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
   " Close popup by ESC.方向キーがABCDになるためコメントアウト
   " inoremap <expr><ESC> pumvisible() ? "\<C-e>" : "\<ESC>"
-  " AutoComplPop like behavior.
-  let g:neocomplete#enable_auto_select = 1
+
   " Set async completion.
-  " let g:monster#completion#rcodetools#backend = "async_rct_complete"
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
   " With neocomplete.vim
   let g:neocomplete#sources#omni#input_patterns = {
         \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
         \}
-  " if !exists('g:neocomplete#force_omni_input_patterns')
-  "   let g:neocomplete#force_omni_input_patterns = {}
-  " endif
 
   " neosnippetの設定
   imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   smap <C-k>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-  " SuperTab like snippets behavior.
-  "imap <expr><TAB>
-  " \ pumvisible() ? "\<C-n>" :
-  " \ neosnippet#expandable_or_jumpable() ?
-  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
   " For conceal markers.
   if has('conceal')
@@ -88,19 +78,11 @@ if !has("nvim")
   "set snippet file dir
   let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 
-  " Shell like behavior(not recommended).
-  "set completeopt+=longest
-  "let g:neocomplete#enable_auto_select = 1
-  "let g:neocomplete#disable_auto_complete = 1
-  "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
 else
   let g:pymode_python = 'python3'
   let g:deoplete#enable_at_startup = 1
   " Use smartcase.
   let g:deoplete#enable_smart_case = 1
-  " 補完を開始する入力文字数.
-  let g:deoplete#auto_completion_start_length = 2
   " シンタックスをキャッシュするときの最小文字長
   let g:deoplete#sources#syntax#min_keyword_length = 3
   " ポップアップメニューで表示される候補の数
@@ -112,12 +94,17 @@ else
   let g:deoplete#keyword_patterns['default'] = '\h\w*'
   " deopleteを自動的にロックするバッファ名のパターン
   let g:deoplete#lock_buffer_name_pattern = '\*ku\*'
+
   " Define dictionary.
-  let g:deoplete#sources#dictionary#dictionaries = {
-        \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-        \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+  let s:dicts_dir = $HOME . '.vim/dicts'
+  if isdirectory(s:dicts_dir)
+    let g:deoplete#sources#dictionary#dictionaries = {
+          \ 'default' : '',
+          \ 'ruby' : s:dicts_dir . '/ruby.dict',
+          \ 'vimshell' : $HOME . '/.vimshell_hist',
+          \ 'scheme' : $HOME.'/.gosh_completions'
+          \ }
+  endif
 
   " Plugin key-mappings.
   " 共通する部分まで一気に補完する
@@ -144,13 +131,13 @@ else
   " inoremap <expr><ESC> pumvisible() ? "\<C-e>" : "\<ESC>"
   " AutoComplPop like behavior.
   " let g:deoplete#enable_auto_select = 1
-  " let g:monster#completion#rcodetools#backend = "async_rct_complete"
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
   "
     " Enable heavy omni completion.
   if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
   endif
-  let g:deoplete#omni#input_patterns.ruby =
-      \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
-  " let g:deoplete#omni_patterns.ruby = ['[^. *\t]\.\w*', '\h\w*::']
+  let g:deoplete#sources#omni#input_patterns = {
+        \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+        \}
 endif
