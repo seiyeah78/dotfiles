@@ -17,7 +17,7 @@ export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(pygmentize -g {} |
 
 function fbacklog() {
   #順番：標準入力、expectのコマンド、取得結果
-  local out="$(ruby -S backlog_access.rb myissue | fzf-tmux  --ansi --no-sort --reverse --print-query --expect=ctrl-s,ctrl-o,ctrl-b,ctrl-y,enter)"
+  local out="$(ruby -S backlog_access.rb myissue | fzf-tmux -d 30% --ansi --no-sort --reverse --print-query --expect=ctrl-s,ctrl-o,ctrl-b,ctrl-y,enter)"
 
   local q="$(head -1 <<< $out)" #標準入力
   local k="$(head -2 <<< $out | tail -1)" #except指定の文字列
