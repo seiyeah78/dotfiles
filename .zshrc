@@ -109,7 +109,7 @@ alias cs="bundle exec rails c --sandbox"
 alias c="bundle exec rails c"
 
 #末尾の改行コードを除いてコピーする
-alias -g C="| ruby -pe 'chomp("")' | pbcopy"
+alias -g C="| ruby -pe 'chomp if STDIN.eof?' | pbcopy"
 
 # ctagsのPATHを上書き
 alias ctags="`brew --prefix`/bin/ctags"
