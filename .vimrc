@@ -44,6 +44,9 @@ set completeopt-=preview
 " .un(undoファイル)の保存場所
 set undodir=$HOME/.vim/undodir
 set undofile
+set hidden
+set wildmenu
+set wildmode=full
 
 if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
