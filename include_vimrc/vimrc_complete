@@ -58,13 +58,6 @@ if !has("nvim")
   " Close popup by ESC.方向キーがABCDになるためコメントアウト
   " inoremap <expr><ESC> pumvisible() ? "\<C-e>" : "\<ESC>"
 
-  " Set async completion.
-  let g:monster#completion#rcodetools#backend = "async_rct_complete"
-  " With neocomplete.vim
-  let g:neocomplete#sources#omni#input_patterns = {
-        \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-        \}
-
   " neosnippetの設定
   imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -74,6 +67,9 @@ if !has("nvim")
   if has('conceal')
     set conceallevel=2 concealcursor=niv
   endif
+
+  " Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
 
   "set snippet file dir
   let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
@@ -131,13 +127,4 @@ else
   " inoremap <expr><ESC> pumvisible() ? "\<C-e>" : "\<ESC>"
   " AutoComplPop like behavior.
   " let g:deoplete#enable_auto_select = 1
-  let g:monster#completion#rcodetools#backend = "async_rct_complete"
-  "
-    " Enable heavy omni completion.
-  if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-  endif
-  let g:deoplete#sources#omni#input_patterns = {
-        \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-        \}
 endif
