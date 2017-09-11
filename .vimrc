@@ -95,12 +95,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
   Plug 'tomtom/tcomment_vim'
-  " Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
   Plug 'vim-scripts/gtags.vim'
   Plug 'soramugi/auto-ctags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'jiangmiao/auto-pairs'
-  Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] }
+  Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2'
   Plug 'tpope/vim-surround'
   Plug 'simeji/winresizer'
   Plug 'easymotion/vim-easymotion'
@@ -114,12 +113,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
   Plug 'elzr/vim-json', { 'for': 'json' }
+  Plug 'SirVer/ultisnips'
+
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
     Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   endif
-  Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
+  Plug 'honza/vim-snippets'
   " Plug 'osyo-manga/vim-brightest'
 
   " Plug 't9md/vim-textmanip'
@@ -131,6 +132,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/seoul256.vim'
   Plug 'lifepillar/vim-solarized8'
   Plug 'kristijanhusak/vim-hybrid-material'
+  Plug 'KeitaNakamura/neodark.vim'
+  Plug 'rakr/vim-one'
+  Plug 'joshdick/onedark.vim'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -141,7 +145,7 @@ syntax enable
 set background=dark
 colorscheme hybrid
 
-if ( g:colors_name == "hybrid" )
+if exists("g:colors_name") && g:colors_name == "hybrid"
   hi NonText    ctermfg=243 guifg=#707880
   hi VertSplit  ctermfg=243 guifg=#707880
   hi SignColumn ctermfg=243 guifg=#707880
@@ -189,7 +193,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 
 " ---- Yank and send to clipbord --------
-noremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
+nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
@@ -254,6 +258,7 @@ autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '
 let g:AutoPairsMapCR = 0
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 
+let g:indentLine_faster = 1
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
 " ~~~~~~~~~~~~~~ctag setting~~~~~~~~~~~~~~
