@@ -224,3 +224,12 @@ function gifo() { git-foresta --style=10 "$@" | less -RSX }
 function gifa() { git-foresta --all --style=10 "$@" | less -RSX }
 compdef _git gifo=git-log
 compdef _git gifa=git-log
+
+
+function docker-taglist() {
+  if [ -z $1 ]; then
+    echo "input docker tag name. e.g. ${funcstack[1]} centos."
+    return 0;
+  fi
+  curl -s https://registry.hub.docker.com/v1/repositories/$1/tags | jq ".[].name"
+}
