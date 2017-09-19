@@ -27,12 +27,6 @@ set guifontwide=Droid\ Sans\ Mono:h14
 "   set fuoptions=maxvert,maxhorz
 "   au GUIEnter * set fullscreen
 " endif
-" ctrlp.vim
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|tox|ico|git|hg|svn))$'
-let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
-let g:ctrlp_use_caching = 1
 
 " The Silver Searcher
 if executable('ag')
@@ -47,13 +41,3 @@ if executable('rg')
   let g:ctrlp_use_caching = 0
 endif
 
-if has("gui_running")
-  noremap <leader>b :CtrlPBuffer<CR>
-  noremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":CtrlP\<CR>"
-endif
-
-" noremap <silent><C-p> :CtrlP
-let g:ctrlp_map = '<leader>e'
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_dont_split = 'NERD'

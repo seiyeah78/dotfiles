@@ -85,11 +85,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'airblade/vim-gitgutter'
-  if has('gui_running')
-    Plug 'ctrlpvim/ctrlp.vim'
-  else
-    Plug 'junegunn/fzf.vim'
-  endif
+  Plug 'junegunn/fzf.vim'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   Plug 'tpope/vim-obsession'
@@ -461,3 +457,4 @@ autocmd BufWritePre * StripWhitespace
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+

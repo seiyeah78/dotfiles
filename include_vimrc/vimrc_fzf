@@ -1,6 +1,5 @@
 " ランタイムを読み込む
 set rtp+=/usr/local/opt/fzf
-" set rtp+=~/.fzf
 
 " This is the default extra key bindings
 " fzf中に実行できるコマンド
@@ -13,10 +12,6 @@ let g:fzf_action = {
 " - down / up / left / right
 let g:fzf_layout = {'down': '~40%' }
 " In Neovim, you can set up fzf window using a Vim command
-if has('gui_running')
-  let g:fzf_layout = { 'window': 'enew' }
-  let g:fzf_layout = { 'window': '-tabnew' }
-endif
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -44,13 +39,8 @@ xnoremap <silent> <Leader>rg  y:Rg <C-R>"<CR>
 let g:fzf_files_options =
   \ '--preview "(pygmentize -g {} || tree -C {}) 2> /dev/null | head -'.&lines.'"'
 
-if !has('gui_running')
-  augroup term_vim_ctrlp
-    autocmd!
-    autocmd VimEnter * nnoremap <silent><expr><Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-    autocmd VimEnter * nnoremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-  augroup END
-endif
+autocmd VimEnter * nnoremap <silent><expr><Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+autocmd VimEnter * nnoremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 
 ":Colorsによる表示の変更
 autocmd VimEnter * command! -bang Colors
