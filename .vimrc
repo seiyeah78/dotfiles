@@ -98,6 +98,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2'
   Plug 'tpope/vim-surround'
   Plug 'simeji/winresizer'
+  Plug 't9md/vim-quickhl'
   Plug 'easymotion/vim-easymotion'
   Plug 'Yggdroot/indentLine'
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
@@ -117,7 +118,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
   endif
   Plug 'honza/vim-snippets'
-  " Plug 'osyo-manga/vim-brightest'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -152,14 +152,6 @@ end
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
 let g:swoopAutoInsertMode = 0
-
-" let g:brightest#highlight = {
-"       \ "group" : "BrightestUnderline",
-"       \}
-"
-" let g:brightest#highlight_in_cursorline = {
-"       \ "group" : "BrightestNONE",
-"       \}
 
 if !exists('loaded_matchit')
   " matchitを有効化
@@ -238,6 +230,12 @@ endfunction
 
 nnoremap <leader>? :call <SID>goog(expand("<cword>"), 0)<cr>
 nnoremap <leader>! :call <SID>goog(expand("<cWord>"), 1)<cr>
+
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+nmap <Space>j <Plug>(quickhl-cword-toggle)
 
 "------------ vim-easyclip------------"
 imap <c-v> <plug>EasyClipInsertModePaste
