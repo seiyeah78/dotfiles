@@ -64,7 +64,6 @@ if has('vim_starting')
 endif
 if !has('gui_running')
   set ttyfast
-  set lazyredraw
 endif
 
 " Setting Vim-Plug
@@ -95,7 +94,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'soramugi/auto-ctags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'jiangmiao/auto-pairs'
-  Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2'
+  Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
   Plug 'tpope/vim-surround'
   Plug 'simeji/winresizer'
   Plug 't9md/vim-quickhl'
@@ -136,8 +135,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0rp/ale'
 
 call plug#end()
+set noshowmode
 
-syntax enable
 set background=dark
 colorscheme hybrid
 
