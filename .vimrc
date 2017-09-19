@@ -177,11 +177,16 @@ nnoremap <silent><CR> :call <sid>returnkey()<CR>
 
 " ---- setting ale.vim ----
 " check only file save
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_linters = {
+\   'ruby': [ 'brakeman' ],
+\}
 
 " ---- Yank and send to clipbord --------
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
+vnoremap YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
@@ -230,6 +235,8 @@ endfunction
 
 nnoremap <leader>? :call <SID>goog(expand("<cword>"), 0)<cr>
 nnoremap <leader>! :call <SID>goog(expand("<cWord>"), 1)<cr>
+vnoremap <leader>? y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 0)<cr>
+vnoremap <leader>! y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 1)<cr>
 
 nmap <Space>m <Plug>(quickhl-manual-this)
 xmap <Space>m <Plug>(quickhl-manual-this)
@@ -305,6 +312,10 @@ vnoremap <silent>J :m'>+1<CR>gv=gv
 vnoremap <silent>K :m-2<CR>gv=gv
 nnoremap <silent>J :m+<CR>==
 nnoremap <silent>K :m-2<CR>==
+
+"" Vmap for maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
 
 " Open current line on GitHub
 nnoremap <Leader>go :.Gbrowse<CR>
