@@ -199,14 +199,15 @@ function rgl()
 
 # MacVimの起動設定
 gvim() {
+  local macvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
     if [ $# -eq 0 ]; then
-        open -a MacVim
+        open -a $macvim
     elif [ $# -eq 1 ]; then
         if [ ! -f "$1" ]; then
             touch "$1" || return 1
         fi
         touch -t $( date -v+1S +'%Y%m%d%H%M' ) ~/.compare
-        open -a MacVim "$1" && {
+        open -a $macvim "$1" && {
             sleep 0.2
             if [ ~/.compare -ot "$1" ]; then
                 [ ! -s "$1" ] && rm "$1"
@@ -225,11 +226,20 @@ function gifa() { git-foresta --all --style=10 "$@" | less -RSX }
 compdef _git gifo=git-log
 compdef _git gifa=git-log
 
-
+# docker command
 function docker-taglist() {
   if [ -z $1 ]; then
     echo "input docker tag name. e.g. ${funcstack[1]} centos."
     return 0;
   fi
   curl -s https://registry.hub.docker.com/v1/repositories/$1/tags | jq ".[].name"
+}
+
+function docker-rmi-none_tags() {
+  local none_tag_images=$(docker images -f 'dangling=true' -q)
+  if [ -z $none_tag_images ]; then
+    echo "No none tag images"
+    return 0
+  fi
+  docker rmi --force $none_tag_images
 }

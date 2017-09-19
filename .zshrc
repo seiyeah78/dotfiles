@@ -21,13 +21,15 @@ GIT_DIFF_HIGHLIGHT="/usr/local/share/git-core/contrib/diff-highlight"
 MYSCRIPT_DIR="/project/macro/scripts"
 OPENSSL_PATH="/usr/local/opt/openssl/bin"
 MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
-CORE_PATH="$PATH:${MYSQL_PATH}:${GIT_DIFF_HIGHLIGHT}:${JAVA_HOME}/bin:${OPENSSL_PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${MYSCRIPT_DIR}/bin:$HOME/.phpenv/bin"
 
+export GOPATH=$HOME/gocode
 export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
-export PATH="${CORE_PATH}"
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
+
+CORE_PATH="$PATH:${MYSQL_PATH}:${GIT_DIFF_HIGHLIGHT}:${JAVA_HOME}/bin:${OPENSSL_PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${MYSCRIPT_DIR}/bin:$HOME/.phpenv/bin:$GOPATH/bin:$PATH"
+export PATH=$CORE_PATH
 
 export EDITOR=vim
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
@@ -91,7 +93,7 @@ ZSH_HIGHLIGHT_STYLES[path_approx]=none
 function switch-java() {
     export JAVA_VERSION=${1}
     export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
-    export PATH="${CORE_PATH}"
+    export PATH=$CORE_PATH
     echo `java -version`
 }
 
