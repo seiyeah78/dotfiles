@@ -1,6 +1,7 @@
 "  Disable AutoComplPop.(標準の補完を無効にする)
 let g:acp_enableAtStartup = 0
 
+let g:dicts_dir = $HOME . '/.vim/dicts'
 if !has("nvim")
   " 起動時に有効にする.
   let g:neocomplete#enable_at_startup = 1
@@ -12,14 +13,14 @@ if !has("nvim")
   let g:neocomplete#max_list = 15
   " neocompleteを自動的にロックするバッファ名のパターン
   let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
   " Define dictionary.
-  let s:dicts_dir = $HOME . '/.vim/dicts'
-  if isdirectory(s:dicts_dir)
+  if isdirectory(g:dicts_dir)
     let g:neocomplete#sources#dictionary#dictionaries = {
           \ 'default' : '',
-          \ 'ruby' : s:dicts_dir . '/ruby.dict',
-          \ 'vimshell' : s:dicts_dir . '/.vimshell_hist',
-          \ 'scheme' : s:dicts_dir.'/.gosh_completions'
+          \ 'ruby' : g:dicts_dir . '/ruby.dict',
+          \ 'vimshell' : g:dicts_dir . '/.vimshell_hist',
+          \ 'scheme' : g:dicts_dir.'/.gosh_completions'
           \ }
   endif
 
@@ -91,14 +92,12 @@ else
   " deopleteを自動的にロックするバッファ名のパターン
   let g:deoplete#lock_buffer_name_pattern = '\*ku\*'
 
-  " Define dictionary.
-  let s:dicts_dir = $HOME . '/.vim/dicts'
-  if isdirectory(s:dicts_dir)
+  if isdirectory(g:dicts_dir)
     let g:deoplete#sources#dictionary#dictionaries = {
           \ 'default' : '',
-          \ 'ruby' : s:dicts_dir . '/ruby.dict',
-          \ 'vimshell' : s:dicts_dir . '/.vimshell_hist',
-          \ 'scheme' : s:dicts_dir.'/.gosh_completions'
+          \ 'ruby' : g:dicts_dir . '/ruby.dict',
+          \ 'vimshell' : g:dicts_dir . '/.vimshell_hist',
+          \ 'scheme' : g:dicts_dir.'/.gosh_completions'
           \ }
   endif
 

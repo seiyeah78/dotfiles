@@ -241,5 +241,5 @@ function docker-rmi-none_tags() {
     echo "No none tag images"
     return 0
   fi
-  docker rmi --force $none_tag_images
+  docker rmi --force "$none_tag_images"
 }
