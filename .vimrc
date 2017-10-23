@@ -3,6 +3,7 @@ language en_us
 let g:python3_host_prog = $PYENV_ROOT . '/versions/3.6.1/bin/python3'
 let g:python_host_prog = $PYENV_ROOT . '/versions/anaconda2-4.2.0/bin/python2'
 set guicursor=a:block-Cursor-blinkon0
+set re=1
 scriptencoding utf-8
 set encoding=utf-8
 set fenc=utf-8
