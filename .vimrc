@@ -105,13 +105,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-after-object'
   Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/incsearch-fuzzy.vim'
   Plug 'tpope/vim-abolish'
-  Plug 'pelodelfuego/vim-swoop'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
   Plug 'elzr/vim-json', { 'for': 'json' }
   Plug 'SirVer/ultisnips'
-
+  Plug 'Valloric/ListToggle'
+  Plug 'thinca/vim-qfreplace'
+  Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'pip install jedi' }
+  Plug 'cocopon/vaffle.vim'
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -180,9 +182,14 @@ nnoremap <silent><CR> :call <sid>returnkey()<CR>
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
+let g:ale_fixers = {
+      \   'python': [ 'autopep8' ],
+      \   'ruby': [ 'rubocop' ],
+      \}
 let g:ale_linters = {
-\   'ruby': [ 'brakeman' ],
-\}
+      \   'ruby': [ 'brakeman' ],
+      \   'python': [ 'flake8' ],
+      \}
 
 " ---- Yank and send to clipbord --------
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
@@ -206,6 +213,8 @@ nnoremap ]q :cnext<CR>zz
 nnoremap [q :cprev<CR>zz
 nnoremap ]l :lnext<CR>zz
 nnoremap [l :lprev<CR>zz
+
+let g:lt_quickfix_list_toggle_map = '<F2>'
 
 function! Strip(input_string)
   return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
@@ -274,6 +283,7 @@ nmap <silent><leader>T :TagbarToggle<CR>
 
 set tags+=.git/tags;
 let g:auto_ctags_directory_list = ['.git', '.svn']
+let g:auto_ctags = 1
 
 " ===================gtags.vim setting==================
 " Suggested map:
