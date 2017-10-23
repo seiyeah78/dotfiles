@@ -118,6 +118,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 
 ######git alias ######
 unalias gcm
+unalias grv
 alias gdc='git dc'
 alias gcm='git cm'
 
@@ -167,3 +168,5 @@ SAVEHIST=100000
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f $NODEBREW_ROOT/node/v8.1.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . $NODEBREW_ROOT/node/v8.1.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
