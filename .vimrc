@@ -86,7 +86,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-  Plug 'thinca/vim-ref'
   Plug 'jwalton512/vim-blade', { 'for': 'blade' }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
@@ -99,7 +98,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
   Plug 'tomtom/tcomment_vim'
-  Plug 'vim-scripts/gtags.vim'
   Plug 'soramugi/auto-ctags.vim'
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'jiangmiao/auto-pairs'
@@ -121,7 +119,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'Valloric/ListToggle'
   Plug 'thinca/vim-qfreplace'
   Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'pip install jedi' }
-  Plug 'cocopon/vaffle.vim'
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
