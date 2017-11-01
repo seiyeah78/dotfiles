@@ -200,6 +200,20 @@ let g:ale_linters = {
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 vnoremap YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 
+" ---- vim-jedi ----
+function! s:vim_jedi_binding()
+    let g:jedi#goto_command = "<leader>d"
+    let g:jedi#goto_assignments_command = "<leader>jg"
+    let g:jedi#goto_definitions_command = ""
+    let g:jedi#documentation_command = "<leader>k"
+    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#rename_command = "<leader>re"
+endfunction
+augroup VimJediKeyBinding
+  autocmd FileType python call s:vim_jedi_binding()
+augroup END
+
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
 
@@ -396,7 +410,7 @@ let g:EasyMotion_do_mapping = 0
 " 日本語もjump対象
 let g:EasyMotion_use_migemo = 1
 " jump用のキーを設定する
-let g:EasyMotion_keys='azwsxedcrfvtgbyhnujmikol'
+let g:EasyMotion_keys='azwsxedcrfvtgbyhnujmikol;wertyuop'
 
 " 最初のマッチにEnterかスペースでジャンプする
 let g:EasyMotion_enter_jump_first = 1
@@ -417,7 +431,7 @@ map  L <Plug>(easymotion-bd-jk)
 nmap L <Plug>(easymotion-overwin-line)
 
 " Move to word
-map  <Leader>w <Plug>(easymotion-w)
+map  <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Move to target within line
