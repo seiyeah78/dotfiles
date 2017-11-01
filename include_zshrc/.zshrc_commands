@@ -92,6 +92,24 @@ ftpane() {
   fi
 }
 
+fdocker-images() {
+    local out="$(docker images| sed -e '1d' | fzf-tmux -d 30% --ansi --exact --multi --no-sort --reverse --print-query --expect=ctrl-d,ctrl-b,ctrl-r,enter)"
+
+    local q="$(head -1 <<< $out)" #標準入力
+    local k="$(head -2 <<< $out | tail -1)" #except指定の文字列
+    local str="$(sed 1,2d <<< $out)" #取得結果
+    local container_ids=($(echo $str | awk '{print $3}' | xargs))
+    case "$k" in
+      "ctrl-b" | "enter")
+        echo $container_ids
+        print -z "docker run --rm -it ${container_ids[1]} /bin/bash"
+        ;;
+      "ctrl-d" | "ctrl-r")
+        print -z " docker rmi --force ${container_ids}"
+        ;;
+    esac
+}
+
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
 function is_osx() { [[ $OSTYPE == darwin* ]]; }
 function is_screen_running() { [ ! -z "$STY" ]; }
@@ -235,11 +253,3 @@ function docker-taglist() {
   curl -s https://registry.hub.docker.com/v1/repositories/$1/tags | jq ".[].name"
 }
 
-function docker-rmi-none_tags() {
-  local none_tag_images=$(docker images -f 'dangling=true' -q)
-  if [ -z $none_tag_images ]; then
-    echo "No none tag images"
-    return 0
-  fi
-  docker rmi --force "$none_tag_images"
-}
