@@ -13,7 +13,7 @@ set guioptions-=L
 " 水平スクロールバーを非表示にする
 set guioptions-=b
 " カーソルの点滅を抑止
-set guicursor=a:block-Cursor-blinkon0
+set guicursor=a:blinkon0
 " 縦幅　デフォルトは24
 set lines=40
 " 横幅　デフォルトは80

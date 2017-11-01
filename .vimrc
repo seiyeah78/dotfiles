@@ -2,7 +2,6 @@
 language en_us
 let g:python3_host_prog = $PYENV_ROOT . '/versions/3.6.1/bin/python3'
 let g:python_host_prog = $PYENV_ROOT . '/versions/anaconda2-4.2.0/bin/python2'
-set guicursor=a:block-Cursor-blinkon0
 set re=1
 scriptencoding utf-8
 set encoding=utf-8
@@ -51,8 +50,16 @@ set wildmode=full
 
 if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]]"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
+endif
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
 if has('vim_starting')
@@ -63,6 +70,7 @@ if has('vim_starting')
     call system('git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugged/vim-plug/autoload')
   end
 endif
+
 if !has('gui_running')
   set ttyfast
 endif
@@ -477,3 +485,8 @@ autocmd BufWritePre * StripWhitespace
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
+" Automatic rename of tmux window
+if exists('$TMUX') && !exists('$NORENAME')
+  au BufEnter * if empty(&buftype) | call system('tmux rename-window "[vim]"'.expand('%:t:S')) | endif
+  au VimLeave * call system('tmux set-window automatic-rename on')
+endif
