@@ -122,7 +122,10 @@ call plug#begin('~/.vim/plugged')
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
-    Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
+    " Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'honza/vim-snippets'
 
@@ -288,7 +291,7 @@ let g:AutoPairsMapCR = 0
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 
 let g:indentLine_faster = 1
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 
 " ~~~~~~~~~~~~~~ctag setting~~~~~~~~~~~~~~
 let g:tagbar_width = 30
@@ -342,7 +345,7 @@ vnoremap <silent>K :m-2<CR>gv=gv
 nnoremap <silent>J :m+<CR>==
 nnoremap <silent>K :m-2<CR>==
 
-"" Vmap for maintain Visual Mode after shifting > and <
+" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
 
