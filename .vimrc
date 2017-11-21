@@ -114,6 +114,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
   Plug 'junegunn/vim-after-object'
   Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/incsearch-fuzzy.vim'
+  " Plug 'haya14busa/is.vim' | Plug 'osyo-manga/vim-anzu' | Plug 'haya14busa/vim-asterisk'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'AndrewRadev/splitjoin.vim'
@@ -448,9 +449,9 @@ map  F <Plug>(easymotion-Fl)
 map  t <Plug>(easymotion-tl)
 map  T <Plug>(easymotion-Tl)
 
-" :h g:incsearch#auto_nohlsearch
+set incsearch
 set hlsearch
-
+" :h g:incsearch#auto_nohlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)zz
 map N  <Plug>(incsearch-nohl-N)zz
@@ -465,12 +466,12 @@ map g# <Plug>(incsearch-nohl-g#)zz
 " EasyMotion.
 function! s:incsearch_config(...) abort
   return incsearch#util#deepextend(deepcopy({
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  \   'keymap': {
-  \     "\<CR>": '<Over>(easymotion)'
-  \   },
-  \   'is_expr': 0
-  \ }), get(a:, 1, {}))
+        \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+        \   'keymap': {
+        \     "\<CR>": '<Over>(easymotion)'
+        \   },
+        \   'is_expr': 0
+        \ }), get(a:, 1, {}))
 endfunction
 " configは以下
 " https://github.com/haya14busa/incsearch.vim/blob/161c5b66542e767962ca5f6998a22e984f8d8a60/autoload/incsearch/config.vim
@@ -479,15 +480,23 @@ noremap <silent><expr> ? incsearch#go(<SID>incsearch_config({'prompt':'Search: '
 
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
-  \   'converters': [incsearch#config#fuzzyword#converter()],
-  \   'modules': [incsearch#config#easymotion#module()],
-  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-  \   'is_expr': 0,
-  \   'is_stay': 1
-  \ }), get(a:, 1, {}))
+        \   'converters': [incsearch#config#fuzzyword#converter()],
+        \   'modules': [incsearch#config#easymotion#module()],
+        \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+        \   'is_expr': 0,
+        \   'is_stay': 1
+        \ }), get(a:, 1, {}))
 endfunction
 
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion({'prompt':'Fuzzy: '}))
+
+" ===========is.vim=============
+" map n <Plug>(is-nohl)zz<Plug>(anzu-n-with-echo)
+" map N <Plug>(is-nohl)zz<Plug>(anzu-N-with-echo)
+" map * <Plug>(asterisk-z*)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
+" map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
+" map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
+" map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
 
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
