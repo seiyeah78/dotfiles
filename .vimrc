@@ -1,10 +1,12 @@
 " vim: set foldmethod=marker foldlevel=0:
 language en_us
-let g:python3_host_prog = $PYENV_ROOT . '/versions/3.6.1/bin/python3'
-let g:python_host_prog = $PYENV_ROOT . '/versions/anaconda2-4.2.0/bin/python2'
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
+let g:python_host_prog = $PYENV_ROOT . '/shims/python2'
 set re=1
 scriptencoding utf-8
+set nofixeol
 set encoding=utf-8
+set fileencodings=utf-8
 set fenc=utf-8
 set shiftwidth=2
 set tabstop=2
@@ -46,7 +48,9 @@ set undodir=$HOME/.vim/undodir
 set undofile
 set hidden
 set wildmenu
-set wildmode=full
+" like bash complete with tab
+set wildmode=longest,full
+set wrapscan
 
 if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -446,6 +450,7 @@ map  T <Plug>(easymotion-Tl)
 
 " :h g:incsearch#auto_nohlsearch
 set hlsearch
+
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)zz
 map N  <Plug>(incsearch-nohl-N)zz
