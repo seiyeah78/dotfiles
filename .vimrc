@@ -201,7 +201,6 @@ let g:ale_fixers = {
       \   'ruby': [ 'rubocop' ],
       \}
 let g:ale_linters = {
-      \   'ruby': [ 'brakeman' ],
       \   'python': [ 'flake8' ],
       \}
 
