@@ -37,6 +37,15 @@ bind refs B @!git branch '%(prompt Enter new branch name: )' %(remote)/%(branch)
 #bind refs B !echo %(remote)/%(branch)
 #移動の単位をコミットや変更差分単位にする
 
+# 該当のコミットを開く
+bind main G !@hub browse -- commit/%(commit)
+bind diff G !@hub browse -- commit/%(commit)
+
+# ; で GitHub の該当ページを開く
+bind tree    ;      @hub browse -- blob/%(branch)/%(file)
+bind blob    ;      @hub browse -- blob/%(branch)/%(file)
+bind grep    ;      @hub browse -- blob/%(branch)/%(file)
+
 #search「:」を利用して移動する
 bind diff    ` :?^@@
 bind log     @ :/^commit
