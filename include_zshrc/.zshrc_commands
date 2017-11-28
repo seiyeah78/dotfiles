@@ -13,7 +13,7 @@ export FZF_DEFAULT_OPTS="
 "
 export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(pygmentize -g {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(pygmentize -g {} || cat {}) 2> /dev/null | head -200'"
 
 function fbacklog() {
   #順番：標準入力、expectのコマンド、取得結果
