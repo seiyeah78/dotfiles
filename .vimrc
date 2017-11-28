@@ -1,7 +1,8 @@
 " vim: set foldmethod=marker foldlevel=0:
 language en_us
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
-let g:python_host_prog = $PYENV_ROOT . '/shims/python2'
+if exists('$PYENV_ROOT')
+  let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+endif
 set re=1
 scriptencoding utf-8
 set nofixeol
@@ -124,10 +125,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'Valloric/ListToggle'
   Plug 'thinca/vim-qfreplace'
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
   if has("nvim")
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
-    " Plug 'Shougo/neocomplete.vim' | Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
+    Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
@@ -208,18 +210,13 @@ nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 vnoremap YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 
 " ---- vim-jedi ----
-function! s:vim_jedi_binding()
-    let g:jedi#goto_command = "<leader>d"
-    let g:jedi#goto_assignments_command = "<leader>jg"
-    let g:jedi#goto_definitions_command = ""
-    let g:jedi#documentation_command = "<leader>k"
-    let g:jedi#usages_command = "<leader>n"
-    let g:jedi#completions_command = "<C-Space>"
-    let g:jedi#rename_command = "<leader>re"
-endfunction
-augroup VimJediKeyBinding
-  autocmd FileType python call s:vim_jedi_binding()
-augroup END
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>jg"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "<leader>k"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>re"
 
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
