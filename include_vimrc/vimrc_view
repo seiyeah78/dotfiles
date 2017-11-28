@@ -215,3 +215,5 @@ augroup fileTypeIndent
   autocmd FileType java                 setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType groovy               setlocal tabstop=4 softtabstop=4 shiftwidth=4
 augroup END
+
+autocmd FileType git* setlocal foldlevel=99
