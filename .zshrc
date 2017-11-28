@@ -21,14 +21,19 @@ GIT_DIFF_HIGHLIGHT="/usr/local/share/git-core/contrib/diff-highlight"
 MYSCRIPT_DIR="/project/macro/scripts"
 OPENSSL_PATH="/usr/local/opt/openssl/bin"
 MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
+MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
 
 export GOPATH=$HOME/gocode
 export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
+export PYENV_ROOT=~/.pyenv
 
-CORE_PATH="$PATH:${MYSQL_PATH}:${GIT_DIFF_HIGHLIGHT}:${JAVA_HOME}/bin:${OPENSSL_PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${MYSCRIPT_DIR}/bin:$HOME/.phpenv/bin:$GOPATH/bin:$PATH"
+PATH=$PATH:$PYENV_ROOT/bin
+CORE_PATH="$PATH:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
+$OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
+$HOME/.nodenv/bin:$HOME/.phpenv/bin:$GOPATH/bin:$MAC_VIM_PATH:$PATH"
 export PATH=$CORE_PATH
 
 export EDITOR=vim
@@ -72,10 +77,6 @@ zplug "takaaki-kasai/git-foresta", as:"command", use:"git-foresta"
 # fi
 # Then, source plugins and add commands to $PATH
 zplug load
-
-export PYENV_ROOT=~/.pyenv
-export PATH=$PATH:$PYENV_ROOT/bin
-export PATH=$NODEBREW_ROOT/current/bin:$PATH
 
 # use env language manager
 eval "$(rbenv init --no-rehash -; phpenv init --no-rehash -; pyenv init --no-rehash -; nodenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"

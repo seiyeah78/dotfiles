@@ -215,29 +215,6 @@ function rgl()
      rg --no-ignore --hidden --follow --no-messages -p "$@" | less -RSX
 }
 
-# MacVimの起動設定
-gvim() {
-  local macvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
-    if [ $# -eq 0 ]; then
-        open -a $macvim
-    elif [ $# -eq 1 ]; then
-        if [ ! -f "$1" ]; then
-            touch "$1" || return 1
-        fi
-        touch -t $( date -v+1S +'%Y%m%d%H%M' ) ~/.compare
-        open -a $macvim "$1" && {
-            sleep 0.2
-            if [ ~/.compare -ot "$1" ]; then
-                [ ! -s "$1" ] && rm "$1"
-            fi
-            rm ~/.compare
-        }
-    else
-        echo "$@: invalid arguments"
-        return 1
-    fi
-    return 0
-}
 # git-foresta
 function gifo() { git-foresta --style=10 "$@" | less -RSX }
 function gifa() { git-foresta --all --style=10 "$@" | less -RSX }
