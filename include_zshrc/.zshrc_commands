@@ -43,17 +43,26 @@ function fbacklog() {
   esac
 }
 
-# fshow - git commit browser
 fshow() {
-  local out sha q
+  local out sha q k str
   while out=$(
       git log --graph --color=always \
         --format="%C(auto)%h%d %s %C(#b2b2b2)%C(bold)%cr" "$@" |
-      fzf --ansi --multi --no-sort --reverse --query="$q" --print-query); do
-    q=$(head -1 <<< "$out")
-    while read sha; do
-      git show --color=always $sha | less -R
-    done < <(sed '1d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+      fzf --ansi --multi --no-sort --reverse --query="$q" --print-query --expect=ctrl-g,ctrl-y,enter); do
+      q="$(head -1 <<< $out)" #標準入力
+      k="$(head -2 <<< $out | tail -1)" #except指定の文字列
+      str="$(head -3 <<< $out | tail -1)" #取得結果
+      sha=$(echo "$str" | awk '{print $2}')
+    case "$k" in
+      "enter")
+        git show --color=always $sha | less -R
+        ;;
+      "ctrl-g" | "ctrl-y")
+        echo $sha C
+        echo "Copy changeset $sha to ClipBoard!"
+        return 0;
+        ;;
+    esac
   done
 }
 
