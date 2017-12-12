@@ -287,8 +287,6 @@ let g:EasyClipAutoFormat=1
 " da=  delete after =
 " ya=  yank after =
 autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(', ',')
-
-let g:AutoPairsMapCR = 0
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 
 let g:indentLine_faster = 1
