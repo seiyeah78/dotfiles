@@ -121,7 +121,7 @@ function! s:tags()
 endfunction
 command! TTags call s:tags()
 
-" ------------- Backlogのissueを無名レジスタにコピー---------"
+" ------------- 引数の内容を無名レジスタにコピー---------"
 function! s:add_latest_register(line)
   let @" = a:line
   echomsg "Add Register!!"
