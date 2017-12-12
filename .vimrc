@@ -134,6 +134,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+  Plug 'wellle/tmux-complete.vim'
   Plug 'honza/vim-snippets'
 
   " Plug 't9md/vim-textmanip'
@@ -168,7 +169,7 @@ end
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
-let g:swoopAutoInsertMode = 0
+let g:tmuxcomplete#trigger = ''
 
 if !exists('loaded_matchit')
   " matchitを有効化
