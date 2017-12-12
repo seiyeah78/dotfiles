@@ -88,6 +88,7 @@ call plug#begin('~/.vim/plugged')
         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+  Plug 'tpope/vim-rbenv'
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
@@ -306,6 +307,21 @@ nmap <silent><leader>T :TagbarToggle<CR>
 set tags+=.git/tags;
 let g:auto_ctags_directory_list = ['.git', '.svn']
 let g:auto_ctags = 1
+
+" ============ tagbar setting =============
+" see --list-kinds=Ruby
+let g:tagbar_type_ruby = {
+    \ 'kinds'      : ['m:modules',
+                    \ 'c:classes',
+                    \ 'C:constants',
+                    \ 'F:singleton methods',
+                    \ 'f:methods',
+                    \ 'a:aliases'],
+    \ 'kind2scope' : { 'c' : 'class',
+                     \ 'm' : 'class' },
+    \ 'ctagsbin'   : 'ctags',
+    \ 'ctagsargs'  : ['-f', '-']
+    \ }
 
 " ===================gtags.vim setting==================
 " Suggested map:
