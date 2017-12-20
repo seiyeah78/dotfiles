@@ -43,8 +43,29 @@ function! s:my_cr_function()
   " 補完が表示されているときは補完の確定、そうでない場合は改行
   return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
+
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+function! s:neosnippet_complete()
+  if pumvisible()
+    return "\<C-n>"
+  else
+    if neosnippet#expandable_or_jumpable()
+      return "\<Plug>(neosnippet_expand_or_jump)"
+    endif
+    return "\<TAB>"
+  endif
+endfunction
+
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> <SID>neosnippet_complete()
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"

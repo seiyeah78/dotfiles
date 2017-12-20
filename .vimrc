@@ -127,6 +127,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'thinca/vim-qfreplace'
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
+  Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
