@@ -166,10 +166,10 @@ if exists("g:colors_name") && g:colors_name == "hybrid"
   hi SignColumn ctermfg=243 guifg=#707880
   hi Search     guibg=yellowgreen
 end
-
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
+let g:AutoPairsMapCR=0
 let g:tmuxcomplete#trigger = ''
 
 if !exists('loaded_matchit')
@@ -183,16 +183,6 @@ command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボード�
 " Use <C-Space>. 使うときは<C-@>にマッピングする
 map <C-Space>  <C-@>
 cmap <C-Space>  <C-@>
-
-" コマンドラインウィンドウとQuickfixでは実行できるようにする
-function! s:returnkey()
-  if expand('%h') == '[Command Line]' || &filetype == 'qf'
-    execute "normal! \<CR>"
-  else
-    execute 'normal! '.append(expand('.'), '')."\<CR>"
-  endif
-endfunction
-nnoremap <silent><CR> :call <sid>returnkey()<CR>
 
 " ---- setting ale.vim ----
 " check only file save

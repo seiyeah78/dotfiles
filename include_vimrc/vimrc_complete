@@ -36,13 +36,12 @@ imap <silent><C-@> <C-Space>
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent><CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
   " 補完が表示されているときは補完の確定、そうでない場合は改行
-  return pumvisible() ? "\<C-y>" : "\<CR>"
+  return (pumvisible() ? "\<C-y>" : "\<CR>\<C-R>=AutoPairsReturn()\<CR>\<C-R>=\<C-h>")
 endfunction
+
+inoremap <silent><expr><CR> <C-R>=<SID>my_cr_function()<CR>
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
