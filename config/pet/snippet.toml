@@ -1,0 +1,44 @@
+[[snippets]]
+  description = "Sum Unicorn Workers Memory"
+  command = "ps aux | grep unicor[n] | awk '{sum += $6 }END{print sum}'"
+  output = ""
+
+[[snippets]]
+  description = "Top 10 of directory capacity"
+  command = "sudo du / --exclude=/mnt | sort -nr | head -10"
+  output = ""
+
+[[snippets]]
+  description = "ElasticSearch check mapping curl"
+  command = "curl -XGET 127.0.0.1:9200/behavior/_mapping/pageview/?pretty"
+  output = ""
+
+[[snippets]]
+  description = "Extract read write IO from prof files"
+  command = "find /proc -name io 2> /dev/null | xargs egrep \"write|read\" 2> /dev/null | sort -n -k 2"
+  output = ""
+
+[[snippets]]
+  description = "Check Global IP with curl"
+  command = "curl http://httpbin.org/ip"
+  output = ""
+
+[[snippets]]
+  description = "Force flush td-agent logs"
+  command = "sudo kill -USR1 `sudo cat /var/run/td-agent/td-agent.pid`"
+  output = ""
+
+[[snippets]]
+  description = "Check response with zabbix-agent from hostname"
+  command = "zabbix_get -s <hostname> -k agent.version"
+  output = ""
+
+[[snippets]]
+  description = "Get get target group desc with instance ids from target_group_name"
+  command = "aws elbv2 describe-target-health --target-group-arn $(aws elbv2 describe-target-groups --name <target_group_name> | jq -r \".TargetGroups[].TargetGroupArn\") | jq ."
+  output = ""
+
+[[snippets]]
+  description = "Describe instances."
+  command = "aws ec2 describe-instances --filters 'Name=tag:Name,Values=<hosts_comma=*>' | jq '[.[][].Instances[] | { Hostname:(.Tags[] | select(.Key ==\"Name\").Value), Stage:(.Tags[] | select(.Key ==\"Stages\").Value), State:.State.Name, private_ip_address: .PrivateIpAddress, SC:(.SecurityGroups | map(.GroupName))}] | sort_by(.Hostname)'"
+  output = ""
