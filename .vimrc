@@ -136,6 +136,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'wellle/tmux-complete.vim'
+  Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdonw', 'md', 'mkd'] }
   Plug 'honza/vim-snippets'
 
   " Plug 't9md/vim-textmanip'
