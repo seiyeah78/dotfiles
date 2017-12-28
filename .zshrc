@@ -146,14 +146,6 @@ bindkey '\e[3~' delete-char
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-#autoload -Uz colors
-#colors
-
-# autoload -Uz compinit
-# compinit -C
-
-#autoload -Uz promptinit && promptinit
-#prompt pure
 
 # include other zshrc files
 [ -f ~/dotfiles/include_zshrc/.zshrc_commands ] && source ~/dotfiles/include_zshrc/.zshrc_commands

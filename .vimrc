@@ -431,14 +431,7 @@ map <Leader><Leader> <Plug>(easymotion-prefix)
 
 " s{char}{char} to move to {char}{char}
 map  s <Plug>(easymotion-s2)
-" nmap s <Plug>(easymotion-overwin-f2)
-nmap S <Plug>(easymotion-overwin-f2)
-
 map  <leader>f <Plug>(easymotion-bd-f)
-
-" Move to line
-map  L <Plug>(easymotion-bd-jk)
-nmap L <Plug>(easymotion-overwin-line)
 
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
