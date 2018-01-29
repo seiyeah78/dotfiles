@@ -189,6 +189,13 @@ endif
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
 
+" disable F1 for help
+nmap <F1> <nop>
+imap <F1> <nop>
+
+" ctrl-j to ESC
+imap <C-J> <ESC>
+
 " Use <C-Space>. 使うときは<C-@>にマッピングする
 map <C-Space>  <C-@>
 cmap <C-Space>  <C-@>
