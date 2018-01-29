@@ -67,5 +67,3 @@
   root = ~/src
 [include]
   path = ~/.gitconfig.local
-[init]
-  templatedir = .git_tmp
