@@ -41,7 +41,7 @@ function! s:my_cr_function()
   return (pumvisible() ? "\<C-y>" : "\<CR>\<C-R>=AutoPairsReturn()\<CR>\<C-R>=\<C-h>")
 endfunction
 
-inoremap <silent><expr><CR> <C-R>=<SID>my_cr_function()<CR>
+inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -64,6 +64,9 @@ imap <expr><TAB> <SID>neosnippet_complete()
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+"set snippet file dir
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
 
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
