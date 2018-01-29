@@ -1,5 +1,6 @@
 " vim: set foldmethod=marker foldlevel=0:
 language en_us
+set ambiwidth=double
 if exists('$PYENV_ROOT')
   let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 endif
@@ -88,6 +89,9 @@ call plug#begin('~/.vim/plugged')
         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+  Plug 'slim-template/vim-slim', { 'for': 'slim' }
+  Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
+  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
   Plug 'tpope/vim-rbenv'
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -98,7 +102,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'airblade/vim-gitgutter'
-  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf.vim' | Plug 'seiyeah78/fzf-filemru'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   Plug 'tpope/vim-obsession'
@@ -155,6 +159,10 @@ call plug#begin('~/.vim/plugged')
   " lint engine
   Plug 'w0rp/ale'
 
+  " load another plugins for projects
+  if filereadable(glob('~/.vim/plugins.local'))
+    execute 'source ~/.vim/plugins.local'
+  endif
 call plug#end()
 set noshowmode
 
@@ -196,7 +204,9 @@ let g:ale_fixers = {
       \}
 let g:ale_linters = {
       \   'python': [ 'flake8' ],
+      \   'php': [ 'php', 'phpmd' ],
       \}
+let g:ale_php_phpmd_ruleset = 'codesize,design,naming,unusedcode'
 
 " ---- Yank and send to clipbord --------
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
@@ -373,6 +383,10 @@ nmap <Leader>gj <Plug>GitGutterNextHunk
 nmap <Leader>gk <Plug>GitGutterPrevHunk
 
 "=================NERDTree setting===========================
+let g:NERDTreeChDirMode = 2
+let NERDTreeShowHidden = 1
+let g:NERDTreeWinSize = 25
+
 nnoremap <silent><Leader><S-n><S-n> :NERDTreeToggle<CR>
 nnoremap <silent><Leader><S-n>f :NERDTreeFind<CR>
 
@@ -386,20 +400,16 @@ endfunction
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   if exists(':NeoCompleteLock')==2
-    exe 'NeoCompleteLock'
+    exe 'call deoplete#disable()'
   endif
 endfunction
 
 " Called once only when the multiple selection is canceled (default <Esc>)
 function! Multiple_cursors_after()
   if exists(':NeoCompleteUnlock')==2
-    exe 'NeoCompleteUnlock'
+    exe 'call deoplete#enable()'
   endif
 endfunction
-
-let NERDTreeShowHidden=1
-let g:NERDTreeWinSize=25
-"autocmd vimenter * NERDTree
 
 " 選択範囲の色をVisualモードと同じにする
 hi Visual ctermbg=238 guibg=#405058
