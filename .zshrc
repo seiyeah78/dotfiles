@@ -29,6 +29,7 @@ export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 export PYENV_ROOT=~/.pyenv
+export PATH=$HOME/.composer/vendor/bin:$PATH
 
 PATH=$PATH:$PYENV_ROOT/bin
 CORE_PATH="$PATH:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
