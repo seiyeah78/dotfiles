@@ -88,7 +88,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-plug',
         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
-  Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+  Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'slim-template/vim-slim', { 'for': 'slim' }
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
@@ -305,8 +305,8 @@ let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 " ~~~~~~~~~~~~~~ctag setting~~~~~~~~~~~~~~
 let g:tagbar_width = 30
 " tagsジャンプの時に複数ある時は一覧表示
-nmap <C-]> g<C-]>
-nmap <C-W><C-]> <C-W>g<C-]>
+nnoremap <C-]> g<C-]>
+nnoremap <C-W><C-]> <C-W>g<C-]>
 "nmap <C-]>s :exe("stjump ".expand('<cword>'))<CR>
 "nmap <C-]>v :exe("vertical stjump ".expand('<cword>'))<CR>
 
@@ -393,6 +393,7 @@ nmap <Leader>gk <Plug>GitGutterPrevHunk
 let g:NERDTreeChDirMode = 2
 let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 25
+let g:NERDTreeHighlightCursorline = 0
 
 nnoremap <silent><Leader><S-n><S-n> :NERDTreeToggle<CR>
 nnoremap <silent><Leader><S-n>f :NERDTreeFind<CR>
