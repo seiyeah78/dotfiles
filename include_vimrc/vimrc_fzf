@@ -105,7 +105,6 @@ function! s:tags()
     echohl WarningMsg
     echom 'Preparing tags'
     echohl None
-    call g:fzf_tags_command
   endif
   " 優先度の高いtagfileだけ使う
   let tagfile = tagfiles()[0]
