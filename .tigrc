@@ -49,11 +49,17 @@ bind grep    ;      @hub browse -- blob/%(branch)/%(file)
 
 #search「:」を利用して移動する
 bind diff    ` :?^@@
+bind diff    [] :?^@@
 bind log     @ :/^commit
+bind log     ] :/^commit
 bind log     ` :?^commit
+bind log     [ :?^commit
 bind stage   ` :?^@@
+bind stage   [ :?^@@
 bind pager   @ :/^commit
+bind pager   [ :/^commit
 bind pager   ` :?^commit
+bind pager   ] :?^commit
 
 #view
 set main-view = id date author commit-title:graph=yes,refs=yes
