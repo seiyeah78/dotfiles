@@ -35,7 +35,7 @@ function! MyFilename()
            \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
            \  &ft == 'unite' ? unite#get_status_string() :
            \  &ft == 'vimshell' ? vimshell#get_status_string() :
-           \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+           \ '' != expand('%') ? expand('%') : '[No Name]') .
            \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 function! MyFugitive()
@@ -208,8 +208,9 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead Gemfile.lock set filetype=ruby
   autocmd BufNewFile,BufRead .pryrc       set filetype=ruby
   " ?つきメソッド、@@インスタンスを単語とみなす
-  autocmd FileType ruby                 set isk+=@-@,?
-  autocmd FileType slim                 set isk+=@-@,?
+  autocmd FileType ruby                 setlocal isk+=@-@,?,!
+  autocmd FileType eruby                setlocal isk+=@-@,?,!
+  autocmd FileType slim                 setlocal isk+=@-@,?,!
   autocmd FileType python               setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType blade                setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType php                  setlocal tabstop=4 softtabstop=4 shiftwidth=4
