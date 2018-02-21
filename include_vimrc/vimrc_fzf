@@ -37,7 +37,7 @@ xnoremap <silent> <Leader>rg  y:Rg <C-R>"<CR>
 
 " :Filesによる表示の変更
 let g:fzf_files_options =
-      \ '--tiebreak=end,index --preview "echo {} | awk \"{print $NF}\" | (xargs rougify || xargs pygmentize -g || xargs ccat || xargs cat) 2> /dev/null | head -'.&lines.'"'
+      \ '--tiebreak=end,index --preview "(rougify {-1} || pygmentize -g {-1} || ccat {-1} || cat {-1}) 2> /dev/null | head -'.&lines.'"'
 
 autocmd VimEnter * nnoremap <silent><expr><Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 autocmd VimEnter * nnoremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
