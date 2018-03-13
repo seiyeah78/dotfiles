@@ -121,8 +121,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
   Plug 'junegunn/vim-after-object'
-  Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/incsearch-fuzzy.vim'
-  " Plug 'haya14busa/is.vim' | Plug 'osyo-manga/vim-anzu' | Plug 'haya14busa/vim-asterisk'
+  Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/vim-asterisk'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'AndrewRadev/splitjoin.vim'
@@ -457,25 +456,21 @@ map  <leader>f <Plug>(easymotion-bd-f)
 
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
-" nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Move to target within line
 " lはline(１行)の意味
-map  f <Plug>(easymotion-fl)
-map  F <Plug>(easymotion-Fl)
-map  t <Plug>(easymotion-tl)
-map  T <Plug>(easymotion-Tl)
+map  f <Plug>(easymotion-bd-fl)
+map  t <Plug>(easymotion-bd-tl)
 
 set incsearch
 set hlsearch
-" :h g:incsearch#auto_nohlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)zz
 map N  <Plug>(incsearch-nohl-N)zz
-map *  <Plug>(incsearch-nohl-*)zz
-map #  <Plug>(incsearch-nohl-#)zz
-map g* <Plug>(incsearch-nohl-g*)zz
-map g# <Plug>(incsearch-nohl-g#)zz
+map *  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+map #  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+map g* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+map g# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 
 " 検索系の拡張
 " You can use other keymappings like <C-l> instead of <CR> if you want to
@@ -504,8 +499,6 @@ function! s:config_easyfuzzymotion(...) abort
         \   'is_stay': 1
         \ }), get(a:, 1, {}))
 endfunction
-
-noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion({'prompt':'Fuzzy: '}))
 
 " ===========is.vim=============
 " map n <Plug>(is-nohl)zz<Plug>(anzu-n-with-echo)
