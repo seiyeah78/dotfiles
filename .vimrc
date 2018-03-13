@@ -53,6 +53,7 @@ set wildmenu
 " like bash complete with tab
 set wildmode=longest,full
 set wrapscan
+set updatetime=1000
 
 if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -90,6 +91,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'slim-template/vim-slim', { 'for': 'slim' }
+  Plug 'uplus/deoplete-solargraph', { 'for': 'ruby' }
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
   Plug 'tpope/vim-rbenv'
@@ -155,6 +157,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'rakr/vim-one'
   Plug 'joshdick/onedark.vim'
+  Plug 'tyrannicaltoucan/vim-quantum'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -206,8 +209,9 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_fixers = {
-      \   'python': [ 'autopep8' ],
-      \   'ruby': [ 'rubocop' ],
+      \ 'python': [ 'autopep8' ],
+      \ 'ruby': [ 'rubocop' ],
+      \ 'javascript': [ 'eslint' ],
       \}
 let g:ale_linters = {
       \   'python': [ 'flake8' ],
@@ -312,9 +316,9 @@ nnoremap <C-W><C-]> <C-W>g<C-]>
 
 nmap <silent><leader>T :TagbarToggle<CR>
 
-set tags+=.git/tags;
 let g:auto_ctags_directory_list = ['.git', '.svn']
 let g:auto_ctags = 1
+set tags+=.git/tags;
 
 " ============ tagbar setting =============
 " see --list-kinds=Ruby
