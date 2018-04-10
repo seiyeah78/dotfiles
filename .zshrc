@@ -102,10 +102,7 @@ function switch-java() {
 alias vi='vim'
 alias ls='ls -G'
 
-alias vu='vagrant up'
-alias vha='vagrant halt'
-alias vr='vagrant reload'
-alias vru='rake vagrant:up'
+alias fig='docker-compose'
 alias agl="ag --pager='less -R'"
 
 alias cs="bundle exec rails c --sandbox"
