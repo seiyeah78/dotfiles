@@ -39,8 +39,8 @@ xnoremap <silent> <Leader>rg  y:Rg <C-R>"<CR>
 let g:fzf_files_options =
       \ '--tiebreak=end,index --preview "(pygmentize -g {-1} || rougify {-1} || ccat {-1} || cat {-1}) 2> /dev/null | head -'.&lines.'"'
 
-autocmd VimEnter * nnoremap <silent><expr><Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-autocmd VimEnter * nnoremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+autocmd VimEnter * nnoremap <silent><expr><Leader>F (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FilesMru\<cr>"
+autocmd VimEnter * nnoremap <silent><expr><C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FilesMru\<cr>"
 
 ":Colorsによる表示の変更
 autocmd VimEnter * command! -bang Colors
