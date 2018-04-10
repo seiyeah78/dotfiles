@@ -3,6 +3,7 @@ language en_us
 set ambiwidth=double
 if exists('$PYENV_ROOT')
   let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+  let g:python_host_prog = $PYENV_ROOT . '/versions/neovim2/bin/python'
 endif
 set re=1
 scriptencoding utf-8
