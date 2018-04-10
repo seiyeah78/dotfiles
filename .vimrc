@@ -181,8 +181,9 @@ end
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
-let g:AutoPairsMapCR=0
+let g:AutoPairsMapCR = 0
 let g:tmuxcomplete#trigger = ''
+let g:UltiSnipsUsePythonVersion = 3
 
 if !exists('loaded_matchit')
   " matchitを有効化
@@ -294,7 +295,8 @@ nmap <Space>j <Plug>(quickhl-cword-toggle)
 imap <c-v> <plug>EasyClipInsertModePaste
 cmap <c-v> <plug>EasyClipCommandModePaste
 let g:EasyClipShareYanks = 1
-let g:EasyClipAutoFormat=1
+let g:EasyClipAutoFormat = 1
+let g:EasyClipUsePasteDefaults = 0
 
 " va=  visual after =
 " ca=  change after =
@@ -501,14 +503,6 @@ function! s:config_easyfuzzymotion(...) abort
         \ }), get(a:, 1, {}))
 endfunction
 
-" ===========is.vim=============
-" map n <Plug>(is-nohl)zz<Plug>(anzu-n-with-echo)
-" map N <Plug>(is-nohl)zz<Plug>(anzu-N-with-echo)
-" map * <Plug>(asterisk-z*)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
-" map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
-" map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
-" map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)zz<Plug>(anzu-update-search-status-with-echo)
-
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
 for filename in s:vim_dotfiles
@@ -518,7 +512,10 @@ for filename in s:vim_dotfiles
 endfor
 
 hi ExtraWhitespace ctermbg=red
-autocmd BufWritePre * StripWhitespace
+augroup space_trim
+  autocmd!
+  autocmd BufWritePre * StripWhitespace
+augroup END
 
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
