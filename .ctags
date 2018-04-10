@@ -20,3 +20,13 @@
 --regex-ruby=/^[[:space:]]*attr_(reader|writer|accessor)[[:space:]]+:([a-z0-9_?]+)/\2/
 
 --regex-ruby=/^[[:space:]]*(concern|concerning)[[:space:]]+:([a-zA-Z0-9_]+)/\2/
+
+--exclude=node_modules
+--exclude=dist
+--exclude=.git
+--exclude=.session.vim
+--exclude=package.json
+--exclude=webpack.config.babel.js
+--exclude=postcss.config.js
+--exclude=yarn.lock
+--exclude=config.js
