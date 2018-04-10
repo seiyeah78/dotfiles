@@ -4,7 +4,6 @@ local move_mash = {"ctrl", "shift"}
 local move_window_mash = {"ctrl", "alt"}
 
 local MOVE_PIXEL = 100
-  local win = hs.window.focusedWindow()
 
 function move_left ()
   local win = hs.window.focusedWindow()
