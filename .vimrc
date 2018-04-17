@@ -92,15 +92,18 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'slim-template/vim-slim', { 'for': 'slim' }
-  Plug 'uplus/deoplete-solargraph', { 'for': 'ruby' }
+  Plug 'uplus/deoplete-solargraph', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+  Plug 'leafgarland/typescript-vim' | Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
   Plug 'tpope/vim-rbenv'
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
   Plug 'jwalton512/vim-blade', { 'for': 'blade' }
+  Plug 'ryanoasis/vim-devicons'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
   Plug 'terryma/vim-multiple-cursors'
@@ -180,6 +183,7 @@ if exists("g:colors_name") && g:colors_name == "hybrid"
 end
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
+let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0
 let g:AutoPairsMapCR = 0
 let g:tmuxcomplete#trigger = ''
