@@ -62,7 +62,7 @@
   show = diff-highlight | less
   diff = diff-highlight | less
 [diff]
-  compactionHeuristic = true
+  indentHeuristic = true
 	algorithm = patience
 	renames = true
 [ghq]
