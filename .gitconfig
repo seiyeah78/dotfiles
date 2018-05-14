@@ -65,7 +65,5 @@
   indentHeuristic = true
 	algorithm = patience
 	renames = true
-[ghq]
-  root = ~/src
 [include]
   path = ~/.gitconfig.local
