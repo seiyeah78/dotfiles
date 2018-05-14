@@ -6,7 +6,6 @@ let g:gitgutter_sign_removed = '✘'
 
 let g:lightline = {
       \ 'colorscheme': 'wombat',
-      \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'session_state', 'fugitive', 'gitgutter', 'filename' ] ]
       \ },
@@ -21,7 +20,9 @@ let g:lightline = {
       \   'gitgutter': 'MyGitGutter',
       \   'session_state': 'ObsessionStatus',
       \   'mode': 'MyMode',
-      \ }
+      \ },
+      \ 'separator': { 'left': "⮀", 'right': "⮂"  },
+      \ 'subseparator': {'left': '⮁', 'right': '⮃'}
       \ }
 
 function! MyModified()
@@ -178,8 +179,6 @@ function! s:goyo_leave()
   set showmode
   set showcmd
   Limelight!
-  " カーソル位置を常に中央にする
-  " set scrolloff=5
 endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
@@ -219,3 +218,9 @@ augroup fileTypeIndent
 augroup END
 
 autocmd FileType git* setlocal foldlevel=99
+
+" Automatic rename of tmux window
+if exists('$TMUX') && !exists('$NORENAME')
+  au BufEnter * if empty(&buftype) | call system('tmux rename-window "[vim]"'.expand('%:t:S')) | endif
+  au VimLeave * call system('tmux set-window automatic-rename on')
+endif
