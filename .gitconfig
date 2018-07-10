@@ -19,7 +19,7 @@
   autosetuprebase = always
   autosetupmerge = always
 [pull]
-  rebase = true
+  rebase = false
 [http]
   sslVerify = false
 [i18n]
