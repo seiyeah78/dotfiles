@@ -63,7 +63,7 @@
   diff = diff-highlight | less
 [diff]
   indentHeuristic = true
-	algorithm = patience
+	algorithm = histogram
 	renames = true
 [include]
   path = ~/.gitconfig.local
