@@ -92,18 +92,20 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'slim-template/vim-slim', { 'for': 'slim' }
-  Plug 'uplus/deoplete-solargraph', { 'for': ['ruby', 'eruby', 'slim'] }
+  " Plug 'uplus/deoplete-solargraph', {
+  "   \ 'for': ['ruby', 'eruby', 'slim'],
+  "   \ 'do': 'rbenv each gem install solargraph yard; pip install solargraph-utils.py --user; pip3 install solargraph-utils.py --user yard gems'
+  "   \ }
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
   Plug 'leafgarland/typescript-vim' | Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
+  Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   Plug 'tpope/vim-rbenv'
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
   Plug 'jwalton512/vim-blade', { 'for': 'blade' }
-  Plug 'ryanoasis/vim-devicons'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
   Plug 'terryma/vim-multiple-cursors'
@@ -114,7 +116,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
   Plug 'tomtom/tcomment_vim'
-  Plug 'soramugi/auto-ctags.vim'
+  Plug 'soramugi/auto-ctags.vim', { 'commit': '5164b2d6b4dcf6b2e0597e888382403175c3227e' }
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'jiangmiao/auto-pairs'
   Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
@@ -136,7 +138,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'thinca/vim-qfreplace'
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
-  Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else

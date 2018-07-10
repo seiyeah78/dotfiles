@@ -23,7 +23,6 @@ if isdirectory(g:dicts_dir)
         \ 'default' : '',
         \ 'ruby' : g:dicts_dir . '/ruby.dict',
         \ 'vimshell' : g:dicts_dir . '/.vimshell_hist',
-        \ 'scheme' : g:dicts_dir.'/.gosh_completions'
         \ }
 endif
 
@@ -43,38 +42,15 @@ endfunction
 
 inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
 
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-function! s:neosnippet_complete()
-  if pumvisible()
-    return "\<C-n>"
-  else
-    if neosnippet#expandable_or_jumpable()
-      return "\<Plug>(neosnippet_expand_or_jump)"
-    endif
-    return "\<TAB>"
-  endif
-endfunction
-
-" <TAB>: completion.
-imap <expr><TAB> <SID>neosnippet_complete()
-
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-
-"set snippet file dir
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'
 
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 " Close popup by ESC.方向キーがABCDになるためコメントアウト
 " inoremap <expr><ESC> pumvisible() ? "\<C-e>" : "\<ESC>"
-" AutoComplPop like behavior.
-" let g:deoplete#enable_auto_select = 1
 
-" let g:rubycomplete_buffer_loading = 1
-" let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
