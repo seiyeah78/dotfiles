@@ -103,6 +103,14 @@ hs.hotkey.bind(move_mash, "K", move_up, nil, move_up)
 
 hs.hotkey.bind(move_window_mash, "/", move_screen, nil, nil)
 
+hs.keycodes.inputSourceChanged(function()
+  local m = hs.keycodes.currentMethod()
+  if m then
+    hs.alert.closeAll(0)
+    uuid = hs.alert.show(hs.keycodes.currentMethod(), 0.5)
+  end
+end)
+
 -- debug
 
 function table.val_to_str ( v )
