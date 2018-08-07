@@ -92,10 +92,6 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'slim-template/vim-slim', { 'for': 'slim' }
-  " Plug 'uplus/deoplete-solargraph', {
-  "   \ 'for': ['ruby', 'eruby', 'slim'],
-  "   \ 'do': 'rbenv each gem install solargraph yard; pip install solargraph-utils.py --user; pip3 install solargraph-utils.py --user yard gems'
-  "   \ }
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
   Plug 'leafgarland/typescript-vim' | Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
@@ -138,6 +134,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'thinca/vim-qfreplace'
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -513,4 +511,3 @@ augroup END
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-

@@ -9,7 +9,7 @@ let g:deoplete#enable_smart_case = 1
 " シンタックスをキャッシュするときの最小文字長
 let g:deoplete#sources#syntax#min_keyword_length = 3
 " ポップアップメニューで表示される候補の数
-let g:deoplete#max_list = 20
+let g:deoplete#max_list = 100
 " Define keyword.
 if !exists('g:deoplete#keyword_patterns')
   let g:deoplete#keyword_patterns = {}
@@ -54,3 +54,14 @@ inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
+
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+
+"=========LnguageClient==========
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls'],
+    \ 'ruby': [ 'solargraph',  'stdio'  ],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \}
+let g:LanguageClient_autoStart = 1
