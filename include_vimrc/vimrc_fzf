@@ -100,7 +100,7 @@ function! s:tags_sink(line)
   let &magic = magic
 endfunction
 
-function! s:tags()
+function! s:tags(query)
   if empty(tagfiles())
     echohl WarningMsg
     echom 'Preparing tags'
@@ -111,14 +111,21 @@ function! s:tags()
   " let proc = 'perl -ne ''unless (/^\!/) { s/^(.*?)\t(.*?)\t/'.s:yellow('\1', 'Function').'\t'.s:blue('\2', 'String').'\t/; print }'' '
   let copt = '--ansi '
 
+  if !empty(a:query)
+    let query_option = ' --query='.shellescape(a:query)
+  else
+    let query_option = ''
+  endif
+
   call fzf#run({
   \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
   \            '| grep -v -a ^!',
-  \ 'options': copt.'+m -d "\t" --with-nth 1,2,4.. -n 1 --tiebreak=index --prompt "Tags> "'.s:q(a:query)',
+  \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index '.
+  \            '--prompt="TTags> "'.query_option,
   \ 'down':    '40%',
   \ 'sink':    function('s:tags_sink')})
 endfunction
-command! TTags call s:tags()
+command! -nargs=* TTags call s:tags(<q-args>)
 
 " ------------- 引数の内容を無名レジスタにコピー---------"
 function! s:add_latest_register(line)

@@ -21,7 +21,6 @@ set noerrorbells
 set fileformat=unix
 set vb t_vb=
 set t_Co=256
-set noshowmode
 set laststatus=2
 set backspace=indent,eol,start
 set splitbelow
