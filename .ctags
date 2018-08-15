@@ -1,4 +1,5 @@
 --exclude=*.js
+--exclude=*.css
 --exclude=.git
 --exclude=log
 --exclude=node_modules
