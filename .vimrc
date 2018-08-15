@@ -320,6 +320,7 @@ nmap <silent><leader>T :TagbarToggle<CR>
 
 let g:auto_ctags_directory_list = ['.git', '.svn']
 let g:auto_ctags = 1
+let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes'
 set tags+=.git/tags;
 
 " ============ tagbar setting =============
@@ -333,9 +334,20 @@ let g:tagbar_type_ruby = {
                     \ 'a:aliases'],
     \ 'kind2scope' : { 'c' : 'class',
                      \ 'm' : 'class' },
-    \ 'ctagsbin'   : 'ctags',
+    \ 'scope2kind' : { 'class' : 'c' },
+    \ 'ctagsbin'   : 'ripper-tags',
     \ 'ctagsargs'  : ['-f', '-']
     \ }
+" let g:tagbar_type_ruby = {
+"     \ 'kinds' : [
+"         \ 'm:modules',
+"         \ 'c:classes',
+"         \ 'd:describes',
+"         \ 'C:constant',
+"         \ 'f:methods',
+"         \ 'F:singleton methods'
+"     \ ]
+" \ }
 
 " ===================gtags.vim setting==================
 " Suggested map:
