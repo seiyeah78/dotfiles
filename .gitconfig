@@ -1,9 +1,3 @@
-[color]
-  #status = auto
-  #diff = auto
-  #branch = auto
-  #interactive = auto
-  #grep = auto
 [push]
   default = simple
 [core]
