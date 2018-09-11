@@ -1,4 +1,7 @@
-node_modules/
+.DS_Store
+.git/
 public/packs/
 public/packs-test/
-tmp/
+node_modules/
+tmp/cache/
+public/assets/
