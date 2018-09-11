@@ -4,6 +4,8 @@ let g:acp_enableAtStartup = 0
 let g:dicts_dir = $HOME . '/.vim/dicts'
 let g:pymode_python = 'python3'
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 0
+
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
 " シンタックスをキャッシュするときの最小文字長
@@ -56,14 +58,24 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+"exclude complete source
+call deoplete#custom#option('ignore_sources', {'_': ['tag']})
+
+function! Multiple_cursors_before()
+  let b:deoplete_disable_auto_complete = 1
+endfunction
+
+function! Multiple_cursors_after()
+  let b:deoplete_disable_auto_complete = 0
+endfunction
 
 "=========LnguageClient==========
 let g:LanguageClient_serverCommands = {
-    \ 'vue': ['vls'],
-    \ 'ruby': [ 'solargraph',  'stdio'  ],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \}
+      \ 'vue': ['vls'],
+      \ 'ruby': ['solargraph', 'stdio'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
+      \}
 let g:LanguageClient_autoStart = 1
 " let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 " let g:LanguageClient_loggingLevel = 'ERROR'

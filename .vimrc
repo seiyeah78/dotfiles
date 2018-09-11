@@ -421,22 +421,6 @@ function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-" ==============vim-multiple-cursors=======
-" neocompleteのキーバインドとバッティングするため回避
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-  if exists(':NeoCompleteLock')==2
-    exe 'call deoplete#disable()'
-  endif
-endfunction
-
-" Called once only when the multiple selection is canceled (default <Esc>)
-function! Multiple_cursors_after()
-  if exists(':NeoCompleteUnlock')==2
-    exe 'call deoplete#enable()'
-  endif
-endfunction
-
 " 選択範囲の色をVisualモードと同じにする
 hi Visual ctermbg=238 guibg=#405058
 hi multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
