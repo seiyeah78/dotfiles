@@ -120,10 +120,11 @@ unalias grv
 alias gdc='git dc'
 alias gcm='git cm'
 
+alias hosts='sudo vi /etc/hosts'
+alias zshrc='vim ~/.zshrc'
 precmd() {
   _z --add "$(pwd -P)"
 }
-
 
 ###############Custom KeyBind##############
 bindkey -e
