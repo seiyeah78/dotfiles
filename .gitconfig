@@ -16,8 +16,6 @@
   rebase = false
 [http]
   sslVerify = false
-[i18n]
-  #commitencoding = UTF-8
 [alias]
   st = status
   amend = cm --amend
