@@ -33,10 +33,8 @@ function! MyReadonly()
 endfunction
 function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-           \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-           \  &ft == 'unite' ? unite#get_status_string() :
-           \  &ft == 'vimshell' ? vimshell#get_status_string() :
-           \ '' != expand('%') ? expand('%') : '[No Name]') .
+           \ (
+           \ '' != fnamemodify(expand('%'),':.') ? fnamemodify(expand('%'),':.') : '[No Name]') .
            \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 function! MyFugitive()
