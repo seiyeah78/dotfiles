@@ -77,6 +77,6 @@ let g:LanguageClient_serverCommands = {
       \ 'typescript': ['javascript-typescript-stdio'],
       \}
 let g:LanguageClient_autoStart = 1
-" let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
-" let g:LanguageClient_loggingLevel = 'ERROR'
-" let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
+let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
+let g:LanguageClient_loggingLevel = 'ERROR'
+let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'

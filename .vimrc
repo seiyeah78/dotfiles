@@ -93,12 +93,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'slim-template/vim-slim', { 'for': 'slim' }
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-  Plug 'leafgarland/typescript-vim' | Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
+  Plug 'hashivim/vim-terraform'
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
+  Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
+  Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
   Plug 'tpope/vim-rbenv'
   Plug 'modille/groovy.vim', { 'for': 'groovy' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-  Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+  Plug 'chase/vim-ansible-yaml', { 'for': ['yaml', 'ansible'] }
   Plug 'jwalton512/vim-blade', { 'for': 'blade' }
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'itchyny/lightline.vim'
@@ -298,7 +300,8 @@ imap <c-v> <plug>EasyClipInsertModePaste
 cmap <c-v> <plug>EasyClipCommandModePaste
 let g:EasyClipShareYanks = 1
 let g:EasyClipAutoFormat = 1
-let g:EasyClipUsePasteDefaults = 0
+let g:EasyClipUsePasteDefaults = 1
+let g:EasyClipYankHistorySize = 200
 
 " va=  visual after =
 " ca=  change after =
@@ -319,7 +322,7 @@ nnoremap <C-W><C-]> <C-W>g<C-]>
 nmap <silent><leader>T :TagbarToggle<CR>
 
 let g:auto_ctags_directory_list = ['.git', '.svn']
-let g:auto_ctags = 1
+" let g:auto_ctags = 1
 let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes'
 set tags+=.git/tags;
 

@@ -252,3 +252,14 @@ function docker-taglist() {
   curl -s https://registry.hub.docker.com/v1/repositories/$1/tags | jq ".[].name"
 }
 
+function mktouch() {
+  if [ -z $1 ]; then
+    echo "input file name. e.g. ${funcstack[1]} ~/foo/bar/buzz.txt"
+    return 0;
+  fi
+
+  local dir=$(dirname $1)
+  mkdir -p $dir  && touch $1
+  echo "Created file"
+  ls -l $1
+}
