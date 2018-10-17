@@ -36,8 +36,8 @@ nnoremap <silent> <leader>RG  :Rg <C-R><C-A><CR>
 xnoremap <silent> <leader>rg  y:Rg <C-R>"<CR>
 
 " :Filesによる表示の変更
-" let g:fzf_files_options =
-      " \ '--tiebreak=end,index --preview "(pygmentize -g {-1} || rougify {-1} || ccat {-1} || cat {-1}) 2> /dev/null | head -'.&lines.'"'
+let g:fzf_files_options =
+      \ '--tiebreak=end,index --preview "(pygmentize -g {-1} || rougify {-1} || ccat {-1} || cat {-1}) 2> /dev/null | head -'.&lines.'"'
 
 autocmd VimEnter * nnoremap <silent><expr><leader>F (expand('%') =~ 'NERD_tree' ? "\<C-W>\<C-W>" : '').':FilesMru'.(!empty(expand('<cword>')) ? '--query='.expand('<cword>') : '').'<CR>'
 autocmd VimEnter * nnoremap <silent><expr><C-P> (expand('%') =~ 'NERD_tree' ? "\<C-W>\<C-W>" : '').":FilesMru<CR>"
