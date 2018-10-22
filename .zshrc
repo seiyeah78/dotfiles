@@ -120,7 +120,8 @@ alias gdc='git dc'
 alias gcm='git cm'
 
 alias hosts='sudo vi /etc/hosts'
-alias zshrc='vim ~/.zshrc'
+alias vimrc='$EDITOR ~/.vimrc'
+
 precmd() {
   _z --add "$(pwd -P)"
 }
