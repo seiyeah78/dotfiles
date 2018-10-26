@@ -130,7 +130,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
   Plug 'elzr/vim-json', { 'for': 'json' }
-  Plug 'SirVer/ultisnips'
+  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
   Plug 'Valloric/ListToggle'
   Plug 'thinca/vim-qfreplace'
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
@@ -146,7 +146,6 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'wellle/tmux-complete.vim'
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
-  Plug 'honza/vim-snippets'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
