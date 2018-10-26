@@ -18,12 +18,12 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 " Insert mode completion
-imap <C-f><C-w> <plug>(fzf-complete-word)
+imap <C-x><C-w> <plug>(fzf-complete-word)
 " Fileパスをfileコマンドでcomp
-" imap <C-f><C-p> <plug>(fzf-complete-path)
+" imap <C-x><C-p> <plug>(fzf-complete-path)
 " Fileパスをagコマンドでcomp
-imap <C-f><C-p> <plug>(fzf-complete-file-ag)
-imap <C-f><C-l> <plug>(fzf-complete-line)
+imap <C-x><C-p> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " Agコマンドで検索する
 nnoremap <silent> <leader>ag  :Ag <C-R><C-W><CR>

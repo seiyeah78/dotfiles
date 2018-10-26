@@ -208,7 +208,6 @@ map <C-Space>  <C-@>
 cmap <C-Space>  <C-@>
 
 " ---- setting ale.vim ----
-" check only file save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
@@ -388,6 +387,19 @@ vnoremap <silent>J :m'>+1<CR>gv=gv
 vnoremap <silent>K :m-2<CR>gv=gv
 nnoremap <silent>J :m+<CR>==
 nnoremap <silent>K :m-2<CR>==
+
+" command line mode moving
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
+
+cnoremap <C-x> <C-f>
+
+" insert mode moving
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
 
 " Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
