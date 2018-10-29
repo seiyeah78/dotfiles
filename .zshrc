@@ -29,13 +29,12 @@ export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 export PYENV_ROOT=~/.pyenv
-export PATH=$HOME/.composer/vendor/bin:$PATH
 
-PATH=$PATH:$PYENV_ROOT/bin
 CORE_PATH="$PATH:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
-$HOME/.nodenv/bin:$HOME/.phpenv/bin:$GOPATH/bin:$MAC_VIM_PATH:$PATH"
+$HOME/$GOPATH/bin:$MAC_VIM_PATH:$PATH"
 export PATH=$CORE_PATH
+export PATH="$HOME/.anyenv/bin:$PATH"
 
 export EDITOR=vim
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
@@ -80,7 +79,7 @@ zplug "takaaki-kasai/git-foresta", as:"command", use:"git-foresta"
 zplug load
 
 # use env language manager
-eval "$(rbenv init --no-rehash -; phpenv init --no-rehash -; pyenv init --no-rehash -; nodenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"
+eval "$(anyenv init -)"
 # use hub
 eval "$(hub alias -s)"
 
