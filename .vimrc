@@ -89,54 +89,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-plug',
         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
 
-  Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
-  Plug 'slim-template/vim-slim', { 'for': 'slim' }
-  Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
-  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-  Plug 'hashivim/vim-terraform'
-  Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
-  Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
-  Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-  Plug 'tpope/vim-rbenv'
-  Plug 'modille/groovy.vim', { 'for': 'groovy' }
-  Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-  Plug 'chase/vim-ansible-yaml', { 'for': ['yaml', 'ansible'] }
-  Plug 'jwalton512/vim-blade', { 'for': 'blade' }
-  Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
-  Plug 'itchyny/lightline.vim'
-  Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'junegunn/fzf.vim' | Plug 'seiyeah78/fzf-filemru'
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'shougo/vimproc.vim', { 'do': 'make' }
-  Plug 'tpope/vim-obsession'
-  Plug 'tpope/vim-endwise'
-  Plug 'tomtom/tcomment_vim'
-  Plug 'soramugi/auto-ctags.vim', { 'commit': '5164b2d6b4dcf6b2e0597e888382403175c3227e' }
-  Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
-  Plug 'tpope/vim-surround'
-  Plug 'simeji/winresizer'
-  Plug 't9md/vim-quickhl'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'Yggdroot/indentLine'
-  Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-  Plug 'junegunn/vim-after-object'
-  Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/vim-asterisk'
-  Plug 'tpope/vim-abolish'
-  Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
-  Plug 'AndrewRadev/splitjoin.vim'
-  Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
-  Plug 'elzr/vim-json', { 'for': 'json' }
-  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-  Plug 'Valloric/ListToggle'
-  Plug 'thinca/vim-qfreplace'
-  Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
-  Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-
+  " -----------------------------------------------
+  " Utility
+  " -----------------------------------------------
   if has("nvim")
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -144,8 +99,66 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+  Plug 'itchyny/lightline.vim'
+  Plug 'junegunn/fzf.vim' | Plug 'seiyeah78/fzf-filemru'
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
   Plug 'wellle/tmux-complete.vim'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
+  Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-surround'
+  Plug 'simeji/winresizer'
+  Plug 't9md/vim-quickhl'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'shougo/vimproc.vim', { 'do': 'make' }
+  Plug 'tpope/vim-obsession'
+  Plug 'tpope/vim-endwise'
+  Plug 'Yggdroot/indentLine'
+  Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+  Plug 'junegunn/vim-after-object'
+  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+  Plug 'Valloric/ListToggle'
+  Plug 'thinca/vim-qfreplace'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
+  Plug 'soramugi/auto-ctags.vim', { 'commit': '5164b2d6b4dcf6b2e0597e888382403175c3227e' }
+  Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
+  Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
+  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'tomtom/tcomment_vim'
+  Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
+  Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/vim-asterisk'
+  Plug 'AndrewRadev/splitjoin.vim'
+
+  " -----------------------------------------------
+  " Language,Framework
+  " -----------------------------------------------
+  " Ruby
+  Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
+  Plug 'tpope/vim-rbenv'
+  Plug 'slim-template/vim-slim', { 'for': 'slim' }
+  " PHP
+  Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
+  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+  Plug 'jwalton512/vim-blade', { 'for': 'blade' }
+  " Typescript
+  Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
+  Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
+  Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+  Plug 'modille/groovy.vim', { 'for': 'groovy' }
+  " Python
+  Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
+  Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+  Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
+  " Markdown
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
+
+  " Other
+  Plug 'chase/vim-ansible-yaml', { 'for': ['yaml', 'ansible'] }
+  Plug 'hashivim/vim-terraform'
+  Plug 'elzr/vim-json', { 'for': 'json' }
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
