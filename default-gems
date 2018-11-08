@@ -7,4 +7,7 @@ overcommit
 sass_lint
 compass
 colorls
+neovim
+tmuxinator
+solargraph
 
