@@ -36,7 +36,8 @@
   bro = browse
   pr = !hub pull-request -o -b $(git tracking-name)
   # reflogから復元するalias
-  undo = "!f() { \\\n    git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; \\\n}; f"
+  undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+  findpr = "!f() { git log --merges --reverse --ancestry-path $1...master | grep 'Merge pull request #' -B5 | head -n 6; }; f"
 
   #カレントブランチとリモートのコミットの差分だけをlogで出力
   lcu = !git log $(git tracking-branch)..
