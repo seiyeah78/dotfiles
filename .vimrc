@@ -100,7 +100,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'itchyny/lightline.vim'
-  Plug 'junegunn/fzf.vim' | Plug 'seiyeah78/fzf-filemru'
+  Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
   Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
   Plug 'wellle/tmux-complete.vim'
   Plug 'jiangmiao/auto-pairs'
@@ -116,7 +116,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   Plug 'Yggdroot/indentLine'
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-  Plug 'junegunn/vim-after-object'
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
   Plug 'Valloric/ListToggle'
   Plug 'thinca/vim-qfreplace'
@@ -142,7 +141,6 @@ call plug#begin('~/.vim/plugged')
   " PHP
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-  Plug 'jwalton512/vim-blade', { 'for': 'blade' }
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
@@ -173,6 +171,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rakr/vim-one'
   Plug 'joshdick/onedark.vim'
   Plug 'tyrannicaltoucan/vim-quantum'
+  Plug 'ajh17/Spacegray.vim'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -313,13 +312,6 @@ let g:EasyClipShareYanks = 1
 let g:EasyClipAutoFormat = 1
 let g:EasyClipUsePasteDefaults = 1
 let g:EasyClipYankHistorySize = 200
-
-" va=  visual after =
-" ca=  change after =
-" da=  delete after =
-" ya=  yank after =
-autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ', '[', '<', '(', ',')
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 
 let g:indentLine_faster = 1
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']

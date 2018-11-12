@@ -73,8 +73,6 @@ endfunction
 let g:LanguageClient_serverCommands = {
       \ 'vue': ['vls'],
       \ 'ruby': ['solargraph', 'stdio'],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'typescript': ['javascript-typescript-stdio'],
       \}
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
