@@ -226,11 +226,12 @@ let g:ale_lint_on_enter = 0
 let g:ale_fixers = {
       \ 'python': [ 'autopep8' ],
       \ 'ruby': [ 'rubocop' ],
-      \ 'javascript': [ 'eslint' ],
+      \ 'javascript': [ 'eslint-plugin-prettier' ],
       \}
 let g:ale_linters = {
-      \   'python': [ 'flake8' ],
-      \   'php': [ 'php', 'phpmd' ],
+      \ 'python': [ 'flake8' ],
+      \ 'php': [ 'php', 'phpmd' ],
+      \ 'javascript': [ 'eslint' ],
       \}
 let g:ale_php_phpmd_ruleset = 'codesize,design,naming,unusedcode'
 
@@ -331,29 +332,29 @@ set tags+=.git/tags;
 
 " ============ tagbar setting =============
 " see --list-kinds=Ruby
-let g:tagbar_type_ruby = {
-    \ 'kinds'      : ['m:modules',
-                    \ 'c:classes',
-                    \ 'C:constants',
-                    \ 'F:singleton methods',
-                    \ 'f:methods',
-                    \ 'a:aliases'],
-    \ 'kind2scope' : { 'c' : 'class',
-                     \ 'm' : 'class' },
-    \ 'scope2kind' : { 'class' : 'c' },
-    \ 'ctagsbin'   : 'ripper-tags',
-    \ 'ctagsargs'  : ['-f', '-']
-    \ }
 " let g:tagbar_type_ruby = {
-"     \ 'kinds' : [
-"         \ 'm:modules',
-"         \ 'c:classes',
-"         \ 'd:describes',
-"         \ 'C:constant',
-"         \ 'f:methods',
-"         \ 'F:singleton methods'
-"     \ ]
-" \ }
+"     \ 'kinds'      : ['m:modules',
+"                     \ 'c:classes',
+"                     \ 'C:constants',
+"                     \ 'F:singleton methods',
+"                     \ 'f:methods',
+"                     \ 'a:aliases'],
+"     \ 'kind2scope' : { 'c' : 'class',
+"                      \ 'm' : 'class' },
+"     \ 'scope2kind' : { 'class' : 'c' },
+"     \ 'ctagsbin'   : 'ripper-tags',
+"     \ 'ctagsargs'  : ['-f', '-']
+"     \ }
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'r:association',
+        \ 'C:constant',
+        \ 'f:methods',
+        \ 'S:singleton methods'
+      \ ]
+    \ }
 
 " ===================gtags.vim setting==================
 " Suggested map:
