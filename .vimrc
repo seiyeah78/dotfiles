@@ -138,15 +138,12 @@ call plug#begin('~/.vim/plugged')
   " Ruby
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'tpope/vim-rbenv'
-  Plug 'slim-template/vim-slim', { 'for': 'slim' }
   " PHP
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
-  Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-  Plug 'modille/groovy.vim', { 'for': 'groovy' }
   " Python
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -154,10 +151,8 @@ call plug#begin('~/.vim/plugged')
   " Markdown
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
 
-  " Other
-  Plug 'chase/vim-ansible-yaml', { 'for': ['yaml', 'ansible'] }
-  Plug 'hashivim/vim-terraform'
-  Plug 'elzr/vim-json', { 'for': 'json' }
+  " Syntax
+  Plug 'sheerun/vim-polyglot'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
