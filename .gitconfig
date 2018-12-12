@@ -5,7 +5,6 @@
   #autoCRLF = false
   #quotepath = false
   #safecrlf = true
-  editor = vim
   quotepath = false
   whitespace = cr-at-eol
   pager = less -R

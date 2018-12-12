@@ -30,13 +30,11 @@ export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 export PYENV_ROOT=~/.pyenv
 
-CORE_PATH="$PATH:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
+CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
-$HOME/$GOPATH/bin:$MAC_VIM_PATH:$PATH"
+$HOME/$GOPATH/bin:$HOME/.anyenv/bin:$MAC_VIM_PATH:$PATH"
 export PATH=$CORE_PATH
-export PATH="$HOME/.anyenv/bin:$PATH"
 
-export EDITOR=vim
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export LESS='-R'
 export GTAGSLABEL=pygments
@@ -80,6 +78,7 @@ zplug load
 
 # use env language manager
 eval "$(anyenv init -)"
+eval "$(rbenv init --no-rehash -; pyenv init --no-rehash -; ndenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"
 # use hub
 eval "$(hub alias -s)"
 

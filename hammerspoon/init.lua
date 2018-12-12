@@ -93,13 +93,13 @@ end)
 hs.urlevent.bind("half_window", half_window)
 hs.urlevent.bind("half_window_h", half_window_h)
 
-hs.hotkey.bind(move_mash, "H", move_left, nil, move_left)
+-- hs.hotkey.bind(move_mash, "H", move_left, nil, move_left)
 
-hs.hotkey.bind(move_mash, "L", move_right, nil, move_right)
+-- hs.hotkey.bind(move_mash, "L", move_right, nil, move_right)
 
-hs.hotkey.bind(move_mash, "J", move_down, nil, move_down)
+-- hs.hotkey.bind(move_mash, "J", move_down, nil, move_down)
 
-hs.hotkey.bind(move_mash, "K", move_up, nil, move_up)
+-- hs.hotkey.bind(move_mash, "K", move_up, nil, move_up)
 
 hs.hotkey.bind(move_window_mash, "/", move_screen, nil, nil)
 
