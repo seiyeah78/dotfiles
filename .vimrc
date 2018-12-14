@@ -106,7 +106,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'wellle/tmux-complete.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
-  Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
+  Plug 'cohama/agit.vim'
   Plug 'tpope/vim-surround'
   Plug 'simeji/winresizer'
   Plug 't9md/vim-quickhl'
@@ -168,6 +169,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'joshdick/onedark.vim'
   Plug 'tyrannicaltoucan/vim-quantum'
   Plug 'ajh17/Spacegray.vim'
+  Plug 'tomasr/molokai'
+  Plug 'morhetz/gruvbox'
+  Plug 'yuttie/hydrangea-vim'
+  Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'AlessandroYorba/Despacio'
+  Plug 'cocopon/iceberg.vim'
+  Plug 'nightsense/snow'
+  Plug 'nightsense/stellarized'
+  Plug 'arcticicestudio/nord-vim'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -258,6 +268,18 @@ nnoremap [b :bprev<CR>
 " ----------------------------------------------------------------------------
 " Quickfix
 " ----------------------------------------------------------------------------
+function! s:quick_and_location_list_operation(next)
+  let cmd = a:next ? 'next' : 'prev'
+  try
+    execute 'c'.cmd
+  catch
+    execute 'l'.cmd
+  endtry
+  echo cmd.' list'
+endfunction
+
+" nnoremap ]q :call <sid>quick_and_location_list_operation(v:true)<CR>zz
+" nnoremap [q :call <sid>quick_and_location_list_operation(v:false)<CR>zz
 nnoremap ]q :cnext<CR>zz
 nnoremap [q :cprev<CR>zz
 nnoremap ]l :lnext<CR>zz
@@ -409,6 +431,7 @@ vmap > >gv
 
 " Open current line on GitHub
 nnoremap <Leader>go :.Gbrowse<CR>
+nnoremap <Leader>gv :GV<CR>
 
 noremap <Leader>ga :Gwrite<CR>
 " noremap <Leader>gc :Gcommit<CR>
