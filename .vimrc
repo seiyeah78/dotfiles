@@ -205,6 +205,7 @@ let g:pymode_indent = 0
 let g:AutoPairsMapCR = 0
 let g:tmuxcomplete#trigger = ''
 let g:UltiSnipsUsePythonVersion = 3
+let g:polyglot_disabled = ['rspec']
 
 if !exists('loaded_matchit')
   " matchitを有効化
