@@ -198,6 +198,7 @@ if exists("g:colors_name") && g:colors_name == "hybrid"
   hi SignColumn ctermfg=243 guifg=#707880
   hi Search     guibg=yellowgreen
 end
+
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 let g:vim_json_syntax_conceal = 0
 let g:tsuquyomi_disable_quickfix = 1
@@ -205,7 +206,6 @@ let g:pymode_indent = 0
 let g:AutoPairsMapCR = 0
 let g:tmuxcomplete#trigger = ''
 let g:UltiSnipsUsePythonVersion = 3
-let g:polyglot_disabled = ['rspec']
 
 if !exists('loaded_matchit')
   " matchitを有効化
