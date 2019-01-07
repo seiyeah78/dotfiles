@@ -56,7 +56,7 @@ zplug lib/completion,         from:oh-my-zsh
 
 # prompt theme
 zplug mafredri/zsh-async,     from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug seiyeah78/pure, use:pure.zsh, from:github, as:theme
 
 zplug zsh-users/zsh-syntax-highlighting, defer:2
 
