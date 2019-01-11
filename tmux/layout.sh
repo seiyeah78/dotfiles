@@ -35,12 +35,10 @@ function main_vertical_right() {
 
 function main_vertical_left() {
   target_pane_index=`tmux display-message -p "#P"`
-  num_of_pane=`tmux list-pane | wc -l`
-  last_pane_index=`echo $num_of_pane-1 | bc -l`
 
   `tmux select-layout main-vertical`
   `tmux swap-pane -s: -t 0`
-  `tmux select-pane -s: -t 0`
+  `tmux select-pane -t 0`
 
   current_width=`tmux display-message -p "#{window_width}"`
   new_pane_width=`echo $current_width/10*6 | bc`
