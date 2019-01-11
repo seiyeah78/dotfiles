@@ -151,9 +151,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
   " Markdown
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
+  " javascript
+  " Plug 'pangloss/vim-javascript'
 
   " Syntax
   Plug 'sheerun/vim-polyglot'
+  Plug 'maxmellon/vim-jsx-pretty'
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -200,12 +203,15 @@ if exists("g:colors_name") && g:colors_name == "hybrid"
 end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
+let g:polyglot_disabled=['']
 let g:vim_json_syntax_conceal = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0
 let g:AutoPairsMapCR = 0
 let g:tmuxcomplete#trigger = ''
 let g:UltiSnipsUsePythonVersion = 3
+let g:strip_whitespace_on_save=1
+let g:better_whitespace_ctermcolor='red'
 
 if !exists('loaded_matchit')
   " matchitを有効化
@@ -536,12 +542,6 @@ for filename in s:vim_dotfiles
     execute 'source' filename
   endif
 endfor
-
-hi ExtraWhitespace ctermbg=red
-augroup space_trim
-  autocmd!
-  autocmd BufWritePre * StripWhitespace
-augroup END
 
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
