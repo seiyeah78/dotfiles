@@ -21,7 +21,7 @@
   diffc = diff --cached
   show-merged-branches = !git branch --merged | grep -v '\\*\\|master'
   co = checkout
-  cop = !git checkout $(git branch | peco | sed -e \"s/\\* //g\" | awk \"{print \\$1}\")
+  cop = !git checkout $(git branch --sort=-committerdate --format=' %(committerdate:iso8601)%09%(refname:lstrip=2)'| peco | sed -e \"s/\\* //g\" | awk '{print $4}')
   fetch-pr-upstream = !sh -c 'git fetch upstream pull/$1/head:pr-$1' -
   lg = log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   d = diff
