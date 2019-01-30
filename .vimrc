@@ -132,6 +132,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
   Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/vim-asterisk'
   Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'andymass/vim-matchup'
 
   " -----------------------------------------------
   " Language,Framework
@@ -212,11 +213,6 @@ let g:tmuxcomplete#trigger = ''
 let g:UltiSnipsUsePythonVersion = 3
 let g:strip_whitespace_on_save=1
 let g:better_whitespace_ctermcolor='red'
-
-if !exists('loaded_matchit')
-  " matchitを有効化
-  runtime macros/matchit.vim
-endif
 
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
