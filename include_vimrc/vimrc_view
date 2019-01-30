@@ -165,3 +165,8 @@ if exists('$TMUX') && !exists('$NORENAME')
   au BufEnter * if empty(&buftype) | call system('tmux rename-window "[vim]"'.expand('%:t:S')) | endif
   au VimLeave * call system('tmux set-window automatic-rename on')
 endif
+
+hi MatchParen ctermfg=166 guifg=darkorange2 cterm=italic gui=italic
+hi MatchParenCur cterm=NONE gui=NONE
+hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
+hi MatchWordCur cterm=underline gui=underline
