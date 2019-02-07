@@ -11,6 +11,7 @@ export FZF_DEFAULT_OPTS="
   --tiebreak=index
   --color bg+:239
 "
+
 export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(pygmentize -g {} || rougify {} || ccat {} | cat {}) 2> /dev/null | head -200'"

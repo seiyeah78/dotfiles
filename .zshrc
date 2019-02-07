@@ -148,7 +148,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # include other zshrc files
-[ -f ~/dotfiles/include_zshrc/.zshrc_commands ] && source ~/dotfiles/include_zshrc/.zshrc_commands
+[ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
