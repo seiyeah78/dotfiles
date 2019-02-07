@@ -1,5 +1,6 @@
 bundler
 pry
+pry-doc
 ej
 ec2ex
 ripper-tags
