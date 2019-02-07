@@ -23,6 +23,7 @@ OPENSSL_PATH="/usr/local/opt/openssl/bin"
 MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
 MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
 
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export GOPATH=$HOME/gocode
 export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
@@ -117,6 +118,7 @@ unalias gcm
 unalias grv
 alias gdc='git dc'
 alias gcm='git cm'
+alias groot='cd $(git rev-parse --show-toplevel)'
 
 alias hosts='sudo vi /etc/hosts'
 alias vimrc='$EDITOR ~/.vimrc'

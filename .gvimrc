@@ -31,13 +31,9 @@ set guifontwide=Droid\ Sans\ Mono:h14
 " The Silver Searcher
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
 endif
 
 if executable('rg')
   set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files  --no-ignore --hidden --follow --no-messages --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
 endif
 

@@ -133,31 +133,36 @@ call plug#begin('~/.vim/plugged')
   Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/vim-asterisk'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'andymass/vim-matchup'
+  Plug 'tyru/open-browser.vim'
+  Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
 
   " -----------------------------------------------
   " Language,Framework
   " -----------------------------------------------
+  " Syntax
+  Plug 'sheerun/vim-polyglot'
+
   " Ruby
-  Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
-  Plug 'tpope/vim-rbenv'
+  Plug 'tpope/vim-rails' | Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby', 'slim'] }
+
   " PHP
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
+  Plug 'leafgarland/typescript-vim' | Plug 'HerringtonDarkholme/yats.vim' | Plug 'yuezk/vim-jsx-pretty', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
+
+  " Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
   " Python
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
   " Markdown
-  Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
-  " javascript
-  " Plug 'pangloss/vim-javascript'
-
-  " Syntax
-  Plug 'sheerun/vim-polyglot'
-  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
+  " Go
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -182,6 +187,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'nightsense/snow'
   Plug 'nightsense/stellarized'
   Plug 'arcticicestudio/nord-vim'
+  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+  Plug 'romainl/Apprentice'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -194,13 +201,19 @@ call plug#end()
 set noshowmode
 
 set background=dark
-colorscheme hybrid
+colorscheme apprentice
 
-if exists("g:colors_name") && g:colors_name == "hybrid"
-  hi NonText    ctermfg=243 guifg=#707880
-  hi VertSplit  ctermfg=243 guifg=#707880
-  hi SignColumn ctermfg=243 guifg=#707880
-  hi Search     guibg=yellowgreen
+if exists("g:colors_name")
+  if g:colors_name == "hybrid"
+    hi NonText    ctermfg=243 guifg=#707880
+    hi VertSplit  ctermfg=243 guifg=#707880
+    hi SignColumn ctermfg=243 guifg=#707880
+    hi Search     guibg=yellowgreen
+  end
+  if g:colors_name == "apprentice"
+    hi Comment term=bold ctermfg=243 guifg=#707880
+    " hi link jsxCloseString Statement
+  end
 end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
@@ -213,6 +226,13 @@ let g:tmuxcomplete#trigger = ''
 let g:UltiSnipsUsePythonVersion = 3
 let g:strip_whitespace_on_save=1
 let g:better_whitespace_ctermcolor='red'
+let g:vim_jsx_pretty_colorful_config = 1
+let g:strip_whitespace_confirm = 0
+
+" ---------------tcomment_vim setting -----------"
+call tcomment#type#Define('typescript.tsx', '{/* %s */}')
+call tcomment#type#Define('typescript.tsx_block', '{/* %s */}')
+call tcomment#type#Define('typescript.tsx_inline', '{/* %s */}')
 
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
@@ -337,6 +357,15 @@ let g:EasyClipYankHistorySize = 200
 
 let g:indentLine_faster = 1
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
+
+" ------------ markdown setting ----------
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
 
 " ~~~~~~~~~~~~~~ctag setting~~~~~~~~~~~~~~
 let g:tagbar_width = 30

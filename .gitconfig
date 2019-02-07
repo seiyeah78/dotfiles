@@ -8,6 +8,7 @@
   quotepath = false
   whitespace = cr-at-eol
   pager = less -R
+  ignorecase = false
 [branch]
   autosetuprebase = always
   autosetupmerge = always
