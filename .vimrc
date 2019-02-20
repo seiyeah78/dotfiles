@@ -135,6 +135,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'andymass/vim-matchup'
   Plug 'tyru/open-browser.vim'
   Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
+  Plug 'machakann/vim-highlightedyank'
 
   " -----------------------------------------------
   " Language,Framework

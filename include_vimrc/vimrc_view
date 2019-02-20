@@ -187,7 +187,12 @@ if exists('$TMUX') && !exists('$NORENAME')
   au VimLeave * call system('tmux set-window automatic-rename on')
 endif
 
+" ----------- matchup plugin setting ---------------
 hi MatchParen ctermfg=166 guifg=darkorange2 cterm=italic gui=italic
 hi MatchParenCur cterm=NONE gui=NONE
 hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
 hi MatchWordCur cterm=underline gui=underline
+
+" ----------- highlightedyank setting ----------------
+let g:highlightedyank_highlight_duration = 400
+hi HighlightedyankRegion ctermbg=22 guibg=#005f00
