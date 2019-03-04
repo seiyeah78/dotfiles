@@ -97,7 +97,7 @@ if has("autocmd")
   augroup END
 endif
 
-" ==============Tterminal setting==========
+" ==============terminal setting==========
 if has("nvim")
   let g:terminal_color_0  = "#1b2b34" "black
   let g:terminal_color_1  = "#ed5f67" "red

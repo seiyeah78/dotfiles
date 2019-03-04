@@ -57,11 +57,11 @@
   diff = diff-highlight | less
 [diff]
   indentHeuristic = true
-	algorithm = histogram
-	renames = true
+  algorithm = histogram
+  renames = true
 [include]
   path = ~/.gitconfig.local
 [init]
-	templatedir = .git_tmp
+  templatedir = .git_tmp
 [color]
-	ui = always
+  ui = always
