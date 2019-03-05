@@ -43,10 +43,6 @@ endfunction
 
 inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
 
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"

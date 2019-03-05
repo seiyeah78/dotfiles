@@ -160,7 +160,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
   " Markdown
-  Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
+  Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
   " Go
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -228,8 +228,19 @@ let g:strip_whitespace_on_save=1
 let g:better_whitespace_ctermcolor='red'
 let g:vim_jsx_pretty_colorful_config = 1
 let g:strip_whitespace_confirm = 0
+let g:indentLine_fileTypeExclude = ['tex', 'markdown']
 
 " ---------------tcomment_vim setting -----------"
+" disable default mappings
+let g:tcomment_maps = 0
+noremap <C-_><C-_> :TCommentAs <C-R>=&ft<CR><CR>
+inoremap <C-_><C-_> <C-O>:TCommentAs <C-R>=&ft<CR><CR>
+noremap <C-_>b :TCommentBlock<CR>
+inoremap <C-_>b <C-\><C-O>:TCommentBlock mode=#<CR>
+noremap <C-_>i v:TCommentInline mode=I#<cr>
+nmap <C-_>u <Plug>(TComment_Uncommentc)
+vmap <C-_>u <Plug>(TComment_Uncommentc)
+
 call tcomment#type#Define('typescript.tsx', '{/* %s */}')
 call tcomment#type#Define('typescript.tsx_block', '{/* %s */}')
 call tcomment#type#Define('typescript.tsx_inline', '{/* %s */}')

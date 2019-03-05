@@ -30,6 +30,7 @@ export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 export PYENV_ROOT=~/.pyenv
+export EDITOR=vim
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
