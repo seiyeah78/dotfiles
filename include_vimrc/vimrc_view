@@ -194,5 +194,10 @@ hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
 hi MatchWordCur cterm=underline gui=underline
 
 " ----------- highlightedyank setting ----------------
-let g:highlightedyank_highlight_duration = 400
+let g:highlightedyank_highlight_duration = 500
 hi HighlightedyankRegion ctermbg=22 guibg=#005f00
+
+" ------------vim-illuminate setting-----------------
+hi illuminatedWord ctermbg=239 guibg=Gray30
+let g:Illuminate_highlightUnderCursor = 0
+let g:Illuminate_delay = 800
