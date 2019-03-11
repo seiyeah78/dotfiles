@@ -1,0 +1,18 @@
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+confirmonquit: false
+gui:
+  commitlength:
+    show: true
+  scrollheight: 2
+  theme:
+    activebordercolor:
+    - blue
+    - bold
+    inactivebordercolor:
+    - bold
+    optionstextcolor:
+    - blue
+reporting: "off"
+update:
+  days: 14
+  method: prompt

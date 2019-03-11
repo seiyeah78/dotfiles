@@ -34,7 +34,8 @@
   tracking-name = !git tracking-branch | cut -d / -f2-
   tracking = !git co $(git tracking-name)
   bro = browse
-  pr = !hub pull-request -o -b $(git tracking-name)
+  create-pr = !hub pull-request -o -b $(git tracking-name)
+  open-pr = !hub pr list -f %U -h $(git rev-parse --abbrev-ref HEAD) | xargs python -m webbrowser
   # reflogから復元するalias
   undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
   findpr = "!f() { git log --merges --reverse --ancestry-path $1...master | grep 'Merge pull request #' -B5 | head -n 6; }; f"
@@ -56,9 +57,11 @@
   diff = diff-highlight | less
 [diff]
   indentHeuristic = true
-	algorithm = histogram
-	renames = true
+  algorithm = histogram
+  renames = true
 [include]
   path = ~/.gitconfig.local
 [init]
-	templatedir = .git_tmp
+  templatedir = .git_tmp
+[color]
+  ui = always

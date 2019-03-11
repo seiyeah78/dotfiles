@@ -97,7 +97,7 @@ if has("autocmd")
   augroup END
 endif
 
-" ==============Tterminal setting==========
+" ==============terminal setting==========
 if has("nvim")
   let g:terminal_color_0  = "#1b2b34" "black
   let g:terminal_color_1  = "#ed5f67" "red
@@ -187,7 +187,17 @@ if exists('$TMUX') && !exists('$NORENAME')
   au VimLeave * call system('tmux set-window automatic-rename on')
 endif
 
+" ----------- matchup plugin setting ---------------
 hi MatchParen ctermfg=166 guifg=darkorange2 cterm=italic gui=italic
 hi MatchParenCur cterm=NONE gui=NONE
 hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
 hi MatchWordCur cterm=underline gui=underline
+
+" ----------- highlightedyank setting ----------------
+let g:highlightedyank_highlight_duration = 500
+hi HighlightedyankRegion ctermbg=22 guibg=#005f00
+
+" ------------vim-illuminate setting-----------------
+hi illuminatedWord ctermbg=239 guibg=Gray30
+let g:Illuminate_highlightUnderCursor = 0
+let g:Illuminate_delay = 800

@@ -111,7 +111,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'simeji/winresizer'
   Plug 't9md/vim-quickhl'
-  Plug 'terryma/vim-multiple-cursors'
+  Plug 'mg979/vim-visual-multi'
   Plug 'airblade/vim-gitgutter'
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   Plug 'tpope/vim-obsession'
@@ -135,6 +135,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'andymass/vim-matchup'
   Plug 'tyru/open-browser.vim'
   Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
+  Plug 'machakann/vim-highlightedyank'
+  Plug 'RRethy/vim-illuminate'
 
   " -----------------------------------------------
   " Language,Framework
@@ -229,6 +231,7 @@ let g:better_whitespace_ctermcolor='red'
 let g:vim_jsx_pretty_colorful_config = 1
 let g:strip_whitespace_confirm = 0
 let g:indentLine_fileTypeExclude = ['tex', 'markdown']
+let g:Illuminate_ftblacklist = ['nerdtree', 'git']
 
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
@@ -356,7 +359,6 @@ nmap <Space>m <Plug>(quickhl-manual-this)
 xmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
-nmap <Space>j <Plug>(quickhl-cword-toggle)
 
 "------------ vim-easyclip------------"
 imap <c-v> <plug>EasyClipInsertModePaste
