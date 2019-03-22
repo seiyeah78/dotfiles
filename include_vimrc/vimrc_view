@@ -169,14 +169,15 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead .pryrc       set filetype=ruby
   autocmd BufNewFile,BufRead *spec.rb if exists("g:loaded_rails") && g:loaded_rails == 1 | set syntax=ruby | endif
   " ?つきメソッド、@@インスタンスを単語とみなす
-  autocmd FileType ruby                 setlocal isk+=@-@,?,!
-  autocmd FileType eruby                setlocal isk+=@-@,?,!
-  autocmd FileType slim                 setlocal isk+=@-@,?,!
-  autocmd FileType python               setlocal tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd FileType blade                setlocal tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd FileType php                  setlocal tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd FileType java                 setlocal tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd FileType groovy               setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType ruby   setlocal isk+=@-@,?,!
+  autocmd FileType eruby  setlocal isk+=@-@,?,!
+  autocmd FileType slim   setlocal isk+=@-@,?,!
+  autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType blade  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd FileType php    setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType java   setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType groovy setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType go     setlocal tabstop=4 noexpandtab shiftwidth=4
 augroup END
 
 autocmd FileType git* setlocal foldlevel=99
@@ -201,3 +202,15 @@ hi HighlightedyankRegion ctermbg=22 guibg=#005f00
 hi illuminatedWord ctermbg=239 guibg=Gray30
 let g:Illuminate_highlightUnderCursor = 0
 let g:Illuminate_delay = 800
+
+" -------------------vim-go-----------------------
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_fields = 1
+let g:go_fmt_command = "goimports"

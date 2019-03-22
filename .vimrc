@@ -134,9 +134,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'andymass/vim-matchup'
   Plug 'tyru/open-browser.vim'
-  Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
+  Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx','typescript.tsx'] }
   Plug 'machakann/vim-highlightedyank'
   Plug 'RRethy/vim-illuminate'
+  Plug 'rhysd/git-messenger.vim'
 
   " -----------------------------------------------
   " Language,Framework
@@ -155,14 +156,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
   Plug 'leafgarland/typescript-vim' | Plug 'HerringtonDarkholme/yats.vim' | Plug 'yuezk/vim-jsx-pretty', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
-
   " Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
+
   " Python
   Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
+
   " Markdown
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
+
   " Go
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -505,10 +508,13 @@ function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-" 選択範囲の色をVisualモードと同じにする
-hi Visual ctermbg=238 guibg=#405058
-hi multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
-hi link multiple_cursors_visual Visual
+let g:VM_maps = {}
+let g:VM_maps["Erase Regions"]               = 'gr'
+" let g:VM_maps["Select l"]                    = 'l'
+" let g:VM_maps["Select h"]                    = 'h'
+" let g:VM_maps["Select Cursor Down"]          = '<M-C-Down>'
+" let g:VM_maps["Select Cursor Up"]            = '<M-C-Up>'
+" let g:VM_maps["Add Cursor At Word"]          = 'g<cr>'
 
 "=============vim-easy-align setting============
 " Start interactive EasyAlign in visual mode (e.g. vipga)
