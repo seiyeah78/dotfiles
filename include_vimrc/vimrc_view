@@ -177,7 +177,7 @@ augroup fileTypeIndent
   autocmd FileType php    setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType java   setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType groovy setlocal tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd FileType go     setlocal tabstop=4 noexpandtab shiftwidth=4
+  autocmd FileType go     setlocal tabstop=4 softtabstop=4 noexpandtab   shiftwidth=4
 augroup END
 
 autocmd FileType git* setlocal foldlevel=99
@@ -213,4 +213,4 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_fields = 1
-let g:go_fmt_command = "goimports"
+" let g:go_fmt_command = "goimports"

@@ -110,7 +110,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'cohama/agit.vim'
   Plug 'tpope/vim-surround'
   Plug 'simeji/winresizer'
-  Plug 't9md/vim-quickhl'
   Plug 'mg979/vim-visual-multi'
   Plug 'airblade/vim-gitgutter'
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
@@ -244,6 +243,7 @@ inoremap <C-_><C-_> <C-O>:TCommentAs <C-R>=&ft<CR><CR>
 noremap <C-_>b :TCommentBlock<CR>
 inoremap <C-_>b <C-\><C-O>:TCommentBlock mode=#<CR>
 noremap <C-_>i v:TCommentInline mode=I#<cr>
+inoremap <C-_>i v:TCommentInline mode=I#<cr>
 nmap <C-_>u <Plug>(TComment_Uncommentc)
 vmap <C-_>u <Plug>(TComment_Uncommentc)
 
@@ -293,6 +293,10 @@ let g:jedi#documentation_command = "<leader>k"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>re"
+
+" ---------------vim-go-----------------
+let g:go_doc_keywordprg_enabled = 0
+autocmd FileType go nnoremap <buffer><leader>k :<C-U>GoDoc<CR>
 
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
@@ -358,11 +362,6 @@ nnoremap <leader>! :call <SID>goog(expand("<cWord>"), 1)<cr>
 vnoremap <leader>? y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 0)<cr>
 vnoremap <leader>! y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 1)<cr>
 
-nmap <Space>m <Plug>(quickhl-manual-this)
-xmap <Space>m <Plug>(quickhl-manual-this)
-nmap <Space>M <Plug>(quickhl-manual-reset)
-xmap <Space>M <Plug>(quickhl-manual-reset)
-
 "------------ vim-easyclip------------"
 imap <c-v> <plug>EasyClipInsertModePaste
 cmap <c-v> <plug>EasyClipCommandModePaste
@@ -383,7 +382,7 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 
-" ~~~~~~~~~~~~~~ctag setting~~~~~~~~~~~~~~
+" ------------ ctag setting ------------
 let g:tagbar_width = 30
 " tagsジャンプの時に複数ある時は一覧表示
 nnoremap <C-]> g<C-]>
