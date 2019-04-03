@@ -64,4 +64,4 @@
 [init]
   templatedir = .git_tmp
 [color]
-  ui = always
+  ui = true
