@@ -93,16 +93,16 @@ call plug#begin('~/.vim/plugged')
   " -----------------------------------------------
   " Utility
   " -----------------------------------------------
-  if has("nvim")
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+  if !has("nvim")
+    Plug 'neoclide/vim-node-rpc'
   endif
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+  function! CocInstaller()
+    call coc#util#install()
+    execute 'CocInstall coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets'
+  endfunction
+  Plug 'neoclide/coc.nvim', {'do': { -> CocInstaller() }}
   Plug 'wellle/tmux-complete.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
@@ -158,7 +158,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
 
   " Python
-  Plug 'davidhalter/jedi-vim' | Plug 'zchee/deoplete-jedi', { 'for': 'python', 'do': 'pip install jedi' }
+  Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
 

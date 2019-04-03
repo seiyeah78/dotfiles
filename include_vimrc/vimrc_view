@@ -7,7 +7,8 @@ let g:gitgutter_sign_removed = '✘'
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'session_state', 'fugitive', 'gitgutter', 'filename' ] ]
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus',' session_state', 'fugitive', 'gitgutter', 'filename' ] ]
       \ },
       \ 'component_function': {
       \   'modified': 'MyModified',
@@ -20,6 +21,7 @@ let g:lightline = {
       \   'gitgutter': 'MyGitGutter',
       \   'session_state': 'ObsessionStatus',
       \   'mode': 'MyMode',
+      \   'cocstatus': 'coc#status',
       \ },
       \ 'separator': { 'left': "⮀", 'right': "⮂"  },
       \ 'subseparator': {'left': '⮁', 'right': '⮃'}
