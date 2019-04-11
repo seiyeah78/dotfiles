@@ -123,7 +123,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
   Plug 'soramugi/auto-ctags.vim', { 'commit': '5164b2d6b4dcf6b2e0597e888382403175c3227e' }
-  Plug 'junegunn/goyo.vim' | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
+  Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'easymotion/vim-easymotion'
@@ -133,7 +133,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'andymass/vim-matchup'
   Plug 'tyru/open-browser.vim'
-  Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx','typescript.tsx'] }
+  Plug 'mattn/emmet-vim', { 'for': ['html','javascript','typescript','jsx','tsx','typescript.tsx'] }
   Plug 'machakann/vim-highlightedyank'
   Plug 'RRethy/vim-illuminate'
   Plug 'rhysd/git-messenger.vim'
@@ -145,7 +145,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'sheerun/vim-polyglot'
 
   " Ruby
-  Plug 'tpope/vim-rails' | Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby', 'slim'] }
+  Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
+  Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby', 'slim'] }
 
   " PHP
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
@@ -153,9 +154,11 @@ call plug#begin('~/.vim/plugged')
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
-  Plug 'Quramy/tsuquyomi' | Plug 'Quramy/tsuquyomi-vue', { 'for': ['vue','typescript'], 'do': 'npm -g install typescript' }
-  Plug 'leafgarland/typescript-vim' | Plug 'HerringtonDarkholme/yats.vim' | Plug 'yuezk/vim-jsx-pretty', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
-  " Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
+  Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
+  Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue'}
+  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+  Plug 'HerringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
+  Plug 'yuezk/vim-jsx-pretty', { 'for': ['html', 'jsx', 'tsx'] }
 
   " Python
   Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'pip install jedi' }
@@ -163,10 +166,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
 
   " Markdown
-  Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown' | Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
+  Plug 'godlygeek/tabular', { 'for': ['markdown', 'md', 'mkd'] }
+  Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md', 'mkd'] }
+  Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
 
   " Go
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'fatih/vim-go', { 'for': 'go' , 'do': ':GoUpdateBinaries' }
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -217,6 +222,10 @@ if exists("g:colors_name")
   if g:colors_name == "apprentice"
     hi Comment term=bold ctermfg=243 guifg=#707880
     " hi link jsxCloseString Statement
+    " if exists('$TMUX')
+    "   hi clear Normal
+    "   hi Normal ctermfg=250 guifg=#bcbcbc
+    " endif
   end
 end
 
@@ -243,7 +252,7 @@ inoremap <C-_><C-_> <C-O>:TCommentAs <C-R>=&ft<CR><CR>
 noremap <C-_>b :TCommentBlock<CR>
 inoremap <C-_>b <C-\><C-O>:TCommentBlock mode=#<CR>
 noremap <C-_>i v:TCommentInline mode=I#<cr>
-inoremap <C-_>i v:TCommentInline mode=I#<cr>
+inoremap <C-_>i <C-\><C-O>:TCommentInline mode=I#<cr>
 nmap <C-_>u <Plug>(TComment_Uncommentc)
 vmap <C-_>u <Plug>(TComment_Uncommentc)
 
@@ -589,3 +598,4 @@ endfor
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+let g:tmuxcomplete#trigger = 'omnifunc'
