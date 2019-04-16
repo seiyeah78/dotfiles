@@ -517,7 +517,7 @@ function! IsNERDTreeOpen()
 endfunction
 
 let g:VM_maps = {}
-let g:VM_maps["Erase Regions"]               = 'gr'
+let g:VM_maps["Erase Regions"]               = 'er'
 " let g:VM_maps["Select l"]                    = 'l'
 " let g:VM_maps["Select h"]                    = 'h'
 " let g:VM_maps["Select Cursor Down"]          = '<M-C-Down>'
