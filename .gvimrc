@@ -1,8 +1,5 @@
-map ¥ <leader>
 set imdisable
 set background=dark
-colorscheme hybrid
-set rtp+=/usr/local/bin/fzf
 " メニューバーを非表示にする
 set guioptions-=m
 " 左右のスクロールバーを非表示にする
@@ -21,7 +18,6 @@ set columns=120
 " set guifontwide=Ricty\ Regular\ for\ Powerline:h13
 " set guifont=Ricty\ Regular\ for\ Powerline:h13
 set guifont=Droid\ Sans\ Mono:h14
-set guifontwide=Droid\ Sans\ Mono:h14
 " 起動時にフルスクリーンにする
 " if has("gui_running")
 "   set fuoptions=maxvert,maxhorz
@@ -29,10 +25,6 @@ set guifontwide=Droid\ Sans\ Mono:h14
 " endif
 
 " The Silver Searcher
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
-
 if executable('rg')
   set grepprg=rg\ --color=never
 endif

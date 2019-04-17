@@ -7,8 +7,8 @@ let g:gitgutter_sign_removed = '✘'
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus',' session_state', 'fugitive', 'gitgutter', 'filename' ] ]
+      \   'left': [ [ 'mode', 'paste'],
+      \             [ 'cocstatus', 'session_state', 'fugitive', 'gitgutter', 'filename' ] ]
       \ },
       \ 'component_function': {
       \   'modified': 'MyModified',
@@ -25,6 +25,20 @@ let g:lightline = {
       \ },
       \ 'separator': { 'left': "⮀", 'right': "⮂"  },
       \ 'subseparator': {'left': '⮁', 'right': '⮃'}
+      \ }
+
+let g:lightline.mode_map = {
+      \ 'n' : 'N',
+      \ 'i' : 'I',
+      \ 'R' : 'R',
+      \ 'v' : 'V',
+      \ 'V' : 'V-L',
+      \ "\<C-v>": 'V-B',
+      \ 'c' : 'C',
+      \ 's' : 'S',
+      \ 'S' : 'S-L',
+      \ "\<C-s>": 'S-B',
+      \ 't': 'TERM',
       \ }
 
 function! MyModified()

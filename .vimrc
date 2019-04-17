@@ -487,15 +487,16 @@ vmap > >gv
 
 " Open current line on GitHub
 nnoremap <Leader>go :.Gbrowse<CR>
-nnoremap <Leader>gv :GV<CR>
+nnoremap <Leader>gv :GV!<CR>
+nnoremap <Leader>ga :AgitFile<CR>
 
-noremap <Leader>ga :Gwrite<CR>
+" git add current file
+" noremap <Leader>ga :Gwrite<CR>
 " noremap <Leader>gc :Gcommit<CR>
 " noremap <Leader>gsh :Gpush<CR>
 " noremap <Leader>gr :Gremove<CR>
 " noremap <Leader>gll :Gpull<CR>
 noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gf :GFiles<CR>
 noremap <Leader>gF :GFiles?<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
