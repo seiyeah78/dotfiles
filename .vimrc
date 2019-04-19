@@ -55,6 +55,7 @@ set wildmenu
 set wildmode=longest,full
 set wrapscan
 set updatetime=1000
+set tags+=.git/tags
 
 if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -112,7 +113,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'simeji/winresizer'
   Plug 'mg979/vim-visual-multi'
   Plug 'airblade/vim-gitgutter'
-  Plug 'shougo/vimproc.vim', { 'do': 'make' }
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
   Plug 'Yggdroot/indentLine'
@@ -399,10 +399,6 @@ nnoremap <C-W><C-]> <C-W>g<C-]>
 
 nmap <silent><leader>T :TagbarToggle<CR>
 
-let g:auto_ctags_directory_list = ['.git', '.svn']
-" let g:auto_ctags = 1
-let g:auto_ctags_tags_args = '--tag-relative=yes --recurse --sort=yes'
-set tags+=.git/tags;
 
 " ============ tagbar setting =============
 " see --list-kinds=Ruby
@@ -456,6 +452,8 @@ let ruby_operators = 1
 let ruby_space_errors = 1
 " let ruby_no_expensive = 1
 " let ruby_spellcheck_strings = 1
+let ruby_line_continuation_error = 1
+let ruby_global_variable_error   = 1
 
 " ============winresizer setting============
 let g:winresizer_start_key = '<C-w>e'

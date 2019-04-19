@@ -196,7 +196,11 @@ augroup fileTypeIndent
   autocmd FileType go     setlocal tabstop=4 softtabstop=4 noexpandtab   shiftwidth=4
 augroup END
 
-autocmd FileType git* setlocal foldlevel=99
+augroup flowLevelSetting
+ autocmd!
+ autocmd FileType git* setlocal foldlevel=99
+ autocmd BufNewFile,BufRead,BufEnter *Agit* if !empty(matchstr(expand('%:t'), "Agit")) | setlocal foldlevel=99 | endif
+augroup END
 
 " Automatic rename of tmux window
 if exists('$TMUX') && !exists('$NORENAME')
