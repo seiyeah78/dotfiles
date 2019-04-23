@@ -267,7 +267,10 @@ command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボード�
 nmap <F1> <nop>
 imap <F1> <nop>
 
-" ctrl-j to ESC
+" ESC to Normal mode in terminal
+tnoremap <Esc> <C-\><C-n>
+
+"ctrl-j to ESC
 imap <C-J> <ESC>
 
 " Use <C-Space>. 使うときは<C-@>にマッピングする
