@@ -34,6 +34,7 @@ function! s:my_cr_function()
 endfunction
 
 inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
+let g:VM_maps["I Return"] = s:my_cr_function()
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
