@@ -56,6 +56,11 @@ set wildmode=longest,full
 set wrapscan
 set updatetime=1000
 set tags+=.git/tags
+set shortmess-=S
+set shortmess-=s
+if has("patch-8.1.0360")
+  set diffopt=internal,filler,algorithm:histogram,indent-heuristic
+endif
 
 if has('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -81,6 +86,7 @@ if has('vim_starting')
 endif
 
 if !has('gui_running')
+  set lazyredraw
   set ttyfast
 endif
 
@@ -104,7 +110,6 @@ call plug#begin('~/.vim/plugged')
     execute 'CocInstall coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets'
   endfunction
   Plug 'neoclide/coc.nvim', {'do': { -> CocInstaller() }}
-  Plug 'wellle/tmux-complete.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
@@ -122,14 +127,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'thinca/vim-qfreplace'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
-  Plug 'soramugi/auto-ctags.vim', { 'commit': '5164b2d6b4dcf6b2e0597e888382403175c3227e' }
   Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
   Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'easymotion/vim-easymotion'
   Plug 'tomtom/tcomment_vim'
   Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
-  Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/vim-asterisk'
+  Plug 'wellle/targets.vim'
+  Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim'| Plug 'haya14busa/vim-asterisk'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'andymass/vim-matchup'
   Plug 'tyru/open-browser.vim'
@@ -137,6 +142,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-highlightedyank'
   Plug 'RRethy/vim-illuminate'
   Plug 'rhysd/git-messenger.vim'
+  if exists('$TMUX')
+    Plug 'wellle/tmux-complete.vim'
+    Plug 'tmux-plugins/vim-tmux-focus-events'
+  end
 
   " -----------------------------------------------
   " Language,Framework
@@ -150,10 +159,10 @@ call plug#begin('~/.vim/plugged')
 
   " PHP
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
-  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
+  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
   Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue'}
   Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
@@ -171,7 +180,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kannokanno/previm', { 'for': ['markdown', 'md', 'mkd'] }
 
   " Go
-  Plug 'fatih/vim-go', { 'for': 'go' , 'do': ':GoUpdateBinaries' }
+  Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 
   " Plug 't9md/vim-textmanip'
   " colorschemes plugins
@@ -183,20 +192,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'lifepillar/vim-solarized8'
   Plug 'kristijanhusak/vim-hybrid-material'
   Plug 'KeitaNakamura/neodark.vim'
-  Plug 'rakr/vim-one'
   Plug 'joshdick/onedark.vim'
   Plug 'tyrannicaltoucan/vim-quantum'
   Plug 'ajh17/Spacegray.vim'
-  Plug 'tomasr/molokai'
+  Plug 'rhysd/vim-color-spring-night'
   Plug 'morhetz/gruvbox'
   Plug 'yuttie/hydrangea-vim'
   Plug 'tyrannicaltoucan/vim-deep-space'
-  Plug 'AlessandroYorba/Despacio'
   Plug 'cocopon/iceberg.vim'
   Plug 'nightsense/snow'
-  Plug 'nightsense/stellarized'
   Plug 'arcticicestudio/nord-vim'
-  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
   Plug 'romainl/Apprentice'
 
   " lint engine
@@ -429,17 +434,6 @@ let g:tagbar_type_ruby = {
       \ ]
     \ }
 
-" ===================gtags.vim setting==================
-" Suggested map:
-nmap <F2> :copen<CR>
-nmap <F4> :cclose<CR>
-nmap <F5> :Gtags<SPACE>
-" nmap <F6> :Gtags -f %<CR>
-" nmap <F7> :GtagsCursor<CR>
-" nmap <F8> :Gozilla<CR>
-" nmap <C-n> :cn<CR>
-" nmap <C-p> :cp<CR>
-nmap <leader><C-]> :<C-U>execute 'Gtags -r '.expand('<cWORD>')<CR>
 
 " Switching windows
 nmap <C-j> <C-w>j
@@ -487,7 +481,8 @@ vmap < <gv
 vmap > >gv
 
 " Open current line on GitHub
-nnoremap <Leader>go :.Gbrowse<CR>
+nnoremap <Leader>go :Gbrowse<CR>
+vnoremap <Leader>go :Gbrowse<CR>
 nnoremap <Leader>gv :GV!<CR>
 nnoremap <Leader>ga :AgitFile<CR>
 
@@ -501,8 +496,8 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gF :GFiles?<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
-nmap <Leader>gj <Plug>GitGutterNextHunk
-nmap <Leader>gk <Plug>GitGutterPrevHunk
+nmap ]g <Plug>GitGutterNextHunk
+nmap [g <Plug>GitGutterPrevHunk
 
 "=================NERDTree setting===========================
 let g:NERDTreeChDirMode = 2
@@ -518,13 +513,20 @@ function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
+" ===============vim-visual-multi============
+let g:VM_manual_infoline = 0
+let g:VM_leader=','
 let g:VM_maps = {}
-let g:VM_maps["Erase Regions"]               = 'er'
-" let g:VM_maps["Select l"]                    = 'l'
-" let g:VM_maps["Select h"]                    = 'h'
-" let g:VM_maps["Select Cursor Down"]          = '<M-C-Down>'
-" let g:VM_maps["Select Cursor Up"]            = '<M-C-Up>'
-" let g:VM_maps["Add Cursor At Word"]          = 'g<cr>'
+" let g:VM_maps["Add Cursor At Word"] = 'g<cr>'
+let g:VM_maps["Add Cursor Up"]   = '<M-k>'
+let g:VM_maps["Add Cursor Down"] = '<M-j>'
+"
+function! VM_Start()
+  HighlightedyankOff
+endfunction
+fun! VM_Exit()
+  HighlightedyankOn
+endfun
 
 "=============vim-easy-align setting============
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -545,16 +547,6 @@ let g:EasyMotion_keys='azwsxedcrfvtgbyhnujmikol;wertyuop'
 " 最初のマッチにEnterかスペースでジャンプする
 let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
-
-" prefix(trigger)
-map <Leader><Leader> <Plug>(easymotion-prefix)
-
-" s{char}{char} to move to {char}{char}
-map  s <Plug>(easymotion-s2)
-map  <leader>f <Plug>(easymotion-bd-f)
-
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
 
 " Move to target within line
 " lはline(１行)の意味
@@ -589,6 +581,8 @@ endfunction
 noremap <silent><expr> / incsearch#go(<SID>incsearch_config({'prompt':'Search: '}))
 noremap <silent><expr> ? incsearch#go(<SID>incsearch_config({'prompt':'Search: ','command':'?'}))
 
+nmap <C-w>m <Plug>(git-messenger)
+
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
 for filename in s:vim_dotfiles
@@ -597,7 +591,8 @@ for filename in s:vim_dotfiles
   endif
 endfor
 
+let g:targets_nl = 'nN'
+
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-let g:tmuxcomplete#trigger = 'omnifunc'

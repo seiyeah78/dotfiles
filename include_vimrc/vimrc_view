@@ -7,8 +7,8 @@ let g:gitgutter_sign_removed = '✘'
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste'],
-      \             [ 'cocstatus', 'session_state', 'fugitive', 'gitgutter', 'filename' ] ]
+      \   'left': [ [ 'mode', 'paste', 'visualMulti'],
+      \             [ 'cocstatus', 'sessionState', 'fugitive', 'gitgutter', 'filename' ] ]
       \ },
       \ 'component_function': {
       \   'modified': 'MyModified',
@@ -19,9 +19,10 @@ let g:lightline = {
       \   'filetype': 'MyFiletype',
       \   'fileencoding': 'MyFileencoding',
       \   'gitgutter': 'MyGitGutter',
-      \   'session_state': 'ObsessionStatus',
+      \   'sessionState': 'ObsessionStatus',
       \   'mode': 'MyMode',
       \   'cocstatus': 'coc#status',
+      \   'visualMulti': 'MyVisualMulti',
       \ },
       \ 'separator': { 'left': "⮀", 'right': "⮂"  },
       \ 'subseparator': {'left': '⮁', 'right': '⮃'}
@@ -74,7 +75,8 @@ function! MyFileencoding()
   return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 function! MyMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
+  let visualMulti = g:Vm.is_active == 1 ? '(M)' : ''
+  return winwidth(0) > 60 ? lightline#mode().visualMulti : ''
 endfunction
 function! MyGitGutter()
   if ! exists('*GitGutterGetHunkSummary')
