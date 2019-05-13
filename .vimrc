@@ -578,6 +578,7 @@ function! s:incsearch_config(...) abort
 endfunction
 " configは以下
 " https://github.com/haya14busa/incsearch.vim/blob/161c5b66542e767962ca5f6998a22e984f8d8a60/autoload/incsearch/config.vim
+let g:incsearch#magic = '\v'
 noremap <silent><expr> / incsearch#go(<SID>incsearch_config({'prompt':'Search: '}))
 noremap <silent><expr> ? incsearch#go(<SID>incsearch_config({'prompt':'Search: ','command':'?'}))
 
