@@ -124,7 +124,7 @@ ftpane() {
 }
 
 fdocker-images() {
-    local out="$(docker images| sed -e '1d' | fzf-tmux -d 30% --ansi --exact --multi --no-sort --reverse --print-query --expect=ctrl-d,ctrl-b,ctrl-r,enter)"
+    local out="$(docker images| sed -e '1d' | fzf-tmux -d 30% --ansi --exact --multi --no-sort --reverse --print-query --bind al-a:select-all,alt-d:deselect-all --expect=ctrl-d,ctrl-b,ctrl-r,enter)"
 
     local q="$(head -1 <<< $out)" #標準入力
     local k="$(head -2 <<< $out | tail -1)" #except指定の文字列
