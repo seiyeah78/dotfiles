@@ -240,7 +240,6 @@ let g:vim_json_syntax_conceal = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0
 let g:AutoPairsMapCR = 0
-let g:tmuxcomplete#trigger = ''
 let g:UltiSnipsUsePythonVersion = 3
 let g:strip_whitespace_on_save=1
 let g:better_whitespace_ctermcolor='red'
@@ -427,11 +426,17 @@ let g:tagbar_type_ruby = {
     \ 'kinds' : [
         \ 'm:modules',
         \ 'c:classes',
-        \ 'r:association',
-        \ 'C:constant',
+        \ 'r:associations',
+        \ 'C:constants',
         \ 'f:methods',
         \ 'S:singleton methods'
-      \ ]
+        \ ],
+    \ 'kind2scope' : { 'c' : 'class',
+                     \ 'm' : 'module',
+                     \ },
+    \ 'scope2kind' : { 'module' : 'm',
+                     \ 'class' : 'c'
+                     \ },
     \ }
 
 

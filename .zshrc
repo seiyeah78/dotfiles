@@ -24,12 +24,11 @@ MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
 MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
 
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME/.go
 export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
-export PYENV_ROOT=~/.pyenv
 export EDITOR=vim
 export BAT_CONFIG_PATH="$HOME/dotfiles/bat/setting.conf"
 
