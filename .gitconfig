@@ -13,7 +13,7 @@
   autosetuprebase = always
   autosetupmerge = always
 [pull]
-  rebase = false
+  rebase = true
 [http]
   sslVerify = false
 [alias]

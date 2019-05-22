@@ -1,7 +1,6 @@
 .DS_Store
 local.rb
 Vagrantfile
-development.rb
 .envault.yml
 .Gemfile.lock.tags
 .tags
@@ -13,4 +12,4 @@ GRTAGS
 GTAGS
 projections.json
 .ignore
-
+vendor/
