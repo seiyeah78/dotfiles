@@ -86,8 +86,8 @@ if has('vim_starting')
 endif
 
 if !has('gui_running')
-  set lazyredraw
-  set ttyfast
+  " set lazyredraw
+  " set ttyfast
 endif
 
 " Setting Vim-Plug
@@ -251,8 +251,10 @@ let g:Illuminate_ftblacklist = ['nerdtree', 'git']
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
 let g:tcomment_maps = 0
-noremap <C-_><C-_> :TCommentAs <C-R>=&ft<CR><CR>
-inoremap <C-_><C-_> <C-O>:TCommentAs <C-R>=&ft<CR><CR>
+nnoremap <C-_><C-_> :TComment<CR>
+inoremap <C-_><C-_> <C-O>:TComment<CR>
+autocmd FileType typescript.tsx nnoremap <buffer><C-_><C-_> :TCommentAs <C-R>=&ft<CR><CR>
+autocmd FileType typescript.tsx inoremap <buffer><C-_><C-_> <C-O>:TCommentAs <C-R>=&ft<CR><CR>
 noremap <C-_>b :TCommentBlock<CR>
 inoremap <C-_>b <C-\><C-O>:TCommentBlock mode=#<CR>
 noremap <C-_>i v:TCommentInline mode=I#<cr>
@@ -272,7 +274,9 @@ nmap <F1> <nop>
 imap <F1> <nop>
 
 " ESC to Normal mode in terminal
-tnoremap <Esc> <C-\><C-n>
+if has("nvim")
+  autocmd TermOpen * tnoremap <Esc> <C-\><C-N>
+endif
 
 "ctrl-j to ESC
 imap <C-J> <ESC>
