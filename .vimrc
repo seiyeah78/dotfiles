@@ -251,9 +251,9 @@ let g:Illuminate_ftblacklist = ['nerdtree', 'git']
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
 let g:tcomment_maps = 0
-nnoremap <C-_><C-_> :TComment<CR>
+noremap <C-_><C-_> :TComment<CR>
 inoremap <C-_><C-_> <C-O>:TComment<CR>
-autocmd FileType typescript.tsx nnoremap <buffer><C-_><C-_> :TCommentAs <C-R>=&ft<CR><CR>
+autocmd FileType typescript.tsx noremap <buffer><C-_><C-_> :TCommentAs <C-R>=&ft<CR><CR>
 autocmd FileType typescript.tsx inoremap <buffer><C-_><C-_> <C-O>:TCommentAs <C-R>=&ft<CR><CR>
 noremap <C-_>b :TCommentBlock<CR>
 inoremap <C-_>b <C-\><C-O>:TCommentBlock mode=#<CR>
