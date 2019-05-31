@@ -107,7 +107,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
   function! CocInstaller()
     call coc#util#install()
-    execute 'CocInstall coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets'
+    silent! execute 'CocInstall coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets'
   endfunction
   Plug 'neoclide/coc.nvim', {'do': { -> CocInstaller() }}
   Plug 'jiangmiao/auto-pairs'

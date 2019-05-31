@@ -35,10 +35,10 @@
   tracking = !git co $(git tracking-name)
   bro = browse
   create-pr = !hub pull-request -o -b $(git tracking-name)
-  open-pr = !hub pr list -f %U -h $(git rev-parse --abbrev-ref HEAD) | xargs python -m webbrowser
+  openpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
+  findpr = "!f() { git log --merges --reverse --ancestry-path $1...master | grep 'Merge pull request #' -B5 | head -n 6; }; f"
   # reflogから復元するalias
   undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
-  findpr = "!f() { git log --merges --reverse --ancestry-path $1...master | grep 'Merge pull request #' -B5 | head -n 6; }; f"
 
   #カレントブランチとリモートのコミットの差分だけをlogで出力
   lcu = !git log $(git tracking-branch)..
