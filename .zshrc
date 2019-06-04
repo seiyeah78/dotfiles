@@ -105,9 +105,6 @@ alias ls='ls -G'
 alias fig='docker-compose'
 alias agl="ag --pager='less -R'"
 
-alias cs="bundle exec rails c --sandbox"
-alias c="bundle exec rails c"
-
 #末尾の改行コードを除いてコピーする
 alias -g C="| ruby -pe 'chomp if STDIN.eof?' | pbcopy"
 
