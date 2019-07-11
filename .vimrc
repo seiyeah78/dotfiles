@@ -171,7 +171,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'yuezk/vim-jsx-pretty', { 'for': ['html', 'jsx', 'tsx'] }
 
   " Python
-  Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'pip install jedi' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
 
@@ -305,15 +304,6 @@ let g:ale_php_phpmd_ruleset = 'codesize,design,naming,unusedcode'
 " ---- Yank and send to clipbord --------
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 vnoremap YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
-
-" ---- vim-jedi ----
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>jg"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "<leader>k"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>re"
 
 " ---------------vim-go-----------------
 let g:go_doc_keywordprg_enabled = 0
@@ -452,7 +442,6 @@ let g:tagbar_type_ruby = {
                      \ 'class' : 'c'
                      \ },
     \ }
-
 
 " Switching windows
 nmap <C-j> <C-w>j
