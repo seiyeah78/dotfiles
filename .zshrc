@@ -83,6 +83,7 @@ eval "$(anyenv init -)"
 eval "$(rbenv init --no-rehash -; pyenv init --no-rehash -; ndenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"
 # use hub
 eval "$(hub alias -s)"
+eval "$(direnv hook zsh)"
 
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none

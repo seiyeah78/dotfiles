@@ -142,6 +142,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-highlightedyank'
   Plug 'RRethy/vim-illuminate'
   Plug 'rhysd/git-messenger.vim'
+  Plug 'janko/vim-test' | Plug 'tpope/vim-dispatch'
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
     Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -317,6 +318,15 @@ let g:jedi#rename_command = "<leader>re"
 " ---------------vim-go-----------------
 let g:go_doc_keywordprg_enabled = 0
 autocmd FileType go nnoremap <buffer><leader>k :<C-U>GoDoc<CR>
+
+" these Ctrl mappings work well when Caps Lock is mapped to Ctrl
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+" make test commands execute using dispatch.vim
+let test#strategy = "dispatch"
 
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
