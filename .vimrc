@@ -106,10 +106,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
   function! CocInstaller()
-    call coc#util#install()
+    call coc#util#install( {'tag':1} )
     silent! execute 'CocInstall coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets'
   endfunction
-  Plug 'neoclide/coc.nvim', {'do': { -> CocInstaller() }}
+  Plug 'neoclide/coc.nvim', { 'tag':'*', 'do': { -> CocInstaller() } }
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
@@ -143,6 +143,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'RRethy/vim-illuminate'
   Plug 'rhysd/git-messenger.vim'
   Plug 'janko/vim-test' | Plug 'tpope/vim-dispatch'
+
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
     Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -157,13 +158,14 @@ call plug#begin('~/.vim/plugged')
   " Ruby
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
   Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby', 'slim'] }
+  Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 
   " PHP
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
+  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
-  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
   Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue'}
   Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
@@ -203,6 +205,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'nightsense/snow'
   Plug 'arcticicestudio/nord-vim'
   Plug 'romainl/Apprentice'
+  Plug 'rakr/vim-two-firewatch'
+  Plug 'Nequo/vim-allomancer'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -500,7 +504,7 @@ nnoremap <Leader>ga :AgitFile<CR>
 " noremap <Leader>gsh :Gpush<CR>
 " noremap <Leader>gr :Gremove<CR>
 " noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gs :20Gstatus<CR>
 noremap <Leader>gF :GFiles?<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
