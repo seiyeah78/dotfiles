@@ -115,6 +115,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 ######git alias ######
 unalias gcm
 unalias grv
+unalias gp
 alias gdc='git dc'
 alias gcm='git cm'
 alias groot='cd $(git rev-parse --show-toplevel)'

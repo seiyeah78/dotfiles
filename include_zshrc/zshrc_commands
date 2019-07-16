@@ -10,6 +10,7 @@ export FZF_DEFAULT_OPTS="
   --reverse
   --tiebreak=index
   --color bg+:239
+  --color pointer:168,marker:168
   --no-unicode
 "
 export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"

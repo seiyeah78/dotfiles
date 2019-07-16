@@ -30,12 +30,14 @@
   cm = commit -v
   ss = status --short
   pl = pull
+  ph = push upstream HEAD
   tracking-branch = !git rev-parse --abbrev-ref --symbolic-full-name @{upstream}
   tracking-name = !git tracking-branch | cut -d / -f2-
   tracking = !git co $(git tracking-name)
   bro = browse
   create-pr = !hub pull-request -o -b $(git tracking-name)
-  openpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
+  showpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
+  openpr = !hub pr list -f %I -h $(git rev-parse --abbrev-ref HEAD) | xargs -I{} hub browse -- pull/{}
   findpr = "!f() { git log --merges --reverse --ancestry-path $1...master | grep 'Merge pull request #' -B5 | head -n 6; }; f"
   # reflogから復元するalias
   undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
