@@ -40,8 +40,6 @@ set noswapfile
 set nobackup
 set nocompatible
 set switchbuf+=useopen
-" 初期表示時は通常通り開いている状態にする
-" set nofoldenable
 set foldmethod=indent
 set foldlevel=2
 " don't open scratch window when start complete
@@ -250,25 +248,19 @@ let g:better_whitespace_ctermcolor='red'
 let g:vim_jsx_pretty_colorful_config = 1
 let g:strip_whitespace_confirm = 0
 let g:indentLine_fileTypeExclude = ['tex', 'markdown']
-let g:Illuminate_ftblacklist = ['nerdtree', 'git']
+let g:Illuminate_ftblacklist = ['nerdtree', 'git', 'gitcommit', 'fugitiveblame']
 
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
 let g:tcomment_maps = 0
 noremap <C-_><C-_> :TComment<CR>
 inoremap <C-_><C-_> <C-O>:TComment<CR>
-autocmd FileType typescript.tsx noremap <buffer><C-_><C-_> :TCommentAs <C-R>=&ft<CR><CR>
-autocmd FileType typescript.tsx inoremap <buffer><C-_><C-_> <C-O>:TCommentAs <C-R>=&ft<CR><CR>
 noremap <C-_>b :TCommentBlock<CR>
 inoremap <C-_>b <C-\><C-O>:TCommentBlock mode=#<CR>
 noremap <C-_>i v:TCommentInline mode=I#<cr>
 inoremap <C-_>i <C-\><C-O>:TCommentInline mode=I#<cr>
 nmap <C-_>u <Plug>(TComment_Uncommentc)
 vmap <C-_>u <Plug>(TComment_Uncommentc)
-
-call tcomment#type#Define('typescript.tsx', '{/* %s */}')
-call tcomment#type#Define('typescript.tsx_block', '{/* %s */}')
-call tcomment#type#Define('typescript.tsx_inline', '{/* %s */}')
 
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
@@ -308,10 +300,6 @@ let g:ale_php_phpmd_ruleset = 'codesize,design,naming,unusedcode'
 " ---- Yank and send to clipbord --------
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 vnoremap YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
-
-" ---------------vim-go-----------------
-let g:go_doc_keywordprg_enabled = 0
-autocmd FileType go nnoremap <buffer><leader>k :<C-U>GoDoc<CR>
 
 " these Ctrl mappings work well when Caps Lock is mapped to Ctrl
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -414,39 +402,6 @@ nnoremap <C-W><C-]> <C-W>g<C-]>
 
 nmap <silent><leader>T :TagbarToggle<CR>
 
-
-" ============ tagbar setting =============
-" see --list-kinds=Ruby
-" let g:tagbar_type_ruby = {
-"     \ 'kinds'      : ['m:modules',
-"                     \ 'c:classes',
-"                     \ 'C:constants',
-"                     \ 'F:singleton methods',
-"                     \ 'f:methods',
-"                     \ 'a:aliases'],
-"     \ 'kind2scope' : { 'c' : 'class',
-"                      \ 'm' : 'class' },
-"     \ 'scope2kind' : { 'class' : 'c' },
-"     \ 'ctagsbin'   : 'ripper-tags',
-"     \ 'ctagsargs'  : ['-f', '-']
-"     \ }
-let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'r:associations',
-        \ 'C:constants',
-        \ 'f:methods',
-        \ 'S:singleton methods'
-        \ ],
-    \ 'kind2scope' : { 'c' : 'class',
-                     \ 'm' : 'module',
-                     \ },
-    \ 'scope2kind' : { 'module' : 'm',
-                     \ 'class' : 'c'
-                     \ },
-    \ }
-
 " Switching windows
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
@@ -454,15 +409,6 @@ nmap <C-l> <C-w>l
 nmap <C-h> <C-w>h
 noremap <silent><C-w>s :<C-u>split<CR>
 noremap <silent><C-w>v :<C-u>vsplit<CR>
-
-" ft-ruby-syntax
-" see: http://vim-jp.org/vimdoc-ja/syntax.html
-let ruby_operators = 1
-let ruby_space_errors = 1
-" let ruby_no_expensive = 1
-" let ruby_spellcheck_strings = 1
-let ruby_line_continuation_error = 1
-let ruby_global_variable_error   = 1
 
 " ============winresizer setting============
 let g:winresizer_start_key = '<C-w>e'
