@@ -59,14 +59,10 @@ zplug lib/completion,         from:oh-my-zsh
 # prompt theme
 zplug mafredri/zsh-async,     from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-
 zplug zsh-users/zsh-syntax-highlighting, defer:2
-
 # load hub comp
 zplug github/hub, defer:2
-
 zplug "b4b4r07/emoji-cli"
-zplug "takaaki-kasai/git-foresta", as:"command", use:"git-foresta"
 
 # Install plugins if there are plugins that have not been installed
 # if ! zplug check --verbose; then

@@ -240,12 +240,6 @@ function rgl()
      rg --no-ignore --hidden --follow --no-messages -p "$@" | less -RSX
 }
 
-# git-foresta
-function gifo() { git-foresta --style=10 "$@" | less -RSX }
-function gifa() { git-foresta --all --style=10 "$@" | less -RSX }
-compdef _git gifo=git-log
-compdef _git gifa=git-log
-
 # docker command
 function docker-taglist() {
   if [ -z $1 ]; then
@@ -265,4 +259,27 @@ function mktouch() {
   mkdir -p $dir  && touch $1
   echo "Created file"
   ls -l $1
+}
+
+function openpr() {
+  local git_hash=$1
+
+  # no arg => open current branch pr
+  if [ -z "${git_hash}" ]; then
+    hub pr list -f %I -h $(git rev-parse --abbrev-ref HEAD) | xargs -I{} hub browse -- pull/{}
+    return 0;
+  fi
+
+  # only number => open pull/num
+  if [[ ${git_hash} =~ ^[0-9]+$  ]] && [ ${#git_hash} < 7]; then
+    hub browse -- pull/${git_hash}
+    return 0;
+  fi
+
+  # commit hash => open pr included it.
+  local h=$(git log --merges --oneline --reverse --ancestry-path $git_hash...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%');
+  if ! [ -z "${h}" ]; then
+    hub browse -- $h
+    return 0;
+  fi
 }

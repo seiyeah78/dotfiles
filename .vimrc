@@ -249,6 +249,7 @@ let g:vim_jsx_pretty_colorful_config = 1
 let g:strip_whitespace_confirm = 0
 let g:indentLine_fileTypeExclude = ['tex', 'markdown']
 let g:Illuminate_ftblacklist = ['nerdtree', 'git', 'gitcommit', 'fugitiveblame']
+let g:gitgutter_diff_args='--diff-algorithm=histogram'
 
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
@@ -307,8 +308,17 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
+
 " make test commands execute using dispatch.vim
 let test#strategy = "dispatch"
+if !exists('g:dispatch_compilers')
+  let g:dispatch_compilers = {}
+endif
+let g:dispatch_compilers = {
+      \ 'docker-compose exec app bundle exec rspec': 'rspec',
+      \ 'docker-compose run --rm app': '',
+      \ 'bundle exec':''
+      \ }
 
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>

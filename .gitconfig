@@ -22,22 +22,26 @@
   diffc = diff --cached
   show-merged-branches = !git branch --merged | grep -v '\\*\\|master'
   co = checkout
+  cob = checkout -b
+  cb = checkout -b
   cop = !git checkout $(git branch --sort=-committerdate --format=' %(committerdate:iso8601)%09%(refname:lstrip=2)'| peco | sed -e \"s/\\* //g\" | awk '{print $4}')
   fetch-pr-upstream = !sh -c 'git fetch upstream pull/$1/head:pr-$1' -
   lg = log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   d = diff
+  b = branch
   dc = !git diffc
   cm = commit -v
   ss = status --short
   pl = pull
   ph = push upstream HEAD
+  P = ph
+  bk = co -
   tracking-branch = !git rev-parse --abbrev-ref --symbolic-full-name @{upstream}
   tracking-name = !git tracking-branch | cut -d / -f2-
   tracking = !git co $(git tracking-name)
   bro = browse
   create-pr = !hub pull-request -o -b $(git tracking-name)
   showpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
-  openpr = !hub pr list -f %I -h $(git rev-parse --abbrev-ref HEAD) | xargs -I{} hub browse -- pull/{}
   findpr = "!f() { git log --merges --reverse --ancestry-path $1...master | grep 'Merge pull request #' -B5 | head -n 6; }; f"
   # reflogから復元するalias
   undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
