@@ -266,7 +266,12 @@ function openpr() {
 
   # no arg => open current branch pr
   if [ -z "${git_hash}" ]; then
-    hub pr list -f %I -h $(git rev-parse --abbrev-ref HEAD) | xargs -I{} hub browse -- pull/{}
+    local num=$(hub pr list -f %I -h $(git rev-parse --abbrev-ref HEAD))
+    if [ -z "${num}" ]; then
+      echo "Not found pull request."
+    else
+      hub browse -- pull/${num}
+    fi
     return 0;
   fi
 
@@ -277,9 +282,21 @@ function openpr() {
   fi
 
   # commit hash => open pr included it.
-  local h=$(git log --merges --oneline --reverse --ancestry-path $git_hash...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%');
-  if ! [ -z "${h}" ]; then
-    hub browse -- $h
+  local details=$(git show --oneline --merges $git_hash 2>/dev/null)
+  _open_pull_request_from_commit_details "$details"
+
+  if [ $? != 0  ]; then
+    local details=$(git log --merges --oneline --reverse --ancestry-path $git_hash...master 2>/dev/null)
+    _open_pull_request_from_commit_details "$details"
+  fi
+}
+
+function _open_pull_request_from_commit_details() {
+  local num=$(echo $1 | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%%')
+  if ! [ -z "${num}" ]; then
+    hub browse -- pull/$num
     return 0;
+  else
+    return 1;
   fi
 }
