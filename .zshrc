@@ -97,6 +97,7 @@ function switch-java() {
 
 ############## setting alias #################
 alias vi='vim'
+alias vim='nvim'
 alias ls='ls -G'
 
 alias fig='docker-compose'

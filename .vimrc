@@ -120,7 +120,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   Plug 'Yggdroot/indentLine'
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+  Plug 'honza/vim-snippets'
   Plug 'Valloric/ListToggle'
   Plug 'thinca/vim-qfreplace'
   Plug 'tpope/vim-abolish'
@@ -141,6 +141,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'RRethy/vim-illuminate'
   Plug 'rhysd/git-messenger.vim'
   Plug 'janko/vim-test' | Plug 'tpope/vim-dispatch'
+  Plug 'AndrewRadev/inline_edit.vim'
 
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
