@@ -39,32 +39,23 @@ let g:tagbar_type_ruby = {
       \ },
       \ }
 
-function s:DockerCommand()
-  if executable('docker') && exists('$RUBOCOP_CONTAINER')
-    if filereadable('docker-compose.yml')
-      let docker_cmd = 'docker-compose\ exec\ '
-    else
-      let docker_cmd = 'docker run\ --rm\ '
-    endif
-    return docker_cmd.$RUBOCOP_CONTAINER.'\ '
-  else
-    return ''
-  endif
-endfunction
-
 function s:RuboCop(current_args, is_bang)
   compiler rubocop
-  exec 'setlocal makeprg='.s:RubocopCommand()
-  exec (executable('Make') ? ':Make ' : ':make ').(a:is_bang ? '' : @%)
+  call ExecCompiler(GemCommand(), a:is_bang)
 endfunction
 
-function s:RubocopCommand()
+function s:RSpec(current_args, is_bang)
+  compiler rspec
+  call ExecCompiler(GemCommand(), a:is_bang)
+endfunction
+
+function GemCommand()
   let l:cmd = &makeprg
   if filereadable('Gemfile')
-    let l:cmd = 'bundle\ exec\ '.fnameescape(l:cmd)
+    let l:cmd = 'bundle exec '.l:cmd
   endif
-  echo l:cmd
-  return s:DockerCommand().l:cmd
+  return DockerCommand().l:cmd
 endfunction
 
 command! -bang -nargs=* RuboCop :call <SID>RuboCop(<q-args>, <bang>0)
+command! -bang -nargs=* RSpec :call <SID>RSpec(<q-args>, <bang>0)

@@ -165,7 +165,7 @@ call plug#begin('~/.vim/plugged')
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
-  Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm -g install typescript' }
+  Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'vue'], 'do': 'npm -g install typescript' }
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue'}
   Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
   Plug 'HerringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
@@ -310,14 +310,22 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
+function! DockerTransform(cmd) abort
+  return DockerCommand().a:cmd
+endfunction
+
 " make test commands execute using dispatch.vim
 let test#strategy = "dispatch"
+let g:test#custom_transformations = {'docker': function('DockerTransform')}
+let g:test#transformation = 'docker'
+
 if !exists('g:dispatch_compilers')
   let g:dispatch_compilers = {}
 endif
+
 let g:dispatch_compilers = {
-      \ 'docker-compose exec app bundle exec rspec': 'rspec',
-      \ 'docker-compose run --rm app': '',
+      \ 'docker-compose exec app ./bin/': '',
+      \ 'docker-compose run --rm app ./bin/': '',
       \ 'bundle exec':''
       \ }
 
