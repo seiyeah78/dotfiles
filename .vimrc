@@ -104,10 +104,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
   function! CocInstaller()
-    call coc#util#install( {'tag':1} )
-    silent! execute 'CocInstall coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets'
+    silent! execute 'CocInstall coc-lists coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets coc-vetur'
   endfunction
-  Plug 'neoclide/coc.nvim', { 'tag':'*', 'do': { -> CocInstaller() } }
+  Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': { -> CocInstaller() } }
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
