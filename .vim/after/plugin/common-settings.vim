@@ -20,3 +20,8 @@ function ExecCompiler(compiler_cmd, is_bang)
   exec (executable('Make') ? ':Make ' : ':make ').(a:is_bang ? '' : @%)
 endfunction
 
+if !has("nvim")
+  let g:default_home_dir = '~/.vim'
+else
+  let g:default_home_dir = '~/.config/nvim'
+endif

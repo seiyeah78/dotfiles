@@ -57,5 +57,10 @@ function GemCommand()
   return DockerCommand().l:cmd
 endfunction
 
+let test#ruby#rspec#options = {
+      \ 'all': '--require '.g:default_home_dir.'/spec/support/formatters/vim_formatter.rb --format VimFormatter'
+      \}
+
+
 command! -bang -nargs=* RuboCop :call <SID>RuboCop(<q-args>, <bang>0)
 command! -bang -nargs=* RSpec :call <SID>RSpec(<q-args>, <bang>0)
