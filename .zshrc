@@ -79,6 +79,8 @@ eval "$(anyenv init -)"
 eval "$(rbenv init --no-rehash -; pyenv init --no-rehash -; ndenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"
 # use hub
 eval "$(hub alias -s)"
+# disable loading messages when change directories
+export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
 
 ZSH_HIGHLIGHT_STYLES[path]=none
