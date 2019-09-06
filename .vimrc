@@ -103,10 +103,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
-  function! CocInstaller()
-    silent! execute 'CocInstall coc-lists coc-json coc-tsserver coc-html coc-solargraph coc-python coc-snippets coc-vetur'
-  endfunction
-  Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': { -> CocInstaller() } }
+  Plug 'neoclide/coc.nvim', { 'branch': 'release'}
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle','NERDTreeFind'] }
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
@@ -165,6 +162,8 @@ call plug#begin('~/.vim/plugged')
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'vue'], 'do': 'npm -g install typescript' }
+  " for tsuquyomi
+  Plug 'Shougo/vimproc.vim', {'do': 'make'}
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue'}
   Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
   Plug 'HerringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }

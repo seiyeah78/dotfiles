@@ -1,6 +1,19 @@
 " Better display for messages
 " set cmdheight=2
 
+let g:coc_global_extensions = [
+      \  'coc-lists'
+      \, 'coc-json'
+      \, 'coc-marketplace'
+      \, 'coc-html'
+      \, 'coc-css'
+      \, 'coc-tsserver'
+      \, 'coc-solargraph'
+      \, 'coc-python'
+      \, 'coc-snippets'
+      \, 'coc-vetur'
+      \ ]
+
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
