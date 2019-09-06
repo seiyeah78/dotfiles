@@ -2,13 +2,14 @@
 au FileType * setlocal formatoptions-=ro
 
 function DockerCommand()
-  if executable('docker') && exists("b:app_container")
+  let container_name = exists('$APP_CONTAINER') ? $APP_CONTAINER : 'app'
+  if executable('docker')
     if filereadable('docker-compose.yml')
       let docker_cmd = 'docker-compose exec '
     else
       let docker_cmd = 'docker run --rm '
     endif
-    let docker_cmd = docker_cmd.b:app_container.' '
+    let docker_cmd = docker_cmd.container_name.' '
   else
     let docker_cmd = ''
   endif
