@@ -12,4 +12,5 @@ GRTAGS
 GTAGS
 projections.json
 .ignore
+.envrc
 vendor/
