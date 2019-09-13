@@ -24,7 +24,6 @@ MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
 MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
 
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-export GOPATH=$HOME/.go
 export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export LANG=ja_JP.UTF-8
@@ -34,7 +33,7 @@ export BAT_CONFIG_PATH="$HOME/dotfiles/bat/setting.conf"
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
-$HOME/$GOPATH/bin:$HOME/.anyenv/bin:$MAC_VIM_PATH:$PATH"
+$GOPATH/bin:$HOME/.anyenv/bin:$MAC_VIM_PATH:$PATH"
 export PATH=$CORE_PATH
 
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
