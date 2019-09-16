@@ -5,7 +5,7 @@ let g:gitgutter_sign_modified = '➜'
 let g:gitgutter_sign_removed = '✘'
 
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'icebergDark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste', 'visualMulti'],
       \             [ 'cocstatus', 'sessionState', 'fugitive', 'gitgutter', 'filename' ] ]

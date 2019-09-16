@@ -181,22 +181,18 @@ call plug#begin('~/.vim/plugged')
   " Go
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 
-  " Plug 't9md/vim-textmanip'
   " colorschemes plugins
+  Plug 'edkolev/tmuxline.vim'
+  Plug 'gkeep/iceberg-dark'
   Plug 'jpo/vim-railscasts-theme'
-  Plug 'w0ng/vim-hybrid'
   Plug 'chriskempson/vim-tomorrow-theme'
   Plug 'junegunn/limelight.vim'
   Plug 'junegunn/seoul256.vim'
-  Plug 'lifepillar/vim-solarized8'
   Plug 'kristijanhusak/vim-hybrid-material'
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'joshdick/onedark.vim'
-  Plug 'tyrannicaltoucan/vim-quantum'
-  Plug 'ajh17/Spacegray.vim'
   Plug 'rhysd/vim-color-spring-night'
   Plug 'morhetz/gruvbox'
-  Plug 'yuttie/hydrangea-vim'
   Plug 'tyrannicaltoucan/vim-deep-space'
   Plug 'cocopon/iceberg.vim'
   Plug 'nightsense/snow'
@@ -204,6 +200,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'romainl/Apprentice'
   Plug 'rakr/vim-two-firewatch'
   Plug 'Nequo/vim-allomancer'
+  Plug 'jacoborus/tender.vim'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -216,7 +213,7 @@ call plug#end()
 set noshowmode
 
 set background=dark
-colorscheme apprentice
+colorscheme iceberg
 
 if exists("g:colors_name")
   if g:colors_name == "hybrid"
