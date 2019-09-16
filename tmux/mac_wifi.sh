@@ -12,14 +12,14 @@ if air_info=($(eval "$airport_path" -I | grep -E "^ *(agrCtlRSSI|state|SSID):" |
     "running" )
       signals=(▁ ▂ ▄ ▆ █)
       signal=""
-      rssi_=$(expr 5 - ${rssi} / -20)
+      rssi_=$(expr 5 - ${rssi} / -50)
       for ((i=0; i < $rssi_; i++ )); do
         signal="${signal}${signals[$i]}"
       done
-      airport_=" ${ssid} ${signal} "
+      airport_="${ssid} ${signal} "
     ;;
     "init"    ) airport_=" ... " ;;
-    *         ) airport_="#[fg=red] offline ✘  " ;;
+    *         ) airport_="#[fg=red] nowifi ✘  " ;;
   esac
     echo "${airport_}"
 fi
