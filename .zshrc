@@ -51,14 +51,15 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
 # oh my zsh plugins
 zplug zsh-users/zsh-completions
+zplug zsh-users/zsh-autosuggestions
 zplug plugins/common-aliases, from:oh-my-zsh, defer:2
 zplug plugins/git,            from:oh-my-zsh
 zplug lib/completion,         from:oh-my-zsh
+zplug zsh-users/zsh-syntax-highlighting, defer:2
 
 # prompt theme
 zplug mafredri/zsh-async,     from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-zplug zsh-users/zsh-syntax-highlighting, defer:2
 # load hub comp
 zplug github/hub, defer:2
 zplug "b4b4r07/emoji-cli"
