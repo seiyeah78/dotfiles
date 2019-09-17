@@ -148,7 +148,7 @@ call plug#begin('~/.vim/plugged')
   " Language,Framework
   " -----------------------------------------------
   " Syntax
-  Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot', {'commit': '66b769328c4511b2273f01c70de971c41f6964dd'}
 
   " Ruby
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
