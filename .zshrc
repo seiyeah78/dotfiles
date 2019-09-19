@@ -50,18 +50,20 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 #### setup zplug ####
 
 # oh my zsh plugins
-zplug zsh-users/zsh-completions
-zplug zsh-users/zsh-autosuggestions
-zplug plugins/common-aliases, from:oh-my-zsh, defer:2
-zplug plugins/git,            from:oh-my-zsh
-zplug lib/completion,         from:oh-my-zsh
-zplug zsh-users/zsh-syntax-highlighting, defer:2
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "plugins/common-aliases", from:oh-my-zsh, defer:2
+zplug "plugins/git",            from:oh-my-zsh
+zplug "lib/completion",         from:oh-my-zsh
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # prompt theme
-zplug mafredri/zsh-async,     from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "mafredri/zsh-async", from:github, use:async.zsh
+zplug "romkatv/powerlevel10k", as:theme
+# zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+
 # load hub comp
-zplug github/hub, defer:2
+zplug "github/hub", defer:2
 zplug "b4b4r07/emoji-cli"
 
 # Install plugins if there are plugins that have not been installed
@@ -89,13 +91,6 @@ ZSH_HIGHLIGHT_STYLES[path_approx]=none
 #PURE_GIT_DELAY_DIRTY_CHECK=3
 #PURE_GIT_UNTRACKED_DIRTY=1
 #PURE_GIT_DIRTY_SYMBOL="!"
-
-function switch-java() {
-    export JAVA_VERSION=${1}
-    export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
-    export PATH=$CORE_PATH
-    echo `java -version`
-}
 
 ############## setting alias #################
 alias vi='vim'
@@ -154,3 +149,6 @@ SAVEHIST=100000
 # fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
