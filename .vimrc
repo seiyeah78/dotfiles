@@ -7,6 +7,8 @@ if exists('$PYENV_ROOT')
 endif
 set re=1
 scriptencoding utf-8
+set ignorecase
+set smartcase
 set nofixeol
 set encoding=utf-8
 set fileencodings=utf-8
