@@ -281,13 +281,25 @@ function openpr() {
     return 0;
   fi
 
-  # commit hash => open pr included it.
+  # commit hash => open pr included it. (if not use squash merge)
+  # merge pull request commit hash itself
   local details=$(git show --oneline --merges $git_hash 2>/dev/null)
   _open_pull_request_from_commit_details "$details"
 
   if [ $? != 0  ]; then
     local details=$(git log --merges --oneline --reverse --ancestry-path $git_hash...master 2>/dev/null)
     _open_pull_request_from_commit_details "$details"
+  fi
+
+  # open pr from squash merge
+  if [ $? != 0  ]; then
+    local num=$(git log -1 $git_hash --oneline | cut -d' ' -f3 | sed -e 's/(#\(.*\))/\1/')
+    if [ -z "${num}" ]; then
+      echo "Not found pull request."
+    else
+      echo "Created by Squash merge."
+      hub browse -- pull/${num}
+    fi
   fi
 }
 

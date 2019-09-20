@@ -138,44 +138,48 @@ if has("nvim")
 endif
 
 " ===============Goyo Settig===============
-let g:goyo_width = '100%'
-let g:goyo_height = '100%'
+let g:goyo_width = '60%'
+let g:goyo_height = '80%'
 let g:goyo_linenr = 1
 
 " Goyoに入ったときに実行する
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  Goyo 100%
+  " Goyo 100%
   set noshowmode
   set noshowcmd
+  set relativenumber
+  let g:tmp_scrolloff = &scrolloff
+  set scrolloff=999
   Limelight
-  "set scrolloff=999
 endfunction
 function! s:goyo_leave()
   silent !tmux set status on
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   set showmode
   set showcmd
+  set norelativenumber
+  exec 'set scrolloff='.g:tmp_scrolloff
   Limelight!
 endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = 240
+" let g:limelight_conceal_ctermfg = 240
 " let g:limelight_conceal_ctermfg = 'gray'
 " Color name (:help gui-colors) or RGB color
 " let g:limelight_conceal_guifg = '#777777'
 " Default: 0.5
-" let g:limelight_default_coefficient = 1
+let g:limelight_default_coefficient = 0.8
 
 " Number of preceding/following paragraphs to include (default: 0)
 " let g:limelight_paragraph_span = 1
 
 " Highlighting priority (default: 10)
 "   Set it to -1 not to overrule hlsearch
-let g:limelight_priority = -1
+" let g:limelight_priority = -1
 
 " indent setting
 augroup fileTypeIndent
@@ -211,6 +215,8 @@ if exists('$TMUX') && !exists('$NORENAME')
 endif
 
 " ----------- matchup plugin setting ---------------
+let g:matchup_matchparen_deferred = 1
+" let g:matchup_matchparen_hi_surround_always = 1
 hi MatchParen ctermfg=166 guifg=darkorange2 cterm=italic gui=italic
 hi MatchParenCur cterm=NONE gui=NONE
 hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
