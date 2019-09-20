@@ -63,6 +63,7 @@
   diff = diff-highlight | less
 [diff]
   indentHeuristic = true
+  compactionHeuristic = true
   algorithm = histogram
   renames = true
 [include]
@@ -71,3 +72,5 @@
   templatedir = .git_tmp
 [color]
   ui = true
+[interactive]
+  diffFilter = diff-highlight
