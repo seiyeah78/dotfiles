@@ -149,8 +149,6 @@ call plug#begin('~/.vim/plugged')
   " -----------------------------------------------
   " Language,Framework
   " -----------------------------------------------
-  " Syntax
-  Plug 'sheerun/vim-polyglot', {'commit': '66b769328c4511b2273f01c70de971c41f6964dd'}
 
   " Ruby
   Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
@@ -167,9 +165,8 @@ call plug#begin('~/.vim/plugged')
   " for tsuquyomi
   Plug 'Shougo/vimproc.vim', {'do': 'make'}
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue'}
-  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-  Plug 'HerringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
-  Plug 'yuezk/vim-jsx-pretty', { 'for': ['html', 'jsx', 'tsx'] }
+  Plug 'leafgarland/typescript-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
+  Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'jsx', 'tsx'] }
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -182,6 +179,9 @@ call plug#begin('~/.vim/plugged')
 
   " Go
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
+
+  " All Syntax
+  " Plug 'sheerun/vim-polyglot', {'commit': '66b769328c4511b2273f01c70de971c41f6964dd'}
 
   " colorschemes plugins
   Plug 'edkolev/tmuxline.vim'
@@ -235,7 +235,7 @@ if exists("g:colors_name")
 end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
-let g:polyglot_disabled=['']
+" let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript']
 let g:vim_json_syntax_conceal = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0
