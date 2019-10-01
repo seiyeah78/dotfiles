@@ -5,7 +5,6 @@ if exists('$PYENV_ROOT')
   let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
   let g:python_host_prog = $PYENV_ROOT . '/versions/neovim2/bin/python'
 endif
-set re=1
 scriptencoding utf-8
 set ignorecase
 set smartcase
@@ -163,10 +162,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'vue'], 'do': 'npm -g install typescript' }
   " for tsuquyomi
-  Plug 'Shougo/vimproc.vim', {'do': 'make'}
-  Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue'}
-  Plug 'leafgarland/typescript-vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx'] }
-  Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'jsx', 'tsx'] }
+  Plug 'Shougo/vimproc.vim', {'do': 'make' }
+  Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue' }
+  " Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx'] }
+  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'tsx'] }
+  Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'tsx'] }
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -181,7 +181,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 
   " All Syntax
-  " Plug 'sheerun/vim-polyglot', {'commit': '66b769328c4511b2273f01c70de971c41f6964dd'}
+  Plug 'sheerun/vim-polyglot'
 
   " colorschemes plugins
   Plug 'edkolev/tmuxline.vim'
@@ -202,7 +202,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'romainl/Apprentice'
   Plug 'rakr/vim-two-firewatch'
   Plug 'Nequo/vim-allomancer'
-  Plug 'jacoborus/tender.vim'
+  Plug 'mhartington/oceanic-next'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -216,6 +216,7 @@ set noshowmode
 
 set background=dark
 colorscheme iceberg
+" colorscheme OceanicNext
 
 if exists("g:colors_name")
   if g:colors_name == "hybrid"
@@ -235,7 +236,7 @@ if exists("g:colors_name")
 end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
-" let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript']
+let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript']
 let g:vim_json_syntax_conceal = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0
