@@ -131,7 +131,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'wellle/targets.vim'
   Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim'| Plug 'haya14busa/vim-asterisk'
   Plug 'AndrewRadev/splitjoin.vim'
-  Plug 'andymass/vim-matchup', {'commit': '6b360010399f66985520d0eac24c229229cb5724'}
+  Plug 'andymass/vim-matchup'
   Plug 'tyru/open-browser.vim'
   Plug 'mattn/emmet-vim', { 'for': ['html','javascript','typescript','jsx','tsx','typescript.tsx'] }
   Plug 'machakann/vim-highlightedyank'

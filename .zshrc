@@ -28,7 +28,7 @@ export JAVA_VERSION=1.8
 export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
-export EDITOR=vim
+export EDITOR=nvim
 export BAT_CONFIG_PATH="$HOME/dotfiles/bat/setting.conf"
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
