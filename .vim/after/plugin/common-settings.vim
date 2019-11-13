@@ -1,11 +1,12 @@
 "コメントアウト行後の開業時にコメントアウトを入れない
 au FileType * setlocal formatoptions-=ro
 
-function DockerCommand()
+function! DockerCommand()
   let container_name = $APP_CONTAINER_NAME != '' ? $APP_CONTAINER_NAME : 'app'
   if executable('docker')
     if filereadable('docker-compose.yml')
-      let docker_cmd = 'docker-compose exec '
+      let sub_cmd = exists(system('docker-compose ps --filter name='.container_name.'  -q')) ? 'exec ' : 'run --rm '
+      let docker_cmd = 'docker-compose '.sub_cmd
     else
       let container_name = system('docker ps --filter name=$APP_CONTAINER_NAME  -q')
       let docker_cmd = container_name != '' ? 'docker run --rm ' : ''
@@ -17,7 +18,7 @@ function DockerCommand()
   return docker_cmd
 endfunction
 
-function ExecCompiler(compiler_cmd, is_bang)
+function! ExecCompiler(compiler_cmd, is_bang)
   exec 'setlocal makeprg='.fnameescape(a:compiler_cmd)
   exec (executable('Make') ? ':Make ' : ':make ').(a:is_bang ? '' : @%)
 endfunction

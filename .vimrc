@@ -139,6 +139,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/git-messenger.vim'
   Plug 'janko/vim-test' | Plug 'tpope/vim-dispatch'
   Plug 'AndrewRadev/inline_edit.vim'
+  Plug 'mtth/scratch.vim'
 
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
@@ -164,9 +165,9 @@ call plug#begin('~/.vim/plugged')
   " for tsuquyomi
   Plug 'Shougo/vimproc.vim', {'do': 'make' }
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue' }
-  " Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx'] }
-  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'tsx'] }
-  Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'tsx'] }
+  " Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
+  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
+  Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -402,9 +403,6 @@ let g:indentLine_faster = 1
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 
 " ------------ markdown setting ----------
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
-let g:previm_open_cmd = 'open -a Google\ Chrome'
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
@@ -470,8 +468,8 @@ noremap <Leader>gs :20Gstatus<CR>
 noremap <Leader>gF :GFiles?<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
-nmap ]g <Plug>GitGutterNextHunk
-nmap [g <Plug>GitGutterPrevHunk
+nmap ]g <Plug>(GitGutterNextHunk)
+nmap [g <Plug>(GitGutterPrevHunk)
 
 "=================NERDTree setting===========================
 let g:NERDTreeChDirMode = 2
@@ -568,6 +566,13 @@ function! s:setup_git_messenger_popup() abort
     nmap <buffer><C-i> O
 endfunction
 autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
+
+" ------------- scratch.vim ----------------
+let g:scratch_autohide = 0
+let g:scratch_insert_autohide = 0
+let g:scratch_no_mappings = 0
+nmap gs :<C-U>Scratch<CR>
+xmap gs <plug>(scratch-selection-reuse)
 
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
