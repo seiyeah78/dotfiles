@@ -341,6 +341,30 @@
           "type": "basic"
         }
       ]
+    },
+    {
+      "description": "backspace to insert (only alacritty)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "^io\\.alacritty$"
+              ],
+              "type": "frontmost_application_if"
+            }
+          ],
+          "from": {
+            "key_code": "delete_or_backspace"
+          },
+          "to": [
+            {
+              "key_code": "insert"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
