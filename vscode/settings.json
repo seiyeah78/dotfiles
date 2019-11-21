@@ -6,7 +6,7 @@
     "workbench.activityBar.visible": false,
     //wrap
     "editor.wordWrap": "on",
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "files.trimTrailingWhitespace": true,
     //ミニマップをfalse
     "editor.minimap.enabled": false,
@@ -33,9 +33,9 @@
         "replace": "#cc0000"
     },
     "workbench.colorCustomizations": {
-        "statusBar.background": "#005f87",
-        "statusBar.noFolderBackground": "#005f87",
-        "statusBar.debuggingBackground": "#005f87"
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
     },
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
@@ -44,19 +44,24 @@
     "plantuml.render": "PlantUMLServer",
     "plantuml.server": "http://localhost:13080",
     "window.zoomLevel": -1,
-    "editor.fontLigatures": true,
-    "editor.fontFamily": "Ricty,Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "RictyDiminishedDiscordNerdFontComplete-Regular",
     "workbench.editor.highlightModifiedTabs": true,
     "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
     "vim.enableNeovim": true,
     "editor.renderControlCharacters": true,
-    "solargraph.commandPath": "/Users/200495/.anyenv/envs/rbenv/shims/solargraph",
     "vim.neovimPath": "/usr/local/bin/nvim",
     "terminal.external.osxExec": "iTerm.app",
-    "terminal.integrated.fontWeightBold": "normal",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.fontFamily": "RictyDiminishedDiscordNerdFontComplete-Regular",
+    "terminal.integrated.fontSize": 16,
     "ruby.format": "rubocop",
     "ruby.intellisense": "rubyLocate",
     "ruby.interpreter.commandPath": "/Users/200495/anyenv/envs/rbenv/shims/ruby",
     "ruby.pathToBundler": "/Users/200495/anyenv/envs/rbenv/shims/bundler",
-    "ruby.useLanguageServer": true
+    "ruby.useLanguageServer": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "solargraph.autoformat": true,
+    "solargraph.transport": "stdio",
+    "terminal.integrated.fontWeightBold": "normal",
+    "terminal.integrated.lineHeight": 0,
 }
