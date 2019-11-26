@@ -203,6 +203,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rakr/vim-two-firewatch'
   Plug 'Nequo/vim-allomancer'
   Plug 'mhartington/oceanic-next'
+  Plug 'chriskempson/base16-vim'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -215,7 +216,9 @@ call plug#end()
 set noshowmode
 
 set background=dark
+let base16colorspace=256
 colorscheme iceberg
+" colorscheme base16-default-dark
 " colorscheme OceanicNext
 
 if exists("g:colors_name")
