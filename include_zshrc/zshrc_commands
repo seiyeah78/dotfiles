@@ -172,7 +172,7 @@ function tmux_attach_session()
                 return 1
             fi
 
-            if tmux has-session >/dev/null 2>&1 && tmux list-sessions | grep -qE '.*]$'; then
+            if tmux has-session >/dev/null 2>&1 && tmux list-sessions | wc -l | xargs; then
                 # detached session exists
                 tmux list-sessions
                 echo -n "Tmux: attach? (y/N/num/string) "
@@ -257,8 +257,10 @@ function mktouch() {
 
   local dir=$(dirname $1)
   mkdir -p $dir  && touch $1
-  echo "Created file"
-  ls -l $1
+  if [ $? == 0 ]; then
+    echo "Created file"
+    ls -l $1
+  fi
 }
 
 function openpr() {
