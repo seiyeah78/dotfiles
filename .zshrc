@@ -117,6 +117,9 @@ alias groot='cd $(git rev-parse --show-toplevel)'
 alias hosts='sudo vi /etc/hosts'
 alias vimrc='$EDITOR ~/.vimrc'
 
+# https://github.com/jonas/tig/issues/951
+alias tig=\(tig\)
+
 precmd() {
   _z --add "$(pwd -P)"
 }
