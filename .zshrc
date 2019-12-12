@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
 #specific install path
 path=( "$HOME/.zfunctions" $fpath )
 
@@ -77,8 +84,8 @@ zplug "b4b4r07/emoji-cli"
 zplug load
 
 # use env language manager
-eval "$(anyenv init -)"
-eval "$(rbenv init --no-rehash -; pyenv init --no-rehash -; ndenv init --no-rehash -; pyenv virtualenv-init --no-rehash -)"
+eval "$(anyenv init - --no-rehash)"
+
 # use hub
 eval "$(hub alias -s)"
 # disable loading messages when change directories
@@ -88,9 +95,6 @@ eval "$(direnv hook zsh)"
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 ZSH_HIGHLIGHT_STYLES[path_approx]=none
-#PURE_GIT_DELAY_DIRTY_CHECK=3
-#PURE_GIT_UNTRACKED_DIRTY=1
-#PURE_GIT_DIRTY_SYMBOL="!"
 
 ############## setting alias #################
 alias vi='vim'
@@ -147,11 +151,16 @@ SAVEHIST=100000
 # include other zshrc files
 [ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
 
-# if (which zprof > /dev/null 2>&1) ;then
-#   zprof
-# fi
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# exec zcompile manually only first time.
+# if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+#   zcompile ~/.zshrc
+# fi
+
+# if (which zprof > /dev/null 2>&1) ;then
+#   zprof
+# fi

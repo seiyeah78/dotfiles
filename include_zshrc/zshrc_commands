@@ -263,6 +263,17 @@ function mktouch() {
   fi
 }
 
+
+function gen_ctags () {
+  local dir=".git/"
+
+  if [ ! -e ".git" ]; then
+    dir="./"
+  fi
+
+  ctags --tag-relative=yes --recurse --sort=yes --extras=+q -R -f ${dir}.tags
+}
+
 function openpr() {
   local git_hash=$1
 
