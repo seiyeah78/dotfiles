@@ -274,6 +274,14 @@ function gen_ctags () {
   ctags --tag-relative=yes --recurse --sort=yes --extras=+q -R -f ${dir}.tags
 }
 
+# e.g
+# openpr (no args)         => open current branch pull-request.
+# openpr number (e.g. 123) => open pull-request using hub. (e.g. pull/123 )
+# openpr hash              => check the following in order
+#                            1. squash merge commit itself
+#                            2. merge pull request commit itself
+#                            3. find merge commit from hash
+
 function openpr() {
   local git_hash=$1
 
@@ -294,6 +302,15 @@ function openpr() {
     return 0;
   fi
 
+  # open pr from squash merge
+  local result=$(git log -1 $git_hash --oneline)
+  local num=$(echo ${result##*' '} | sed -e 's/(#\(.*\))/\1/')
+  if [ ! -z "${num}" ]; then
+    echo "Created by Squash merge."
+    hub browse -- pull/${num}
+    return 0;
+  fi
+
   # commit hash => open pr included it. (if not use squash merge)
   # merge pull request commit hash itself
   local details=$(git show --oneline --merges $git_hash 2>/dev/null)
@@ -304,16 +321,7 @@ function openpr() {
     _open_pull_request_from_commit_details "$details"
   fi
 
-  # open pr from squash merge
-  if [ $? != 0  ]; then
-    local num=$(git log -1 $git_hash --oneline | cut -d' ' -f3 | sed -e 's/(#\(.*\))/\1/')
-    if [ -z "${num}" ]; then
-      echo "Not found pull request."
-    else
-      echo "Created by Squash merge."
-      hub browse -- pull/${num}
-    fi
-  fi
+  echo "Not found pull request."
 }
 
 function _open_pull_request_from_commit_details() {
