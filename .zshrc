@@ -78,7 +78,7 @@ zplugin ice depth=1 atload'source ~/.p10k.zsh'
 zplugin light romkatv/powerlevel10k
 
 # use env language manager
-eval "$(anyenv init - --no-rehash)"
+eval "$(anyenv lazyload)"
 
 # use hub
 eval "$(hub alias -s)"
