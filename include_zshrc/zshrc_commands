@@ -289,7 +289,7 @@ function openpr() {
   if [ -z "${git_hash}" ]; then
     local num=$(hub pr list -f %I -h $(git rev-parse --abbrev-ref HEAD))
     if [ -z "${num}" ]; then
-      echo "Not found pull request."
+      echo "Not been created pull request for current branch."
     else
       hub browse -- pull/${num}
     fi
@@ -305,23 +305,27 @@ function openpr() {
   # open pr from squash merge
   local result=$(git log -1 $git_hash --oneline)
   local num=$(echo ${result##*' '} | sed -e 's/(#\(.*\))/\1/')
-  if [ ! -z "${num}" ]; then
+  if [[ ! -z "${num}" && ${num} =~ ^[0-9]+$ ]]; then
     echo "Created by Squash merge."
     hub browse -- pull/${num}
     return 0;
   fi
 
-  # commit hash => open pr included it. (if not use squash merge)
   # merge pull request commit hash itself
   local details=$(git show --oneline --merges $git_hash 2>/dev/null)
-  _open_pull_request_from_commit_details "$details"
-
-  if [ $? != 0  ]; then
-    local details=$(git log --merges --oneline --reverse --ancestry-path $git_hash...master 2>/dev/null)
+  if [ ! -z "${details}" ]; then
     _open_pull_request_from_commit_details "$details"
+    return 0;
   fi
 
-  echo "Not found pull request."
+  # commit hash => find open pr included it.
+  local details=$(git log --merges --oneline --reverse --ancestry-path $git_hash...master 2>/dev/null)
+  _open_pull_request_from_commit_details $details
+
+  if [ $? != 0  ]; then
+    echo "Not found pull request."
+  fi
+
 }
 
 function _open_pull_request_from_commit_details() {
