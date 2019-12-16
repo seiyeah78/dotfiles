@@ -48,40 +48,34 @@ export LESS='-R'
 export GTAGSLABEL=pygments
 source /usr/local/etc/profile.d/z.sh
 
-# load zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
-#### setup zplug ####
+#### setup zplugin ####
+# https://blog.katio.net/page/zplugin
+source $HOME/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-# oh my zsh plugins
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "plugins/common-aliases", from:oh-my-zsh, defer:2
-zplug "plugins/git",            from:oh-my-zsh
-zplug "lib/completion",         from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-autosuggestions
+zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-completions
+# zplugin light zdharma/fast-syntax-highlighting
+zplugin ice wait=0 lucid atload'ZSH_HIGHLIGHT_STYLES[path]=none\
+  ZSH_HIGHLIGHT_STYLES[path_prefix]=none\
+  ZSH_HIGHLIGHT_STYLES[path_approx]=none';
+zplugin light zsh-users/zsh-syntax-highlighting
+zplugin ice wait=0 lucid; zplugin light github/hub
+zplugin ice wait=0 lucid; zplugin light b4b4r07/emoji-cli
+#
+# # oh-my-zsh plugins
+# # https://github.com/ohmyzsh/ohmyzsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin cdclear -q
+zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
+zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 
 # prompt theme
-zplug "mafredri/zsh-async", from:github, use:async.zsh
-zplug "romkatv/powerlevel10k", as:theme
-# zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-
-# load hub comp
-zplug "github/hub", defer:2
-zplug "b4b4r07/emoji-cli"
-
-# Install plugins if there are plugins that have not been installed
-# if ! zplug check --verbose; then
-#   printf "Install? [y/N]: "
-#   if read -q; then
-#       echo; zplug install
-#   fi
-# fi
-# Then, source plugins and add commands to $PATH
-zplug load
+zplugin ice depth=1 atload'source ~/.p10k.zsh'
+zplugin light romkatv/powerlevel10k
 
 # use env language manager
 eval "$(anyenv init - --no-rehash)"
@@ -91,10 +85,6 @@ eval "$(hub alias -s)"
 # disable loading messages when change directories
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
-
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-ZSH_HIGHLIGHT_STYLES[path_approx]=none
 
 ############## setting alias #################
 alias vi='vim'
@@ -153,13 +143,10 @@ SAVEHIST=100000
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
 # exec zcompile manually only first time.
-# if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
-#   zcompile ~/.zshrc
-# fi
+if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+  zcompile ~/.zshrc
+fi
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
