@@ -58,11 +58,10 @@ autoload -Uz _zplugin
 
 zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-autosuggestions
 zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-completions
-# zplugin light zdharma/fast-syntax-highlighting
-zplugin ice wait=0 lucid atload'ZSH_HIGHLIGHT_STYLES[path]=none\
-  ZSH_HIGHLIGHT_STYLES[path_prefix]=none\
-  ZSH_HIGHLIGHT_STYLES[path_approx]=none';
-zplugin light zsh-users/zsh-syntax-highlighting
+zplugin ice wait=0 lucid atload'FAST_HIGHLIGHT_STYLES[path]=none\
+  FAST_HIGHLIGHT_STYLES[path_prefix]=none\
+  FAST_HIGHLIGHT_STYLES[path_approx]=none';
+zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait=0 lucid; zplugin light github/hub
 zplugin ice wait=0 lucid; zplugin light b4b4r07/emoji-cli
 #
@@ -114,10 +113,6 @@ alias vimrc='$EDITOR ~/.vimrc'
 # https://github.com/jonas/tig/issues/951
 alias tig=\(tig\)
 
-precmd() {
-  _z --add "$(pwd -P)"
-}
-
 ###############Custom KeyBind##############
 bindkey -e
 
@@ -149,5 +144,5 @@ if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
 fi
 
 # if (which zprof > /dev/null 2>&1) ;then
-#   zprof
+#   zprof | less
 # fi
