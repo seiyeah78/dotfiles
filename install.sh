@@ -2,16 +2,59 @@
 
 DOTPATH=~/dotfiles
 
+eecho() {
+  echo $1
+  echo
+}
+
+usage() {
+  echo "Usage: $PROGNAME [OPTIONS] FILE"
+  echo "  This script is ~."
+  echo
+  echo "Options:"
+  echo "  -h, --help"
+  echo "  -b, --skip-brew: skip install formula"
+  echo
+  exit 1
+}
+
+for OPT in "$@"
+do
+  case $OPT in
+    -h | --help)
+      usage
+      exit 1
+      ;;
+    -b | --skip-brew)
+      SKIP_BREW=1
+      shift 1
+      ;;
+    # -- | -)
+    #   shift 1
+    #   param+=( "$@" )
+    #   break
+    #   ;;
+    -*)
+      echo "illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2
+      exit 1
+      ;;
+    *)
+      if [[ ! -z "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
+        param+=( "$1" )
+        shift 1
+      fi
+      ;;
+  esac
+done
+
 if type git > /dev/null 2>&1; then
   if [ -e $DOTPATH ]; then
-    echo "already exists dotfiles. update..."
-    git pull
-    exit 0
+    eecho "already exists dotfiles."
   else
     git clone --recursive "git@github.com:seiyeah78/dotfiles.git" "$DOTPATH"
   fi
 else
-  echo "git is required"
+  eecho "git is required"
   exit 1
 fi
 
@@ -22,12 +65,16 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-for f in .??*
+for f in .??**/**
 do
    if [ "$f" == ".git" ] || [ "$f" == ".DS_Store" ]; then
      continue
    fi
 
+   if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
+     # mkdir -p ~/.backup
+     # mv "$HOME/$f" ~/.backup
+   fi
     ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
@@ -44,18 +91,22 @@ tell application "System Events"
 end tell
 EOD
 else
-  echo "Command Line Developer Tools are already installed!"
+  eecho "Command Line Developer Tools are already installed!"
 fi
 
 # Homebrew
 if type brew > /dev/null 2>&1; then
-  echo "Homebrew is already installed!"
+  eecho "Homebrew is already installed!"
 else
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 if [ -e Brewfile ]; then
-  brew bundle
+  if [ -z "$SKIP_BREW" ]; then
+    brew bundle
+  else
+    eecho "Skip install brew formula."
+  fi
 fi
 
 exec $SHELL -l
