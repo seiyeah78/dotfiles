@@ -19,7 +19,9 @@ setopt hist_ignore_dups
 setopt auto_cd
 setopt multios
 setopt prompt_subst
+
 export EDITOR=nvim
+export PATH=$CORE_PATH
 
 #### setup zplugin ####
 # https://blog.katio.net/page/zplugin
@@ -48,8 +50,6 @@ zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-ali
 # prompt theme
 zplugin ice depth=1 atload'source ~/.p10k.zsh'
 zplugin light romkatv/powerlevel10k
-
-source /usr/local/etc/profile.d/z.sh
 
 # use env language manager
 eval "$(anyenv lazyload)"
