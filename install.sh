@@ -1,23 +1,32 @@
 #!/bin/bash
 
-DOTPATH=~/.dotfiles
+DOTPATH=~/dotfiles
 
 # git が使えるなら git
-if has "git"; then
+if type git > /dev/null 2>&1; then
+  if [ -e $DOTPATH ]; then
+    echo "already dotfiles update..."
+    git pull
+  else
     git clone --recursive "git@github.com:seiyeah78/dotfiles.git" "$DOTPATH"
+  fi
 else
-    die "git is required"
+  echo "git is required"
+  exit 1
 fi
 
-cd ~/.dotfiles
+cd $DOTPATH
+
 if [ $? -ne 0 ]; then
-    die "not found: $DOTPATH"
+  "not found: $DOTPATH"
+  exit 1
 fi
 
-# 移動できたらリンクを実行する
 for f in .??*
 do
-    [ "$f" = ".git" || "$f" = ".DS_Store" ] && continue
+   if [ "$f" == ".git" ] || [ "$f" == ".DS_Store" ]; then
+     continue
+   fi
 
     ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
@@ -39,7 +48,7 @@ else
 fi
 
 # Homebrew
-if [ `witch brew > /dev/null 2>&1` ]; then
+if type brew > /dev/null 2>&1; then
   echo "Homebrew is already installed!"
 else
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -48,3 +57,5 @@ fi
 if [ -e Brewfile ]; then
   brew bundle
 fi
+
+exec $SHELL -l
