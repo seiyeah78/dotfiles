@@ -22,7 +22,7 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
-$GOPATH/bin:$HOME/.anyenv/bin:$MAC_VIM_PATH:$PATH"
+$HOME/.anyenv/bin:$MAC_VIM_PATH"
 
 export PATH=$CORE_PATH
 
