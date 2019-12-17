@@ -2,11 +2,11 @@
 
 DOTPATH=~/dotfiles
 
-# git が使えるなら git
 if type git > /dev/null 2>&1; then
   if [ -e $DOTPATH ]; then
-    echo "already dotfiles update..."
+    echo "already exists dotfiles. update..."
     git pull
+    exit 0
   else
     git clone --recursive "git@github.com:seiyeah78/dotfiles.git" "$DOTPATH"
   fi
