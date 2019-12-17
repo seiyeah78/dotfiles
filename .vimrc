@@ -81,6 +81,7 @@ if has('vim_starting')
     echo 'install vim-plug...'
     call system('mkdir -p ~/.vim/plugged/vim-plug')
     call system('git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugged/vim-plug/autoload')
+    let g:vim_first_install = 1
   end
 endif
 
@@ -178,7 +179,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'md', 'mkd'] }
 
   " Go
-  Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
+  Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
   " All Syntax
   Plug 'sheerun/vim-polyglot'
@@ -213,6 +214,11 @@ call plug#begin('~/.vim/plugged')
     execute 'source ~/.vim/plugins.local'
   endif
 call plug#end()
+
+if exists("g:vim_first_install")
+  execute ":PlugInstall"
+endif
+
 set noshowmode
 
 set background=dark
