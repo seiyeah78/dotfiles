@@ -1,22 +1,4 @@
-#load fzf plugin and keybindings
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# DEFAULTでfzf.vimも反映する
-# export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
-# .ignoreファイルで無視リストを作成できる
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow --no-messages --ignore-file ~/.ignore'
-
-export FZF_DEFAULT_OPTS="
-  --reverse
-  --tiebreak=index
-  --color bg+:239
-  --color pointer:168,marker:168
-  --no-unicode
-"
-export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null | head -200'"
-
 function fbacklog() {
   #順番：標準入力、expectのコマンド、取得結果
   local out="$(ruby -S backlog_access.rb myissue | fzf-tmux -d 30% --ansi --no-sort --reverse --print-query --expect=ctrl-s,ctrl-o,ctrl-b,ctrl-y,enter)"
@@ -272,6 +254,27 @@ function gen_ctags () {
   fi
 
   ctags --tag-relative=yes --recurse --sort=yes --extras=+q -R -f ${dir}.tags
+}
+
+function servers {
+  local profile=${1:=dev/developer}
+  local out=$(aws ec2 describe-instances --profile $profile --region ap-northeast-1 | \
+    jq -r '.[][].Instances[] | [.InstanceId, [.Tags[] | select(.Key == "Name").Value][], .InstanceType, .NetworkInterfaces[].PrivateIpAddress, .State.Name] | @tsv' |\
+    column -t |\
+    fzf-tmux --ansi --exact --no-sort --reverse --print-query --expect=ctrl-s,enter --prompt="Servers (${profile}) CMD { enter:ssh, ctrl-s:ssm start-session } > " )
+
+  local q="$(head -1 <<< $out)" #標準入力
+  local k="$(head -2 <<< $out | tail -1)" #except指定の文字列
+  local result=($(sed 1,2d <<< $out)) #取得結果(配列)
+
+  case "$k" in
+    "enter")
+      print -z "ssh ${result[4]}"
+      ;;
+    "ctrl-s")
+      print -z aws ssm start-session --target ${result[1]} --profile $profile
+      ;;
+  esac
 }
 
 # e.g

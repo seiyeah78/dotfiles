@@ -34,9 +34,9 @@ zplugin ice wait=0 lucid atload'FAST_HIGHLIGHT_STYLES[path]=none\
 zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait=0 lucid; zplugin light github/hub
 zplugin ice wait=0 lucid; zplugin light b4b4r07/emoji-cli
-#
-# # oh-my-zsh plugins
-# # https://github.com/ohmyzsh/ohmyzsh
+
+# oh-my-zsh plugins
+# https://github.com/ohmyzsh/ohmyzsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin cdclear -q
 zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
@@ -51,11 +51,15 @@ eval "$(anyenv lazyload)"
 
 # use hub
 eval "$(hub alias -s)"
+
 # disable loading messages when change directories
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
 
 ############## setting alias #################
+# global alias
+alias -g C="| ruby -pe 'chomp if STDIN.eof?' | pbcopy"
+
 alias vi='vim'
 alias vim='nvim'
 alias ls='ls -G'
@@ -63,13 +67,9 @@ alias ls='ls -G'
 alias fig='docker-compose'
 alias agl="ag --pager='less -R'"
 
-#末尾の改行コードを除いてコピーする
-alias -g C="| ruby -pe 'chomp if STDIN.eof?' | pbcopy"
-
-# ctagsのPATHを上書き
 alias ctags="`brew --prefix`/bin/ctags"
 
-######git alias ######
+###### git alias ######
 unalias gcm
 unalias grv
 unalias gp
@@ -83,7 +83,7 @@ alias vimrc='$EDITOR ~/.vimrc'
 # https://github.com/jonas/tig/issues/951
 alias tig=\(tig\)
 
-###############Custom KeyBind##############
+############### Custom KeyBind ##############
 bindkey -e
 
 autoload history-search-end
