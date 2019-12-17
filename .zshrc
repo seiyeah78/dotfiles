@@ -5,9 +5,6 @@
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
-#specific install path
-path=( "$HOME/.zfunctions" $fpath )
-
 setopt hist_save_no_dups
 # ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
 setopt hist_ignore_all_dups
@@ -22,33 +19,6 @@ setopt hist_ignore_dups
 setopt auto_cd
 setopt multios
 setopt prompt_subst
-
-# User configuration
-GIT_DIFF_HIGHLIGHT="/usr/local/share/git-core/contrib/diff-highlight"
-MYSCRIPT_DIR="/project/macro/scripts"
-OPENSSL_PATH="/usr/local/opt/openssl/bin"
-MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
-MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
-
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
-export JAVA_VERSION=1.8
-export JAVA_HOME=`/usr/libexec/java_home -v ${JAVA_VERSION}`
-export LANG=ja_JP.UTF-8
-export LC_CTYPE=ja_JP.UTF-8
-export EDITOR=nvim
-export BAT_CONFIG_PATH="$HOME/dotfiles/bat/setting.conf"
-
-CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
-$OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
-$GOPATH/bin:$HOME/.anyenv/bin:$MAC_VIM_PATH:$PATH"
-export PATH=$CORE_PATH
-
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
-export LESS='-R'
-export GTAGSLABEL=pygments
-source /usr/local/etc/profile.d/z.sh
-
-export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
 #### setup zplugin ####
 # https://blog.katio.net/page/zplugin
