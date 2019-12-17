@@ -1,0 +1,22 @@
+{
+  "tsserver.npm": "/usr/local/bin/npm",
+  "tsserver.enableJavascript": true,
+  "tsserver.enable": true,
+  "solargraph.checkGemVersion": false,
+  "coc.browser.shortcut": "browser",
+  "importCost.typescriptExtensions": [
+    "\\.tsx?$"
+  ],
+  "importCost.javascriptExtensions": [
+    "\\.jsx?$"
+  ],
+  "importCost.bundleSizeDecoration": "both",
+  "importCost.showCalculatingDecoration": true,
+  "importCost.debug": true,
+  "codeLens.enable": true,
+  "javascript.referencesCodeLens.enable": false,
+  "coc.preferences.colorSupport": true,
+  "highlight.document.enable": true,
+  "highlight.colors.enable": true,
+  "highlight.disableLanguages": ["php","vim", "fugitive"]
+}
