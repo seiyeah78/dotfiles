@@ -34,9 +34,11 @@ zplugin ice wait=0 lucid atload'FAST_HIGHLIGHT_STYLES[path]=none\
 zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait=0 lucid; zplugin light github/hub
 zplugin ice wait=0 lucid; zplugin light b4b4r07/emoji-cli
+zplugin ice wait=0 lucid; zplugin light skywind3000/z.lua
+zplugin ice wait=0 lucid src'init.sh'; zplugin light b4b4r07/enhancd
 
-# oh-my-zsh plugins
-# https://github.com/ohmyzsh/ohmyzsh
+# # oh-my-zsh plugins
+# # https://github.com/ohmyzsh/ohmyzsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin cdclear -q
 zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
