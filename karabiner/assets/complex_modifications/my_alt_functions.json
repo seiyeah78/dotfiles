@@ -251,6 +251,27 @@
           "type": "basic"
         }
       ]
+    },
+    {
+      "description": "option + delete to forward delete",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": [
+                "option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_forward"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
     }
   ]
 }
