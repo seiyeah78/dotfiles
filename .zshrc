@@ -29,19 +29,21 @@ source $HOME/.zplugin/bin/zplugin.zsh
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-autosuggestions
 zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-completions
-zplugin ice wait=0 lucid atload'FAST_HIGHLIGHT_STYLES[path]=none\
-  FAST_HIGHLIGHT_STYLES[path_prefix]=none\
-  FAST_HIGHLIGHT_STYLES[path_approx]=none';
-zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait=0 lucid; zplugin light github/hub
 zplugin ice wait=0 lucid; zplugin light b4b4r07/emoji-cli
 zplugin ice wait=0 lucid; zplugin light skywind3000/z.lua
-zplugin ice wait=0 lucid src'init.sh'; zplugin light b4b4r07/enhancd
 
-# # oh-my-zsh plugins
-# # https://github.com/ohmyzsh/ohmyzsh
+zplugin ice wait=0 lucid src'init.sh'; zplugin light b4b4r07/enhancd
+zplugin ice wait=0 lucid atload'_zsh_autosuggest_start'; zplugin light zsh-users/zsh-autosuggestions
+zplugin snippet --command "`brew --prefix`/share/git-core/contrib/diff-highlight/diff-highlight"
+zplugin ice wait=0 lucid atload'_zsh_highlight\
+  FAST_HIGHLIGHT_STYLES[path]=none\
+  FAST_HIGHLIGHT_STYLES[path_prefix]=none\
+  FAST_HIGHLIGHT_STYLES[path_approx]=none';
+  zplugin light zdharma/fast-syntax-highlighting
+
+# oh-my-zsh plugins : https://github.com/ohmyzsh/ohmyzsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin cdclear -q
 zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
