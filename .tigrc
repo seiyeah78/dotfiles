@@ -65,3 +65,4 @@ bind pager   ] :?^commit
 set main-view = id date author commit-title:graph=yes,refs=yes
 set vertical-split = no
 set split-view-height = 80%
+set diff-highlight = true
