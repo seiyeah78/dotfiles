@@ -6,7 +6,7 @@
     "workbench.activityBar.visible": false,
     //wrap
     "editor.wordWrap": "on",
-    "editor.fontSize": 16,
+    "editor.fontSize": 18,
     "files.trimTrailingWhitespace": true,
     //ミニマップをfalse
     "editor.minimap.enabled": false,
@@ -43,7 +43,6 @@
     "vsicons.dontShowNewVersionMessage": true,
     "plantuml.render": "PlantUMLServer",
     "plantuml.server": "http://localhost:13080",
-    "window.zoomLevel": -1,
     "editor.fontFamily": "RictyDiminishedDiscordNerdFontComplete-Regular",
     "workbench.editor.highlightModifiedTabs": true,
     "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
@@ -64,4 +63,5 @@
     "solargraph.transport": "stdio",
     "terminal.integrated.fontWeightBold": "normal",
     "terminal.integrated.lineHeight": 0,
+    "sync.gist": "a114bb3781fdfa98a8015588b3af647e",
 }
