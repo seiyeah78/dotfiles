@@ -41,7 +41,7 @@ zplugin ice wait=0 lucid atload'_zsh_highlight\
   FAST_HIGHLIGHT_STYLES[path]=none\
   FAST_HIGHLIGHT_STYLES[path_prefix]=none\
   FAST_HIGHLIGHT_STYLES[path_approx]=none';
-  zplugin light zdharma/fast-syntax-highlighting
+zplugin light zdharma/fast-syntax-highlighting
 
 # oh-my-zsh plugins : https://github.com/ohmyzsh/ohmyzsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
@@ -52,6 +52,9 @@ zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-ali
 # prompt theme
 zplugin ice depth=1 atload'source ~/.p10k.zsh'
 zplugin light romkatv/powerlevel10k
+
+autoload -U compinit
+compinit -u
 
 # use env language manager
 eval "$(anyenv lazyload)"
