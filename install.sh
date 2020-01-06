@@ -110,4 +110,16 @@ if [ -e Brewfile ]; then
   fi
 fi
 
+# install anyenv
+if type git > /dev/null 2>&1; then
+  plugin_dir=$(anyenv root)/plugins
+  mkdir -p $plugin_dir
+
+  plugin_repos=("amashigeseiji/anyenv-lazyload" "znz/anyenv-update" "znz/anyenv-git")
+  for p in $plugin_repos
+  do
+    echo git clone https://github.com/$p.git $plugin_dir/${p##*/}
+  done
+fi
+
 exec $SHELL -l
