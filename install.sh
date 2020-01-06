@@ -65,17 +65,18 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-for f in .??**/**
+for f in .??*
 do
-   if [ "$f" == ".git" ] || [ "$f" == ".DS_Store" ]; then
-     continue
-   fi
+  if [ "$f" == ".git" ] || [ "$f" == ".DS_Store" ]; then
+    continue
+  fi
 
-   if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
-     # mkdir -p ~/.backup
-     # mv "$HOME/$f" ~/.backup
-   fi
-    ln -snfv "$DOTPATH/$f" "$HOME/$f"
+  if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
+    :
+    # mkdir -p ~/.backup
+    # mv "$HOME/$f" ~/.backup
+  fi
+  ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
 # Command Line Developer Tools
