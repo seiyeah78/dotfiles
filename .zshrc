@@ -54,6 +54,9 @@ zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-ali
 zplugin ice depth=1 atload'source ~/.p10k.zsh'
 zplugin light romkatv/powerlevel10k
 
+autoload -U compinit
+compinit -u
+
 # use env language manager
 eval "$(anyenv lazyload)"
 
@@ -120,9 +123,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
   zcompile ~/.zshrc
 fi
-
-autoload -U compinit
-compinit -u
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof | less
