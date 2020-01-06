@@ -33,6 +33,7 @@ zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-completions
 zplugin ice wait=0 lucid; zplugin light github/hub
 zplugin ice wait=0 lucid; zplugin light b4b4r07/emoji-cli
 zplugin ice wait=0 lucid; zplugin light skywind3000/z.lua
+zplugin ice wait=0 lucid; zplugin light hlissner/zsh-autopair
 
 # zplugin ice wait=0 lucid src'init.sh'; zplugin light b4b4r07/enhancd
 zplugin ice wait=0 lucid atload'_zsh_autosuggest_start'; zplugin light zsh-users/zsh-autosuggestions
