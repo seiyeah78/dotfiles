@@ -124,6 +124,11 @@ if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
   zcompile ~/.zshrc
 fi
 
+if (( ! $+functions[compdef] )); then
+  autoload -Uz compinit
+  compinit -C
+fi
+
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof | less
 # fi
