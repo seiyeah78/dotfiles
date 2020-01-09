@@ -37,7 +37,7 @@ zplugin ice wait=0 lucid; zplugin light hlissner/zsh-autopair
 
 # zplugin ice wait=0 lucid src'init.sh'; zplugin light b4b4r07/enhancd
 zplugin ice wait=0 lucid atload'_zsh_autosuggest_start'; zplugin light zsh-users/zsh-autosuggestions
-zplugin snippet --command "`brew --prefix`/share/git-core/contrib/diff-highlight/diff-highlight"
+zplugin ice wait=0 lucid; zplugin snippet --command "$GIT_DIFF_HIGHLIGHT/diff-highlight"
 zplugin ice wait=0 lucid atload'_zsh_highlight\
   FAST_HIGHLIGHT_STYLES[path]=none\
   FAST_HIGHLIGHT_STYLES[path_prefix]=none\
@@ -45,17 +45,15 @@ zplugin ice wait=0 lucid atload'_zsh_highlight\
 zplugin light zdharma/fast-syntax-highlighting
 
 # oh-my-zsh plugins : https://github.com/ohmyzsh/ohmyzsh
+zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
+zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/git.zsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin cdclear -q
-zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
 zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 
 # prompt theme
 zplugin ice depth=1 atload'source ~/.p10k.zsh'
 zplugin light romkatv/powerlevel10k
-
-autoload -U compinit
-compinit -u
 
 # use env language manager
 eval "$(anyenv lazyload)"
