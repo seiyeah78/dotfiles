@@ -162,7 +162,7 @@ call plug#begin('~/.vim/plugged')
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
-  Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'vue'], 'do': 'npm -g install typescript' }
+  Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'typescript.tsx', 'vue'], 'do': 'npm -g install typescript' }
   " for tsuquyomi
   Plug 'Shougo/vimproc.vim', {'do': 'make' }
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue' }

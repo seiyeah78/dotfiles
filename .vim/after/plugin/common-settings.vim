@@ -1,5 +1,7 @@
-"コメントアウト行後の開業時にコメントアウトを入れない
+" コメントアウト行後の開業時にコメントアウトを入れない
 au FileType * setlocal formatoptions-=ro
+" 特定のfiletypeではqだけで閉じるようにする
+au FileType help nnoremap <buffer><silent>q :<C-U>q<CR>
 
 function! ExecCompiler(compiler_cmd, is_bang)
   exec 'setlocal makeprg='.fnameescape(a:compiler_cmd)
