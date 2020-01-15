@@ -141,6 +141,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'janko/vim-test' | Plug 'tpope/vim-dispatch'
   Plug 'AndrewRadev/inline_edit.vim'
   Plug 'mtth/scratch.vim'
+  Plug 'AndrewRadev/switch.vim'
 
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
@@ -400,7 +401,7 @@ nnoremap <leader>! :call <SID>goog(expand("<cWord>"), 1)<cr>
 vnoremap <leader>? y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 0)<cr>
 vnoremap <leader>! y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 1)<cr>
 
-"------------ vim-easyclip------------"
+" ------------ vim-easyclip ------------
 imap <c-v> <plug>EasyClipInsertModePaste
 cmap <c-v> <plug>EasyClipCommandModePaste
 let g:EasyClipShareYanks = 1
@@ -433,7 +434,7 @@ nmap <C-h> <C-w>h
 noremap <silent><C-w>s :<C-u>split<CR>
 noremap <silent><C-w>v :<C-u>vsplit<CR>
 
-" ============winresizer setting============
+" ----------- winresizer setting -------------
 let g:winresizer_start_key = '<C-w>e'
 let g:winresizer_vert_resize = 3
 let g:winresizer_horiz_resize = 2
@@ -480,7 +481,7 @@ noremap <Leader>gd :Gvdiff<CR>
 nmap ]g <Plug>(GitGutterNextHunk)
 nmap [g <Plug>(GitGutterPrevHunk)
 
-"=================NERDTree setting===========================
+"================= NERDTree setting ==================
 let g:NERDTreeChDirMode = 2
 let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 25
@@ -494,7 +495,7 @@ function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-" ===============vim-visual-multi============
+" =============== vim-visual-multi ============
 let g:VM_manual_infoline = 0
 let g:VM_leader=','
 let g:VM_maps = {}
@@ -582,6 +583,16 @@ let g:scratch_insert_autohide = 0
 let g:scratch_no_mappings = 0
 nmap gs :<C-U>Scratch<CR>
 xmap gs <plug>(scratch-selection-reuse)
+
+" -------- switch.vim --------
+function! s:Switching(reverse)
+  let opt = a:reverse ? [{'reverse': 1}, "\<C-X>"] : [{}, "\<C-A>"]
+  if !switch#Switch(opt[0])
+    execute "normal! ".opt[1]
+  end
+endfunction
+nnoremap <silent><C-A> :call <SID>Switching(v:false)<CR>
+nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
 
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')

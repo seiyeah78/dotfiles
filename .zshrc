@@ -38,11 +38,13 @@ zplugin ice wait=0 lucid; zplugin light hlissner/zsh-autopair
 # zplugin ice wait=0 lucid src'init.sh'; zplugin light b4b4r07/enhancd
 zplugin ice wait=0 lucid atload'_zsh_autosuggest_start'; zplugin light zsh-users/zsh-autosuggestions
 zplugin ice wait=0 lucid; zplugin snippet --command "$GIT_DIFF_HIGHLIGHT/diff-highlight"
-zplugin ice wait=0 lucid atload'_zsh_highlight\
-  FAST_HIGHLIGHT_STYLES[path]=none\
+zplugin wait=0 lucid notify light-mode \
+  atinit="ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+  atload="FAST_HIGHLIGHT_STYLES[path]=none\
   FAST_HIGHLIGHT_STYLES[path_prefix]=none\
-  FAST_HIGHLIGHT_STYLES[path_approx]=none';
-zplugin light zdharma/fast-syntax-highlighting
+  FAST_HIGHLIGHT_STYLES[path_approx]=none\
+  FAST_HIGHLIGHT[chroma-ruby]=" for \
+    zdharma/fast-syntax-highlighting
 
 # oh-my-zsh plugins : https://github.com/ohmyzsh/ohmyzsh
 zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
@@ -116,16 +118,6 @@ SAVEHIST=100000
 [ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# exec zcompile manually only first time.
-if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
-  zcompile ~/.zshrc
-fi
-
-if (( ! $+functions[compdef] )); then
-  autoload -Uz compinit
-  compinit -C
-fi
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof | less
