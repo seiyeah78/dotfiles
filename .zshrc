@@ -56,9 +56,6 @@ zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-ali
 zplugin ice depth=1 atload'source ~/.p10k.zsh'
 zplugin light romkatv/powerlevel10k
 
-# include other zshrc files
-[ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
-
 # use env language manager
 eval "$(anyenv lazyload)"
 
@@ -114,6 +111,9 @@ bindkey '^K' forward-word
 bindkey "\e[Z" reverse-menu-complete
 bindkey '\e[3~' delete-char
 #########################################
+
+# include other zshrc files
+[ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
 
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
