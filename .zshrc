@@ -50,12 +50,14 @@ zplugin wait=0 lucid notify light-mode \
 zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
 zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/git.zsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
-zplugin cdclear -q
 zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 
 # prompt theme
 zplugin ice depth=1 atload'source ~/.p10k.zsh'
 zplugin light romkatv/powerlevel10k
+
+# include other zshrc files
+[ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
 
 # use env language manager
 eval "$(anyenv lazyload)"
@@ -87,6 +89,9 @@ unalias gp
 alias gdc='git dc'
 alias gcm='git cm'
 alias groot='cd $(git rev-parse --show-toplevel)'
+alias gpf='f(){ print -z " git push --force-with-lease ${1:-origin} $(git symbolic-ref --short HEAD)" }; f'
+alias gpO='gpf origin'
+alias gpU='gpf upstream'
 
 alias hosts='sudo vi /etc/hosts'
 alias vimrc='$EDITOR ~/.vimrc'
@@ -114,11 +119,8 @@ HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
-# include other zshrc files
-[ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # if (which zprof > /dev/null 2>&1) ;then
-#   zprof | less
+#   zprof
 # fi

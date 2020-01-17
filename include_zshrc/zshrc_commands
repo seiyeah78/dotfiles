@@ -300,7 +300,7 @@ function openpr() {
   fi
 
   # only number => open pull/num
-  if [[ ${git_hash} =~ ^[0-9]+$  ]] && [ ${#git_hash} < 7]; then
+  if [[ ${git_hash} =~ ^[0-9]+$  ]] && [ ${#git_hash} -lt 7 ]; then
     hub browse -- pull/${git_hash}
     return 0;
   fi
