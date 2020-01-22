@@ -192,29 +192,6 @@ function tmux_attach_session()
     fi
 }
 
-function mssh()
-{
-    #
-    if [ -z ${TMUX} ] ; then
-      echo "tmux is not running."
-      #tmux new-session && echo "tmux created new session"
-    fi
-
-    PROG_TMUX=tmux
-
-    ${PROG_TMUX} send-keys "ssh $1" C-m
-    shift
-
-    for host in "$@"; do
-      ${PROG_TMUX} split-window "exec ssh $host"
-      ${PROG_TMUX} select-layout even-vertical
-      # ${PROG_TMUX} select-layout tiled > /dev/null
-      # ${PROG_TMUX} select-layout even-horizontal
-    done
-
-    ${PROG_TMUX} select-pane -t 0
-}
-compdef mssh=ssh
 tmux_attach_session
 
 function rgl()

@@ -585,6 +585,7 @@ nmap gs :<C-U>Scratch<CR>
 xmap gs <plug>(scratch-selection-reuse)
 
 " -------- switch.vim --------
+let g:switch_mapping = ''
 function! s:Switching(reverse)
   let opt = a:reverse ? [{'reverse': 1}, "\<C-X>"] : [{}, "\<C-A>"]
   if !switch#Switch(opt[0])
