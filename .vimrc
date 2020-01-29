@@ -176,8 +176,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
 
   " Markdown
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'md', 'mkd', 'vim-plug'], 'on': 'MarkdownPreview' }
-  Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'md', 'mkd'] }
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
+  Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown'] }
 
   " Go
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }

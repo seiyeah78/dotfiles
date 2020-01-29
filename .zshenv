@@ -46,6 +46,7 @@ export AWS_DEFAULT_OUTPUT=json
 export AWS_DEFAULT_PROFILE=default
 export THOR_MERGE=vimdiff
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd)
+export GIST_USER=seiyeah78
 
 if [ -e ~/.zshenv.local ]; then
   source ~/.zshenv.local
