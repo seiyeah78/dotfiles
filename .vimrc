@@ -105,7 +105,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
@@ -142,6 +142,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/inline_edit.vim'
   Plug 'mtth/scratch.vim'
   Plug 'AndrewRadev/switch.vim'
+  Plug 'yssl/QFEnter'
 
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
@@ -178,6 +179,7 @@ call plug#begin('~/.vim/plugged')
   " Markdown
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
   Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown'] }
+  Plug 'rhysd/vim-gfm-syntax', { 'for': ['markdown'] }
 
   " Go
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
@@ -594,6 +596,12 @@ function! s:Switching(reverse)
 endfunction
 nnoremap <silent><C-A> :call <SID>Switching(v:false)<CR>
 nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
+
+" -------- QFEnter ---------
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-V>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-S>', '<C-X>']
+let g:qfenter_keymap.topen = ['<C-g>']
 
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
