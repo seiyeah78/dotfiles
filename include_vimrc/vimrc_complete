@@ -1,7 +1,7 @@
 " Better display for messages
 " set cmdheight=2
 
-let g:coc_config_home = '~/.config/nvim'
+let g:coc_config_home = $HOME.'/.config/nvim'
 
 let g:coc_global_extensions = [
       \  'coc-lists'
