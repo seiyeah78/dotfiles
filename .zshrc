@@ -30,7 +30,6 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit ice wait=0 lucid; zinit light zsh-users/zsh-completions
-zinit ice wait=0 lucid; zinit light github/hub
 zinit ice wait=0 lucid; zinit light b4b4r07/emoji-cli
 zinit ice wait=0 lucid; zinit light skywind3000/z.lua
 zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
