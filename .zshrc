@@ -23,22 +23,22 @@ setopt prompt_subst
 export EDITOR=nvim
 export PATH=$CORE_PATH
 
-#### setup zplugin ####
+#### setup zinit ####
 # https://blog.katio.net/page/zplugin
-source $HOME/.zplugin/bin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+source $HOME/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-zplugin ice wait=0 lucid; zplugin light zsh-users/zsh-completions
-zplugin ice wait=0 lucid; zplugin light github/hub
-zplugin ice wait=0 lucid; zplugin light b4b4r07/emoji-cli
-zplugin ice wait=0 lucid; zplugin light skywind3000/z.lua
-zplugin ice wait=0 lucid; zplugin light hlissner/zsh-autopair
+zinit ice wait=0 lucid; zinit light zsh-users/zsh-completions
+zinit ice wait=0 lucid; zinit light github/hub
+zinit ice wait=0 lucid; zinit light b4b4r07/emoji-cli
+zinit ice wait=0 lucid; zinit light skywind3000/z.lua
+zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
 
-zplugin ice wait=0 lucid atload'_zsh_autosuggest_start'; zplugin light zsh-users/zsh-autosuggestions
-zplugin ice wait=0 lucid; zplugin snippet --command "$GIT_DIFF_HIGHLIGHT/diff-highlight"
-zplugin wait=0 lucid notify light-mode \
-  atinit="ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+zinit ice wait=0 lucid atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
+zinit ice wait=0 lucid; zinit snippet --command "$GIT_DIFF_HIGHLIGHT/diff-highlight"
+zinit wait=0 lucid notify light-mode \
+  atinit="ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
   atload="FAST_HIGHLIGHT_STYLES[path]=none\
   FAST_HIGHLIGHT_STYLES[path_prefix]=none\
   FAST_HIGHLIGHT_STYLES[path_approx]=none\
@@ -46,14 +46,14 @@ zplugin wait=0 lucid notify light-mode \
     zdharma/fast-syntax-highlighting
 
 # oh-my-zsh plugins : https://github.com/ohmyzsh/ohmyzsh
-zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/completion.zsh
-zplugin ice wait=0 lucid; zplugin snippet OMZ::lib/git.zsh
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
-zplugin ice wait=0 lucid; zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+zinit ice wait=0 lucid; zinit snippet OMZ::lib/completion.zsh
+zinit ice wait=0 lucid; zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit ice wait=0 lucid; zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 
 # prompt theme
-zplugin ice depth=1 atload'source ~/.p10k.zsh'
-zplugin light romkatv/powerlevel10k
+zinit ice depth=1 atload'source ~/.p10k.zsh'
+zinit light romkatv/powerlevel10k
 
 # use env language manager
 eval "$(anyenv lazyload)"
