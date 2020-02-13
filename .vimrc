@@ -476,7 +476,7 @@ nnoremap <Leader>ga :AgitFile<CR>
 " noremap <Leader>gsh :Gpush<CR>
 " noremap <Leader>gr :Gremove<CR>
 " noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :20Gstatus<CR>
+noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gF :GFiles?<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>

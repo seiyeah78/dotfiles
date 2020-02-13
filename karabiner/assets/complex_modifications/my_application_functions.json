@@ -350,6 +350,8 @@
           "conditions": [
             {
               "bundle_identifiers": [
+                "^co\\.zeit\\.hyperterm$",
+                "^co\\.zeit\\.hyper$",
                 "^com\\.googlecode\\.iterm2"
               ],
               "type": "frontmost_application_unless"
