@@ -164,13 +164,13 @@ call plug#begin('~/.vim/plugged')
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
-  Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'typescript.tsx', 'vue'], 'do': 'npm -g install typescript' }
+  Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'vue'], 'do': 'npm -g install typescript' }
   " for tsuquyomi
   Plug 'Shougo/vimproc.vim', {'do': 'make' }
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue' }
-  " Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
-  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
-  Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
+  Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
+  " Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
+  " Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -208,6 +208,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'Nequo/vim-allomancer'
   Plug 'mhartington/oceanic-next'
   Plug 'chriskempson/base16-vim'
+  Plug 'haishanh/night-owl.vim'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'sainnhe/lightline_foobar.vim'
 
   " lint engine
   Plug 'w0rp/ale'
