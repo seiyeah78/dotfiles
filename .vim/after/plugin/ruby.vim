@@ -7,8 +7,10 @@ let ruby_space_errors = 1
 let ruby_line_continuation_error = 1
 let ruby_global_variable_error   = 1
 
-" -------------- vim-rails -------------
+setlocal isk+=@-@,?,!
+autocmd BufNewFile,BufRead *spec.rb if exists("g:loaded_rails") && g:loaded_rails == 1 | set syntax=ruby | endif
 
+" -------------- vim-rails -------------
 let g:rails_projections = {
       \  "app/controllers/*_controller.rb": {
       \      "test": [

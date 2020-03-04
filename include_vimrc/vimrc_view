@@ -7,7 +7,7 @@ let g:gitgutter_sign_removed = '✘'
 let g:lightline = {
       \ 'colorscheme': 'icebergDark',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste', 'visualMulti'],
+      \   'left': [ [ 'mode', 'paste'],
       \             [ 'cocstatus', 'sessionState', 'fugitive', 'gitgutter', 'filename' ] ]
       \ },
       \ 'component_function': {
@@ -22,7 +22,6 @@ let g:lightline = {
       \   'sessionState': 'ObsessionStatus',
       \   'mode': 'MyMode',
       \   'cocstatus': 'coc#status',
-      \   'visualMulti': 'MyVisualMulti',
       \ },
       \ 'separator': { 'left': "⮀", 'right': "⮂"  },
       \ 'subseparator': {'left': '⮁', 'right': '⮃'}
@@ -189,9 +188,7 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead Gemfile      set filetype=ruby
   autocmd BufNewFile,BufRead Gemfile.lock set filetype=ruby
   autocmd BufNewFile,BufRead .pryrc       set filetype=ruby
-  autocmd BufNewFile,BufRead *spec.rb if exists("g:loaded_rails") && g:loaded_rails == 1 | set syntax=ruby | endif
   " ?つきメソッド、@@インスタンスを単語とみなす
-  autocmd FileType ruby   setlocal isk+=@-@,?,!
   autocmd FileType eruby  setlocal isk+=@-@,?,!
   autocmd FileType slim   setlocal isk+=@-@,?,!
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
