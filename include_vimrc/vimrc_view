@@ -47,10 +47,20 @@ endfunction
 function! MyReadonly()
   return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
 endfunction
+function GetFilename()
+  if('' != fnamemodify(expand('%'),':.'))
+    if(&ft =~? 'vimfiler\|gundo\|nerdtree\|fugitive.*')
+      return &ft
+    else
+      return fnamemodify(expand('%'),':.')
+    end
+  else
+    return '[No Name]'
+  endif
+endfunction
 function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-           \ (
-           \ '' != fnamemodify(expand('%'),':.') ? fnamemodify(expand('%'),':.') : '[No Name]') .
+           \ GetFilename() .
            \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 function! MyFugitive()
