@@ -39,7 +39,7 @@ export FZF_DEFAULT_OPTS="
 "
 export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null | head -200'"
+export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null'"
 
 export AWS_DEFAULT_REGION=ap-northeast-1
 export AWS_DEFAULT_OUTPUT=json
