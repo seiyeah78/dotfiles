@@ -88,6 +88,10 @@ alias gpf='f(){ print -z " git push --force-with-lease ${1:-origin} $(git symbol
 alias gpO='gpf origin'
 alias gpU='gpf upstream'
 
+alias k='kubectl'
+alias kc='kubectx'
+alias kg='kubectl get'
+
 alias hosts='sudo vi /etc/hosts'
 alias vimrc='$EDITOR ~/.vimrc'
 
