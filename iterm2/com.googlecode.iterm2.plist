@@ -8,6 +8,8 @@
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
@@ -981,7 +983,7 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>4199 845 400 129 3440 148 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>1410 768 620 392 0 0 3440 1417 </string>
+	<string>4090 646 620 392 3440 148 1920 1057 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>580 203 606 469 0 0 3440 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
@@ -989,7 +991,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>332 833 592 584 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>882 0 2558 1417 0 0 3440 1417 </string>
+	<string>0 0 1920 1080 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1077 865 710 552 0 0 3440 1417 </string>
 	<key>New Bookmarks</key>
@@ -2533,13 +2535,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.2627450980392157</real>
+				<real>0.261749267578125</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.21176470588235294</real>
+				<real>0.21068290534469125</real>
 				<key>Red Component</key>
-				<real>0.18823529411764706</real>
+				<real>0.18711382197216153</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
@@ -3110,20 +3112,28 @@
 		<string>3.3.0beta4</string>
 		<string>3.3.3</string>
 		<string>3.3.5</string>
+		<string>3.3.9</string>
 		<string>3.3.0</string>
 		<string>3.3.2</string>
 		<string>3.3.4</string>
 	</array>
+	<key>NoSyncBFPFavorites</key>
+	<array>
+		<string>RictyDiminishedDiscord Nerd Font</string>
+	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>RictyDiminishedDiscord NF</string>
 		<string>RictyDiminishedDiscord Nerd Font</string>
+		<string>Monaco</string>
 		<string>RictyDiminished NF</string>
+		<string>Ricty Diminished Discord</string>
 	</array>
+	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
+	<true/>
 	<key>NoSyncFrame_SessionsPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {3440, 1440}}</string>
+		<string>{{0, 0}, {1920, 1200}}</string>
 		<key>topLeft</key>
 		<string>{269, 595}</string>
 	</dict>
@@ -3132,14 +3142,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3440, 1440}}</string>
 		<key>topLeft</key>
-		<string>{230, 679}</string>
+		<string>{269, 595}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>22FA4D74-8CE0-4239-B084-8F1CA08537B6</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>64</integer>
+	<integer>104</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>577784734.65924394</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -3526,6 +3536,14 @@
 			</dict>
 			<dict>
 				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>currentTab.currentSession.lastCommand</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
 				<false/>
 				<key>name</key>
 				<string>currentTab</string>
@@ -3868,29 +3886,6 @@
 			</dict>
 		</array>
 	</dict>
-	<key>NoSyncSearchHistory</key>
-	<array>
-		<string>guessed_job_types</string>
-		<string>host</string>
-		<string>name</string>
-		<string>babel-</string>
-		<string>crawer</string>
-		<string>rspec-</string>
-		<string>spring</string>
-		<string>sass</string>
-	</array>
-	<key>NoSyncSearchHistory2</key>
-	<array>
-		<string>typescript</string>
-		<string>typescript-vim</string>
-		<string>react</string>
-		<string>real</string>
-		<string>total</string>
-		<string>evaluate</string>
-		<string>reset</string>
-		<string>im-patch:8.1.0614: placing signs can be complicate</string>
-		<string>rails</string>
-	</array>
 	<key>NoSyncSuppressClipboardAccessDeniedWarning</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -3949,11 +3944,9 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-11-19T10:38:15Z</date>
+	<date>2020-03-25T09:44:35Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
-	<key>SUSkippedVersion</key>
-	<string>3.3.7</string>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -3991,7 +3984,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.6</string>
+	<string>3.3.9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
