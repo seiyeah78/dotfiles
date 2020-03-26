@@ -14,3 +14,7 @@ projections.json
 .ignore
 .envrc
 vendor/
+.config/coc/
+.vim/plugged/
+.vim/sessions/
+.vim/undodir/
