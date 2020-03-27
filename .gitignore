@@ -18,3 +18,8 @@ vendor/
 .vim/plugged/
 .vim/sessions/
 .vim/undodir/
+.config/karabiner/automatic_backups
+.config/karabiner/assets/complex_modifications/*
+.config/anyenv/
+!my_alt_functions.json
+!my_application_functions.json
