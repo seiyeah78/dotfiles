@@ -1,5 +1,7 @@
 .DS_Store
 .git/
+.vim/plugged
+.vim/undodir
 public/packs/
 public/packs-test/
 node_modules/

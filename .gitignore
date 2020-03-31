@@ -18,8 +18,9 @@ vendor/
 .vim/plugged/
 .vim/sessions/
 .vim/undodir/
-.config/karabiner/automatic_backups
-.config/karabiner/assets/complex_modifications/*
-.config/anyenv/
+.config/
+.config/
+.config/
+!coc-settings.json
 !my_alt_functions.json
 !my_application_functions.json

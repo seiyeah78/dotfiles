@@ -16,7 +16,7 @@
   "codeLens.enable": true,
   "javascript.referencesCodeLens.enable": false,
   "coc.preferences.colorSupport": true,
-  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.useQuickfixForLocations": false,
   "highlight.document.enable": true,
   "highlight.colors.enable": true,
   "highlight.disableLanguages": ["php","vim", "fugitive"]
