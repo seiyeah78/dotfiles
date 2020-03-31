@@ -230,7 +230,7 @@ function gen_ctags () {
     dir="./"
   fi
 
-  ctags --tag-relative=yes --recurse --sort=yes --extras=+q -R -f ${dir}.tags
+  ctags --tag-relative=yes --recurse --sort=yes --extras=+q -R -f ${dir}tags
 }
 
 function servers {
