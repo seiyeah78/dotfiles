@@ -65,9 +65,9 @@ function! MyFilename()
 endfunction
 function! MyFugitive()
   try
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    if &ft !~? 'vimfiler\|gundo' && (exists('*fugitive#head') || exists('*FugitiveHead'))
       let branch = fugitive#head()
-      return branch == '' ? '' : ''.branch
+      return branch == '' ? '' : ' '.branch
     endif
   catch
   endtry
