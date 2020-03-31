@@ -1,6 +1,6 @@
 " vim: set foldmethod=marker foldlevel=0:
 language en_us
-set ambiwidth=double
+" set ambiwidth=double
 if exists('$PYENV_ROOT')
   let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
   let g:python_host_prog = $PYENV_ROOT . '/versions/neovim2/bin/python'
@@ -168,9 +168,9 @@ call plug#begin('~/.vim/plugged')
   " for tsuquyomi
   Plug 'Shougo/vimproc.vim', {'do': 'make' }
   Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue' }
-  Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
-  " Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
-  " Plug 'peitalin/vim-jsx-typescript',  { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
+  " Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
+  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
+  Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
