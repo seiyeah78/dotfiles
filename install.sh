@@ -114,7 +114,7 @@ fi
 if type git > /dev/null 2>&1; then
   plugin_dir=$(anyenv root)/plugins
   mkdir -p $plugin_dir
-  plugin_repos=("amashigeseiji/anyenv-lazyload" "znz/anyenv-update" "znz/anyenv-git")
+  plugin_repos=("rbenv/rbenv-default-gems" "amashigeseiji/anyenv-lazyload" "znz/anyenv-update" "znz/anyenv-git")
 
   for p in ${plugin_repos[@]}
   do
