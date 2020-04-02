@@ -13,9 +13,9 @@ let g:coc_global_extensions = [
       \, 'coc-solargraph'
       \, 'coc-python'
       \, 'coc-snippets'
-      \, 'coc-vetur'
+      \, 'coc-browser'
+      \, 'coc-import-cost'
       \ ]
-
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
