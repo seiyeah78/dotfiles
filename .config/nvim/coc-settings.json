@@ -1,9 +1,11 @@
 {
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
   "tsserver.npm": "/usr/local/bin/npm",
   "tsserver.enableJavascript": true,
   "tsserver.enable": true,
   "solargraph.checkGemVersion": false,
-  "coc.browser.shortcut": "browser",
   "importCost.typescriptExtensions": [
     "\\.tsx?$"
   ],
