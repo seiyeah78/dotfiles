@@ -55,7 +55,7 @@ zinit ice depth=1 atload'source ~/.p10k.zsh'
 zinit light romkatv/powerlevel10k
 
 # use env language manager
-eval "$(anyenv lazyload)"
+eval "$(anyenv init -)"
 
 # use hub
 eval "$(hub alias -s)"

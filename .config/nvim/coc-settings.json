@@ -6,6 +6,9 @@
   "tsserver.enableJavascript": true,
   "tsserver.enable": true,
   "solargraph.checkGemVersion": false,
+  "solargraph.commandPath": "/usr/local/lib/ruby/gems/2.7.0/bin/solargraph",
+  "solargraph.diagnostics": true,
+  "solargraph.references": true,
   "importCost.typescriptExtensions": [
     "\\.tsx?$"
   ],
