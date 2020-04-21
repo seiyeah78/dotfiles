@@ -13,11 +13,13 @@ GTAGS
 projections.json
 .ignore
 .envrc
+.solargraph.yml
 vendor/
 .config/coc/
 .vim/plugged/
 .vim/sessions/
 .vim/undodir/
+.vim/plugins.local
 .config/
 !coc-settings.json
 !my_alt_functions.json

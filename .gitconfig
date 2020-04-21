@@ -66,10 +66,11 @@
   compactionHeuristic = true
   algorithm = histogram
   renames = true
+	noprefix = true
 [include]
   path = ~/.gitconfig.local
 [init]
-  templatedir = .git_tmp
+  templatedir = ~/.git_template
 [color]
   ui = true
 [interactive]
