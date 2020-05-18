@@ -64,14 +64,17 @@ function! MyFilename()
            \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 function! MyFugitive()
-  try
-    if &ft !~? 'vimfiler\|gundo' && (exists('*fugitive#head') || exists('*FugitiveHead'))
-      let branch = fugitive#head()
-      return branch == '' ? '' : ' '.branch
-    endif
-  catch
-  endtry
-    return ''
+  let branch = ''
+  if (winwidth(0) > 70)
+    try
+      if &ft !~? 'vimfiler\|gundo' && (exists('*fugitive#head') || exists('*FugitiveHead'))
+        let branch = fugitive#head()
+        branch == '' ? '' : ' '.branch
+      endif
+    catch
+    endtry
+  endif
+  return branch
 endfunction
 
 function! MyFileformat()
