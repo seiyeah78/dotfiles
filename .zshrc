@@ -33,6 +33,7 @@ zinit ice wait=0 lucid; zinit light zsh-users/zsh-completions
 zinit ice wait=0 lucid; zinit light b4b4r07/emoji-cli
 zinit ice wait=0 lucid; zinit light skywind3000/z.lua
 zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
+# zinit ice wait=0 lucid; zinit light wfxr/forgit
 
 zinit ice wait=0 lucid atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
 zinit ice wait=0 lucid; zinit snippet --command "$GIT_DIFF_HIGHLIGHT/diff-highlight"
