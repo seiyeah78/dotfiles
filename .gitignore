@@ -20,7 +20,8 @@ vendor/
 .vim/sessions/
 .vim/undodir/
 .vim/plugins.local
+coc-settings.json
 .config/
-!coc-settings.json
+!.config/nvim/coc-settings.json
 !my_alt_functions.json
 !my_application_functions.json

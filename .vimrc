@@ -106,7 +106,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-  Plug 'antoinemadec/coc-fzf'
+  " Plug 'antoinemadec/coc-fzf'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
