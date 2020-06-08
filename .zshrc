@@ -96,9 +96,6 @@ alias kg='kubectl get'
 alias hosts='sudo vi /etc/hosts'
 alias vimrc='$EDITOR ~/.vimrc'
 
-# https://github.com/jonas/tig/issues/951
-alias tig=\(tig\)
-
 ############### Custom KeyBind ##############
 bindkey -e
 
