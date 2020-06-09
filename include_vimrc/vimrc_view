@@ -111,7 +111,7 @@ function! MyPercent()
   return IsShowStatus(70) ? (100 * line('.') / line('$')) . '%' : ''
 endfunction
 function! MyMode()
-  let visualMulti = g:Vm.is_active == 1 ? '(M)' : ''
+  let visualMulti = g:Vm.buffer == 1 ? '(M)' : ''
   return winwidth(0) > 60 ? lightline#mode().visualMulti : ''
 endfunction
 function! MyGitGutter()
