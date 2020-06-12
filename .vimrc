@@ -106,7 +106,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-  " Plug 'antoinemadec/coc-fzf'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
   Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
@@ -140,10 +139,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'RRethy/vim-illuminate'
   Plug 'rhysd/git-messenger.vim'
   Plug 'janko/vim-test' | Plug 'tpope/vim-dispatch'
-  Plug 'AndrewRadev/inline_edit.vim'
   Plug 'mtth/scratch.vim'
   Plug 'AndrewRadev/switch.vim'
-  Plug 'yssl/QFEnter'
 
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
@@ -600,12 +597,6 @@ function! s:Switching(reverse)
 endfunction
 nnoremap <silent><C-A> :call <SID>Switching(v:false)<CR>
 nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
-
-" -------- QFEnter ---------
-let g:qfenter_keymap = {}
-let g:qfenter_keymap.vopen = ['<C-V>']
-let g:qfenter_keymap.hopen = ['<C-CR>', '<C-S>', '<C-X>']
-let g:qfenter_keymap.topen = ['<C-g>']
 
 " 他の.vimrcの読み込み
 let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
