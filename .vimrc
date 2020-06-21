@@ -231,6 +231,14 @@ colorscheme iceberg
 " colorscheme base16-default-dark
 " colorscheme OceanicNext
 
+" dim using tmux
+if exists('$TMUX')
+  hi Normal ctermbg=NONE guibg=NONE
+  hi NonText ctermbg=NONE guibg=NONE
+  hi SpecialKey ctermbg=NONE guibg=NONE
+  hi EndOfBuffer ctermbg=NONE guibg=NONE
+end
+
 if exists("g:colors_name")
   if g:colors_name == "hybrid"
     hi NonText    ctermfg=243 guifg=#707880
@@ -240,11 +248,6 @@ if exists("g:colors_name")
   end
   if g:colors_name == "apprentice"
     hi Comment term=bold ctermfg=243 guifg=#707880
-    " hi link jsxCloseString Statement
-    " if exists('$TMUX')
-    "   hi clear Normal
-    "   hi Normal ctermfg=250 guifg=#bcbcbc
-    " endif
   end
 end
 
