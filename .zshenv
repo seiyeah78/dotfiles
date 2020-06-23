@@ -42,9 +42,6 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null'"
 export FZF_TMUX_OPTS='-p70%,50%'
 
-export AWS_DEFAULT_REGION=ap-northeast-1
-export AWS_DEFAULT_OUTPUT=json
-export AWS_DEFAULT_PROFILE=default
 export THOR_MERGE=vimdiff
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd)
 export GIST_USER=seiyeah78
