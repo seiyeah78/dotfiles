@@ -18,14 +18,16 @@ let g:rails_projections = {
       \        "spec/features/{}_spec.rb",
       \        "spec/system/{}_spec.rb",
       \        "spec/controllers/{}_controller_spec.rb",
-      \        "test/controllers/{}_controller_test.rb"
+      \        "test/controllers/{}_controller_test.rb",
+      \        "spec/requests/{}_controller_spec.rb",
       \      ],
       \      "alternate": [
       \        "spec/requests/{}_spec.rb",
       \        "spec/features/{}_spec.rb",
       \        "spec/system/{}_spec.rb",
       \        "spec/controllers/{}_controller_spec.rb",
-      \        "test/controllers/{}_controller_test.rb"
+      \        "test/controllers/{}_controller_test.rb",
+      \        "spec/requests/{}_controller_spec.rb",
       \      ],
       \   },
       \   "spec/requests/*_spec.rb": {
