@@ -7,3 +7,4 @@ public/packs-test/
 node_modules/
 tmp/cache/
 public/assets/
+vendor/

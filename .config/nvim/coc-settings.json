@@ -24,5 +24,6 @@
   "coc.preferences.useQuickfixForLocations": false,
   "highlight.document.enable": true,
   "highlight.colors.enable": true,
-  "highlight.disableLanguages": ["php","vim", "fugitive"]
+  "highlight.disableLanguages": ["php","vim", "fugitive"],
+  "phpactor.path": "~/.vim/plugged/phpactor/bin/phpactor"
 }

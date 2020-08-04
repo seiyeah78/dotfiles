@@ -23,7 +23,7 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
-$HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin"
+$HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin"
 
 # DEFAULTでfzf.vimも反映する
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'

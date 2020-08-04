@@ -141,6 +141,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'janko/vim-test' | Plug 'tpope/vim-dispatch'
   Plug 'mtth/scratch.vim'
   Plug 'AndrewRadev/switch.vim'
+  Plug 'metakirby5/codi.vim'
+  Plug 'tpope/vim-projectionist'
 
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
@@ -159,6 +161,8 @@ call plug#begin('~/.vim/plugged')
   " PHP
   Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
   Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+  Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
+  Plug 'noahfrederick/vim-laravel', { 'for': 'php', 'do': 'composer install' }
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
