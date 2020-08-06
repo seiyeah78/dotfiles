@@ -1,7 +1,13 @@
 " コメントアウト行後の開業時にコメントアウトを入れない
 au FileType * setlocal formatoptions-=ro
+au FileType * set tw=0
+
 " 特定のfiletypeではqだけで閉じるようにする
 au FileType help nnoremap <buffer><silent>q :<C-U>q<CR>
+
+function! IsRailsActive()
+  return (exists("g:loaded_rails") && g:loaded_rails == 1)
+endfunction
 
 function! ExecCompiler(compiler_cmd, is_bang)
   exec 'setlocal makeprg='.fnameescape(a:compiler_cmd)
