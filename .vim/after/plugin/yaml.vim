@@ -1,8 +1,5 @@
 " set filetype by filename
-autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
-
-function! HasSpecificFile()
-  return (match(fnamemodify(expand('%'),':.'), 'config/settings') != -1)
-endfunction
-
-autocmd BufRead,BufNewFile *.yml,*.yaml if IsRailsActive() || HasSpecificFile() | set filetype=yaml.eruby endif
+autocmd BufNewFile,BufRead */config/*.yml{,.example,.sample},*/{test,spec}/fixtures/*.yml,database.yml
+      \ if &filetype !=# 'yaml.eruby' |
+      \   set filetype=yaml.eruby |
+      \ endif

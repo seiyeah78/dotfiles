@@ -15,7 +15,7 @@ function! ExecCompiler(compiler_cmd, is_bang)
 endfunction
 
 function! StartDockerCompose(container_name)
-  echomsg 'docker-compose ps --filter name='.a:container_name.'  -q'
+  echomsg 'docker-compose ps --filter name='.a:container_name.' -q'
   let result = system('docker-compose ps --filter name='.a:container_name.' -q')
   if (!exists(result))
     call system('docker-compose up -d '.a:container_name)
