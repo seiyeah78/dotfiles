@@ -236,6 +236,9 @@ colorscheme iceberg
 " colorscheme OceanicNext
 
 " dim using tmux
+let synid = synIDtrans(hlID('Normal'))
+let g:default_fg = synIDattr(synid, 'fg#')
+let g:default_bg = synIDattr(synid, 'bg#')
 if exists('$TMUX')
   hi Normal ctermbg=NONE guibg=NONE
   hi NonText ctermbg=NONE guibg=NONE
