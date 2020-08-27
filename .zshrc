@@ -19,6 +19,7 @@ setopt hist_ignore_dups
 setopt auto_cd
 setopt multios
 setopt prompt_subst
+unsetopt promptcr
 
 export EDITOR=nvim
 export PATH=$CORE_PATH

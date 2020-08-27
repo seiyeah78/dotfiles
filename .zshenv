@@ -20,6 +20,8 @@ export LESS='-R'
 export GTAGSLABEL=pygments
 
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+# Disable % mark at end
+export PROMPT_EOL_MARK=''
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
