@@ -52,22 +52,23 @@ function fshow() {
 
 function repo() {
   #順番：標準入力、expectのコマンド、取得結果
-  local out="$(ghq list | fzf --ansi --multi --no-sort --reverse --query="$1" --print-query --exit-0 --expect=ctrl-g,ctrl-y,enter)"
+  local out="$(ghq list | fzf --ansi --multi --no-sort --reverse --query="$1" --print-query --exit-0 --expect=ctrl-g,ctrl-o,enter)"
 
   local q="$(head -1 <<< $out)" #標準入力
   local k="$(head -2 <<< $out | tail -1)" #except指定の文字列
   local str="$(head -3 <<< "$out" | tail -1)" #取得結果
 
-  local path=$(ghq root)/$str
-  if [ ! -d "${path}" ]; then
+  local target_path=$(ghq root)/$str
+  if [ ! -d "${target_path}" ]; then
     return 0;
   fi
+  echo $str
   case "$k" in
-    "ctrl-d" | "enter")
-        cd $path
+    "enter")
+      cd $target_path
         ;;
     "ctrl-g" | "ctrl-o")
-        echo $str | cut -d"/" -f2,3 | hub browse
+      zsh -c "cd ${target_path} && hub browse"
         ;;
   esac
 }
