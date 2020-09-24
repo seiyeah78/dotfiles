@@ -187,6 +187,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
   " All Syntax
+  let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript']
   Plug 'sheerun/vim-polyglot'
 
   " colorschemes plugins
@@ -259,7 +260,6 @@ if exists("g:colors_name")
 end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
-let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript']
 let g:vim_json_syntax_conceal = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0

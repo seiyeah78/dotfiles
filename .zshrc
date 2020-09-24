@@ -68,7 +68,7 @@ eval "$(direnv hook zsh)"
 
 ############## setting alias #################
 # global alias
-alias -g C="| ruby -pe 'chomp if STDIN.eof?' | pbcopy"
+alias -g C="| /usr/bin/ruby -pe 'chomp if STDIN.eof?' | pbcopy"
 
 alias vi='vim'
 alias vim='nvim'

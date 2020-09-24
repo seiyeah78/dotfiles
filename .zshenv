@@ -25,7 +25,7 @@ export PROMPT_EOL_MARK=''
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$MYSCRIPT_DIR/bin:\
-$HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin"
+$HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin"
 
 # DEFAULTでfzf.vimも反映する
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
@@ -42,6 +42,7 @@ export FZF_DEFAULT_OPTS="
 export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null'"
+export FZF_TMUX=1
 export FZF_TMUX_OPTS='-p70%,50%'
 
 export THOR_MERGE=vimdiff
