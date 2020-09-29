@@ -143,6 +143,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/switch.vim'
   Plug 'metakirby5/codi.vim'
   Plug 'tpope/vim-projectionist'
+  Plug 'pechorin/any-jump.vim'
+  Plug 'segeljakt/vim-silicon', { 'do': 'curl https://sh.rustup.rs -sySf \| sh; cargo install silicon' }
 
   if exists('$TMUX')
     Plug 'wellle/tmux-complete.vim'
@@ -272,6 +274,22 @@ let g:strip_whitespace_confirm = 0
 let g:indentLine_fileTypeExclude = ['tex', 'markdown']
 let g:Illuminate_ftblacklist = ['nerdtree', 'git', 'gitcommit', 'fugitiveblame']
 let g:gitgutter_diff_args='--diff-algorithm=histogram'
+let g:silicon = {
+      \   'theme':              'Nord',
+      \   'font':               'RictyDiminishedDiscord Nerd Font',
+      \   'output': 'silicon-{time:%Y-%m-%d-%H%M%S}.png',
+      \   'background':         '#AAAAFF',
+      \   'shadow-color':       '#555555',
+      \   'line-pad':                   2,
+      \   'pad-horiz':                 80,
+      \   'pad-vert':                 100,
+      \   'shadow-blur-radius':         0,
+      \   'shadow-offset-x':            0,
+      \   'shadow-offset-y':            0,
+      \   'line-number':           v:true,
+      \   'round-corner':          v:true,
+      \   'window-controls':       v:true,
+      \ }
 
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
@@ -392,7 +410,7 @@ function! s:zoom()
   if winnr('$') > 1
     tab split
   elseif len(filter(map(range(tabpagenr('$')), 'tabpagebuflist(v:val + 1)'),
-                  \ 'index(v:val, '.bufnr('').') >= 0')) > 1
+        \ 'index(v:val, '.bufnr('').') >= 0')) > 1
     tabclose
   endif
 endfunction
@@ -404,9 +422,9 @@ nnoremap <silent> <leader>z :call <sid>zoom()<CR>
 function! s:goog(pat, lucky)
   let q = '"'.substitute(a:pat, '["\n]', ' ', 'g').'"'
   let q = substitute(q, '[[:punct:] ]',
-       \ '\=printf("%%%02X", char2nr(submatch(0)))', 'g')
+        \ '\=printf("%%%02X", char2nr(submatch(0)))', 'g')
   call system(printf('open "https://www.google.com/search?%sq=%s"',
-                   \ a:lucky ? 'btnI&' : '', q))
+        \ a:lucky ? 'btnI&' : '', q))
 endfunction
 
 nnoremap <leader>? :call <SID>goog(expand("<cword>"), 0)<cr>
@@ -582,11 +600,11 @@ let g:git_messenger_include_diff = 'current'
 let g:git_messenger_always_into_popup = v:true
 let g:git_messenger_max_popup_height = 100
 function! s:setup_git_messenger_popup() abort
-    " Your favorite configuration here
-    " For example, set go back/forward history to <C-o>/<C-i>
-    nmap <buffer><ESC> q
-    nmap <buffer><C-o> o
-    nmap <buffer><C-i> O
+  " Your favorite configuration here
+  " For example, set go back/forward history to <C-o>/<C-i>
+  nmap <buffer><ESC> q
+  nmap <buffer><C-o> o
+  nmap <buffer><C-i> O
 endfunction
 autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
 

@@ -7,7 +7,8 @@
   #safecrlf = true
   quotepath = false
   whitespace = cr-at-eol
-  pager = less -R
+  # pager = less -R
+  # pager = delta
   ignorecase = false
 [branch]
   autosetuprebase = always
@@ -67,6 +68,7 @@
   algorithm = histogram
   renames = true
 	noprefix = true
+  colorMoved = zebra
 [include]
   path = ~/.gitconfig.local
 [init]
@@ -75,3 +77,21 @@
   ui = true
 [interactive]
   diffFilter = diff-highlight
+  # diffFilter = delta --color-only
+# [delta]
+#     # features = side-by-side line-numbers decorations
+#     syntax-theme = Solarized(Dark)
+#     plus-style = syntax "#003800"
+#     minus-style = syntax "#3f0001"
+#
+# [delta "decorations"]
+#     commit-decoration-style = bold yellow box ul
+#     file-style = bold yellow ul
+#     file-decoration-style = none
+#     hunk-header-decoration-style = cyan box ul
+#
+# [delta "line-numbers"]
+#     line-numbers-left-style = cyan
+#     line-numbers-right-style = cyan
+#     line-numbers-minus-style = 124
+#     line-numbers-plus-style = 28
