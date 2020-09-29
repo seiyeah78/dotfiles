@@ -7,8 +7,8 @@
   #safecrlf = true
   quotepath = false
   whitespace = cr-at-eol
-  # pager = less -R
-  # pager = delta
+  pager = diff-highlight | less
+  # pager = delta --dark
   ignorecase = false
 [branch]
   autosetuprebase = always
@@ -58,17 +58,13 @@
   tool = vimdiff
 [rebase]
   autosquash = false
-[pager]
-  log = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less
 [diff]
   indentHeuristic = true
   compactionHeuristic = true
   algorithm = histogram
   renames = true
-	noprefix = true
-  colorMoved = zebra
+  noprefix = true
+  colorMoved = default
 [include]
   path = ~/.gitconfig.local
 [init]
@@ -76,22 +72,23 @@
 [color]
   ui = true
 [interactive]
-  diffFilter = diff-highlight
-  # diffFilter = delta --color-only
-# [delta]
-#     # features = side-by-side line-numbers decorations
-#     syntax-theme = Solarized(Dark)
-#     plus-style = syntax "#003800"
-#     minus-style = syntax "#3f0001"
-#
-# [delta "decorations"]
-#     commit-decoration-style = bold yellow box ul
-#     file-style = bold yellow ul
-#     file-decoration-style = none
-#     hunk-header-decoration-style = cyan box ul
-#
-# [delta "line-numbers"]
-#     line-numbers-left-style = cyan
-#     line-numbers-right-style = cyan
-#     line-numbers-minus-style = 124
-#     line-numbers-plus-style = 28
+  # diffFilter = diff-highlight
+  diffFilter = delta --color-only
+[delta]
+  # diff-highlight = true
+  features = side-by-side line-numbers decorations
+  syntax-theme = OneHalfDark
+  plus-style = syntax "#003800"
+  minus-style = syntax "#3f0001"
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+  line-numbers-left-style = cyan
+  line-numbers-right-style = cyan
+  line-numbers-minus-style = 124
+  line-numbers-plus-style = 28
