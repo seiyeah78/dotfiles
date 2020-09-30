@@ -5,6 +5,7 @@
   "tsserver.npm": "/usr/local/bin/npm",
   "tsserver.enableJavascript": true,
   "tsserver.enable": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "solargraph.checkGemVersion": false,
   "solargraph.commandPath": "/usr/local/lib/ruby/gems/2.7.0/bin/solargraph",
   "solargraph.diagnostics": false,
