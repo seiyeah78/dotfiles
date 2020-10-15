@@ -34,6 +34,7 @@ zinit ice wait=0 lucid; zinit light zsh-users/zsh-completions
 zinit ice wait=0 lucid; zinit light b4b4r07/emoji-cli
 zinit ice wait=0 lucid; zinit light skywind3000/z.lua
 zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
+zinit ice wait=0 lucid as"program" pick="bin/git-fuzzy"; zinit light bigH/git-fuzzy
 # zinit ice wait=0 lucid; zinit light wfxr/forgit
 
 zinit ice wait=0 lucid atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
@@ -57,7 +58,7 @@ zinit ice depth=1 atload'source ~/.p10k.zsh'
 zinit light romkatv/powerlevel10k
 
 # use env language manager
-eval "$(anyenv init -)"
+eval "$(anyenv init - --no-rehash)"
 
 # use hub
 eval "$(hub alias -s)"
@@ -77,7 +78,7 @@ alias ls='ls -G'
 
 alias fig='docker-compose'
 alias agl="ag --pager='less -R'"
-
+alias k9s="LC_CTYPE=en_US.UTF-8 k9s"
 alias ctags="`brew --prefix`/bin/ctags"
 
 ###### git alias ######
@@ -116,6 +117,7 @@ bindkey '\e[3~' delete-char
 
 # include other zshrc files
 [ -f ~/dotfiles/include_zshrc/zshrc_commands ] && source ~/dotfiles/include_zshrc/zshrc_commands
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 HISTFILE=~/.zsh_history
 HISTSIZE=100000

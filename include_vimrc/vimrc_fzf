@@ -41,8 +41,7 @@ nnoremap <silent> <leader>RG  :Rg <C-R><C-A><CR>
 xnoremap <silent> <leader>rg  y:Rg <C-R>"<CR>
 
 " :Filesによる表示の変更
-let g:fzf_files_options =
-      \ '-i --tiebreak=end,index --preview "(bat {-1} || rougify {-1} || ccat {-1} || cat {-1}) 2> /dev/null"'
+let g:fzf_files_options = '-i --tiebreak=end,index ' .$FZF_PREVIEW_OPTS
 let g:fzf_buffers_jump = 1
 
 autocmd VimEnter * nnoremap <silent><expr><leader>F (expand('%') =~ 'NERD_tree' ? "\<C-W>\<C-W>" : '').':FilesMru'.(!empty(expand('<cword>')) ? '--query='.expand('<cword>') : '').'<CR>'
@@ -155,9 +154,11 @@ command! -nargs=* BacklogIssues call fzf#run({
 
 function! s:yank_list()
   redir => ys
-  silent Yanks
+  " silent :Yanks
+  " redir END
+  silent call s:all_yanks()
   redir END
-  return split(ys, '\n')[1:]
+  return split(substitute(ys, '\^M', '\\\\\\n', 'g'), '\n')[1:]
 endfunction
 
 function! s:yank_handler(reg)
@@ -172,9 +173,22 @@ endfunction
 command! FZFYank call fzf#run({
 \ 'source': <sid>yank_list(),
 \ 'sink': function('<sid>yank_handler'),
-\ 'options': '-m --prompt="FZFYank> "',
+\ 'options': '-m --prompt="FZFYank> " --preview="echo -e {2..}"',
 \ 'down':    '40%'
 \ })
 
 nnoremap <C-Y><C-Y> :<C-U>FZFYank<CR>
 inoremap <C-Y><C-Y> <C-O>:<C-U>FZFYank<CR>
+
+function! s:all_yanks()
+  let i = 0
+  for msg in EasyClip#Yank#EasyClipGetAllYanks()
+    let index = printf("%-4d", i)
+    let line = substitute(msg.text, '\V\n', '^M', 'g')
+    echohl Directory | echo  index
+    echohl None      | echon line
+    echohl None
+    let i += 1
+  endfor
+endfunction
+

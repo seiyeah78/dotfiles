@@ -35,13 +35,13 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow --no-me
 export FZF_DEFAULT_OPTS="
   --reverse
   --tiebreak=index
-  --color bg+:239
-  --color pointer:168,marker:168
-  --no-unicode
+  --color=bg+:239,pointer:168,marker:168
+  --bind=alt-k:preview-up,alt-j:preview-down
 "
-export FZF_CTRL_R_OPTS="-i --sort --prompt 'HISTORY> '"
+export FZF_PREVIEW_OPTS="--preview='(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null'"
+export FZF_CTRL_R_OPTS="$FZF_DEFAULT_OPTS -i --sort --prompt 'HISTORY> '"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--ansi --prompt 'FILES> ' --preview '(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null'"
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS $FZF_PREVIEW_OPTS --ansi --prompt 'FILES> '"
 export FZF_TMUX=1
 export FZF_TMUX_OPTS='-p70%,50%'
 
