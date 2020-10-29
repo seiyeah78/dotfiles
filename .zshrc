@@ -35,6 +35,8 @@ zinit ice wait=0 lucid; zinit light b4b4r07/emoji-cli
 zinit ice wait=0 lucid; zinit light skywind3000/z.lua
 zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
 zinit ice wait=0 lucid as"program" pick="bin/git-fuzzy"; zinit light bigH/git-fuzzy
+zinit ice wait=0 lucid as"program" cp"chrome-tab-activate -> fca" pick="fca"; zinit light Rasukarusan/fzf-chrome-active-tab
+zinit ice wait=0 lucid as"program" pick="chromeHistory.sh"; zinit light Rasukarusan/fzf-chrome-history
 # zinit ice wait=0 lucid; zinit light wfxr/forgit
 
 zinit ice wait=0 lucid atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
