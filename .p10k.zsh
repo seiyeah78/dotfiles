@@ -38,6 +38,7 @@
       # =========================[ Line #1 ]=========================
       os_icon                 # os identifier
       dir                     # current directory
+      kubecontext
       vcs                     # git status
       # =========================[ Line #2 ]=========================
       newline
@@ -68,7 +69,7 @@
       rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
       rvm                     # ruby version from rvm (https://rvm.io)
       fvm                     # flutter version management (https://github.com/leoafarias/fvm)
-      kubecontext             # current kubernetes context (https://kubernetes.io/)
+      # kubecontext             # current kubernetes context (https://kubernetes.io/)
       terraform               # terraform workspace (https://www.terraform.io)
       aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
       # aws_eb_env            # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
@@ -730,7 +731,7 @@
       # '*test*'  TEST    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
   typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
-  # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='☸️ '
 
   # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext
   # segment. Parameter expansions are very flexible and fast, too. See reference:

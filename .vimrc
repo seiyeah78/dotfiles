@@ -23,6 +23,7 @@ set fileformat=unix
 set vb t_vb=
 set t_Co=256
 set t_ut=
+set t_BE=
 set laststatus=2
 set backspace=indent,eol,start
 set splitbelow
@@ -116,7 +117,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
-  Plug 'Yggdroot/indentLine'
+  Plug 'Yggdroot/indentLine' | Plug 'elzr/vim-json'
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
   Plug 'honza/vim-snippets'
   Plug 'Valloric/ListToggle'
