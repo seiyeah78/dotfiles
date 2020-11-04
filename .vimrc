@@ -169,12 +169,8 @@ call plug#begin('~/.vim/plugged')
 
   " Typescript
   Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
-  Plug 'Quramy/tsuquyomi', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'vue'], 'do': 'npm -g install typescript' }
-  " for tsuquyomi
-  Plug 'Shougo/vimproc.vim', {'do': 'make' }
-  Plug 'Quramy/tsuquyomi-vue', { 'for': 'vue' }
-  " Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
-  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
+  Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
+  " Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
   Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
 
   " Python
@@ -190,7 +186,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
   " All Syntax
-  let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript']
+  let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
   Plug 'sheerun/vim-polyglot'
 
   " colorschemes plugins
