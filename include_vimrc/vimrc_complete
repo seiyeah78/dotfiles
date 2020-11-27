@@ -15,6 +15,7 @@ let g:coc_global_extensions = [
       \, 'coc-snippets'
       \, 'coc-browser'
       \, 'coc-import-cost'
+      \, 'coc-go'
       \ ]
 " don't give |ins-completion-menu| messages.
 set shortmess+=c

@@ -6,6 +6,7 @@
   "tsserver.enableJavascript": true,
   "tsserver.enable": true,
   "tsserver.maxTsServerMemory": 2000,
+  "tsserver.locale": "ja-jp",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "solargraph.checkGemVersion": false,
   "solargraph.commandPath": "/usr/local/lib/ruby/gems/2.7.0/bin/solargraph",
