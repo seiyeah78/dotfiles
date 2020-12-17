@@ -616,6 +616,13 @@ xmap gs <plug>(scratch-selection-reuse)
 let g:switch_mapping = ''
 function! s:Switching(reverse)
   let opt = a:reverse ? [{'reverse': 1}, "\<C-X>"] : [{}, "\<C-A>"]
+  let char = matchstr(getline('.'), '\%' . col('.') . 'c.')
+
+  if char =~# '^\d\+$'
+    execute "normal! ".opt[1]
+    return
+  endif
+
   if !switch#Switch(opt[0])
     execute "normal! ".opt[1]
   end
