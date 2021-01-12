@@ -46,6 +46,8 @@ let g:lightline.mode_map = {
       \ 't': 'TERM',
       \ }
 
+let g:VM_theme = 'iceblue'
+
 function! IsNotFiles()
   return &ft =~? 'vimfiler\|gundo\|nerdtree\|fugitive.*'
 endfunction

@@ -1,9 +1,9 @@
 " vim: set foldmethod=marker foldlevel=0:
 language en_us
 " set ambiwidth=double
-if exists('$PYENV_ROOT')
-  let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
-  let g:python_host_prog = $PYENV_ROOT . '/versions/neovim2/bin/python'
+if exists('$ASDF_USER_SHIMS')
+  let g:python3_host_prog = $ASDF_USER_SHIMS . '/python3'
+  let g:python_host_prog = $ASDF_USER_SHIMS . '/python2'
 endif
 scriptencoding utf-8
 set ignorecase
@@ -207,13 +207,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'nightsense/snow'
   Plug 'arcticicestudio/nord-vim'
   Plug 'romainl/Apprentice'
-  Plug 'rakr/vim-two-firewatch'
-  Plug 'Nequo/vim-allomancer'
   Plug 'mhartington/oceanic-next'
   Plug 'chriskempson/base16-vim'
   Plug 'haishanh/night-owl.vim'
   Plug 'ayu-theme/ayu-vim'
   Plug 'sainnhe/lightline_foobar.vim'
+  Plug 'sainnhe/sonokai'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -234,26 +233,43 @@ set background=dark
 let base16colorspace=256
 colorscheme iceberg
 " colorscheme base16-default-dark
+" colorscheme base16-material-darker
 " colorscheme OceanicNext
+" colorscheme sonokai
 
 " dim using tmux
-let synid = synIDtrans(hlID('Normal'))
-let g:default_fg = synIDattr(synid, 'fg#')
-let g:default_bg = synIDattr(synid, 'bg#')
 if exists('$TMUX')
-  hi Normal ctermbg=NONE guibg=NONE
-  hi NonText ctermbg=NONE guibg=NONE
-  hi SpecialKey ctermbg=NONE guibg=NONE
-  hi EndOfBuffer ctermbg=NONE guibg=NONE
+  let synid = synIDtrans(hlID('Normal'))
+  let g:default_fg = synIDattr(synid, 'fg#')
+  let g:default_bg = synIDattr(synid, 'bg#')
+
+  function! ReturnHighlightTerm(group)
+  " Store output of group to variable
+    let output = execute('hi ' . a:group)
+    return split(output, 'xxx ')[-1]
+  endfunction
+
+  let s:list = ['Normal', 'NonText', 'SpecialKey', 'EndOfBuffer']
+  let g:background_colors = {}
+  for key in s:list
+    let s:init = ReturnHighlightTerm(key)
+    if(stridx(s:init, 'links to') == -1)
+      let g:background_colors[key] = s:init
+    end
+  endfor
+
+  function! UpdateBackGround(enter)
+    for key in keys(g:background_colors)
+      let l:setting = a:enter ? g:background_colors[key] : 'ctermbg=NONE guibg=NONE'
+      execute('hi ' . key . ' '. l:setting)
+    endfor
+  endfunction
+
+  autocmd FocusGained * call UpdateBackGround(v:true)
+  autocmd FocusLost * call UpdateBackGround(v:false)
 end
 
 if exists("g:colors_name")
-  if g:colors_name == "hybrid"
-    hi NonText    ctermfg=243 guifg=#707880
-    hi VertSplit  ctermfg=243 guifg=#707880
-    hi SignColumn ctermfg=243 guifg=#707880
-    hi Search     guibg=yellowgreen
-  end
   if g:colors_name == "apprentice"
     hi Comment term=bold ctermfg=243 guifg=#707880
   end

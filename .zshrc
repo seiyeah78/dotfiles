@@ -60,7 +60,7 @@ zinit ice depth=1 atload'source ~/.p10k.zsh'
 zinit light romkatv/powerlevel10k
 
 # use env language manager
-eval "$(anyenv init - --no-rehash)"
+source /usr/local/opt/asdf/asdf.sh
 
 # use hub
 eval "$(hub alias -s)"
@@ -130,3 +130,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
 # fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

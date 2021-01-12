@@ -47,11 +47,24 @@ do
   esac
 done
 
+if [ "$(uname)" == 'Darwin' ]; then
+# Command Line Developer Tools
+  xcode-select --print-path > dev/null 2>&1
+  if [ 0 == $? ]; then
+    eecho "Install Command Line Tools..."
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+    PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | cut -d' ' -f2-)
+    softwareupdate -i "$PROD";
+  else
+    eecho "Command Line Developer Tools are already installed!"
+  fi
+fi
+
 if type git > /dev/null 2>&1; then
   if [ -e $DOTPATH ]; then
     eecho "already exists dotfiles."
   else
-    git clone --recursive "git@github.com:seiyeah78/dotfiles.git" "$DOTPATH"
+    git clone --recursive "https://github.com/seiyeah78/dotfiles.git" "$DOTPATH"
   fi
 else
   eecho "git is required"
@@ -79,22 +92,6 @@ do
   ln -snfv "$DOTPATH/$f" "$HOME/$f"
 done
 
-# Command Line Developer Tools
-xcode-select --install > /dev/null 2>&1
-if [ 0 == $? ]; then
-    sleep 1
-    osascript <<EOD
-tell application "System Events"
-    tell process "Install Command Line Developer Tools"
-        keystroke return
-        click button "Agree" of window "License Agreement"
-    end tell
-end tell
-EOD
-else
-  eecho "Command Line Developer Tools are already installed!"
-fi
-
 # Homebrew
 if type brew > /dev/null 2>&1; then
   eecho "Homebrew is already installed!"
@@ -108,18 +105,6 @@ if [ -e Brewfile ]; then
   else
     eecho "Skip install brew formula."
   fi
-fi
-
-# install anyenv
-if type git > /dev/null 2>&1; then
-  plugin_dir=$(anyenv root)/plugins
-  mkdir -p $plugin_dir
-  plugin_repos=("rbenv/rbenv-default-gems" "amashigeseiji/anyenv-lazyload" "znz/anyenv-update" "znz/anyenv-git")
-
-  for p in ${plugin_repos[@]}
-  do
-    git clone https://github.com/$p.git $plugin_dir/${p##*/}
-  done
 fi
 
 exec $SHELL -l
