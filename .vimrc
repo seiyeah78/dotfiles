@@ -180,6 +180,7 @@ call plug#begin('~/.vim/plugged')
   " Markdown
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
   Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown'] }
+  Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
   Plug 'rhysd/vim-gfm-syntax', { 'for': ['markdown'] }
 
   " Go
@@ -442,9 +443,11 @@ let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 
 " ------------ markdown setting ----------
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
+let g:vmt_fence_text = 'TOC'
+let g:vmt_fence_close_text = '/TOC'
+let g:vmt_fence_hidden_markdown_style = 'GFM'
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
-
 
 " ------------ ctag setting ------------
 let g:tagbar_width = 30

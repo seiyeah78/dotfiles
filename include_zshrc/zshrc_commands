@@ -255,6 +255,10 @@ function servers {
   esac
 }
 
+function kube_current_images() {
+  kubectl get pods --all-namespaces -o=jsonpath='{range .items[*]}{"\n"}{.metadata.name}{":\t"}{range .spec.containers[*]}{.image}{", "}{end}{end}' | sort | grep ${1:=" "} --color=auto
+}
+
 # e.g
 # openpr (no args)         => open current branch pull-request.
 # openpr number (e.g. 123) => open pull-request using hub. (e.g. pull/123 )
