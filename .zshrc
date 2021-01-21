@@ -37,6 +37,7 @@ zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
 zinit ice wait=0 lucid as"program" pick="bin/git-fuzzy"; zinit light bigH/git-fuzzy
 zinit ice wait=0 lucid as"program" cp"chrome-tab-activate -> fca" pick="fca"; zinit light Rasukarusan/fzf-chrome-active-tab
 zinit ice wait=0 lucid as"program" pick="chromeHistory.sh"; zinit light Rasukarusan/fzf-chrome-history
+zinit ice wait=0 lucid atload"source completions/_asdf"; zinit light asdf-vm/asdf
 # zinit ice wait=0 lucid; zinit light wfxr/forgit
 
 zinit ice wait=0 lucid atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
@@ -58,9 +59,6 @@ zinit ice wait=0 lucid; zinit snippet OMZ::plugins/common-aliases/common-aliases
 # prompt theme
 zinit ice depth=1 atload'source ~/.p10k.zsh'
 zinit light romkatv/powerlevel10k
-
-# use env language manager
-source /usr/local/opt/asdf/asdf.sh
 
 # use hub
 eval "$(hub alias -s)"

@@ -9,7 +9,7 @@
   "tsserver.locale": "ja-jp",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "solargraph.checkGemVersion": false,
-  "solargraph.commandPath": "/usr/local/lib/ruby/gems/2.7.0/bin/solargraph",
+  "solargraph.commandPath": "/Users/se-ya/.asdf/shims/solargraph",
   "solargraph.diagnostics": false,
   "solargraph.references": true,
   "importCost.typescriptExtensions": [
