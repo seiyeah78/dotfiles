@@ -167,5 +167,6 @@
         "Folded",
         "FoldColumn"
     ],
-    "vscode-neovim.logLevel": "debug"
+    "vscode-neovim.logLevel": "debug",
+    "workbench.list.automaticKeyboardNavigation": false
 }

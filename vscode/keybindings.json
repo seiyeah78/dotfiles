@@ -186,4 +186,45 @@
       "key": "g a",
       "command": "git.stage",
       "when": "editorTextFocus && vim.mode == 'Normal'"
+  },
+  // --------------------------------------------------
+  // エクスプローラ操作（各種ファイル操作)
+  // ※一度のアクションではできないないので、mc→mpなどで代用。
+  // --------------------------------------------------
+  // リネーム
+  {
+    "key": "m r",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  // コピー
+  {
+      "key": "m c",
+      "command": "filesExplorer.copy",
+      "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  // ペースト
+  {
+      "key": "m p",
+      "command": "filesExplorer.paste",
+      "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  // ファイル追加
+  {
+      "key": "m a",
+      "command": "explorer.newFile",
+      "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  // 削除
+  {
+      "key": "m d",
+      "command": "deleteFile",
+      "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  // フォルダ追加
+  {
+      "key": "m f",
+      "command": "explorer.newFolder",
+      "when": "explorerViewletVisible && filesExplorerFocus"
   }
+]
