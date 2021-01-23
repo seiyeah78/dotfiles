@@ -1,1 +1,3 @@
-source ~/dotfiles/.vimrc
+if !exists('g:vscode')
+  source ~/.vimrc
+end

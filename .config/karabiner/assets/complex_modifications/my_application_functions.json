@@ -381,8 +381,7 @@
                 "^co\\.zeit\\.hyperterm$",
                 "^co\\.zeit\\.hyper$",
                 "^com\\.googlecode\\.iterm2$",
-                "^io\\.alacritty$",
-                "^org.pqrs.Karabiner.*"
+                "^io\\.alacritty$"
               ],
               "type": "frontmost_application_unless"
             }

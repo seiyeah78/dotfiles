@@ -753,7 +753,8 @@
                                             "^co\\.zeit\\.hyper$",
                                             "^com\\.googlecode\\.iterm2$",
                                             "^io\\.alacritty$",
-                                            "^org.pqrs.Karabiner.*"
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^org\\.pqrs\\.Karabiner.*"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }

@@ -1,117 +1,13 @@
 // 既定値を上書きするには、このファイル内にキー バインドを挿入します
 // https://optimistic-khorana-d23568.netlify.com/
 [
-  // 削除はctrlとhで
-  {
-    "key": "ctrl+h",
-    "command": "extension.vim_backspace",
-    "when": "editorTextFocus && vim.mode == 'Insert'"
-  },
-
-  // コメントアウトをtcomment_vimのデフォルトと同じにする
-  {
-    "key": "ctrl+- ctrl+-",
-    "command": "editor.action.commentLine",
-    "when": "editorTextFocus && vim.active"
-  },
-  {
-    "key": "ctrl+j",
-    "command": "workbench.action.focusBelowGroup",
-    "when": "editorTextFocus && !inQuickOpen && !terminalFocus && vim.active && vim.mode == 'Normal'"
-  },
-  {
-    "key": "ctrl+k",
-    "command": "workbench.action.focusAboveGroup",
-    "when": "editorTextFocus && !inQuickOpen && !terminalFocus && vim.active && vim.mode == 'Normal'"
-  },
-  // spaceをprefixにしてなにかする
-  // 保存
-  {
-    "key": "[space] [space]",
-    "command": "workbench.action.files.save",
-    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
-  },
   {
     "key": "cmd+[",
     "command": "workbench.action.navigateBack"
   },
   {
-    "key": "ctrl+-",
-    "command": "-workbench.action.navigateBack"
-  },
-  {
     "key": "cmd+]",
     "command": "workbench.action.navigateForward"
-  },
-
-  {
-    "key": "ctrl+shift+-",
-    "command": "-workbench.action.navigateForward"
-  },
-  {
-    "key": "ctrl+alt+down",
-    "command": "editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "alt+cmd+down",
-    "command": "commandId",
-    "when": "editorTextFocus"
-  }
-  ,{
-    "key": "alt+down",
-    "command": "-editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+alt+up",
-    "command": "editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "alt+up",
-    "command": "-editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+shift+down",
-    "command": "editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "cmd+k",
-    "command": "commandId",
-    "when": "editorTextFocus"
-  },{
-    "key": "alt+cmd+down",
-    "command": "-editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+up",
-    "command": "editor.action.insertCursorAbove",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+cmd+up",
-    "command": "-editor.action.insertCursorAbove",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+cmd+down",
-    "command": "workbench.action.focusNextGroup"
-  },
-  {
-    "key": "cmd+k cmd+right",
-    "command": "-workbench.action.focusNextGroup"
-  },
-  {
-    "key": "alt+cmd+up",
-    "command": "workbench.action.focusPreviousGroup"
-  },
-  {
-    "key": "cmd+k cmd+left",
-    "command": "-workbench.action.focusPreviousGroup"
   },
   //  エスケープ設定
   ////////////////////////////////////////////
@@ -148,14 +44,6 @@
       "when": "!searchInputBoxFocus && !terminalFocus"
   },
 
-  // エディターとエディターの移動
-  {
-      "key": "ctrl+h",
-      "command": "workbench.action.previousEditor",
-      "when": "editorTextFocus && vim.mode == 'Normal'"
-  },
-  ////////////////////////////////////////////
-
   // エスケープ関連
   ////////////////////////////////////////////
   {
@@ -180,19 +68,7 @@
   },
   ////////////////////////////////////////////
 
-  // QuickOpen
-  {
-      "key": "ctrl+p",
-      "command": "workbench.action.quickOpen",
-      "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
-  },
-
   // サジェストの移動、確定
-  ////////////////////////////////////////////
-//   {
-//       "key": "ctrl+k",
-//       "command": "acceptSelectedSuggestion"
-//   },
   {
       "key": "ctrl+n",
       "command": "selectNextSuggestion",
@@ -257,84 +133,6 @@
       "command": "jumpToPrevSnippetPlaceholder",
       "when": "editorTextFocus && hasPrevTabstop && inSnippetMode"
   },
-  ////////////////////////////////////////////
-
-  // ツリービュー系
-  ////////////////////////////////////////////
-  {
-    "key": "Enter",
-    "command": "explorer.openToSide",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder"
-  },
-  {
-    "key": "ctrl+s",
-    "command": "explorer.openToSide",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder"
-  },
-  {
-    "key": "Enter",
-    "command": "list.toggleExpand",
-    "when": "explorerViewletFocus && explorerViewletVisible && explorerResourceIsFolder"
-  },
-  {
-    "key": "l",
-    "command": "list.toggleExpand",
-    "when": "explorerViewletFocus && explorerViewletVisible && explorerResourceIsFolder"
-  },
-  // --------------------------------------------------
-  // エクスプローラ操作（各種ファイル操作)
-  // ※一度のアクションではできないないので、mc→mpなどで代用。
-  // --------------------------------------------------
-  // リネーム
-  {
-    "key": "m r",
-    "command": "renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  // コピー
-  {
-      "key": "m c",
-      "command": "filesExplorer.copy",
-      "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  // ペースト
-  {
-      "key": "m p",
-      "command": "filesExplorer.paste",
-      "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  // ファイル追加
-  {
-      "key": "m a",
-      "command": "explorer.newFile",
-      "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  // 削除
-  {
-      "key": "m d",
-      "command": "deleteFile",
-      "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  // フォルダ追加
-  {
-      "key": "m f",
-      "command": "explorer.newFolder",
-      "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  ////////////////////////////////////////////
-
-  // グローバルコマンド
-  // デバッグモード
-  ////////////////////////////////////////////
-  {
-      "key": "ctrl+o ctrl+d",
-      "command": "workbench.view.debug"
-  },
-  {
-      "key": "ctrl+o d",
-      "command": "workbench.view.debug"
-  },
-  ////////////////////////////////////////////
 
   // バージョン管理
   ////////////////////////////////////////////
@@ -348,19 +146,6 @@
   },
   ////////////////////////////////////////////
 
-  // エクスプローラーのトグル
-  ////////////////////////////////////////////
-  {
-      "key": "[IntlYen] v",
-      "command": "workbench.view.explorer",
-      "when": "!explorerViewletVisible && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
-  },
-  {
-      "key": "[IntlYen] v",
-      "command": "workbench.action.toggleSidebarVisibility",
-      "when": "explorerViewletVisible && !searchViewletVisible && !inDebugMode && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
-
-  },
   ////////////////////////////////////////////
 
   // コマンドパレット
@@ -381,21 +166,6 @@
       "key": "ctrl+o v",
       "command": "workbench.action.quickOpenView"
   },
-  ////////////////////////////////////////////
-
-  // エディター以外のviewからエディターへの移動
-  ////////////////////////////////////////////
-  {
-      "key": "ctrl+l",
-      "command": "workbench.action.nextEditor",
-      "when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl&& vim.mode != 'Insert'"
-  },
-  {
-    "key": "ctrl+w s",
-    "command": "workbench.action.splitEditorOrthogonal",
-    "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
-  },
-
   // ターミナルのトグル
   ////////////////////////////////////////////
   {
@@ -416,9 +186,4 @@
       "key": "g a",
       "command": "git.stage",
       "when": "editorTextFocus && vim.mode == 'Normal'"
-  },
-  {
-      "key": "g g",
-      "command": "cursorTop",
-      "when": "editorTextFocus && vim.mode == 'Normal'"
-  },
+  }
