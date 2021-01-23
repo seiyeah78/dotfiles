@@ -187,6 +187,28 @@
       "command": "git.stage",
       "when": "editorTextFocus && vim.mode == 'Normal'"
   },
+  // ツリービュー系
+  ////////////////////////////////////////////
+  {
+    "key": "Enter",
+    "command": "explorer.openToSide",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder"
+  },
+  {
+    "key": "ctrl+s",
+    "command": "explorer.openToSide",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder"
+  },
+  {
+    "key": "Enter",
+    "command": "list.toggleExpand",
+    "when": "explorerViewletFocus && explorerViewletVisible && explorerResourceIsFolder"
+  },
+  {
+    "key": "l",
+    "command": "list.toggleExpand",
+    "when": "explorerViewletFocus && explorerViewletVisible && explorerResourceIsFolder"
+  },
   // --------------------------------------------------
   // エクスプローラ操作（各種ファイル操作)
   // ※一度のアクションではできないないので、mc→mpなどで代用。
