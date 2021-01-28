@@ -53,3 +53,4 @@ export GIST_USER=seiyeah78
 if [ -e ~/.zshenv.local ]; then
   source ~/.zshenv.local
 fi
+source "$HOME/.cargo/env"

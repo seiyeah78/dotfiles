@@ -168,7 +168,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'noahfrederick/vim-laravel', { 'for': 'php', 'do': 'composer install' }
 
   " Typescript
-  Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
+  " Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
   " Plug 'herringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'typescript', 'jsx', 'tsx', 'typescript.tsx', 'typescriptreact'] }
   " Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
   " Plug 'MaxMEllon/vim-jsx-pretty', { 'for': ['typescript', 'typescript.tsx', 'typescriptreact', 'tsx'] }
@@ -186,10 +186,17 @@ call plug#begin('~/.vim/plugged')
   " Go
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
+  " Rust
+  Plug 'rust-lang/rust.vim', { 'for': 'rust', 'do': 'rustup component add rls rust-analysis rust-src rustfmt' }
+  let g:rust_clip_command = 'pbcopy'
+
   " All Syntax
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  " let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
-  " Plug 'sheerun/vim-polyglot'
+  if has('nvim-0.5')
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  else
+    " let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
+    Plug 'sheerun/vim-polyglot'
+  endif
 
   " colorschemes plugins
   Plug 'edkolev/tmuxline.vim'

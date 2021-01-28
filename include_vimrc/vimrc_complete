@@ -13,7 +13,7 @@ let g:coc_global_extensions = [
       \, 'coc-solargraph'
       \, 'coc-python'
       \, 'coc-snippets'
-      \, 'coc-browser'
+      \, 'coc-rls'
       \, 'coc-import-cost'
       \, 'coc-go'
       \ ]
