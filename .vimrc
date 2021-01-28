@@ -87,8 +87,8 @@ if has('vim_starting')
 endif
 
 if !has('gui_running')
-  " set lazyredraw
-  " set ttyfast
+  set lazyredraw
+  set ttyfast
 endif
 
 " Setting Vim-Plug
@@ -187,8 +187,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
   " All Syntax
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
-  Plug 'sheerun/vim-polyglot'
+  " Plug 'sheerun/vim-polyglot'
 
   " colorschemes plugins
   Plug 'edkolev/tmuxline.vim'
@@ -213,6 +214,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ayu-theme/ayu-vim'
   Plug 'sainnhe/lightline_foobar.vim'
   Plug 'sainnhe/sonokai'
+  Plug 'sainnhe/forest-night'
 
   " lint engine
   Plug 'w0rp/ale'
@@ -231,11 +233,12 @@ set noshowmode
 
 set background=dark
 let base16colorspace=256
-colorscheme iceberg
+" colorscheme iceberg
 " colorscheme base16-default-dark
 " colorscheme base16-material-darker
 " colorscheme OceanicNext
 " colorscheme sonokai
+colorscheme night-owl
 
 " dim using tmux
 if exists('$TMUX')

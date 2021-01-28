@@ -1,3 +1,3 @@
 if !exists('g:vscode')
-  source ~/.vimrc
+  source <sfile>:h:h:h/.vimrc
 end
