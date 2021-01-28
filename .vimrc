@@ -249,17 +249,13 @@ colorscheme night-owl
 
 " dim using tmux
 if exists('$TMUX')
-  let synid = synIDtrans(hlID('Normal'))
-  let g:default_fg = synIDattr(synid, 'fg#')
-  let g:default_bg = synIDattr(synid, 'bg#')
-
   function! ReturnHighlightTerm(group)
   " Store output of group to variable
     let output = execute('hi ' . a:group)
     return split(output, 'xxx ')[-1]
   endfunction
 
-  let s:list = ['Normal', 'NonText', 'SpecialKey', 'EndOfBuffer']
+  let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer']
   let g:background_colors = {}
   for key in s:list
     let s:init = ReturnHighlightTerm(key)
@@ -466,14 +462,6 @@ let g:EasyClipYankHistorySize = 200
 
 let g:indentLine_faster = 1
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
-
-" ------------ markdown setting ----------
-let g:netrw_nogx = 1 " disable netrw's gx mapping.
-let g:vmt_fence_text = 'TOC'
-let g:vmt_fence_close_text = '/TOC'
-let g:vmt_fence_hidden_markdown_style = 'GFM'
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
 
 " ------------ ctag setting ------------
 let g:tagbar_width = 30
