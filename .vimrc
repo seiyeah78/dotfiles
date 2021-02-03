@@ -106,6 +106,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
+  Plug 'seiyeah78/coc-fzf', { 'branch': 'feature-fix-no-syntax-bug' }
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
