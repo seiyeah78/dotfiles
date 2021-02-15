@@ -41,7 +41,6 @@ zinit ice wait=0 lucid atload"source completions/_asdf"; zinit light asdf-vm/asd
 # zinit ice wait=0 lucid; zinit light wfxr/forgit
 
 zinit ice wait=0 lucid atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
-zinit ice wait=0 lucid; zinit snippet --command "$GIT_DIFF_HIGHLIGHT/diff-highlight"
 zinit wait=0 lucid notify light-mode \
   atinit="ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
   atload="FAST_HIGHLIGHT_STYLES[path]=none\
