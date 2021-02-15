@@ -354,7 +354,9 @@
                 "^co\\.zeit\\.hyper$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.pqrs\\.Karabiner\\.*",
-                "^com\\.microsoft\\.VSCode$"
+                "^com\\.apple\\.Terminal$",
+                "^com\\.microsoft\\.VSCode$",
+                "^io\\.alacritty$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -381,6 +383,9 @@
                 "^co\\.zeit\\.hyperterm$",
                 "^co\\.zeit\\.hyper$",
                 "^com\\.googlecode\\.iterm2$",
+                "^org\\.pqrs\\.Karabiner\\.*",
+                "^com\\.apple\\.Terminal$",
+                "^com\\.microsoft\\.VSCode$",
                 "^io\\.alacritty$"
               ],
               "type": "frontmost_application_unless"
