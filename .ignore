@@ -2,6 +2,8 @@
 .git/
 .vim/plugged
 .vim/undodir
+.venv/
+.terraform/
 public/packs/
 public/packs-test/
 node_modules/

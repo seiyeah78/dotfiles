@@ -106,7 +106,7 @@ call plug#begin('~/.vim/plugged')
   endif
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
-  Plug 'seiyeah78/coc-fzf', { 'branch': 'feature-fix-no-syntax-bug' }
+  Plug 'antoinemadec/coc-fzf'
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -176,7 +176,7 @@ call plug#begin('~/.vim/plugged')
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-  Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
+  " Plug 'lambdalisue/vim-pyenv', { 'for': ['python', 'python3'] }
 
   " Markdown
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
@@ -191,12 +191,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'rust-lang/rust.vim', { 'for': 'rust', 'do': 'rustup component add rls rust-analysis rust-src rustfmt' }
   let g:rust_clip_command = 'pbcopy'
 
+  Plug 'sheerun/vim-polyglot'
   " All Syntax
   if has('nvim-0.5')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   else
     " let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
-    Plug 'sheerun/vim-polyglot'
+    " Plug 'sheerun/vim-polyglot'
   endif
 
   " colorschemes plugins

@@ -110,7 +110,7 @@ fi
 # asdf plugins
 local langs=("python ruby nodejs")
 
-for l in langs
+for l in $langs
 do
   asdf plugin-add $l
   asdf install $l latest

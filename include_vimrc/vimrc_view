@@ -10,6 +10,7 @@ lua << EOF
         'toml',
         'c_sharp',
         'vue',
+        'bash'
       }
     },
   }

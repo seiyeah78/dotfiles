@@ -13,6 +13,7 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 export BAT_CONFIG_PATH="$HOME/dotfiles/bat/setting.conf"
+export PIPENV_VENV_IN_PROJECT=1
 
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export LESS='-R'

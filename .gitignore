@@ -14,6 +14,7 @@ projections.json
 .ignore
 .envrc
 .solargraph.yml
+pyrightconfig.json
 vendor/
 .config/coc/
 .vim/plugged/
