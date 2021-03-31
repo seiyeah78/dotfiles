@@ -136,3 +136,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval $(thefuck --alias)
