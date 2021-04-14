@@ -12,9 +12,16 @@ lua << EOF
         'c_sharp',
         'vue',
         'bash',
-        'haskell'
+        'haskell',
+        'yaml'
       }
     },
+    indent = {
+      enable = true,
+      disable = {
+        python
+      }
+    }
   }
 EOF
 endif

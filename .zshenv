@@ -33,12 +33,18 @@ $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
 # .ignoreファイルで無視リストを作成できる
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow --no-messages --ignore-file ~/.ignore'
-
+term_name=$(lsappinfo info -only name `lsappinfo front` | cut -d'=' -f2 | xargs)
+if [ $term_name = "Alacritty" ]; then
+  no_unicode="--no-unicode"
+else
+  no_unicode=""
+fi
 export FZF_DEFAULT_OPTS="
   --reverse
   --tiebreak=index
   --color=bg+:239,pointer:168,marker:168
   --bind=alt-k:preview-up,alt-j:preview-down
+  ${no_unicode}
 "
 export FZF_PREVIEW_OPTS="--preview='(bat {-1} || rougify {-1} || ccat {-1} | cat {-1}) 2> /dev/null'"
 export FZF_CTRL_R_OPTS="$FZF_DEFAULT_OPTS -i --sort --prompt 'HISTORY> '"

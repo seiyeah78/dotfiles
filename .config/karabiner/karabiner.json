@@ -726,7 +726,8 @@
                                             "^com\\.googlecode\\.iterm2$",
                                             "^org\\.pqrs\\.Karabiner\\.*",
                                             "^com\\.apple\\.Terminal$",
-                                            "^com\\.microsoft\\.VSCode$"
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^io\\.alacritty$"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -755,7 +756,8 @@
                                             "^com\\.googlecode\\.iterm2$",
                                             "^org\\.pqrs\\.Karabiner\\.*",
                                             "^com\\.apple\\.Terminal$",
-                                            "^com\\.microsoft\\.VSCode$"
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^io\\.alacritty$"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
