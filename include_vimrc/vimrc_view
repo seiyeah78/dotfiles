@@ -13,13 +13,14 @@ lua << EOF
         'vue',
         'bash',
         'haskell',
-        'yaml'
+        'yaml',
+        'python'
       }
     },
     indent = {
       enable = true,
       disable = {
-        python
+        'python'
       }
     }
   }
