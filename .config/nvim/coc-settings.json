@@ -28,5 +28,8 @@
   "highlight.document.enable": true,
   "highlight.colors.enable": true,
   "highlight.disableLanguages": ["php","vim", "fugitive"],
-  "phpactor.path": "~/.vim/plugged/phpactor/bin/phpactor"
+  "phpactor.path": "~/.vim/plugged/phpactor/bin/phpactor",
+  "snippets.extends": {
+    "gitcommit": ["markdown"]
+  }
 }
