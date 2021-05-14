@@ -49,7 +49,7 @@
 
   #カレントブランチとリモートのコミットの差分だけをlogで出力
   lcu = !git log $(git tracking-branch)..
-  dcu = !git diff $(git tracking-branch)..
+  dcu = !git diff $(git tracking-branch)...
   fp = fetch --prune
   rbi = rebase -i
   resetcu = !git lcu --oneline | grep -c '' | xargs -I % git reset HEAD~%
