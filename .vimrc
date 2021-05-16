@@ -117,7 +117,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-obsession'
   Plug 'tpope/vim-endwise'
-  Plug 'Yggdroot/indentLine' | Plug 'elzr/vim-json'
+  Plug 'elzr/vim-json'
+  if has('nvim-0.5')
+    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+  else
+    Plug 'Yggdroot/indentLine' | Plug 'lukas-reineke/indent-blankline.nvim'
+  endif
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
   Plug 'honza/vim-snippets'
   Plug 'Valloric/ListToggle'
