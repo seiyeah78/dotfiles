@@ -45,9 +45,10 @@
     "pullrequest": ["markdown"]
   },
   "coc.preferences.jumpCommand": "drop",
+  "pyright.organizeimports.provider": "isort",
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
-  "pyright.organizeimports.provider": "isort"
+  "rust-analyzer.lens.run": false
 }
 
