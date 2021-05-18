@@ -178,6 +178,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
   let g:semshi#error_sign = v:false
+  let g:semshi#tolerate_syntax_errors = v:false
+  let g:semshi#excluded_hl_groups = ['local', 'unresolved', 'attribute', 'builtin', 'free', 'global']
 
   " Markdown
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
@@ -193,11 +195,10 @@ call plug#begin('~/.vim/plugged')
   let g:rust_clip_command = 'pbcopy'
 
   " All Syntax
+  " let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
+  Plug 'sheerun/vim-polyglot'
   if has('nvim-0.5')
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  else
-    " let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
-    Plug 'sheerun/vim-polyglot'
   endif
 
   " colorschemes plugins
@@ -510,20 +511,20 @@ vmap < <gv
 vmap > >gv
 
 " Open current line on GitHub
-nnoremap <Leader>go :Gbrowse<CR>
-vnoremap <Leader>go :Gbrowse<CR>
+nnoremap <Leader>go :GBrowse<CR>
+vnoremap <Leader>go :GBrowse<CR>
 nnoremap <Leader>gv :GV!<CR>
 nnoremap <Leader>ga :AgitFile<CR>
 
 " git add current file
 " noremap <Leader>ga :Gwrite<CR>
-" noremap <Leader>gc :Gcommit<CR>
-" noremap <Leader>gsh :Gpush<CR>
+" noremap <Leader>gc :Git commit<CR>
+" noremap <Leader>gsh :Git push<CR>
 " noremap <Leader>gr :Gremove<CR>
-" noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
+" noremap <Leader>gll :Git pull<CR>
+noremap <Leader>gs :Git<CR>
 noremap <Leader>gF :GFiles?<CR>
-noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gb :Git blame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 nmap ]g <Plug>(GitGutterNextHunk)
 nmap [g <Plug>(GitGutterPrevHunk)
