@@ -4,6 +4,7 @@ au FileType * set tw=0
 
 " 特定のfiletypeではqだけで閉じるようにする
 au FileType help nnoremap <buffer><silent>q :<C-U>q<CR>
+au FileType fugitiveblame nmap <buffer><silent>q gq
 
 function! IsRailsActive()
   return (exists("g:loaded_rails") && g:loaded_rails == 1)

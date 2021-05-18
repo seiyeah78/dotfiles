@@ -65,7 +65,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 function! SplitIfNotOpen(...)
-  echomsg a:000
   let fname = a:1
   let call = ''
   if a:0 == 2

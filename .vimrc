@@ -252,7 +252,7 @@ colorscheme night-owl
 " dim using tmux
 if exists('$TMUX')
   function! ReturnHighlightTerm(group)
-  " Store output of group to variable
+    " Store output of group to variable
     let output = execute('hi ' . a:group)
     return split(output, 'xxx ')[-1]
   endfunction
