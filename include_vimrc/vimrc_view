@@ -175,7 +175,7 @@ if has("autocmd")
     \   exe "normal! g'\"" |
     \ endif
     " git commitのカーソル位置は常に最初
-    autocmd VimEnter FIleType gitcommit normal! gg0
+    autocmd VimEnter FileType gitcommit normal! gg0
     autocmd VimEnter COMMIT_EDITMSG  normal! gg0
   augroup END
 endif

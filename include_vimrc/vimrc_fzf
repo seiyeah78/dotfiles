@@ -193,4 +193,3 @@ function! s:all_yanks()
     let i += 1
   endfor
 endfunction
-

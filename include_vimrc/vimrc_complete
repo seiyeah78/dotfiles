@@ -58,11 +58,33 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> <C-w><C-d> :call CocAction('jumpDefinition', 'split \| drop')<CR>
-nmap <silent> <C-w>d :call CocAction('jumpDefinition', 'split \| drop')<CR>
+nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'CocSplitIfNotOpen')<CR>
+nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'CocSplitIfNotOpen')<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+function! SplitIfNotOpen(...)
+  echomsg a:000
+  let fname = a:1
+  let call = ''
+  if a:0 == 2
+    let fname = a:2
+    let call = a:1
+  endif
+  let bufnum=bufnr(expand(fname))
+  let winnum=bufwinnr(bufnum)
+  if winnum != -1
+    " Jump to existing split
+    exe winnum . "wincmd w"
+  else
+    " Make new split as usual
+    exe call. " " . fname
+  endif
+endfunction
+
+command! -nargs=+ CocSplitIfNotOpen :call SplitIfNotOpen('split', <f-args>)
+command! -nargs=+ CocVSplitIfNotOpen :call SplitIfNotOpen('split', <f-args>)
 
 " Use D for show documentation in preview window
 nnoremap <silent> D :call <SID>show_documentation()<CR>

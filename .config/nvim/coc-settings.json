@@ -25,11 +25,25 @@
   "javascript.referencesCodeLens.enable": false,
   "coc.preferences.colorSupport": true,
   "coc.preferences.useQuickfixForLocations": false,
+  "suggest.highPrioritySourceLimit": 10,
+  "suggest.languageSourcePriority": 99,
+  "snippets.priority": 90,
+  "suggest.lowPrioritySourceLimit": 5,
+  "coc.source.file.priority": 10,
+  "coc.source.around.priority": 10,
+  "coc.source.buffer.priority": 10,
+  "diagnostic.signPriority": 10,
+  "coc.source.tmuxcomplete.priority": 10,
+  "suggest.removeDuplicateItems": true,
   "highlight.document.enable": true,
   "highlight.colors.enable": true,
   "highlight.disableLanguages": ["php","vim", "fugitive"],
   "phpactor.path": "~/.vim/plugged/phpactor/bin/phpactor",
+  "snippets.userSnippetsDirectory": "~/.config/snippets",
   "snippets.extends": {
-    "gitcommit": ["markdown"]
-  }
+    "gitcommit": ["markdown"],
+    "pullrequest": ["markdown"]
+  },
+  "coc.preferences.jumpCommand": "drop"
 }
+
