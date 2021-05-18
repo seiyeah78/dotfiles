@@ -22,8 +22,9 @@ vendor/
 .vim/undodir/
 .vim/plugins.local
 coc-settings.json
-.config/
+.config/*
 .netrwhist
 !.config/nvim/coc-settings.json
+!.config/snippets/
 !my_alt_functions.json
 !my_application_functions.json
