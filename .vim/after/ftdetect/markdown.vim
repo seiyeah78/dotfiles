@@ -7,8 +7,9 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 function! s:ExecGenToc()
-  let &filetype=g:vmt_fence_hidden_markdown_style.'.'.&filetype
+  let l:tmp_filetype=&filetype
+  let &filetype=g:vmt_fence_hidden_markdown_style.'.markdown'
   execute ':GenTocModeline'
-  let &filetype='markdown'
+  let &filetype=l:tmp_filetype
 endfunction
 command! GenToc :call <SID>ExecGenToc()
