@@ -12,5 +12,3 @@ function! s:ExecGenToc()
   let &filetype='markdown'
 endfunction
 command! GenToc :call <SID>ExecGenToc()
-
-let g:NERDTreeMapMenu = 'M'

@@ -176,13 +176,16 @@ call plug#begin('~/.vim/plugged')
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
-  let g:semshi#error_sign = v:false
-  let g:semshi#tolerate_syntax_errors = v:false
-  let g:semshi#excluded_hl_groups = ['local', 'unresolved', 'attribute', 'builtin', 'free', 'global']
+  if has("nvim")
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+    let g:semshi#error_sign = v:false
+    let g:semshi#tolerate_syntax_errors = v:false
+    let g:semshi#excluded_hl_groups = ['local', 'unresolved', 'attribute', 'builtin', 'free', 'global']
+  endif
 
   " Markdown
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
+  Plug 'godlygeek/tabular', { 'for': ['markdown'] }
   Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown'] }
   Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
   Plug 'rhysd/vim-gfm-syntax', { 'for': ['markdown'] }
@@ -534,6 +537,7 @@ let g:NERDTreeChDirMode = 2
 let NERDTreeShowHidden = 1
 let g:NERDTreeWinSize = 25
 let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeMapMenu = 'M'
 
 nnoremap <silent><Leader><S-n><S-n> :NERDTreeToggle<CR>
 nnoremap <silent><Leader><S-n>f :NERDTreeFind<CR>
@@ -658,7 +662,8 @@ for filename in s:vim_dotfiles
   endif
 endfor
 
-let g:targets_nl = 'nN'
+" https://github.com/wellle/targets.vim/issues/257
+let g:targets_nl = ['n', 'N']
 
 function! s:toggle_conceal(arg, is_bang)
   let level = &conceallevel

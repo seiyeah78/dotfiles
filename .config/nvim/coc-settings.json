@@ -44,6 +44,9 @@
     "gitcommit": ["markdown"],
     "pullrequest": ["markdown"]
   },
-  "coc.preferences.jumpCommand": "drop"
+  "coc.preferences.jumpCommand": "drop",
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.diagnostics.disabled": ["unresolved-import"]
 }
 
