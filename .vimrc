@@ -163,10 +163,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 
   " PHP
-  Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
-  Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-  Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
-  Plug 'noahfrederick/vim-laravel', { 'for': 'php', 'do': 'composer install' }
+  " Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
+  " Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+  " Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
+  " Plug 'noahfrederick/vim-laravel', { 'for': 'php', 'do': 'composer install' }
 
   " Typescript
   " Plug 'posva/vim-vue', { 'for': 'vue', 'do': 'npm i -g eslint eslint-plugin-vue' }
