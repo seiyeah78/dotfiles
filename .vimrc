@@ -121,11 +121,10 @@ call plug#begin('~/.vim/plugged')
   if has('nvim-0.5')
     Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
   else
-    Plug 'Yggdroot/indentLine' | Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'Yggdroot/indentLine'
   endif
   Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
   Plug 'honza/vim-snippets'
-  Plug 'Valloric/ListToggle'
   Plug 'thinca/vim-qfreplace'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
@@ -211,27 +210,21 @@ call plug#begin('~/.vim/plugged')
   " colorschemes plugins
   Plug 'edkolev/tmuxline.vim'
   Plug 'gkeep/iceberg-dark'
-  Plug 'jpo/vim-railscasts-theme'
   Plug 'chriskempson/vim-tomorrow-theme'
   Plug 'junegunn/limelight.vim'
   Plug 'junegunn/seoul256.vim'
   Plug 'kristijanhusak/vim-hybrid-material'
-  Plug 'KeitaNakamura/neodark.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'rhysd/vim-color-spring-night'
   Plug 'morhetz/gruvbox'
-  Plug 'tyrannicaltoucan/vim-deep-space'
   Plug 'cocopon/iceberg.vim'
-  Plug 'nightsense/snow'
   Plug 'arcticicestudio/nord-vim'
   Plug 'romainl/Apprentice'
   Plug 'mhartington/oceanic-next'
   Plug 'chriskempson/base16-vim'
   Plug 'haishanh/night-owl.vim'
   Plug 'ayu-theme/ayu-vim'
-  Plug 'sainnhe/lightline_foobar.vim'
   Plug 'sainnhe/sonokai'
-  Plug 'sainnhe/forest-night'
 
   " lint engine
   Plug 'w0rp/ale'
