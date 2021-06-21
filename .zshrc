@@ -40,7 +40,12 @@ zinit ice wait=0 lucid as"program" pick="chromeHistory.sh"; zinit light Rasukaru
 zinit ice wait=0 lucid atload"source completions/_asdf"; zinit light asdf-vm/asdf
 # zinit ice wait=0 lucid; zinit light wfxr/forgit
 
-zinit ice wait=0 lucid atload'_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
+zinit wait=0 lucid light-mode \
+  atload="_zsh_autosuggest_start; \
+  # workaround slowdown history-beginning-search-{forward,backward}-end
+  unset ZSH_AUTOSUGGEST_USE_ASYNC" \
+  for zsh-users/zsh-autosuggestions
+
 zinit wait=0 lucid notify light-mode \
   atinit="ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
   atload="FAST_HIGHLIGHT_STYLES[path]=none\

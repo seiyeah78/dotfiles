@@ -261,7 +261,7 @@ if exists('$TMUX')
     return split(output, 'xxx ')[-1]
   endfunction
 
-  let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer']
+  let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment']
   let g:background_colors = {}
   for key in s:list
     let s:init = ReturnHighlightTerm(key)
@@ -279,6 +279,7 @@ if exists('$TMUX')
 
   autocmd FocusGained * call UpdateBackGround(v:true)
   autocmd FocusLost * call UpdateBackGround(v:false)
+  command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 end
 
 if exists("g:colors_name")

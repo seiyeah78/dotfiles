@@ -73,7 +73,7 @@
   ui = true
 [interactive]
   # diffFilter = diff-highlight
-  diffFilter = delta --color-only
+  # diffFilter = delta --color-only
 [delta]
   # diff-highlight = true
   features = side-by-side line-numbers decorations
