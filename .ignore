@@ -4,6 +4,10 @@
 .vim/undodir
 .venv/
 .terraform/
+.cache/
+.pytest_cache/
+.tox/
+__pycache__
 public/packs/
 public/packs-test/
 node_modules/
