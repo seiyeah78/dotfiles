@@ -2,6 +2,11 @@
 // https://optimistic-khorana-d23568.netlify.com/
 [
   {
+    "key": "ctrl+-",
+    "command": "workbench.action.navigateBack",
+    "when": "vim.mode == 'Normal'"
+  }
+  {
     "key": "cmd+[",
     "command": "workbench.action.navigateBack"
   },
