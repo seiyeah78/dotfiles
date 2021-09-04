@@ -119,7 +119,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   Plug 'elzr/vim-json'
   if has('nvim-0.5')
-    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+    Plug 'lukas-reineke/indent-blankline.nvim'
   else
     Plug 'Yggdroot/indentLine'
   endif

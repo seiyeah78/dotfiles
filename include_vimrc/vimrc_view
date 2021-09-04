@@ -274,9 +274,9 @@ augroup fileTypeIndent
 augroup END
 
 augroup flowLevelSetting
- autocmd!
- autocmd FileType git* setlocal foldlevel=99
- autocmd BufNewFile,BufRead,BufEnter *Agit* if !empty(matchstr(expand('%:t'), "Agit")) | setlocal foldlevel=99 | endif
+  autocmd!
+  autocmd FileType git* setlocal foldlevel=99
+  autocmd BufNewFile,BufRead,BufEnter *Agit* if !empty(matchstr(expand('%:t'), "Agit")) | setlocal foldlevel=99 | endif
 augroup END
 
 " Automatic rename of tmux window
@@ -301,3 +301,21 @@ hi HighlightedyankRegion ctermbg=22 guibg=#005f00
 hi illuminatedWord ctermbg=239 guibg=Gray30
 let g:Illuminate_highlightUnderCursor = 0
 let g:Illuminate_delay = 800
+
+" indent-blankline
+" like VSCode indent-rainbow
+hi IndentBlanklineChar1 guibg=#4E5F00 guifg=#788898 blend=nocombine
+hi IndentBlanklineChar2 guibg=#005A00 guifg=#788898 blend=nocombine
+hi IndentBlanklineChar3 guibg=#53005C guifg=#788898 blend=nocombine
+hi IndentBlanklineChar4 guibg=#004B4F guifg=#788898 blend=nocombine
+hi IndentBlanklineSpaceChar1 guibg=#4E5F00 blend=nocombine
+hi IndentBlanklineSpaceChar2 guibg=#005A00 blend=nocombine
+hi IndentBlanklineSpaceChar3 guibg=#53005C blend=nocombine
+hi IndentBlanklineSpaceChar4 guibg=#004B4F blend=nocombine
+
+" let g:indent_blankline_char = ' '
+let g:indent_blankline_char = '▏'
+let g:indent_blankline_space_char_blankline = " "
+let g:indent_blankline_show_trailing_blankline_indent = v:false
+let g:indent_blankline_char_highlight_list = ['IndentBlanklineChar1', 'IndentBlanklineChar2', 'IndentBlanklineChar3', 'IndentBlanklineChar4']
+let g:indent_blankline_space_char_highlight_list = ['IndentBlanklineSpaceChar1', 'IndentBlanklineSpaceChar2', 'IndentBlanklineSpaceChar3', 'IndentBlanklineSpaceChar4']
