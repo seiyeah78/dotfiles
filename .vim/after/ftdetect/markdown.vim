@@ -1,5 +1,7 @@
 " ------------ markdown setting ----------
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
+let g:mkdp_auto_close = 1
+let g:mkdp_echo_preview_url = 1
 let g:vmt_fence_text = 'TOC'
 let g:vmt_fence_close_text = 'TOC'
 let g:vmt_fence_hidden_markdown_style = 'GFM'

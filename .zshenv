@@ -4,6 +4,7 @@
 GIT_DIFF_HIGHLIGHT="/usr/local/share/git-core/contrib/diff-highlight"
 MYSCRIPT_DIR="/project/macro/scripts"
 OPENSSL_PATH="/usr/local/opt/openssl/bin"
+CURL_PATH="/usr/local/opt/curl/bin"
 MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
 MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
 
@@ -23,9 +24,10 @@ export GTAGSLABEL=pygments
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 # Disable % mark at end
 export PROMPT_EOL_MARK=''
+export ASDF_USER_SHIMS
 
 CORE_PATH="/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
-$OPENSSL_PATH:/usr/local/bin:/usr/local/opt/grep/libexec/gnubin:$MYSCRIPT_DIR/bin:\
+$OPENSSL_PATH:$CURL_PATH:/usr/local/bin:/usr/local/opt/grep/libexec/gnubin:$MYSCRIPT_DIR/bin:\
 $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin:\
 :/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin"
 

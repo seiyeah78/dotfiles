@@ -241,6 +241,12 @@ endif
 
 set noshowmode
 
+augroup CursorLineMod
+  autocmd!
+  autocmd ColorScheme night-owl highlight CursorLine ctermbg=245 guibg=#19313c
+  autocmd ColorScheme night-owl highlight CursorLineNr ctermfg=248 ctermbg=235 guifg=#cfdc61 guibg=#19313c
+augroup END
+
 set background=dark
 let base16colorspace=256
 " colorscheme iceberg
@@ -261,7 +267,11 @@ if exists('$TMUX')
   let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment']
   let g:background_colors = {}
   for key in s:list
-    let s:init = ReturnHighlightTerm(key)
+    try
+      let s:init = ReturnHighlightTerm(key)
+    catch
+      continue
+    endtry
     if(stridx(s:init, 'links to') == -1)
       let g:background_colors[key] = s:init
     end
@@ -286,6 +296,9 @@ if exists("g:colors_name")
 end
 
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
+" disable provider
+let g:loaded_perl_provider = 0
+
 let g:vim_json_syntax_conceal = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0

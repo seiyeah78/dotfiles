@@ -25,15 +25,14 @@ do
       usage
       exit 1
       ;;
-    -b | --skip-brew)
-      SKIP_BREW=1
+    -b | --install-brew)
+      INSTALL_BREW=1
       shift 1
       ;;
-    # -- | -)
-    #   shift 1
-    #   param+=( "$@" )
-    #   break
-    #   ;;
+    --update-commandline-tools)
+      CMDLINE_TOOLS=1
+      shift 1
+      ;;
     -*)
       echo "illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2
       exit 1
@@ -49,12 +48,13 @@ done
 
 if [ "$(uname)" == 'Darwin' ]; then
 # Command Line Developer Tools
-  xcode-select --print-path > dev/null 2>&1
-  if [ 0 == $? ]; then
+  xcode-select --print-path >/dev/null 2>&1
+  if [ 0 != $? ] || [ ! -z "$CMDLINE_TOOLS" ]; then
     eecho "Install Command Line Tools..."
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-    PROD=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | cut -d' ' -f2-)
-    softwareupdate -i "$PROD";
+    PROD=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | cut -d' ' -f2-)
+    eecho "Latest version:  $PROD"
+    softwareupdate -i "$PROD"
   else
     eecho "Command Line Developer Tools are already installed!"
   fi
@@ -89,18 +89,18 @@ do
     # mkdir -p ~/.backup
     # mv "$HOME/$f" ~/.backup
   fi
-  ln -snfv "$DOTPATH/$f" "$HOME/$f"
+  ln -snfv "$DOTPATH/$f" "$HOME"
 done
 
 # Homebrew
-if type brew > /dev/null 2>&1; then
+if type brew >/dev/null 2>&1; then
   eecho "Homebrew is already installed!"
 else
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 if [ -e Brewfile ]; then
-  if [ -z "$SKIP_BREW" ]; then
+  if [ ! -z "$INSTALL_BREW" ]; then
     brew bundle
   else
     eecho "Skip install brew formula."
