@@ -36,21 +36,31 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> for trigger completion.
-inoremap <silent><expr><C-space> coc#refresh()
-" for terminal vim
-imap <silent><C-@> <C-Space>
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Recommended key-mappings.(with auto-pairs.vim)
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 function! s:my_cr_function()
   " 補完が表示されているときは補完の確定、そうでない場合は改行
-  return (pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-R>=AutoPairsReturn()\<CR>\<C-R>=\<C-h>")
+  " return (pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-R>=AutoPairsReturn()\<CR>\<C-R>=\<C-h>")
+  return (pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>")
 endfunction
 
 inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
 let g:VM_maps["I Return"] = s:my_cr_function()
+
+inoremap <expr><S-TAB> pumvisible() ? '\<C-p>' : '\<C-h>'
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -112,22 +122,14 @@ nmap <leader>f <Plug>(coc-format-selected)
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,typescript.tsx,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>as <Plug>(coc-codeaction-selected)
-nmap <leader>as <Plug>(coc-codeaction-selected)
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac <Plug>(coc-codeaction)
@@ -144,11 +146,19 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OrgImport :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Using CocFzfList
 " Show all diagnostics

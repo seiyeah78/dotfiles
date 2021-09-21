@@ -2,8 +2,8 @@
 language en_us
 " set ambiwidth=double
 if exists('$ASDF_USER_SHIMS')
-  let g:python3_host_prog = $ASDF_USER_SHIMS . '/python3'
-  let g:python_host_prog = $ASDF_USER_SHIMS . '/python2'
+  let g:python3_host_prog = $HOME . '/.neovim3/bin/python3'
+  let g:python_host_prog = $HOME . '/.neovim2/bin/python2'
 endif
 scriptencoding utf-8
 set ignorecase
@@ -179,6 +179,7 @@ call plug#begin('~/.vim/plugged')
 
   " Python
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+  Plug 'relastle/vim-nayvy'
   if has("nvim")
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
     let g:semshi#error_sign = v:false
@@ -228,6 +229,9 @@ call plug#begin('~/.vim/plugged')
 
   " lint engine
   Plug 'w0rp/ale'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'folke/trouble.nvim'
+  Plug 'neovim/nvim-lspconfig'
 
   " load another plugins for projects
   if filereadable(glob('~/.vim/plugins.local'))

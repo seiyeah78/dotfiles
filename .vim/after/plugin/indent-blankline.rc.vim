@@ -1,15 +1,9 @@
-" let g:indent_blankline_colorful = 1
-let g:indent_blankline_show_current_context = v:true
-let g:indent_blankline_use_treesitter = v:true
-let g:indent_blankline_viewport_buffer = 1000
-" let g:indent_blankline_vscode_rainbow_mode = 0
-
 let char_highlight_list = []
 let s:indent_blankline_colorful = get(g:, 'indent_blankline_colorful', 0)
 let s:indent_blankline_vscode_rainbow_mode = get(g:, 'indent_blankline_vscode_rainbow_mode', 0)
 
 if(s:indent_blankline_colorful)
-  let g:indent_blankline_show_current_context = v:false
+  " let g:indent_blankline_show_current_context = v:false
   let char_highlight_list_prefix = 'IndentBlanklineChar'
   let space_char_highlight_prefix = 'IndentBlanklineSpaceChar'
 
