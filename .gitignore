@@ -21,6 +21,7 @@ vendor/
 .vim/sessions/
 .vim/undodir/
 .vim/plugins.local
+.ropeproject
 coc-settings.json
 .config/*
 .netrwhist
@@ -29,3 +30,4 @@ coc-settings.json
 !my_alt_functions.json
 !my_application_functions.json
 silicon*
+.tool-versions

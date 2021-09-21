@@ -40,12 +40,15 @@
   "highlight.disableLanguages": ["php","vim", "fugitive"],
   "phpactor.path": "~/.vim/plugged/phpactor/bin/phpactor",
   "snippets.userSnippetsDirectory": "~/.config/snippets",
+  "snippets.snipmate.enable":true,
   "snippets.extends": {
     "gitcommit": ["markdown"],
     "pullrequest": ["markdown"]
   },
   "coc.preferences.jumpCommand": "drop",
   "pyright.organizeimports.provider": "isort",
+  "python.formatting.provider": "black",
+  "python.sortImports.path": "isort",
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-import"],

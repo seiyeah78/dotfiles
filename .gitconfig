@@ -65,6 +65,12 @@
   renames = true
   noprefix = true
   colorMoved = default
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d -c \"wincmd l\" -d \"$LOCAL\" \"$REMOTE\""
 [include]
   path = ~/.gitconfig.local
 [init]
