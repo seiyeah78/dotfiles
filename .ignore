@@ -16,3 +16,8 @@ node_modules/
 tmp/cache/
 public/assets/
 vendor/
+.config/*
+!.config/alacritty
+!.config/nvim
+!.config/snippets
+!.config/karabiner
