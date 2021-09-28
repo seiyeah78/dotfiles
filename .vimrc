@@ -176,7 +176,6 @@ end
 let g:loaded_perl_provider = 0
 
 let g:vim_json_syntax_conceal = 0
-let g:tsuquyomi_disable_quickfix = 1
 let g:pymode_indent = 0
 let g:AutoPairsMapCR = 0
 let g:UltiSnipsUsePythonVersion = 3

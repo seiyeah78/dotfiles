@@ -1,3 +1,3 @@
-Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb' | Plug 'junegunn/gv.vim'
 Plug 'neoclide/vim-node-rpc'
+Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
