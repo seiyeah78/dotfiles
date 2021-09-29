@@ -1,32 +1,3 @@
-if has('nvim-0.5')
-lua << EOF
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ignore_install = { "haskell" },
-    highlight = {
-      enable = true,          -- false will disable the whole extension
-      disable = {
-        'lua',
-        'ruby',
-        'toml',
-        'c_sharp',
-        'vue',
-        'bash',
-        'haskell',
-        'vim',
-        'python'
-      }
-    },
-    indent = {
-      enable = true,
-      disable = {
-        'python',
-        'yaml'
-      }
-    }
-  }
-EOF
-endif
 "============= LightLine settings ==============
 " vim-gitgutter
 let g:gitgutter_sign_added = '✚'

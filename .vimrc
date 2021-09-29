@@ -104,12 +104,15 @@ call plug#begin('~/.vim/plugged')
 
   call s:source_plug('common.rc.vim')
   call s:source_plug(has('nvim') ? 'neovim.rc.vim' : 'vim.rc.vim')
-
   " load another plugins for projects
   if filereadable(glob('~/.vim/plugins.local'))
     execute 'source ~/.vim/plugins.local'
   endif
 call plug#end()
+
+if has('nvim')
+  lua require('plugins')
+endif
 
 if exists("g:vim_first_install")
   execute ":PlugInstall"
