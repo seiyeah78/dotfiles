@@ -3,7 +3,7 @@ language en_us
 " set ambiwidth=double
 if exists('$ASDF_USER_SHIMS')
   let g:python3_host_prog = $HOME . '/.neovim3/bin/python3'
-  let g:python_host_prog = $HOME . '/.neovim2/bin/python2'
+  let g:python_host_prog = $HOME . '/.asdf/shims/python2'
 endif
 scriptencoding utf-8
 set ignorecase
