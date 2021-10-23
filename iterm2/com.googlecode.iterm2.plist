@@ -1064,10 +1064,14 @@
 	<string>DD1C1CC1-2BEC-4B8A-8728-62BA8B4F2037</string>
 	<key>DimInactiveSplitPanes</key>
 	<true/>
+	<key>DisableFullscreenTransparency</key>
+	<false/>
 	<key>EnableAPIServer</key>
 	<true/>
 	<key>EnableDivisionView</key>
 	<true/>
+	<key>EnableProxyIcon</key>
+	<false/>
 	<key>FlashTabBarInFullscreen</key>
 	<true/>
 	<key>GlobalKeyMap</key>
@@ -1224,6 +1228,8 @@
 	<false/>
 	<key>HideActivityIndicator</key>
 	<false/>
+	<key>HideScrollbar</key>
+	<true/>
 	<key>HideTabCloseButton</key>
 	<false/>
 	<key>HideTabNumber</key>
@@ -4083,7 +4089,7 @@
 			<key>Thin Strokes</key>
 			<integer>0</integer>
 			<key>Transparency</key>
-			<real>0.0</real>
+			<real>0.66557978993838596</real>
 			<key>Unicode Normalization</key>
 			<integer>1</integer>
 			<key>Unicode Version</key>
