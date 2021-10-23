@@ -26,7 +26,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tomtom/tcomment_vim'
 Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
 Plug 'wellle/targets.vim'
-Plug 'haya14busa/incsearch.vim' | Plug 'haya14busa/incsearch-easymotion.vim'| Plug 'haya14busa/vim-asterisk'
+Plug 'haya14busa/is.vim' | Plug 'haya14busa/vim-asterisk'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'andymass/vim-matchup'
 Plug 'tyru/open-browser.vim'
@@ -69,7 +69,7 @@ Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'relastle/vim-nayvy'
+" Plug 'relastle/vim-nayvy'
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
@@ -92,7 +92,6 @@ Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'sheerun/vim-polyglot'
 
 " colorschemes plugins
-Plug 'edkolev/tmuxline.vim'
 Plug 'gkeep/iceberg-dark'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'junegunn/limelight.vim'
@@ -107,7 +106,6 @@ Plug 'romainl/Apprentice'
 Plug 'mhartington/oceanic-next'
 Plug 'chriskempson/base16-vim'
 Plug 'haishanh/night-owl.vim'
-Plug 'ayu-theme/ayu-vim'
 Plug 'sainnhe/sonokai'
 
 " lint engine

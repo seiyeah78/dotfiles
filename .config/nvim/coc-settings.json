@@ -12,6 +12,7 @@
   "solargraph.commandPath": "/Users/se-ya/.asdf/shims/solargraph",
   "solargraph.diagnostics": false,
   "solargraph.references": true,
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
   "importCost.typescriptExtensions": [
     "\\.tsx?$"
   ],

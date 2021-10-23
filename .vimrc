@@ -58,6 +58,8 @@ set updatetime=1000
 set tags+=.git/tags
 set shortmess-=S
 set shortmess-=s
+set incsearch
+set hlsearch
 if has("patch-8.1.0360")
   set diffopt=internal,filler,algorithm:histogram,indent-heuristic
 endif
@@ -409,11 +411,6 @@ nnoremap <Leader>gv :GV!<CR>
 nnoremap <Leader>ga :AgitFile<CR>
 
 " git add current file
-" noremap <Leader>ga :Gwrite<CR>
-" noremap <Leader>gc :Git commit<CR>
-" noremap <Leader>gsh :Git push<CR>
-" noremap <Leader>gr :Gremove<CR>
-" noremap <Leader>gll :Git pull<CR>
 noremap <Leader>gs :Git<CR>
 noremap <Leader>gF :GFiles?<CR>
 noremap <Leader>gb :Git blame<CR>
@@ -476,34 +473,12 @@ let g:EasyMotion_space_jump_first = 1
 map  f <Plug>(easymotion-bd-fl)
 map  t <Plug>(easymotion-bd-tl)
 
-set incsearch
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)zz
-map N  <Plug>(incsearch-nohl-N)zz
-map *  <Plug>(incsearch-nohl)<Plug>(asterisk-z*)
-map #  <Plug>(incsearch-nohl)<Plug>(asterisk-z#)
-map g* <Plug>(incsearch-nohl)<Plug>(asterisk-gz*)
-map g# <Plug>(incsearch-nohl)<Plug>(asterisk-gz#)
-
-" 検索系の拡張
-" You can use other keymappings like <C-l> instead of <CR> if you want to
-" use these mappings as default search and somtimes want to move cursor with
-" EasyMotion.
-function! s:incsearch_config(...) abort
-  return incsearch#util#deepextend(deepcopy({
-        \   'modules': [incsearch#config#easymotion#module()],
-        \   'keymap': {
-        \     "\<CR>": '<Over>(easymotion)'
-        \   },
-        \   'is_expr': 0
-        \ }), get(a:, 1, {}))
-endfunction
-" configは以下
-" https://github.com/haya14busa/incsearch.vim/blob/161c5b66542e767962ca5f6998a22e984f8d8a60/autoload/incsearch/config.vim
-let g:incsearch#magic = '\v'
-noremap <silent><expr> / incsearch#go(<SID>incsearch_config({'prompt':'Search: '}))
-noremap <silent><expr> ? incsearch#go(<SID>incsearch_config({'prompt':'Search: ','command':'?'}))
+map n  <Plug>(is-n)zz
+map N  <Plug>(is-N)zz
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
 nmap <C-w>m <Plug>(git-messenger)
 let g:git_messenger_include_diff = 'current'
