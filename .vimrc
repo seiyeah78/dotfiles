@@ -145,7 +145,7 @@ if exists('$TMUX')
     return split(output, 'xxx ')[-1]
   endfunction
 
-  let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment']
+  let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment', 'mkdCodeDelimiter']
   let g:background_colors = {}
   for key in s:list
     try
