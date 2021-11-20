@@ -92,3 +92,60 @@ require('gitsigns').setup {
     enable = false
   },
 }
+
+local cb = require'diffview.config'.diffview_callback
+require'diffview'.setup {
+  file_panel = {
+    position = "left",            -- One of 'left', 'right', 'top', 'bottom'
+    width = 35,                   -- Only applies when position is 'left' or 'right'
+    height = 10,                  -- Only applies when position is 'top' or 'bottom'
+    listing_style = "list",       -- One of 'list' or 'tree'
+    tree_options = {              -- Only applies when listing_style is 'tree'
+      flatten_dirs = false,
+      folder_statuses = "always"  -- One of 'never', 'only_folded' or 'always'.
+    }
+  },
+  key_bindings = {
+    disable_defaults = false,
+    view = {
+      ["q"] = '<cmd>lua require"diffview".close()<CR>',
+    },
+    file_panel = {
+      ["q"] = '<cmd>lua require"diffview".close()<CR>',
+      ["j"] = cb("select_next_entry"),
+      ["k"] = cb("select_prev_entry"),
+    },
+    file_history_panel = {
+      ["q"] = '<cmd>lua require"diffview".close()<CR>',
+      ["j"] = cb("select_next_entry"),
+      ["k"] = cb("select_prev_entry"),
+    }
+  }
+}
+
+require'treesitter-context'.setup{
+  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  throttle = true, -- Throttles plugin updates (may improve performance)
+  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+    -- For all filetypes
+    -- Note that setting an entry here replaces all other patterns for this entry.
+    -- By setting the 'default' entry below, you can control which nodes you want to
+    -- appear in the context window.
+    default = {
+      'class',
+      'function',
+      'method',
+      -- 'for', -- These won't appear in the context
+      -- 'while',
+      -- 'if',
+      -- 'switch',
+      -- 'case',
+    },
+    -- Example for a specific filetype.
+    -- If a pattern is missing, *open a PR* so everyone can benefit.
+    --   rust = {
+    --       'impl_item',
+    --   },
+  },
+}

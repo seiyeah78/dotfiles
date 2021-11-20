@@ -1,9 +1,11 @@
 if has('nvim-0.5')
-  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'nvim-lua/plenary.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'lewis6991/gitsigns.nvim'
+  Plug 'sindrets/diffview.nvim'
 
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  Plug 'romgrk/nvim-treesitter-context'
 end
 
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}

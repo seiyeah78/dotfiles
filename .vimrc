@@ -316,8 +316,6 @@ nnoremap [q :cprev<CR>zz
 nnoremap ]l :lnext<CR>zz
 nnoremap [l :lprev<CR>zz
 
-let g:lt_quickfix_list_toggle_map = '<F2>'
-
 function! Strip(input_string)
   return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
@@ -408,7 +406,7 @@ vmap > >gv
 nnoremap <Leader>go :GBrowse<CR>
 vnoremap <Leader>go :GBrowse<CR>
 nnoremap <Leader>gv :GV!<CR>
-nnoremap <Leader>ga :AgitFile<CR>
+autocmd VimEnter * nnoremap <silent><expr><Leader>ga (has('nvim') ? ':DiffviewFileHistory' : ':AgitFile'). '<CR>'
 
 " git add current file
 noremap <Leader>gs :Git<CR>

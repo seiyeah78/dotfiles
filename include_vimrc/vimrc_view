@@ -259,7 +259,7 @@ endif
 
 " ----------- matchup plugin setting ---------------
 let g:matchup_matchparen_deferred = 1
-" let g:matchup_matchparen_hi_surround_always = 1
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
 hi MatchParen ctermfg=166 guifg=darkorange2 cterm=italic gui=italic
 hi MatchParenCur cterm=NONE gui=NONE
 hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
