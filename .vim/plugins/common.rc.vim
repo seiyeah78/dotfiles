@@ -43,7 +43,6 @@ Plug 'pechorin/any-jump.vim'
 Plug 'segeljakt/vim-silicon', { 'do': 'curl https://sh.rustup.rs -sySf \| sh; cargo install silicon' }
 if exists('$TMUX')
   Plug 'wellle/tmux-complete.vim'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
 end
 
 " -----------------------------------------------

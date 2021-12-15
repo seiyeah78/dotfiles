@@ -9,7 +9,7 @@
   "tsserver.locale": "ja-jp",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "solargraph.checkGemVersion": false,
-  "solargraph.commandPath": "/Users/se-ya/.asdf/shims/solargraph",
+  "solargraph.commandPath": "~/.asdf/shims/solargraph",
   "solargraph.diagnostics": false,
   "solargraph.references": true,
   "coc.preferences.formatOnSaveFiletypes": ["python"],
