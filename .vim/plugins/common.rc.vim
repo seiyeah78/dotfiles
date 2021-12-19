@@ -4,9 +4,8 @@
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } | Plug 'antoinemadec/coc-fzf'
-Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'cohama/agit.vim'
 Plug 'tpope/vim-surround'
 Plug 'simeji/winresizer'
 Plug 'mg979/vim-visual-multi'
@@ -71,7 +70,7 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 " Plug 'relastle/vim-nayvy'
 
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#uil#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown'] }
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
@@ -79,6 +78,8 @@ Plug 'rhysd/vim-gfm-syntax', { 'for': ['markdown'] }
 
 " Go
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
+" _enable変数はvimrcじゃないと効果なし
+let g:go_doc_keywordprg_enabled = 0
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust', 'do': 'rustup component add rls rust-analysis rust-src rustfmt' }

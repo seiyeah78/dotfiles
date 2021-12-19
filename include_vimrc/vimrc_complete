@@ -48,7 +48,6 @@ endif
 " Coc only does snippet and additional edit on confirm.
 function! s:my_cr_function()
   " 補完が表示されているときは補完の確定、そうでない場合は改行
-  " return (pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-R>=AutoPairsReturn()\<CR>\<C-R>=\<C-h>")
   return (pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>")
 endfunction
 

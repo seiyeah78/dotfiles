@@ -175,14 +175,11 @@ if exists("g:colors_name")
     hi Comment term=bold ctermfg=243 guifg=#707880
   end
 end
-
 " ~~~~~~~~~~~~~~~~~ common setting ~~~~~~~~~~~~~~
 " disable provider
 let g:loaded_perl_provider = 0
-
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
-let g:AutoPairsMapCR = 0
 let g:UltiSnipsUsePythonVersion = 3
 let g:strip_whitespace_on_save=1
 let g:better_whitespace_ctermcolor='red'
@@ -207,6 +204,16 @@ let g:silicon = {
       \   'round-corner':          v:true,
       \   'window-controls':       v:true,
       \ }
+
+" ---------------- auto-pairs----------------"
+let g:AutoPairsCompatibleMaps = 1
+let g:AutoPairsCompleteOnlyOnSpace = 1
+let g:AutoPairsMapBS = 1
+let g:AutoPairsShortcutToggleMultilineClose = ''
+let g:AutoPairsCenterLine = 0
+if g:AutoPairsMapBS
+  inoremap <silent><C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
+endif
 
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
