@@ -303,21 +303,6 @@ nnoremap [t :tabp<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprev<CR>
 
-" ----------------------------------------------------------------------------
-" Quickfix
-" ----------------------------------------------------------------------------
-function! s:quick_and_location_list_operation(next)
-  let cmd = a:next ? 'next' : 'prev'
-  try
-    execute 'c'.cmd
-  catch
-    execute 'l'.cmd
-  endtry
-  echo cmd.' list'
-endfunction
-
-" nnoremap ]q :call <sid>quick_and_location_list_operation(v:true)<CR>zz
-" nnoremap [q :call <sid>quick_and_location_list_operation(v:false)<CR>zz
 nnoremap ]q :cnext<CR>zz
 nnoremap [q :cprev<CR>zz
 nnoremap ]l :lnext<CR>zz
