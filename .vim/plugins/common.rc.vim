@@ -21,7 +21,6 @@ Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
 Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
 Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'easymotion/vim-easymotion'
 Plug 'tomtom/tcomment_vim'
 Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
 Plug 'wellle/targets.vim'
@@ -109,4 +108,4 @@ Plug 'haishanh/night-owl.vim'
 Plug 'sainnhe/sonokai'
 
 " lint engine
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
