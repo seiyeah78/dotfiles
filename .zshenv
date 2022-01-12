@@ -15,6 +15,7 @@ export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
 export BAT_CONFIG_PATH="$HOME/dotfiles/bat/setting.conf"
 export PIPENV_VENV_IN_PROJECT=1
+export GOPATH=$HOME/go
 
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export LESS='-R'
@@ -31,7 +32,7 @@ export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 CORE_PATH="/usr/local/bin:/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:$CURL_PATH:/usr/local/opt/grep/libexec/gnubin:$MYSCRIPT_DIR/bin:\
 $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin:\
-:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin"
+:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:$GOPATH/bin"
 
 # DEFAULTでfzf.vimも反映する
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
