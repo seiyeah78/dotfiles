@@ -23,7 +23,8 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     disable = {
       'python',
-      'yaml'
+      'yaml',
+      'ruby'
     }
   }
 }
@@ -93,7 +94,7 @@ require('gitsigns').setup {
   },
 }
 
-local cb = require'diffview.config'.diffview_callback
+-- local cb = require'diffview.config'.diffview_callback
 require'diffview'.setup {
   file_panel = {
     position = "left",            -- One of 'left', 'right', 'top', 'bottom'
@@ -112,13 +113,13 @@ require'diffview'.setup {
     },
     file_panel = {
       ["q"] = '<cmd>lua require"diffview".close()<CR>',
-      ["j"] = cb("select_next_entry"),
-      ["k"] = cb("select_prev_entry"),
+      -- ["j"] = cb("select_next_entry"),
+      -- ["k"] = cb("select_prev_entry"),
     },
     file_history_panel = {
       ["q"] = '<cmd>lua require"diffview".close()<CR>',
-      ["j"] = cb("select_next_entry"),
-      ["k"] = cb("select_prev_entry"),
+      -- ["j"] = cb("select_next_entry"),
+      -- ["k"] = cb("select_prev_entry"),
     }
   }
 }
@@ -148,4 +149,8 @@ require'treesitter-context'.setup{
     --       'impl_item',
     --   },
   },
+}
+
+require 'wilder'.setup {
+  modes = { ':' }
 }

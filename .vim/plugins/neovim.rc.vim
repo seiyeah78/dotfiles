@@ -1,9 +1,11 @@
 if has('nvim-0.5')
   Plug 'nvim-lua/plenary.nvim'
+  Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'sindrets/diffview.nvim'
   Plug 'kevinhwang91/nvim-bqf'
+  Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'github/copilot.vim'
 
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }

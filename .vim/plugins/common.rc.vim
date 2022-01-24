@@ -86,9 +86,6 @@ let g:rust_clip_command = 'pbcopy'
 
 " Terraform
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-" All Syntax
-" let g:polyglot_disabled = ['jsx', 'typescript.tsx', 'typescript', 'typescriptreact']
-Plug 'sheerun/vim-polyglot'
 
 " colorschemes plugins
 Plug 'gkeep/iceberg-dark'
