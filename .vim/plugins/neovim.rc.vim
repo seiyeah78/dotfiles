@@ -6,6 +6,8 @@ if has('nvim-0.5')
   Plug 'sindrets/diffview.nvim'
   Plug 'kevinhwang91/nvim-bqf'
   Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'chipsenkbeil/distant.nvim'
   " Plug 'github/copilot.vim'
 
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }

@@ -22,3 +22,4 @@ pkg/*
 !.config/nvim
 !.config/snippets
 !.config/karabiner
+!.config/wezterm

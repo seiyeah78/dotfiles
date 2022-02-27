@@ -124,7 +124,7 @@ require'diffview'.setup {
   }
 }
 
-require'treesitter-context'.setup{
+require'treesitter-context'.setup {
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   throttle = true, -- Throttles plugin updates (may improve performance)
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
@@ -151,6 +151,51 @@ require'treesitter-context'.setup{
   },
 }
 
+
 require 'wilder'.setup {
-  modes = { ':' }
+  modes = { ':' },
+  next_key = {'<C-J>', '<Tab>'},
+  previous_key = {'<C-K>', '<S-Tab>'},
+  enable_cmdline_enter = 0
+}
+vim.cmd [[
+if has('nvim-0.7')
+  call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+        \ 'highlighter': wilder#basic_highlighter(),
+        \ 'highlights': {
+        \   'border': 'Normal',
+        \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}])
+        \ },
+        \ 'left': [
+        \   ' ', wilder#popupmenu_devicons(),
+        \ ],
+        \ 'right': [
+        \   ' ', wilder#popupmenu_scrollbar(),
+        \ ],
+        \ 'border': 'rounded',
+        \ })))
+  call wilder#set_option('pipeline', [
+        \   wilder#branch(
+        \     wilder#cmdline_pipeline({
+        \       'language': 'python',
+        \       'fuzzy': 1,
+        \     }),
+        \     wilder#python_search_pipeline({
+        \       'pattern': wilder#python_fuzzy_pattern(),
+        \       'sorter': wilder#python_difflib_sorter(),
+        \       'engine': 're',
+        \     }),
+        \   ),
+        \ ])
+fi
+]]
+
+
+require('distant').setup {
+  -- Applies Chip's personal settings to every machine you connect to
+  --
+  -- 1. Ensures that distant servers terminate with no connections
+  -- 2. Provides navigation bindings for remote directories
+  -- 3. Provides keybinding to jump into a remote file's parent directory
+  ['*'] = require('distant.settings').chip_default()
 }

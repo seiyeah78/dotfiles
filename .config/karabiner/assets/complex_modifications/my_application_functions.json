@@ -356,7 +356,8 @@
                 "^org\\.pqrs\\.Karabiner\\.*",
                 "^com\\.apple\\.Terminal$",
                 "^com\\.microsoft\\.VSCode$",
-                "^io\\.alacritty$"
+                "^io\\.alacritty$",
+                "^com\\.github\\.wez\\.wezterm$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -386,7 +387,8 @@
                 "^org\\.pqrs\\.Karabiner\\.*",
                 "^com\\.apple\\.Terminal$",
                 "^com\\.microsoft\\.VSCode$",
-                "^io\\.alacritty$"
+                "^io\\.alacritty$",
+                "^com\\.github\\.wez\\.wezterm$"
               ],
               "type": "frontmost_application_unless"
             }
