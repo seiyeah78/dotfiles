@@ -26,9 +26,19 @@ export PATH=$CORE_PATH
 
 #### setup zinit ####
 # https://blog.katio.net/page/zplugin
-source $HOME/.zinit/bin/zinit.zsh
+source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+  zdharma-continuum/zinit-annex-as-monitor \
+  zdharma-continuum/zinit-annex-bin-gem-node \
+  zdharma-continuum/zinit-annex-patch-dl \
+  zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
 
 zinit ice wait=0 lucid; zinit light zsh-users/zsh-completions
 zinit ice wait=0 lucid; zinit light b4b4r07/emoji-cli

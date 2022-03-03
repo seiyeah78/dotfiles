@@ -119,3 +119,9 @@ function table.tostring( tbl )
   return "{" .. table.concat( result, "," ) .. "}"
 end
 
+hs.loadSpoon("ShiftIt")
+spoon.ShiftIt:bindHotkeys({
+  left = {{}, 'F9' },
+  right = {{}, 'F11' },
+  maximum = {{}, 'F10' }
+})

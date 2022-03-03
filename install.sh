@@ -46,6 +46,10 @@ do
   esac
 done
 
+function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
+
+sudo -v # ask for sudo upfront
+
 if [ "$(uname)" == 'Darwin' ]; then
 # Command Line Developer Tools
   xcode-select --print-path >/dev/null 2>&1
@@ -60,7 +64,7 @@ if [ "$(uname)" == 'Darwin' ]; then
   fi
 fi
 
-if type git > /dev/null 2>&1; then
+if is_exists "git"; then
   if [ -e $DOTPATH ]; then
     eecho "already exists dotfiles."
   else
@@ -93,7 +97,7 @@ do
 done
 
 # Homebrew
-if type brew >/dev/null 2>&1; then
+if is_exists "brew"; then
   eecho "Homebrew is already installed!"
 else
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -108,11 +112,13 @@ if [ -e Brewfile ]; then
 fi
 
 # asdf plugins
-local langs=("python ruby nodejs")
+if is_exists "asdf"; then
+  langs=("python ruby nodejs")
 
-for l in $langs
-do
-  asdf plugin-add $l
-  asdf install $l latest
-done
-exec $SHELL -l
+  for l in $langs
+  do
+    asdf plugin-add $l
+    asdf install $l latest
+  done
+  exec $SHELL -l
+fi

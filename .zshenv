@@ -26,6 +26,8 @@ export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 export PROMPT_EOL_MARK=''
 export ASDF_USER_SHIMS
 
+export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
 CORE_PATH="/usr/local/bin:/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:$CURL_PATH:/usr/local/opt/grep/libexec/gnubin:$MYSCRIPT_DIR/bin:\
 $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin:\
