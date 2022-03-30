@@ -84,12 +84,13 @@ let g:tagbar_type_ruby = {
 
 function s:RuboCop(current_args, is_bang)
   compiler rubocop
-  call ExecCompiler(GemCommand(), a:is_bang)
+  call ExecCompiler(GemCommand(), a:current_args, a:is_bang)
 endfunction
 
 function s:RSpec(current_args, is_bang)
+  let spec_files = len(a:current_args) == 0 ? @% : a:current_args
   compiler rspec
-  call ExecCompiler(GemCommand(), a:is_bang)
+  call ExecCompiler(GemCommand(), spec_files, a:is_bang)
 endfunction
 
 function GemCommand()
@@ -104,5 +105,12 @@ endfunction
 "       \ 'all': '--require '.g:default_home_dir.'/spec/support/formatters/vim_formatter.rb --format VimFormatter'
 "       \}
 
-command! -bang -nargs=* RuboCop :call <SID>RuboCop(<q-args>, <bang>0)
-command! -bang -nargs=* RSpec :call <SID>RSpec(<q-args>, <bang>0)
+command! -bang -nargs=1 RuboCop :call <SID>RuboCop(<q-args>, <bang>0)
+function! CompletionSpecFiles(ArgLead, CmdLine, CusorPos)
+  let spec_files = split(globpath('spec/', '**/*_spec.rb'), '\n')
+  let result = filter(spec_files,'match(v:val, a:ArgLead) != -1')
+  return result
+endfunction
+command! -bang -nargs=? -complete=customlist,CompletionSpecFiles RSpec :call <SID>RSpec(<q-args>, <bang>0)
+command! -bang -nargs=0 RSpecAll :call <SID>RSpec("spec/", <bang>0)
+

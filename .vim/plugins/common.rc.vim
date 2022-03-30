@@ -51,6 +51,7 @@ end
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
 Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby', 'slim'] }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " PHP
 " Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }

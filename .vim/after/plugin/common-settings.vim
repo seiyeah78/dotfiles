@@ -10,9 +10,9 @@ function! IsRailsActive()
   return (exists("g:loaded_rails") && g:loaded_rails == 1)
 endfunction
 
-function! ExecCompiler(compiler_cmd, is_bang)
+function! ExecCompiler(compiler_cmd, current_args, is_bang)
   exec 'setlocal makeprg='.fnameescape(a:compiler_cmd)
-  exec (executable('Make') ? ':Make ' : ':make ').(a:is_bang ? '' : @%)
+  exec (executable('Make') ? ':Make' : ':make').(a:is_bang ? '! ' :' ').a:current_args
 endfunction
 
 function! StartDockerCompose(container_name)
@@ -27,7 +27,7 @@ function! BuildDockerCmd(container_name) abort
   let cmd = 'docker run --rm '
   if filereadable('docker-compose.yml')
     call StartDockerCompose(a:container_name)
-    let cmd = 'docker-compose exec '
+    let cmd = 'docker-compose exec -T '
   endif
   return cmd.a:container_name.' '
 endfunction

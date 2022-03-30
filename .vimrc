@@ -287,9 +287,8 @@ if !exists('g:dispatch_compilers')
 endif
 
 let g:dispatch_compilers = {
-      \ 'docker-compose exec app ./bin/': '',
-      \ 'docker-compose run --rm app ./bin/': '',
-      \ 'bundle exec':''
+      \ 'docker-compose exec -T app ': '',
+      \ 'docker-compose run --rm -T app ': '',
       \ }
 
 " ---- Press space twice to save --------
