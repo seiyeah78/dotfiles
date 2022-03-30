@@ -46,9 +46,18 @@ endif
 " Recommended key-mappings.(with auto-pairs.vim)
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
+" https://www.reddit.com/r/vim/comments/numbf7/how_can_i_disable_autoselectandcomplete_for_coc/
 function! s:my_cr_function()
-  " 補完が表示されているときは補完の確定、そうでない場合は改行
-  return (pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>")
+  " if the popup is visible and an option is not selected
+  if pumvisible() && complete_info()["selected"] == -1
+    return "\<C-y>"
+    " if the pum is visible and an option is selected
+  elseif pumvisible()
+    return coc#_select_confirm()
+    " if the pum is not visible
+  else
+    return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  endif
 endfunction
 
 inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
