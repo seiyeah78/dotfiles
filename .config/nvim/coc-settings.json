@@ -50,9 +50,14 @@
   "pyright.organizeimports.provider": "isort",
   "python.formatting.provider": "black",
   "python.sortImports.path": "isort",
+  "python.linting.flake8Enabled": false,
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportIncompatibleMethodOverride": "warning"
+  },
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
-  "rust-analyzer.lens.run": false
+  "rust-analyzer.lens.run": false,
+  "svelte.enable-ts-plugin": true
 }
 

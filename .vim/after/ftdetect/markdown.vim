@@ -15,3 +15,6 @@ function! s:ExecGenToc()
   let &filetype=l:tmp_filetype
 endfunction
 command! GenToc :call <SID>ExecGenToc()
+
+autocmd FileType markdown EnableWhitespace
+autocmd FileType markdown DisableStripWhitespaceOnSave
