@@ -26,7 +26,7 @@ export PATH=$CORE_PATH
 
 #### setup zinit ####
 # https://blog.katio.net/page/zplugin
-source "${ZINIT_HOME}/zinit.zsh"
+source "${ZINIT_HOME}/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -141,10 +141,10 @@ SAVEHIST=100000
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+eval $(thefuck --alias)
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
 # fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval $(thefuck --alias)
