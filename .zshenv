@@ -26,7 +26,6 @@ export GTAGSLABEL=pygments
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 # Disable % mark at end
 export PROMPT_EOL_MARK=''
-export ASDF_USER_SHIMS
 
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
 
