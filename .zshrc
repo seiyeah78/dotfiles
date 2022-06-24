@@ -47,9 +47,7 @@ zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
 zinit ice wait=0 lucid as"program" pick="bin/git-fuzzy"; zinit light bigH/git-fuzzy
 zinit ice wait=0 lucid as"program" cp"chrome-tab-activate -> fca" pick="fca"; zinit light Rasukarusan/fzf-chrome-active-tab
 zinit ice wait=0 lucid as"program" pick="chromeHistory.sh"; zinit light Rasukarusan/fzf-chrome-history
-zinit ice wait=0 lucid atload"source asdf.sh; \
-  export ASDF_USER_SHIMS=${ASDF_DATA_DIR:-$HOME/.asdf}/shims
-  "; zinit light asdf-vm/asdf
+zinit ice wait=0 lucid atload"export ASDF_USER_SHIMS=${ASDF_DATA_DIR:-$HOME/.asdf}/shims"; zinit light asdf-vm/asdf
 # zinit ice wait=0 lucid; zinit light wfxr/forgit
 
 zinit wait=0 lucid light-mode \

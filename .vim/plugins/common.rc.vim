@@ -4,7 +4,7 @@
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } | Plug 'antoinemadec/coc-fzf'
-Plug 'LunarWatcher/auto-pairs'
+Plug 'LunarWatcher/auto-pairs', {'branch': 'develop-4.0.0'}
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'tpope/vim-surround'
 Plug 'simeji/winresizer'
@@ -39,9 +39,10 @@ Plug 'metakirby5/codi.vim'
 Plug 'tpope/vim-projectionist'
 Plug 'pechorin/any-jump.vim'
 Plug 'segeljakt/vim-silicon', { 'do': 'curl https://sh.rustup.rs -sySf \| sh; cargo install silicon' }
-if exists('$TMUX')
-  Plug 'wellle/tmux-complete.vim'
-end
+Plug 'towolf/vim-helm'
+" if exists('$TMUX')
+"   Plug 'wellle/tmux-complete.vim'
+" end
 
 " -----------------------------------------------
 " Language,Framework
@@ -67,6 +68,8 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+Plug 'vim-python/python-syntax', { 'for': 'python' }
+Plug 'raimon49/requirements.txt.vim', { 'for': 'requirements' }
 " Plug 'relastle/vim-nayvy'
 
 " Markdown

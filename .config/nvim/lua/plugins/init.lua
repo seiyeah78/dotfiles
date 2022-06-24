@@ -97,9 +97,11 @@ require('gitsigns').setup {
 -- local cb = require'diffview.config'.diffview_callback
 require'diffview'.setup {
   file_panel = {
-    position = "left",            -- One of 'left', 'right', 'top', 'bottom'
-    width = 35,                   -- Only applies when position is 'left' or 'right'
-    height = 10,                  -- Only applies when position is 'top' or 'bottom'
+    win_config = {
+      position = "left",            -- One of 'left', 'right', 'top', 'bottom'
+      width = 35,                 -- Only applies when position is 'left' or 'right'
+      height = 10                -- Only applies when position is 'top' or 'bottom'
+    },
     listing_style = "list",       -- One of 'list' or 'tree'
     tree_options = {              -- Only applies when listing_style is 'tree'
       flatten_dirs = false,
