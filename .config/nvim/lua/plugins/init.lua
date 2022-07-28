@@ -3,7 +3,7 @@ vim.wo.colorcolumn = "99999"
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "haskell" },
+  ignore_install = { "haskell", "markdown", "beancount", "swift" },
   highlight = {
     enable = true,  -- false will disable the whole extension
     disable = {
@@ -16,7 +16,10 @@ require('nvim-treesitter.configs').setup {
       'haskell',
       'vim',
       'python',
-      'html'
+      'html',
+      'markdown',
+      'swift',
+      'beancount'
     }
   },
   indent = {

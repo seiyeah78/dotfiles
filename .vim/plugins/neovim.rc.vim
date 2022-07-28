@@ -14,7 +14,7 @@ if has('nvim-0.5')
   Plug 'romgrk/nvim-treesitter-context'
 end
 
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 let g:semshi#error_sign = v:false
 let g:semshi#tolerate_syntax_errors = v:false
 let g:semshi#excluded_hl_groups = ['local', 'unresolved', 'attribute', 'builtin', 'free', 'global']

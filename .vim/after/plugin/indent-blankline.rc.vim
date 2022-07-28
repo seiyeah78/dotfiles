@@ -27,4 +27,4 @@ if(s:indent_blankline_colorful)
 endif
 let g:indent_blankline_space_char_blankline = " "
 let g:indent_blankline_show_trailing_blankline_indent = v:false
-let g:indent_blankline_filetype_exclude = ['help','dashboard','dashpreview','NvimTree','coc-explorer','startify','vista','sagahover','qfreplace','gitcommit','tagbar']
+let g:indent_blankline_filetype_exclude = ['help','dashboard','dashpreview','NvimTree','coc-explorer','startify','vista','sagahover','qfreplace','gitcommit','tagbar', 'markdown']
