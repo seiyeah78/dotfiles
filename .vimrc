@@ -208,7 +208,7 @@ let g:silicon = {
 
 " ---------------- auto-pairs----------------"
 let g:AutoPairsCompatibleMaps = 1
-let g:AutoPairsCompleteOnlyOnSpace = 1
+let g:AutoPairsCompleteOnlyOnSpace = 0
 let g:AutoPairsMapBS = 1
 let g:AutoPairsShortcutToggleMultilineClose = ''
 let g:AutoPairsCenterLine = 0

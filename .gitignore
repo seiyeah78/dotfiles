@@ -6,7 +6,7 @@ Vagrantfile
 .tags
 tags
 .ruby-version
-Session.vim
+Session.vim*
 GPATH
 GRTAGS
 GTAGS

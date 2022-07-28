@@ -51,6 +51,7 @@ Plug 'towolf/vim-helm'
 " Ruby
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim'] }
 Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby', 'slim'] }
+Plug 'slim-template/vim-slim', { 'for': ['ruby', 'eruby', 'slim'] }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
@@ -73,7 +74,7 @@ Plug 'raimon49/requirements.txt.vim', { 'for': 'requirements' }
 " Plug 'relastle/vim-nayvy'
 
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#uil#install() }, 'for': ['markdown', 'vim-plug'], 'on': 'MarkdownPreview' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown'] }
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
