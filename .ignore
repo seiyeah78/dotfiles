@@ -18,6 +18,7 @@ public/assets/
 vendor/
 .config/*
 pkg/*
+logs/*
 !.config/alacritty
 !.config/nvim
 !.config/snippets
