@@ -1,2 +1,16 @@
 pynvim
 ipython
+awscli
+black
+mypy
+isort
+flake8
+pandas
+tqdm
+jupyterlab
+matplotlib
+japanize-matplotlib
+folium
+plotly
+python-dateutil
+# clean-text
