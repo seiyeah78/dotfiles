@@ -9,7 +9,7 @@ endif
 scriptencoding utf-8
 set ignorecase
 set smartcase
-set nofixeol
+set fixeol
 set encoding=utf-8
 set fileencodings=utf-8
 set fenc=utf-8
