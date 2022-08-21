@@ -206,16 +206,6 @@ let g:silicon = {
       \   'window-controls':       v:true,
       \ }
 
-" ---------------- auto-pairs----------------"
-let g:AutoPairsCompatibleMaps = 1
-let g:AutoPairsCompleteOnlyOnSpace = 0
-let g:AutoPairsMapBS = 1
-let g:AutoPairsShortcutToggleMultilineClose = ''
-let g:AutoPairsCenterLine = 0
-if g:AutoPairsMapBS
-  inoremap <silent><C-h> <C-R>=autopairs#AutoPairsDelete()<CR>
-endif
-
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
 let g:tcomment_maps = 0
