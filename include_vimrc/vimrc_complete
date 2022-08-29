@@ -45,25 +45,8 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Recommended key-mappings.(with auto-pairs.vim)
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-" https://www.reddit.com/r/vim/comments/numbf7/how_can_i_disable_autoselectandcomplete_for_coc/
-function! s:my_cr_function()
-  " if the popup is visible and an option is not selected
-  if coc#pum#visible() && complete_info()["selected"] == -1
-    return "\<C-y>"
-    " if the pum is visible and an option is selected
-  elseif coc#pum#visible()
-    return coc#_select_confirm()
-    " if the pum is not visible
-  else
-    return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  endif
-endfunction
-
-inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
-let g:VM_maps["I Return"] = s:my_cr_function()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+let g:VM_maps["I Return"] = (coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>")
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
