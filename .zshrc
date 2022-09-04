@@ -54,15 +54,15 @@ zinit wait=0 lucid light-mode \
   atload="_zsh_autosuggest_start; \
   # workaround slowdown history-beginning-search-{forward,backward}-end
   unset ZSH_AUTOSUGGEST_USE_ASYNC" \
-  for zsh-users/zsh-autosuggestions
+    for zsh-users/zsh-autosuggestions
 
-zinit wait=0 lucid notify light-mode \
-  atinit="ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
-  atload="FAST_HIGHLIGHT_STYLES[path]=none\
-  FAST_HIGHLIGHT_STYLES[path_prefix]=none\
-  FAST_HIGHLIGHT_STYLES[path_approx]=none\
-  FAST_HIGHLIGHT[chroma-ruby]=" for \
-    zdharma/fast-syntax-highlighting
+      zinit wait=0 lucid notify light-mode \
+        atinit="ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+        atload="FAST_HIGHLIGHT_STYLES[path]=none\
+        FAST_HIGHLIGHT_STYLES[path_prefix]=none\
+        FAST_HIGHLIGHT_STYLES[path_approx]=none\
+        FAST_HIGHLIGHT[chroma-ruby]=" for \
+        zdharma/fast-syntax-highlighting
 
 # oh-my-zsh plugins : https://github.com/ohmyzsh/ohmyzsh
 zinit ice wait=0 lucid; zinit snippet OMZ::lib/completion.zsh

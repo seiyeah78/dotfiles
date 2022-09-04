@@ -15,7 +15,6 @@ require('nvim-treesitter.configs').setup {
       'bash',
       'haskell',
       'vim',
-      'python',
       'html',
       'markdown',
       'swift',
@@ -195,6 +194,27 @@ if has('nvim-0.7')
 fi
 ]]
 
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
+npairs.setup(
+  {
+    map_cr = false,
+    fast_wrap = {}
+  }
+)
+
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+MUtils.completion_confirm=function()
+    if vim.fn["coc#pum#visible"]() ~= 0  then
+        return vim.fn["coc#pum#confirm"]()
+    else
+        return npairs.autopairs_cr()
+    end
+end
+
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 
 require('distant').setup {
   -- Applies Chip's personal settings to every machine you connect to

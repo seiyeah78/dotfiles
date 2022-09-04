@@ -356,7 +356,7 @@
                 "^org\\.pqrs\\.Karabiner\\.*",
                 "^com\\.apple\\.Terminal$",
                 "^com\\.microsoft\\.VSCode$",
-                "^io\\.alacritty$",
+                "^org\\.alacritty$",
                 "^com\\.github\\.wez\\.wezterm$"
               ],
               "type": "frontmost_application_unless"

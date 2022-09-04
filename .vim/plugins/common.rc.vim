@@ -68,6 +68,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'raimon49/requirements.txt.vim', { 'for': 'requirements' }
 " Plug 'relastle/vim-nayvy'
