@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -56,13 +58,13 @@ zinit wait=0 lucid light-mode \
   unset ZSH_AUTOSUGGEST_USE_ASYNC" \
     for zsh-users/zsh-autosuggestions
 
-      zinit wait=0 lucid notify light-mode \
-        atinit="ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
-        atload="FAST_HIGHLIGHT_STYLES[path]=none\
-        FAST_HIGHLIGHT_STYLES[path_prefix]=none\
-        FAST_HIGHLIGHT_STYLES[path_approx]=none\
-        FAST_HIGHLIGHT[chroma-ruby]=" for \
-        zdharma/fast-syntax-highlighting
+zinit wait=0 lucid notify light-mode \
+  atinit="ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+  atload="FAST_HIGHLIGHT_STYLES[path]=none\
+  FAST_HIGHLIGHT_STYLES[path_prefix]=none\
+  FAST_HIGHLIGHT_STYLES[path_approx]=none\
+  FAST_HIGHLIGHT[chroma-ruby]=" for \
+  zdharma/fast-syntax-highlighting
 
 # oh-my-zsh plugins : https://github.com/ohmyzsh/ohmyzsh
 zinit ice wait=0 lucid; zinit snippet OMZ::lib/completion.zsh
@@ -90,7 +92,7 @@ alias vi='vim'
 alias vim='nvim'
 alias ls='ls -G'
 
-alias fig='docker-compose'
+alias dc='docker-compose'
 
 # すべてのファイルを検索する
 alias ag='ag --hidden --skip-vcs-ignores'
@@ -151,3 +153,6 @@ eval $(thefuck --alias)
 # fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
