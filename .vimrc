@@ -5,6 +5,7 @@ if exists('$ASDF_USER_SHIMS')
   " let g:python3_host_prog = $HOME . '/.neovim3/bin/python3'
   let g:python3_host_version = split(system("python3 --version 2>&1"))[1]
   let g:python_host_prog = $HOME . '/.asdf/shims/python2'
+  let g:coc_node_path = split(system("asdf where nodejs 16.17.1"))[0] . '/bin/node'
 endif
 scriptencoding utf-8
 set ignorecase

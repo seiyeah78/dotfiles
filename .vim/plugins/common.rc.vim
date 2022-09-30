@@ -92,6 +92,10 @@ let g:rust_clip_command = 'pbcopy'
 " Terraform
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 
+" CSS
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+
 " colorschemes plugins
 Plug 'gkeep/iceberg-dark'
 Plug 'chriskempson/vim-tomorrow-theme'
