@@ -1,5 +1,4 @@
 Plug 'nvim-lua/plenary.nvim'
-Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'sindrets/diffview.nvim'
