@@ -48,7 +48,7 @@ let g:lightline.mode_map = {
 let g:VM_theme = 'iceblue'
 
 function! IsNotFiles()
-  return &ft =~? 'vimfiler\|gundo\|nerdtree\|fugitive.*'
+  return &ft =~? 'vimfiler\|gundo\|nerdtree\NvimTree\|fugitive.*'
 endfunction
 function! IsShowStatus(length)
   return winwidth(0) > a:length && !IsNotFiles()

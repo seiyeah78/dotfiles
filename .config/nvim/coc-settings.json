@@ -36,12 +36,7 @@
   "coc.source.around.priority": 10,
   "coc.source.buffer.priority": 10,
   "diagnostic.signPriority": 10,
-  "coc.source.tmuxcomplete.priority": 10,
   "suggest.removeDuplicateItems": true,
-  "highlight.document.enable": true,
-  "highlight.colors.enable": true,
-  "highlight.disableLanguages": ["php","vim", "fugitive"],
-  "phpactor.path": "~/.vim/plugged/phpactor/bin/phpactor",
   "snippets.userSnippetsDirectory": "~/.config/snippets",
   "snippets.snipmate.enable":true,
   "snippets.extends": {
@@ -56,15 +51,25 @@
   "python.analysis.diagnosticSeverityOverrides": {
     "reportIncompatibleMethodOverride": "warning"
   },
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
-  "rust-analyzer.lens.run": false,
   "svelte.enable-ts-plugin": true,
   "yaml.validate": false,
   "yaml.schemas": {
     "http://json.schemastore.org/composer": ["/*"],
     "kubernetes": ["*/*.yaml"]
+  },
+  "diagnostic-languageserver.filetypes": {
+  "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt",
+      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+    }
   }
 }
 

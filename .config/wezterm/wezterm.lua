@@ -1,6 +1,7 @@
 -- https://wezfurlong.org/wezterm/config/files.html
 local wezterm = require 'wezterm';
 return {
+  default_prog = {'/usr/local/bin/zsh'},
   font = wezterm.font_with_fallback({"RictyDiminishedDiscord Nerd Font", "The font with those symbols"}),
   -- font = wezterm.font("RictyDiminishedDiscord Nerd Font"), -- 自分の好きなフォントいれる
   use_ime = true, -- これがないとIME動かない

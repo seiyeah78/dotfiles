@@ -10,7 +10,7 @@ endif
 scriptencoding utf-8
 set ignorecase
 set smartcase
-set fixeol
+set nofixeol
 set encoding=utf-8
 set fileencodings=utf-8
 set fenc=utf-8
@@ -116,6 +116,9 @@ call plug#end()
 
 if has('nvim')
   lua require('plugins')
+  execute 'source .vim/plugins/neovim.rc.keymappings.vim'
+else
+  execute 'source .vim/plugins/vim.rc.keymappings.vim'
 endif
 
 if exists("g:vim_first_install")
@@ -399,21 +402,6 @@ noremap <Leader>gd :Gvdiff<CR>
 nmap ]g <Plug>(GitGutterNextHunk)
 nmap [g <Plug>(GitGutterPrevHunk)
 
-"================= NERDTree setting ==================
-let g:NERDTreeChDirMode = 2
-let NERDTreeShowHidden = 1
-let g:NERDTreeWinSize = 25
-let g:NERDTreeHighlightCursorline = 0
-let g:NERDTreeMapMenu = 'M'
-
-nnoremap <silent><Leader><S-n><S-n> :NERDTreeToggle<CR>
-nnoremap <silent><Leader><S-n>f :NERDTreeFind<CR>
-
-" Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
 " =============== vim-visual-multi ============
 let g:VM_manual_infoline = 0
 let g:VM_leader=','
@@ -434,33 +422,6 @@ endfun
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" ================vim easymotion setting========
-" 最小限の設定にするため一旦解除
-" map, nmapで、ノーマルモードのみウィンドウを超えて検索
-" https://github.com/haya14busa/vim-easymotion/blob/master/doc/easymotion.txt
-let g:EasyMotion_do_mapping = 0
-" 日本語もjump対象
-let g:EasyMotion_use_migemo = 1
-" jump用のキーを設定する
-let g:EasyMotion_keys='azwsxedcrfvtgbyhnujmikol;wertyuop'
-
-" 最初のマッチにEnterかスペースでジャンプする
-let g:EasyMotion_enter_jump_first = 1
-let g:EasyMotion_space_jump_first = 1
-
-" Move to target within line
-" lはline(１行)の意味
-map  f <Plug>(easymotion-bd-fl)
-map  t <Plug>(easymotion-bd-tl)
-
-map n  <Plug>(is-n)zz
-map N  <Plug>(is-N)zz
-map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
-
 nmap <C-w>m <Plug>(git-messenger)
 let g:git_messenger_include_diff = 'current'
 let g:git_messenger_always_into_popup = v:true
@@ -520,3 +481,4 @@ command! -bang -nargs=* ToggleConceal call s:toggle_conceal(<q-args>, <bang>0)
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+

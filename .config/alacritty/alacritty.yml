@@ -1,3 +1,8 @@
+shell:
+ program: /usr/local/bin/zsh
+ args:
+   - "--login"
+
 font:
   normal:
     family: "RictyDiminishedDiscord Nerd Font"

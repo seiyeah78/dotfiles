@@ -6,6 +6,8 @@ Plug 'kevinhwang91/nvim-bqf'
 Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'chipsenkbeil/distant.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 " Plug 'github/copilot.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }

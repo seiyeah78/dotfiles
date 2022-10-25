@@ -4,7 +4,6 @@
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } | Plug 'antoinemadec/coc-fzf'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'tpope/vim-surround'
 Plug 'simeji/winresizer'
 Plug 'mg979/vim-visual-multi'
@@ -39,9 +38,8 @@ Plug 'tpope/vim-projectionist'
 Plug 'pechorin/any-jump.vim'
 Plug 'segeljakt/vim-silicon', { 'do': 'curl https://sh.rustup.rs -sySf \| sh; cargo install silicon' }
 Plug 'towolf/vim-helm'
-" if exists('$TMUX')
-"   Plug 'wellle/tmux-complete.vim'
-" end
+Plug 'brglng/vim-im-select'
+let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
 
 " -----------------------------------------------
 " Language,Framework
