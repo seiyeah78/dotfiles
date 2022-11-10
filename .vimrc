@@ -116,9 +116,9 @@ call plug#end()
 
 if has('nvim')
   lua require('plugins')
-  execute 'source .vim/plugins/neovim.rc.keymappings.vim'
+  execute 'source ~/.vim/plugins/neovim.rc.keymappings.vim'
 else
-  execute 'source .vim/plugins/vim.rc.keymappings.vim'
+  execute 'source ~/.vim/plugins/vim.rc.keymappings.vim'
 endif
 
 if exists("g:vim_first_install")
