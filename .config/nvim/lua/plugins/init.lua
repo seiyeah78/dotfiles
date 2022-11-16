@@ -247,7 +247,22 @@ end
 
 remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+  view = {
+    mappings = {
+      list = {
+        { key = "<C-s>", action = "split" }
+      },
+    },
+  },
+  actions = {
+    open_file = {
+      window_picker = {
+        enable = false
+      }
+    }
+  }
+})
 
 -- default configuration
 require('illuminate').configure({
