@@ -57,6 +57,7 @@
   "yaml.validate": false,
   "yaml.schemas": {
     "http://json.schemastore.org/composer": ["/*"],
+    "https://json.schemastore.org/kustomization": "/kustomization.yaml",
     "kubernetes": ["*/*.yaml"]
   },
   "diagnostic-languageserver.filetypes": {

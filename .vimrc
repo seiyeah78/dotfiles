@@ -26,7 +26,12 @@ set vb t_vb=
 set t_Co=256
 set t_ut=
 set t_BE=
-set laststatus=2
+if has('nvim')
+  set laststatus=3
+  " set cmdheight=0
+else
+  set laststatus=2
+endif
 set backspace=indent,eol,start
 set splitbelow
 set splitright
@@ -481,4 +486,3 @@ command! -bang -nargs=* ToggleConceal call s:toggle_conceal(<q-args>, <bang>0)
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-

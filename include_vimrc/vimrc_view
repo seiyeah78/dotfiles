@@ -271,9 +271,9 @@ hi HighlightedyankRegion ctermbg=22 guibg=#005f00
 
 " ------------vim-illuminate setting-----------------
 hi illuminatedWord ctermbg=239 guibg=Gray30
-hi IlluminatedWordText gui=reverse
-hi IlluminatedWordRead gui=reverse
-hi IlluminatedWordWrite gui=reverse
+hi IlluminatedWordText ctermbg=239 guibg=Gray30
+hi IlluminatedWordRead ctermbg=239 guibg=Gray30
+hi IlluminatedWordWrite ctermbg=239 guibg=Gray30
 let g:Illuminate_highlightUnderCursor = 0
 let g:Illuminate_delay = 800
 

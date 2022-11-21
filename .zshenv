@@ -9,6 +9,7 @@ MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
 MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
 
 export ZHOMEDIR=$HOME/.config/zsh
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
 
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export HOMEBREW_NO_AUTO_UPDATE=1

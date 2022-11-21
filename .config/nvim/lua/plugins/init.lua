@@ -155,44 +155,18 @@ require'treesitter-context'.setup {
   },
 }
 
-
-require 'wilder'.setup {
-  modes = { ':' },
-  next_key = {'<C-J>', '<Tab>'},
-  previous_key = {'<C-K>', '<S-Tab>'},
-  enable_cmdline_enter = 0
-}
-vim.cmd [[
-if has('nvim-0.7')
-  call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
-        \ 'highlighter': wilder#basic_highlighter(),
-        \ 'highlights': {
-        \   'border': 'Normal',
-        \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}])
-        \ },
-        \ 'left': [
-        \   ' ', wilder#popupmenu_devicons(),
-        \ ],
-        \ 'right': [
-        \   ' ', wilder#popupmenu_scrollbar(),
-        \ ],
-        \ 'border': 'rounded',
-        \ })))
-  call wilder#set_option('pipeline', [
-        \   wilder#branch(
-        \     wilder#cmdline_pipeline({
-        \       'language': 'python',
-        \       'fuzzy': 1,
-        \     }),
-        \     wilder#python_search_pipeline({
-        \       'pattern': wilder#python_fuzzy_pattern(),
-        \       'sorter': wilder#python_difflib_sorter(),
-        \       'engine': 're',
-        \     }),
-        \   ),
-        \ ])
-fi
-]]
+local wilder = require('wilder')
+wilder.setup({
+  modes = {':', '/', '?'},
+})
+wilder.set_option('renderer', wilder.popupmenu_renderer({
+  highlighter = wilder.basic_highlighter(),
+  left = {' ', wilder.popupmenu_devicons()},
+  right = {' ', wilder.popupmenu_scrollbar()},
+  highlights = {
+    accent = wilder.make_hl('WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#f4468f'}}),
+  },
+}))
 
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
@@ -245,7 +219,7 @@ MUtils.completion_confirm=function()
     end
 end
 
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+remap('i' , '<CR>', 'v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 
 require("nvim-tree").setup({
   view = {
