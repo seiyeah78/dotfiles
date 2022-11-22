@@ -100,7 +100,7 @@ done
 if is_exists "brew"; then
   eecho "Homebrew is already installed!"
 else
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if [ -e Brewfile ]; then
