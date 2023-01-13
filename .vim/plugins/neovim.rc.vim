@@ -12,17 +12,17 @@ Plug 'kevinhwang91/nvim-bqf'
 Plug 'chipsenkbeil/distant.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'windwp/nvim-autopairs'
+Plug 'cappyzawa/trim.nvim'
 
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 let g:semshi#error_sign = v:false
 let g:semshi#tolerate_syntax_errors = v:false
 let g:semshi#excluded_hl_groups = ['local', 'unresolved', 'attribute', 'builtin', 'free', 'global']
-Plug 'windwp/nvim-autopairs'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }

@@ -281,6 +281,5 @@ let g:Illuminate_delay = 800
 " let g:indent_blankline_colorful = 1
 let g:indent_blankline_show_current_context = v:true
 let g:indent_blankline_use_treesitter = v:true
-let g:indent_blankline_viewport_buffer = 1000
+let g:indent_blankline_viewport_buffer = 10
 " let g:indent_blankline_vscode_rainbow_mode = 0
-

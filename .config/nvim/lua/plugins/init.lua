@@ -1,5 +1,4 @@
--- https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-vim.wo.colorcolumn = "99999"
+local remap = vim.api.nvim_set_keymap
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -168,28 +167,6 @@ wilder.set_option('renderer', wilder.popupmenu_renderer({
   },
 }))
 
-local remap = vim.api.nvim_set_keymap
-local npairs = require('nvim-autopairs')
-npairs.setup(
-  {
-    map_cr = false,
-    fast_wrap = {}
-  }
-)
-
--- skip it, if you use another global object
-_G.MUtils= {}
-
-MUtils.completion_confirm=function()
-    if vim.fn["coc#pum#visible"]() ~= 0  then
-        return vim.fn["coc#pum#confirm"]()
-    else
-        return npairs.autopairs_cr()
-    end
-end
-
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
-
 require('distant').setup {
   -- Applies Chip's personal settings to every machine you connect to
   --
@@ -199,14 +176,40 @@ require('distant').setup {
   ['*'] = require('distant.settings').chip_default()
 }
 
-local remap = vim.api.nvim_set_keymap
+
 local npairs = require('nvim-autopairs')
+local Rule = require('nvim-autopairs.rule')
+
 npairs.setup({
   map_cr = false,
   map_c_h = true,
   map_c_w = true,
   fast_wrap = {},
 })
+
+-- add autopairs role
+local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
+npairs.add_rules {
+  Rule(' ', ' ')
+    :with_pair(function (opts)
+      local pair = opts.line:sub(opts.col - 1, opts.col)
+      return vim.tbl_contains({
+        brackets[1][1]..brackets[1][2],
+        brackets[2][1]..brackets[2][2],
+        brackets[3][1]..brackets[3][2],
+      }, pair)
+    end)
+}
+for _,bracket in pairs(brackets) do
+  npairs.add_rules {
+    Rule(bracket[1]..' ', ' '..bracket[2])
+      :with_pair(function() return false end)
+      :with_move(function(opts)
+        return opts.prev_char:match('.%'..bracket[2]) ~= nil
+      end)
+      :use_key(bracket[2])
+  }
+end
 
 -- skip it, if you use another global object
 _G.MUtils= {}
@@ -222,6 +225,7 @@ end
 remap('i' , '<CR>', 'v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 
 require("nvim-tree").setup({
+  hijack_netrw = false,
   view = {
     mappings = {
       list = {
@@ -285,4 +289,13 @@ require('illuminate').configure({
     large_file_overrides = nil,
     -- min_count_to_highlight: minimum number of matches required to perform highlighting
     min_count_to_highlight = 1,
+})
+
+ require('trim').setup({
+  disable = {'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive','fugitiveblame', 'nerdtree', 'NvimTree'},
+  trim_last_line = true,
+  -- if you want to remove multiple blank lines
+  -- patterns = {
+  --   [[%s/\(\n\n\)\n\+/\1/]],   -- replace multiple blank lines with a single line
+  -- },
 })

@@ -17,7 +17,7 @@ Plug 'thinca/vim-qfreplace'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
 Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
-Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }
+Plug 'liuchengxu/vista.vim', { 'on': ['Vista!!', 'Vista']}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tomtom/tcomment_vim'
 Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
@@ -53,7 +53,6 @@ Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " PHP
-" Plug 'vim-scripts/tagbar-phpctags', { 'for': 'php' }
 " Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 " Plug 'phpactor/phpactor', { 'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o' }
 " Plug 'noahfrederick/vim-laravel', { 'for': 'php', 'do': 'composer install' }

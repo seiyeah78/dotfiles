@@ -77,7 +77,7 @@ zinit ice depth=1 atload'source ~/.p10k.zsh'
 zinit light romkatv/powerlevel10k
 
 # use hub
-eval "$(hub alias -s)"
+# eval "$(hub alias -s)"
 
 # disable loading messages when change directories
 export DIRENV_LOG_FORMAT=
@@ -92,7 +92,7 @@ alias vi='vim'
 alias vim='nvim'
 alias ls='ls -G'
 
-alias dc='docker-compose'
+alias dc='docker compose'
 
 # すべてのファイルを検索する
 alias ag='ag --hidden --skip-vcs-ignores'

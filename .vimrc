@@ -49,8 +49,8 @@ set noswapfile
 set nobackup
 set nocompatible
 set switchbuf+=useopen
-set foldmethod=indent
-set foldlevel=2
+" set foldmethod=indent
+" set foldlevel=2
 " don't open scratch window when start complete
 set completeopt-=preview
 " .un(undoファイル)の保存場所
@@ -191,7 +191,7 @@ let g:loaded_perl_provider = 0
 let g:vim_json_syntax_conceal = 0
 let g:pymode_indent = 0
 let g:UltiSnipsUsePythonVersion = 3
-let g:strip_whitespace_on_save=1
+let g:strip_whitespace_on_save = has('nvim') ? 0 : 1
 let g:better_whitespace_ctermcolor='red'
 let g:vim_jsx_pretty_colorful_config = 1
 let g:strip_whitespace_confirm = 0
@@ -350,12 +350,18 @@ let g:indentLine_faster = 1
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 
 " ------------ ctag setting ------------
-let g:tagbar_width = 30
 " tagsジャンプの時に複数ある時は一覧表示
 nnoremap <C-]> g<C-]>
 nnoremap <C-W><C-]> <C-W>g<C-]>
 
-nmap <silent><leader>T :TagbarToggle<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+let g:vista_echo_cursor_strategy = 'floating_win'
+
+let g:vista_fzf_preview = ['right:50%']
+nmap <silent><leader>T :Vista!!<CR>
 
 " Switching windows
 nmap <C-j> <C-w>j
@@ -486,3 +492,4 @@ command! -bang -nargs=* ToggleConceal call s:toggle_conceal(<q-args>, <bang>0)
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+autocmd BufWritePre * normal :StripWhiteSpace

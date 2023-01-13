@@ -43,6 +43,7 @@
     "gitcommit": ["markdown"],
     "pullrequest": ["markdown"]
   },
+  "json.validate.enable": true,
   "coc.preferences.jumpCommand": "drop",
   "pyright.organizeimports.provider": "isort",
   "python.formatting.provider": "black",
@@ -60,8 +61,10 @@
     "https://json.schemastore.org/kustomization": "/kustomization.yaml",
     "kubernetes": ["*/*.yaml"]
   },
+  "diagnostic.checkCurrentLine": true,
   "diagnostic-languageserver.filetypes": {
-  "sh": "shellcheck"
+    "sh": "shellcheck",
+    "yaml": ["actionlint"]
   },
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
@@ -71,6 +74,31 @@
       "command": "shfmt",
       "args": ["-i", "2", "-bn", "-ci", "-sr"]
     }
+  },
+  "diagnostic-languageserver.linters": {
+    "actionlint": {
+      "command": "actionlint",
+      "rootPatterns": [".github"],
+      "debounce": 100,
+      "isStdout": true,
+      "isStderr": false,
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "args": ["-oneline"],
+      "sourceName": "actionlint",
+      "formatLines": 1,
+      "formatPattern": [
+        "^([^:]+):(\\d+):(\\d+):\\s+(.*)$",
+        {
+          "sourceName": 1,
+          "sourceNameFilter": true,
+          "line": 2,
+          "column": 3,
+          "endLine": 2,
+          "endColumn": 3,
+          "message": [4]
+        }
+      ]
+    }
   }
 }
-
