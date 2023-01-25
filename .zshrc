@@ -77,7 +77,7 @@ zinit ice depth=1 atload'source ~/.p10k.zsh'
 zinit light romkatv/powerlevel10k
 
 # use hub
-# eval "$(hub alias -s)"
+eval "$(hub alias -s)"
 
 # disable loading messages when change directories
 export DIRENV_LOG_FORMAT=
@@ -115,8 +115,8 @@ alias gpO='gpf origin'
 alias gpU='gpf upstream'
 
 alias k='kubectl'
-alias kc='kubectx'
-alias kg='kubectl get'
+alias kc='kubectl ctx'
+alias kns='kubectl ns'
 
 alias hosts='sudo vi /etc/hosts'
 alias vimrc='$EDITOR ~/.vimrc'

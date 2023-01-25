@@ -55,9 +55,9 @@
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
   "svelte.enable-ts-plugin": true,
-  "yaml.validate": false,
+  "yaml.validate": true,
   "yaml.schemas": {
-    "http://json.schemastore.org/composer": ["/*"],
+    "https://raw.githubusercontent.com/composer/composer/master/res/composer-schema.json": ["/*"],
     "https://json.schemastore.org/kustomization": "/kustomization.yaml",
     "kubernetes": ["*/*.yaml"]
   },

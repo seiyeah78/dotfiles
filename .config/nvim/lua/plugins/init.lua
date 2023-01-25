@@ -291,7 +291,7 @@ require('illuminate').configure({
     min_count_to_highlight = 1,
 })
 
- require('trim').setup({
+require('trim').setup({
   disable = {'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive','fugitiveblame', 'nerdtree', 'NvimTree'},
   trim_last_line = true,
   -- if you want to remove multiple blank lines

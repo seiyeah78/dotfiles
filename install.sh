@@ -13,7 +13,7 @@ usage() {
   echo
   echo "Options:"
   echo "  -h, --help"
-  echo "  -b, --skip-brew: skip install formula"
+  echo "  -i, --install-formula: install formula"
   echo
   exit 1
 }
@@ -25,7 +25,7 @@ do
       usage
       exit 1
       ;;
-    -b | --install-brew)
+    -i | --install-formula)
       INSTALL_BREW=1
       shift 1
       ;;
