@@ -38,8 +38,6 @@ Plug 'tpope/vim-projectionist'
 Plug 'pechorin/any-jump.vim'
 Plug 'segeljakt/vim-silicon', { 'do': 'curl https://sh.rustup.rs -sySf \| sh; cargo install silicon' }
 Plug 'towolf/vim-helm'
-Plug 'brglng/vim-im-select'
-let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
 
 " -----------------------------------------------
 " Language,Framework

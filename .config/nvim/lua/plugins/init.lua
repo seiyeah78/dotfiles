@@ -299,3 +299,14 @@ require('trim').setup({
   --   [[%s/\(\n\n\)\n\+/\1/]],   -- replace multiple blank lines with a single line
   -- },
 })
+
+require('im_select').setup {
+	-- IM will be set to `default_im_select` in `normal` mode(`EnterVim` or `InsertLeave`)
+	-- For Windows/WSL, default: "1033", aka: English US Keyboard
+	-- For macOS, default: "com.apple.keylayout.ABC", aka: US
+	-- You can use `im-select` in cli to get the IM's name you preferred
+	default_im_select  = "com.google.inputmethod.Japanese.Roman",
+
+	-- Set to 1 if you don't want restore IM status when `InsertEnter`
+	disable_auto_restore = 1,
+}
