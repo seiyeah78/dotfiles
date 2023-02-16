@@ -61,6 +61,18 @@
     "https://json.schemastore.org/kustomization": "/kustomization.yaml",
     "kubernetes": ["*/*.yaml"]
   },
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  },
   "diagnostic.checkCurrentLine": true,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
@@ -100,5 +112,6 @@
         }
       ]
     }
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }

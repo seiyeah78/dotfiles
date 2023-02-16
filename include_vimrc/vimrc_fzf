@@ -87,7 +87,7 @@ function! s:exec_grep_command(arg, is_bang, command_name)
   end
 
   if a:command_name == 'Ag'
-    call fzf#vim#ag(query, opts. '--hidden --skip-vcs-ignores --path-to-ignore ~/.ignore', fzf_options, a:is_bang)
+    call fzf#vim#ag(query, opts. ' --hidden --skip-vcs-ignores --path-to-ignore ~/.ignore', fzf_options, a:is_bang)
   else
     call fzf#vim#grep(
           \  'rg --column --line-number --hidden --no-heading --color always --no-ignore --ignore-file ~/.ignore '.shellescape(query),
