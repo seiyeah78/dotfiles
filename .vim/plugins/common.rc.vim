@@ -104,7 +104,6 @@ Plug 'cocopon/iceberg.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'romainl/Apprentice'
 Plug 'mhartington/oceanic-next'
-Plug 'chriskempson/base16-vim'
 Plug 'haishanh/night-owl.vim'
 Plug 'sainnhe/sonokai'
 
