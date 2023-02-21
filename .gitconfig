@@ -57,6 +57,10 @@
   aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 [merge]
   tool = vimdiff
+[mergetool]
+	keepBackup = false
+[mergetool "vimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c '2 wincmd l | wincmd J | wincmd k'
 [rebase]
   autosquash = false
 [diff]
@@ -69,9 +73,9 @@
 [diff]
 	tool = vimdiff
 [difftool]
-    prompt = false
+  prompt = true
 [difftool "nvimdiff"]
-    cmd = "nvim -d -c \"wincmd l\" -d \"$LOCAL\" \"$REMOTE\""
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c '2 wincmd l | wincmd J | wincmd k'"
 [include]
   path = ~/.gitconfig.local
 # [init]
