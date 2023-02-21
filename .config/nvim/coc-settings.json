@@ -52,6 +52,7 @@
   "python.analysis.diagnosticSeverityOverrides": {
     "reportIncompatibleMethodOverride": "warning"
   },
+  "diagnostic.enableHighlightLineNumber": false,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
   "svelte.enable-ts-plugin": true,
