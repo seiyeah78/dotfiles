@@ -3,16 +3,16 @@
   "scss.validate": false,
   "less.validate": false,
   "tsserver.npm": "/usr/local/bin/npm",
-  "tsserver.enableJavascript": true,
   "tsserver.enable": true,
   "tsserver.maxTsServerMemory": 2000,
-  "tsserver.locale": "ja-jp",
+  "tsserver.locale": "ja",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "solargraph.checkGemVersion": false,
   "solargraph.commandPath": "~/.asdf/shims/solargraph",
   "solargraph.diagnostics": false,
   "solargraph.references": true,
-  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnSaveTimeout": 1000,
   "importCost.typescriptExtensions": [
     "\\.tsx?$"
   ],
@@ -38,10 +38,14 @@
   "diagnostic.signPriority": 10,
   "suggest.removeDuplicateItems": true,
   "snippets.userSnippetsDirectory": "~/.config/snippets",
-  "snippets.snipmate.enable":true,
+  "snippets.snipmate.enable": true,
   "snippets.extends": {
-    "gitcommit": ["markdown"],
-    "pullrequest": ["markdown"]
+    "gitcommit": [
+      "markdown"
+    ],
+    "pullrequest": [
+      "markdown"
+    ]
   },
   "json.validate.enable": true,
   "coc.preferences.jumpCommand": "drop",
@@ -54,18 +58,26 @@
   },
   "diagnostic.enableHighlightLineNumber": false,
   "rust-analyzer.procMacro.enable": true,
-  "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
+  "rust-analyzer.diagnostics.disabled": [
+    "unresolved-import"
+  ],
   "svelte.enable-ts-plugin": true,
   "yaml.validate": true,
   "yaml.schemas": {
-    "https://raw.githubusercontent.com/composer/composer/master/res/composer-schema.json": ["/*"],
+    "https://raw.githubusercontent.com/composer/composer/master/res/composer-schema.json": [
+      "/*"
+    ],
     "https://json.schemastore.org/kustomization": "/kustomization.yaml",
-    "kubernetes": ["*/*.yaml"]
+    "kubernetes": [
+      "*/*.yaml"
+    ]
   },
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",
-      "args": ["serve"],
+      "args": [
+        "serve"
+      ],
       "filetypes": [
         "terraform",
         "tf"
@@ -77,7 +89,9 @@
   "diagnostic.checkCurrentLine": true,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
-    "yaml": ["actionlint"]
+    "yaml": [
+      "actionlint"
+    ]
   },
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
@@ -85,19 +99,29 @@
   "diagnostic-languageserver.formatters": {
     "shfmt": {
       "command": "shfmt",
-      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+      "args": [
+        "-i",
+        "2",
+        "-bn",
+        "-ci",
+        "-sr"
+      ]
     }
   },
   "diagnostic-languageserver.linters": {
     "actionlint": {
       "command": "actionlint",
-      "rootPatterns": [".github"],
+      "rootPatterns": [
+        ".github"
+      ],
       "debounce": 100,
       "isStdout": true,
       "isStderr": false,
       "offsetLine": 0,
       "offsetColumn": 0,
-      "args": ["-oneline"],
+      "args": [
+        "-oneline"
+      ],
       "sourceName": "actionlint",
       "formatLines": 1,
       "formatPattern": [
@@ -109,7 +133,9 @@
           "column": 3,
           "endLine": 2,
           "endColumn": 3,
-          "message": [4]
+          "message": [
+            4
+          ]
         }
       ]
     }

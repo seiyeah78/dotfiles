@@ -1,4 +1,5 @@
 local remap = vim.api.nvim_set_keymap
+local api = vim.api
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -127,7 +128,7 @@ require'diffview'.setup {
   }
 }
 
-require'treesitter-context'.setup {
+require('treesitter-context').setup {
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   throttle = true, -- Throttles plugin updates (may improve performance)
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
@@ -153,6 +154,14 @@ require'treesitter-context'.setup {
     --   },
   },
 }
+api.nvim_create_autocmd({ 'CursorHold' }, {
+  pattern = '*',
+  command = 'TSContextEnable',
+})
+api.nvim_create_autocmd({ 'CursorMoved' }, {
+  pattern = '*',
+  command = 'TSContextDisable',
+})
 
 local wilder = require('wilder')
 wilder.setup({
@@ -261,6 +270,7 @@ require('illuminate').configure({
       'dirvish',
       'fugitive',
       'NvimTree',
+      'python'
     },
     -- filetypes_allowlist: filetypes to illuminate, this is overriden by filetypes_denylist
     filetypes_allowlist = {},
