@@ -302,7 +302,7 @@ require('illuminate').configure({
 })
 
 require('trim').setup({
-  disable = {'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive','fugitiveblame', 'nerdtree', 'NvimTree'},
+  ft_blocklist = {'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive','fugitiveblame', 'nerdtree', 'NvimTree'},
   trim_last_line = true,
   -- if you want to remove multiple blank lines
   -- patterns = {
