@@ -1,6 +1,5 @@
 {
     "editor.tabSize": 2,
-    "editor.renderIndentGuides": true,
     "terminal.integrated.fontSize": 12,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "vscode-icons",
@@ -168,5 +167,6 @@
         "FoldColumn"
     ],
     "vscode-neovim.logLevel": "debug",
-    "workbench.list.automaticKeyboardNavigation": false
+    "workbench.list.automaticKeyboardNavigation": false,
+    "editor.guides.indentation": true
 }
