@@ -19,7 +19,12 @@ require("lazy").setup({
     },
   },
   { 'neoclide/coc.nvim', branch = 'release' },
-  'itchyny/lightline.vim',
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    }
+  },
   'tweekmonster/fzf-filemru',
   'mg979/vim-visual-multi',
   'tpope/vim-fugitive',
@@ -121,6 +126,9 @@ require("lazy").setup({
 
 local remap = vim.api.nvim_set_keymap
 local api = vim.api
+
+-- plugin settings
+require('plugins.config.lualine')
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
