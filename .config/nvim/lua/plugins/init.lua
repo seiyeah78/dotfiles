@@ -1,3 +1,124 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  {
+    'junegunn/fzf.vim',
+    dependencies = {
+      'junegunn/fzf',
+    },
+  },
+  { 'neoclide/coc.nvim', branch = 'release' },
+  'itchyny/lightline.vim',
+  'tweekmonster/fzf-filemru',
+  'mg979/vim-visual-multi',
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'tpope/vim-obsession',
+  'tpope/vim-endwise',
+  'elzr/vim-json',
+  'junegunn/vim-easy-align',
+  'honza/vim-snippets',
+  'thinca/vim-qfreplace',
+  'tpope/vim-abolish',
+  'tpope/vim-repeat',
+  'svermeulen/vim-easyclip',
+  'junegunn/goyo.vim',
+  'amix/vim-zenroom2',
+  'junegunn/gv.vim',
+  'ntpeters/vim-better-whitespace',
+  'tomtom/tcomment_vim',
+  {
+    'kana/vim-textobj-user',
+    dependencies = {
+      'terryma/vim-expand-region',
+      'kana/vim-textobj-line',
+      'kana/vim-textobj-entire',
+    }
+  },
+  'wellle/targets.vim',
+  'haya14busa/is.vim',
+  'haya14busa/vim-asterisk',
+  'AndrewRadev/splitjoin.vim',
+  'andymass/vim-matchup',
+  'tyru/open-browser.vim',
+  'mattn/emmet-vim',
+  'machakann/vim-highlightedyank',
+  'RRethy/vim-illuminate',
+  'rhysd/git-messenger.vim',
+  'janko/vim-test',
+  'tpope/vim-dispatch',
+  'mtth/scratch.vim',
+  'AndrewRadev/switch.vim',
+  'metakirby5/codi.vim',
+  'tpope/vim-projectionist',
+  'segeljakt/vim-silicon',
+  'towolf/vim-helm',
+  'nvim-lua/plenary.nvim',
+  'lukas-reineke/indent-blankline.nvim',
+  'lewis6991/gitsigns.nvim',
+  'sindrets/diffview.nvim',
+  'kevinhwang91/nvim-bqf',
+  'chipsenkbeil/distant.nvim',
+  'nvim-tree/nvim-web-devicons',
+  'nvim-tree/nvim-tree.lua',
+  'gelguy/wilder.nvim',
+  'github/copilot.vim',
+  'keaising/im-select.nvim',
+  'nvim-treesitter/nvim-treesitter',
+  'romgrk/nvim-treesitter-context',
+  'windwp/nvim-autopairs',
+  'cappyzawa/trim.nvim',
+  'neovim/nvim-lspconfig',
+  'tpope/vim-rails',
+  'tpope/vim-rbenv',
+  'slim-template/vim-slim',
+  'tpope/vim-bundler',
+  'vim-ruby/vim-ruby',
+  'Vimjas/vim-python-pep8-indent',
+  'vim-python/python-syntax',
+  'raimon49/requirements.txt.vim',
+  'iamcco/markdown-preview.nvim',
+  'godlygeek/tabular',
+  'dhruvasagar/vim-table-mode',
+  'mzlogin/vim-markdown-toc',
+  'rhysd/vim-gfm-syntax',
+  'fatih/vim-go',
+  'rust-lang/rust.vim',
+  'hashivim/vim-terraform',
+  'NvChad/nvim-colorizer.lua',
+  'gkeep/iceberg-dark',
+  'chriskempson/vim-tomorrow-theme',
+  'junegunn/limelight.vim',
+  'junegunn/seoul256.vim',
+  'kristijanhusak/vim-hybrid-material',
+  'joshdick/onedark.vim',
+  'rhysd/vim-color-spring-night',
+  'morhetz/gruvbox',
+  'cocopon/iceberg.vim',
+  'arcticicestudio/nord-vim',
+  'romainl/Apprentice',
+  'mhartington/oceanic-next',
+  {
+    'haishanh/night-owl.vim',
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme night-owl]])
+    end
+  },
+  'sainnhe/sonokai',
+})
+
 local remap = vim.api.nvim_set_keymap
 local api = vim.api
 
@@ -5,11 +126,11 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = { "haskell", "markdown", "beancount", "swift", 'gitcommit' },
   highlight = {
-    enable = true,  -- false will disable the whole extension
+    enable = true, -- false will disable the whole extension
     disable = {
       'lua',
-      'ruby',
       'toml',
+      'ruby',
       'c_sharp',
       'vue',
       'bash',
@@ -33,12 +154,12 @@ require('nvim-treesitter.configs').setup {
 }
 
 require('gitsigns').setup {
-  signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  signs                             = {
+    add          = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+    change       = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+    delete       = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+    topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+    changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
   },
   signcolumn = false,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
@@ -70,9 +191,9 @@ require('gitsigns').setup {
     interval = 1000,
     follow_files = true
   },
-  attach_to_untracked = true,
-  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-  current_line_blame_opts = {
+  attach_to_untracked               = true,
+  current_line_blame                = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts           = {
     virt_text = true,
     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
@@ -80,11 +201,11 @@ require('gitsigns').setup {
   current_line_blame_formatter_opts = {
     relative_time = false
   },
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil, -- Use default
-  max_file_length = 40000,
-  preview_config = {
+  sign_priority                     = 6,
+  update_debounce                   = 100,
+  status_formatter                  = nil, -- Use default
+  max_file_length                   = 40000,
+  preview_config                    = {
     -- Options passed to nvim_open_win
     border = 'single',
     style = 'minimal',
@@ -92,23 +213,24 @@ require('gitsigns').setup {
     row = 0,
     col = 1
   },
-  yadm = {
+  yadm                              = {
     enable = false
   },
 }
 
 -- local cb = require'diffview.config'.diffview_callback
-require'diffview'.setup {
+require 'diffview'.setup {
   file_panel = {
     win_config = {
-      position = "left",            -- One of 'left', 'right', 'top', 'bottom'
-      width = 35,                 -- Only applies when position is 'left' or 'right'
-      height = 10                -- Only applies when position is 'top' or 'bottom'
+      position = "left",    -- One of 'left', 'right', 'top', 'bottom'
+      width = 35,           -- Only applies when position is 'left' or 'right'
+      height = 10           -- Only applies when position is 'top' or 'bottom'
     },
-    listing_style = "list",       -- One of 'list' or 'tree'
-    tree_options = {              -- Only applies when listing_style is 'tree'
+    listing_style = "list", -- One of 'list' or 'tree'
+    tree_options = {
+      -- Only applies when listing_style is 'tree'
       flatten_dirs = false,
-      folder_statuses = "always"  -- One of 'never', 'only_folded' or 'always'.
+      folder_statuses = "always" -- One of 'never', 'only_folded' or 'always'.
     }
   },
   key_bindings = {
@@ -130,10 +252,11 @@ require'diffview'.setup {
 }
 
 require('treesitter-context').setup {
-  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  enable = true,   -- Enable this plugin (Can be enabled/disabled later via commands)
   throttle = true, -- Throttles plugin updates (may improve performance)
-  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-  patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+  max_lines = 0,   -- How many lines the window should span. Values <= 0 mean no limit.
+  patterns = {
+    -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
     -- For all filetypes
     -- Note that setting an entry here replaces all other patterns for this entry.
     -- By setting the 'default' entry below, you can control which nodes you want to
@@ -166,14 +289,14 @@ api.nvim_create_autocmd({ 'CursorMoved' }, {
 
 local wilder = require('wilder')
 wilder.setup({
-  modes = {':', '/', '?'},
+  modes = { ':', '/', '?' },
 })
 wilder.set_option('renderer', wilder.popupmenu_renderer({
   highlighter = wilder.basic_highlighter(),
-  left = {' ', wilder.popupmenu_devicons()},
-  right = {' ', wilder.popupmenu_scrollbar()},
+  left = { ' ', wilder.popupmenu_devicons() },
+  right = { ' ', wilder.popupmenu_scrollbar() },
   highlights = {
-    accent = wilder.make_hl('WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#f4468f'}}),
+    accent = wilder.make_hl('WilderAccent', 'Pmenu', { { a = 1 }, { a = 1 }, { foreground = '#f4468f' } }),
   },
 }))
 
@@ -191,38 +314,38 @@ npairs.setup({
 local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
 npairs.add_rules {
   Rule(' ', ' ')
-    :with_pair(function (opts)
-      local pair = opts.line:sub(opts.col - 1, opts.col)
-      return vim.tbl_contains({
-        brackets[1][1]..brackets[1][2],
-        brackets[2][1]..brackets[2][2],
-        brackets[3][1]..brackets[3][2],
-      }, pair)
-    end)
-}
-for _,bracket in pairs(brackets) do
-  npairs.add_rules {
-    Rule(bracket[1]..' ', ' '..bracket[2])
-      :with_pair(function() return false end)
-      :with_move(function(opts)
-        return opts.prev_char:match('.%'..bracket[2]) ~= nil
+      :with_pair(function(opts)
+        local pair = opts.line:sub(opts.col - 1, opts.col)
+        return vim.tbl_contains({
+          brackets[1][1] .. brackets[1][2],
+          brackets[2][1] .. brackets[2][2],
+          brackets[3][1] .. brackets[3][2],
+        }, pair)
       end)
-      :use_key(bracket[2])
+}
+for _, bracket in pairs(brackets) do
+  npairs.add_rules {
+    Rule(bracket[1] .. ' ', ' ' .. bracket[2])
+        :with_pair(function() return false end)
+        :with_move(function(opts)
+          return opts.prev_char:match('.%' .. bracket[2]) ~= nil
+        end)
+        :use_key(bracket[2])
   }
 end
 
 -- skip it, if you use another global object
-_G.MUtils= {}
+_G.MUtils = {}
 
-MUtils.completion_confirm=function()
-    if vim.fn["coc#pum#visible"]() ~= 0  then
-        return vim.fn["coc#pum#confirm"]()
-    else
-        return npairs.autopairs_cr()
-    end
+MUtils.completion_confirm = function()
+  if vim.fn["coc#pum#visible"]() ~= 0 then
+    return vim.fn["coc#pum#confirm"]()
+  else
+    return npairs.autopairs_cr()
+  end
 end
 
-remap('i' , '<CR>', 'v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+remap('i', '<CR>', 'v:lua.MUtils.completion_confirm()', { expr = true, noremap = true })
 
 --
 -- This function has been generated from your
@@ -334,56 +457,57 @@ require("nvim-tree").setup({
 
 -- default configuration
 require('illuminate').configure({
-    -- providers: provider used to get references in the buffer, ordered by priority
-    providers = {
-        'lsp',
-        'treesitter',
-        'regex',
-    },
-    -- delay: delay in milliseconds
-    delay = 100,
-    -- filetype_overrides: filetype specific overrides.
-    -- The keys are strings to represent the filetype while the values are tables that
-    -- supports the same keys passed to .configure except for filetypes_denylist and filetypes_allowlist
-    filetype_overrides = {},
-    -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
-    filetypes_denylist = {
-      'dirvish',
-      'fugitive',
-      'NvimTree',
-      'python'
-    },
-    -- filetypes_allowlist: filetypes to illuminate, this is overriden by filetypes_denylist
-    filetypes_allowlist = {},
-    -- modes_denylist: modes to not illuminate, this overrides modes_allowlist
-    -- See `:help mode()` for possible values
-    modes_denylist = {},
-    -- modes_allowlist: modes to illuminate, this is overriden by modes_denylist
-    -- See `:help mode()` for possible values
-    modes_allowlist = {},
-    -- providers_regex_syntax_denylist: syntax to not illuminate, this overrides providers_regex_syntax_allowlist
-    -- Only applies to the 'regex' provider
-    -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
-    providers_regex_syntax_denylist = {},
-    -- providers_regex_syntax_allowlist: syntax to illuminate, this is overriden by providers_regex_syntax_denylist
-    -- Only applies to the 'regex' provider
-    -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
-    providers_regex_syntax_allowlist = {},
-    -- under_cursor: whether or not to illuminate under the cursor
-    under_cursor = false,
-    -- large_file_cutoff: number of lines at which to use large_file_config
-    -- The `under_cursor` option is disabled when this cutoff is hit
-    large_file_cutoff = nil,
-    -- large_file_config: config to use for large files (based on large_file_cutoff).
-    -- Supports the same keys passed to .configure
-    -- If nil, vim-illuminate will be disabled for large files.
-    large_file_overrides = nil,
-    -- min_count_to_highlight: minimum number of matches required to perform highlighting
-    min_count_to_highlight = 1,
+  -- providers: provider used to get references in the buffer, ordered by priority
+  providers = {
+    'lsp',
+    'treesitter',
+    'regex',
+  },
+  -- delay: delay in milliseconds
+  delay = 100,
+  -- filetype_overrides: filetype specific overrides.
+  -- The keys are strings to represent the filetype while the values are tables that
+  -- supports the same keys passed to .configure except for filetypes_denylist and filetypes_allowlist
+  filetype_overrides = {},
+  -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
+  filetypes_denylist = {
+    'dirvish',
+    'fugitive',
+    'NvimTree',
+    'python'
+  },
+  -- filetypes_allowlist: filetypes to illuminate, this is overriden by filetypes_denylist
+  filetypes_allowlist = {},
+  -- modes_denylist: modes to not illuminate, this overrides modes_allowlist
+  -- See `:help mode()` for possible values
+  modes_denylist = {},
+  -- modes_allowlist: modes to illuminate, this is overriden by modes_denylist
+  -- See `:help mode()` for possible values
+  modes_allowlist = {},
+  -- providers_regex_syntax_denylist: syntax to not illuminate, this overrides providers_regex_syntax_allowlist
+  -- Only applies to the 'regex' provider
+  -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+  providers_regex_syntax_denylist = {},
+  -- providers_regex_syntax_allowlist: syntax to illuminate, this is overriden by providers_regex_syntax_denylist
+  -- Only applies to the 'regex' provider
+  -- Use :echom synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+  providers_regex_syntax_allowlist = {},
+  -- under_cursor: whether or not to illuminate under the cursor
+  under_cursor = false,
+  -- large_file_cutoff: number of lines at which to use large_file_config
+  -- The `under_cursor` option is disabled when this cutoff is hit
+  large_file_cutoff = nil,
+  -- large_file_config: config to use for large files (based on large_file_cutoff).
+  -- Supports the same keys passed to .configure
+  -- If nil, vim-illuminate will be disabled for large files.
+  large_file_overrides = nil,
+  -- min_count_to_highlight: minimum number of matches required to perform highlighting
+  min_count_to_highlight = 1,
 })
 
 require('trim').setup({
-  ft_blocklist = {'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive','fugitiveblame', 'nerdtree', 'NvimTree'},
+  ft_blocklist = { 'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive', 'fugitiveblame',
+    'nerdtree', 'NvimTree' },
   trim_last_line = true,
   -- if you want to remove multiple blank lines
   -- patterns = {

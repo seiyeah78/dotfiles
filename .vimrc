@@ -103,21 +103,21 @@ endif
 " Setting Vim-Plug
 " on : loading when execute commands
 " do : execute commands after install plugins
-call plug#begin('~/.vim/plugged')
-  Plug 'junegunn/vim-plug',
-        \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
-
-  function s:source_plug(file)
-    execute 'source ~/dotfiles/.vim/plugins/'.a:file
-  endfunction
-
-  call s:source_plug('common.rc.vim')
-  call s:source_plug(has('nvim') ? 'neovim.rc.vim' : 'vim.rc.vim')
-  " load another plugins for projects
-  if filereadable(glob('~/.vim/plugins.local'))
-    execute 'source ~/.vim/plugins.local'
-  endif
-call plug#end()
+" call plug#begin('~/.vim/plugged')
+"   Plug 'junegunn/vim-plug',
+"         \ {'dir': '~/.vim/plugged/vim-plug/autoload'}
+"
+"   function s:source_plug(file)
+"     execute 'source ~/dotfiles/.vim/plugins/'.a:file
+"   endfunction
+"
+"   call s:source_plug('common.rc.vim')
+"   call s:source_plug(has('nvim') ? 'neovim.rc.vim' : 'vim.rc.vim')
+"   " load another plugins for projects
+"   if filereadable(glob('~/.vim/plugins.local'))
+"     execute 'source ~/.vim/plugins.local'
+"   endif
+" call plug#end()
 
 if has('nvim')
   lua require('plugins')

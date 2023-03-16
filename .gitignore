@@ -25,6 +25,7 @@ coc-settings.json
 .config/*
 .netrwhist
 !.config/nvim/coc-settings.json
+!.config/nvim/lua/*
 !.config/snippets/
 !my_alt_functions.json
 !my_application_functions.json

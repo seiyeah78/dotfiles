@@ -5,10 +5,70 @@
   "coc.preferences.useQuickfixForLocations": false,
   "coc.source.around.priority": 10,
   "coc.source.buffer.priority": 10,
-  "coc.source.file.priority": 10,
-  "codeLens.enable": true,
-  "codeLens.position": "eol",
-  "css.validate": false,
+  "diagnostic.signPriority": 10,
+  "suggest.removeDuplicateItems": true,
+  "snippets.userSnippetsDirectory": "~/.config/snippets",
+  "snippets.snipmate.enable": true,
+  "snippets.extends": {
+    "gitcommit": [
+      "markdown"
+    ],
+    "pullrequest": [
+      "markdown"
+    ]
+  },
+  "json.validate.enable": true,
+  "coc.preferences.jumpCommand": "drop",
+  "pyright.organizeimports.provider": "isort",
+  "python.formatting.provider": "black",
+  "python.sortImports.path": "isort",
+  "python.linting.flake8Enabled": false,
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportIncompatibleMethodOverride": "warning"
+  },
+  "diagnostic.enableHighlightLineNumber": false,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.diagnostics.disabled": [
+    "unresolved-import"
+  ],
+  "svelte.enable-ts-plugin": true,
+  "yaml.validate": true,
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/composer/composer/master/res/composer-schema.json": [
+      "/*"
+    ],
+    "https://json.schemastore.org/kustomization": "/kustomization.yaml",
+    "kubernetes": [
+      "*/*.yaml"
+    ]
+  },
+  "Lua": {
+    "workspace.library": {
+      "/usr/share/nvim/runtime/lua": true,
+      "/usr/share/nvim/runtime/lua/vim": true,
+      "/usr/share/nvim/runtime/lua/vim/lsp": true,
+    },
+    "diagnostics": {
+      "globals": [
+        "vim"
+      ]
+    }
+  },
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": [
+        "serve"
+      ],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  },
+  "diagnostic.checkCurrentLine": true,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
     "yaml": [
@@ -62,9 +122,6 @@
       "sourceName": "actionlint"
     }
   },
-  "diagnostic.checkCurrentLine": true,
-  "diagnostic.enableHighlightLineNumber": false,
-  "diagnostic.signPriority": 10,
   "importCost.bundleSizeDecoration": "both",
   "importCost.debug": true,
   "importCost.javascriptExtensions": [

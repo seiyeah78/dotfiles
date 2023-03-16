@@ -17,7 +17,6 @@ Plug 'thinca/vim-qfreplace'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat' | Plug 'svermeulen/vim-easyclip'
 Plug 'junegunn/goyo.vim', { 'on': ['Goyo'] } | Plug 'amix/vim-zenroom2', { 'on': ['Goyo'] }
-Plug 'liuchengxu/vista.vim', { 'on': ['Vista!!', 'Vista']}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tomtom/tcomment_vim'
 Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
@@ -35,7 +34,6 @@ Plug 'mtth/scratch.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'metakirby5/codi.vim'
 Plug 'tpope/vim-projectionist'
-Plug 'pechorin/any-jump.vim'
 Plug 'segeljakt/vim-silicon', { 'do': 'curl https://sh.rustup.rs -sySf \| sh; cargo install silicon' }
 Plug 'towolf/vim-helm'
 
