@@ -6,11 +6,11 @@ require('lualine').setup {
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},
-      winbar = {},
+      winbar = { 'NvimTree', 'fugitive', 'fugitive' },
     },
     ignore_focus = {},
     always_divide_middle = true,
-    globalstatus = false,
+    globalstatus = true,
     refresh = {
       statusline = 1000,
       tabline = 1000,
@@ -29,7 +29,7 @@ require('lualine').setup {
       end
     } },
     lualine_b = { 'branch', 'diff', 'diagnostics' },
-    lualine_c = { 'filename' },
+    lualine_c = { 'ObsessionStatus', 'filename' },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = { 'progress' },
     lualine_z = { 'location' }
