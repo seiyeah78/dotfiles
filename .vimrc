@@ -120,9 +120,6 @@ endif
 " call plug#end()
 
 if has('nvim')
-  lua require('plugins')
-  execute 'source ~/.vim/plugins/neovim.rc.keymappings.vim'
-else
   execute 'source ~/.vim/plugins/vim.rc.keymappings.vim'
 endif
 

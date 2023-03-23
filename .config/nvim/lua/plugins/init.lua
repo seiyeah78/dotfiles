@@ -10,8 +10,13 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
+lazy = require("lazy")
+lazy.setup({
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
   {
     'junegunn/fzf.vim',
     dependencies = {
@@ -126,6 +131,38 @@ require("lazy").setup({
 
 local remap = vim.api.nvim_set_keymap
 local api = vim.api
+
+
+require('telescope').setup {
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-s>"] = "file_split"
+      }
+    }
+  },
+  pickers = {
+    -- Default configuration for builtin pickers goes here:
+    -- picker_name = {
+    --   picker_config_key = value,
+    --   ...
+    -- }
+    -- Now the picker_config_key will be applied every time you call this
+    -- builtin picker
+  },
+  extensions = {
+    -- Your extension configuration goes here:
+    -- extension_name = {
+    --   extension_config_key = value,
+    -- }
+    -- please take a look at the readme of the extension you want to configure
+  }
+}
 
 -- plugin settings
 require('plugins.config.lualine')

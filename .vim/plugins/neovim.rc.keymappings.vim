@@ -212,12 +212,12 @@ function! s:Switching(reverse)
   nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
 
   " 他の.vimrcの読み込み
-  let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
-  for filename in s:vim_dotfiles
-    if filereadable(expand(filename))
-      execute 'source' filename
-    endif
-  endfor
+  " let s:vim_dotfiles = split(globpath('~/dotfiles/include_vimrc', '*'),'\n')
+  " for filename in s:vim_dotfiles
+  "   if filereadable(expand(filename))
+  "     execute 'source' filename
+  "   endif
+  " endfor
 
   " https://github.com/wellle/targets.vim/issues/257
   let g:targets_nl = ['n', 'N']
