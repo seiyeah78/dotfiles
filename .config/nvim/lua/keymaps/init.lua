@@ -6,6 +6,14 @@ vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', '<leader><S-n><S-n>', ':NvimTreeToggle<CR>', {})
 vim.keymap.set('n', '<leader><S-n>f', ':NvimTreeFindFile<CR>', {})
 
+
+-- yanky mapping ---
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set({ "n", "i" }, "<C-Y><C-Y>", ':Telescope yank_history<CR>', {})
+
 vim.cmd([[
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
@@ -360,57 +368,4 @@ function! s:Switching(reverse)
             \ 'sink':    function('s:tags_sink')})
     endfunction
     command! -nargs=* TTags call s:tags(<q-args>)
-
-    " ------------- 引数の内容を無名レジスタにコピー---------"
-    function! s:add_latest_register(line)
-      let @" = a:line
-      echomsg "Add Register!!"
-    endfunction
-
-    command! -nargs=* BacklogIssues call fzf#run({
-          \ 'source': 'ruby -S backlog_access.rb myissue',
-          \ 'options': '--ansi ',
-          \ 'down':    '40%',
-          \ 'sink': function('s:add_latest_register')
-          \ })
-
-    function! s:yank_list()
-      redir => ys
-      " silent :Yanks
-      " redir END
-      silent call s:all_yanks()
-      redir END
-      return split(substitute(ys, '\^M', '\\\\\\n', 'g'), '\n')[1:]
-    endfunction
-
-    function! s:yank_handler(reg)
-      if empty(a:reg)
-        echo "aborted register paste"
-      else
-        let token = split(a:reg, ' ')
-        execute 'Paste' . token[0]
-      endif
-    endfunction
-
-    command! FZFYank call fzf#run({
-          \ 'source': <sid>yank_list(),
-          \ 'sink': function('<sid>yank_handler'),
-          \ 'options': '-m --prompt="FZFYank> " --preview="echo -e {2..}"',
-          \ 'down':    '40%'
-          \ })
-
-    nnoremap <C-Y><C-Y> :<C-U>FZFYank<CR>
-    inoremap <C-Y><C-Y> <C-O>:<C-U>FZFYank<CR>
-
-    function! s:all_yanks()
-      let i = 0
-      for msg in EasyClip#Yank#EasyClipGetAllYanks()
-        let index = printf("%-4d", i)
-        let line = substitute(msg.text, '\V\n', '^M', 'g')
-        echohl Directory | echo  index
-        echohl None      | echon line
-        echohl None
-        let i += 1
-      endfor
-    endfunction
 ]])

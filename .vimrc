@@ -335,15 +335,6 @@ nnoremap <leader>! :call <SID>goog(expand("<cWord>"), 1)<cr>
 vnoremap <leader>? y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 0)<cr>
 vnoremap <leader>! y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 1)<cr>
 
-" ------------ vim-easyclip ------------
-let g:EasyClipUseGlobalPasteToggle = 0
-imap <c-v> <plug>EasyClipInsertModePaste
-cmap <c-v> <plug>EasyClipCommandModePaste
-let g:EasyClipShareYanks = 1
-let g:EasyClipAutoFormat = 1
-let g:EasyClipUsePasteDefaults = 1
-let g:EasyClipYankHistorySize = 200
-
 let g:indentLine_faster = 1
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 
