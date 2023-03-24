@@ -14,6 +14,8 @@ vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set({ "n", "i" }, "<C-Y><C-Y>", ':Telescope yank_history<CR>', {})
 
+vim.keymap.set({ "n" }, "<Leader>ga", ':DiffviewFileHistory %', { silent = true })
+
 vim.cmd([[
 " ---------------tcomment_vim setting -----------"
 " disable default mappings
@@ -158,7 +160,6 @@ vmap > >gv
 nnoremap <Leader>go :GBrowse<CR>
 vnoremap <Leader>go :GBrowse<CR>
 nnoremap <Leader>gv :GV!<CR>
-autocmd VimEnter * nnoremap <silent><expr><Leader>ga ':DiffviewFileHistory '. expand("%")<CR>
 
 " git add current file
 noremap <Leader>gs :Git<CR>

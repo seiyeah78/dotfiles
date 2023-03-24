@@ -135,7 +135,6 @@ vmap > >gv
 nnoremap <Leader>go :GBrowse<CR>
 vnoremap <Leader>go :GBrowse<CR>
 nnoremap <Leader>gv :GV!<CR>
-autocmd VimEnter * nnoremap <silent><expr><Leader>ga ':DiffviewFileHistory '. expand("%")<CR>
 
 " git add current file
 noremap <Leader>gs :Git<CR>
