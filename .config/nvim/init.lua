@@ -1,4 +1,4 @@
 require('base')
-require('plugins')
+require('config')
 require('autocmds')
 require('keymaps')

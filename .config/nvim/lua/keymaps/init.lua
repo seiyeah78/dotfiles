@@ -14,7 +14,7 @@ vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set({ "n", "i" }, "<C-Y><C-Y>", ':Telescope yank_history<CR>', {})
 
-vim.keymap.set({ "n" }, "<Leader>ga", ':DiffviewFileHistory %', { silent = true })
+vim.keymap.set({ "n" }, "<Leader>ga", ':DiffviewFileHistory % <CR>', { silent = true })
 
 vim.cmd([[
 " ---------------tcomment_vim setting -----------"
@@ -103,17 +103,6 @@ nnoremap <leader>? :call <SID>goog(expand("<cword>"), 0)<cr>
 nnoremap <leader>! :call <SID>goog(expand("<cWord>"), 1)<cr>
 vnoremap <leader>? y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 0)<cr>
 vnoremap <leader>! y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 1)<cr>
-
-" ------------ vim-easyclip ------------
-imap <c-v> <plug>EasyClipInsertModePaste
-cmap <c-v> <plug>EasyClipCommandModePaste
-let g:EasyClipShareYanks = 1
-let g:EasyClipAutoFormat = 1
-let g:EasyClipUsePasteDefaults = 1
-let g:EasyClipYankHistorySize = 200
-
-let g:indentLine_faster = 1
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 
 " ------------ ctag setting ------------
 " tagsジャンプの時に複数ある時は一覧表示
