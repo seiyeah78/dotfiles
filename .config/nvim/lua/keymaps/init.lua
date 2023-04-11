@@ -50,13 +50,6 @@ cmap <C-Space>  <C-@>
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 vnoremap YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 
-" these Ctrl mappings work well when Caps Lock is mapped to Ctrl
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
-
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
 
@@ -179,6 +172,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 nmap <C-w>m <Plug>(git-messenger)
+
 let g:git_messenger_include_diff = 'current'
 let g:git_messenger_always_into_popup = v:true
 let g:git_messenger_max_popup_height = 100
