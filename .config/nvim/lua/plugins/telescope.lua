@@ -9,6 +9,7 @@ return {
     tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
+      local actions = require("telescope.actions")
       require('telescope').setup {
         defaults = {
           -- Default configuration for telescope goes here:
@@ -19,7 +20,8 @@ return {
               -- map actions.which_key to <C-h> (default: <C-/>)
               -- actions.which_key shows the mappings for your picker,
               -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-              ["<C-s>"] = "file_split"
+              ["<C-s>"] = "file_split",
+              ["<esc>"] = actions.close,
             }
           }
         },
