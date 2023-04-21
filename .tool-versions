@@ -1,4 +1,5 @@
 python 3.9.13 2.7.18
 ruby 3.0.0
 nodejs 16.9.0
-kubectl 1.23.10
+kubectl 1.24.13
+awscli 2.11.13

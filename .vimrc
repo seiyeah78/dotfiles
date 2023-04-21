@@ -354,6 +354,8 @@ let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'git*']
 nnoremap <C-]> g<C-]>
 nnoremap <C-W><C-]> <C-W>g<C-]>
 
+let g:vista#executives = ['coc']
+let g:vista_default_executive = 'coc'
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.

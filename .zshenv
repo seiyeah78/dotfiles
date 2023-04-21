@@ -35,7 +35,7 @@ export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
 CORE_PATH="/usr/local/bin:/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:$CURL_PATH:/usr/local/opt/grep/libexec/gnubin:$MYSCRIPT_DIR/bin:\
 $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin:\
-:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:$GOPATH/bin"
+:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:$GOPATH/bin:${HOME}/.fig/bin"
 
 # DEFAULTでfzf.vimも反映する
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
@@ -59,7 +59,7 @@ export FZF_CTRL_R_OPTS="$FZF_DEFAULT_OPTS -i --sort --prompt 'HISTORY> '"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS $FZF_PREVIEW_OPTS --ansi --prompt 'FILES> '"
 export FZF_TMUX=1
-export FZF_TMUX_OPTS='-p70%,50% -xC -yC'
+export FZF_TMUX_OPTS='-p80%,70% -xC -yC'
 
 export THOR_MERGE=vimdiff
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd)

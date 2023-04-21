@@ -24,7 +24,7 @@ Plug 'kana/vim-textobj-user' | Plug 'terryma/vim-expand-region' | Plug 'kana/vim
 Plug 'wellle/targets.vim'
 Plug 'haya14busa/is.vim' | Plug 'haya14busa/vim-asterisk'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'andymass/vim-matchup'
+" Plug 'andymass/vim-matchup'
 Plug 'tyru/open-browser.vim'
 Plug 'mattn/emmet-vim', { 'for': ['html','javascript','typescript','jsx','tsx','typescript.tsx'] }
 Plug 'machakann/vim-highlightedyank'

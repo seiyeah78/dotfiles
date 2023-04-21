@@ -14,7 +14,6 @@ let g:coc_global_extensions = [
       \, 'coc-pyright'
       \, 'coc-snippets'
       \, 'coc-rust-analyzer'
-      \, 'coc-import-cost'
       \, 'coc-go'
       \ ]
 " don't give |ins-completion-menu| messages.

@@ -1,6 +1,6 @@
 pynvim
 ipython
-awscli
+# awscli
 black
 mypy
 isort

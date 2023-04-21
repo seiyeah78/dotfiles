@@ -31,3 +31,4 @@ coc-settings.json
 !my_application_functions.json
 silicon*
 .tool-versions
+.ipynb_checkpoints

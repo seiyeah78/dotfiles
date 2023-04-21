@@ -18,8 +18,7 @@ usage() {
   exit 1
 }
 
-for OPT in "$@"
-do
+for OPT in "$@"; do
   case $OPT in
     -h | --help)
       usage
@@ -39,23 +38,26 @@ do
       ;;
     *)
       if [[ ! -z "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
-        param+=( "$1" )
+        param+=("$1")
         shift 1
       fi
       ;;
   esac
 done
 
-function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
+function is_exists() {
+  type "$1" > /dev/null 2>&1
+  return $?
+}
 
 sudo -v # ask for sudo upfront
 
 if [ "$(uname)" == 'Darwin' ]; then
-# Command Line Developer Tools
-  xcode-select --print-path >/dev/null 2>&1
+  # Command Line Developer Tools
+  xcode-select --print-path > /dev/null 2>&1
   if [ 0 != $? ] || [ ! -z "$CMDLINE_TOOLS" ]; then
     eecho "Install Command Line Tools..."
-    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
     PROD=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | cut -d' ' -f2-)
     eecho "Latest version:  $PROD"
     softwareupdate -i "$PROD"
@@ -82,8 +84,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-for f in .??*
-do
+for f in .??*; do
   if [ "$f" == ".git" ] || [ "$f" == ".DS_Store" ]; then
     continue
   fi
@@ -113,10 +114,9 @@ fi
 
 # asdf plugins
 if is_exists "asdf"; then
-  langs=("python ruby nodejs")
+  langs=("python ruby nodejs awscli kubectl terraform")
 
-  for l in $langs
-  do
+  for l in $langs; do
     asdf plugin-add $l
     asdf install $l latest
   done
