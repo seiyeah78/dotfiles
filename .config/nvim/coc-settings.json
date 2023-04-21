@@ -47,6 +47,7 @@
   "python.analysis.diagnosticSeverityOverrides": {
     "reportIncompatibleMethodOverride": "warning"
   },
+  "codeLens.position": "eol",
   "diagnostic.enableHighlightLineNumber": false,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
