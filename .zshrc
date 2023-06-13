@@ -108,7 +108,7 @@ unalias gp
 alias gdc='git dc'
 alias gcm='git cm'
 alias groot='cd $(git rev-parse --show-toplevel)'
-alias gpf='f(){ print -z " git push --force-with-lease ${1:-origin} $(git symbolic-ref --short HEAD)" }; f'
+alias gpf='f(){ print -z " git push --force-with-lease --force-if-includes ${1:-origin} $(git symbolic-ref --short HEAD)" }; f'
 alias gpO='gpf origin'
 alias gpU='gpf upstream'
 
