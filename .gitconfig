@@ -76,8 +76,6 @@
   prompt = true
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c '2 wincmd l | wincmd J | wincmd k'"
-[include]
-  path = ~/.gitconfig.local
 # [init]
 #   templatedir = ~/.git_template
 [color]
@@ -110,3 +108,5 @@
 	keepBackup = false
 [init]
 	defaultBranch = main
+[include]
+  path = ~/.gitconfig.local
