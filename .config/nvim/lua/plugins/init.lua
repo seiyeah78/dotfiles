@@ -326,6 +326,11 @@ end
 
 require("nvim-tree").setup({
   hijack_netrw = false,
+  sync_root_with_cwd = true,
+  update_focused_file = {
+    enable = false,
+    update_root = true
+  },
   actions = {
     open_file = {
       window_picker = {
@@ -404,5 +409,5 @@ require('im_select').setup {
 	default_im_select  = "com.google.inputmethod.Japanese.Roman",
 
 	-- Set to 1 if you don't want restore IM status when `InsertEnter`
-	disable_auto_restore = 1,
+  set_previous_events = { "InsertEnter" }
 }
