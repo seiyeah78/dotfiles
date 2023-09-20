@@ -14,13 +14,14 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
 Plug 'keaising/im-select.nvim'
+Plug 'm-demare/hlargs.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'windwp/nvim-autopairs'
 Plug 'cappyzawa/trim.nvim'
 
-Plug 'wookayin/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+" Plug 'wookayin/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 let g:semshi#error_sign = v:false
 let g:semshi#tolerate_syntax_errors = v:false
 let g:semshi#excluded_hl_groups = ['local', 'unresolved', 'attribute', 'builtin', 'free', 'global']

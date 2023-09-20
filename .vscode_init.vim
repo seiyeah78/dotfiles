@@ -1,4 +1,3 @@
-# ヤンクした値を連続でペーストする
 xnoremap p "_dP
 " nnoremap d "_d
 " vnoremap d "_d

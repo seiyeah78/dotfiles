@@ -1,5 +1,6 @@
 " ランタイムを読み込む
 set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/bin/fzf
 
 " This is the default extra key bindings
 " fzf中に実行できるコマンド

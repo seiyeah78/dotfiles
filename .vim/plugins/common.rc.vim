@@ -2,7 +2,7 @@
 " Utility
 " -----------------------------------------------
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
+Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim' | Plug 'tweekmonster/fzf-filemru'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } | Plug 'antoinemadec/coc-fzf'
 Plug 'tpope/vim-surround'
 Plug 'simeji/winresizer'

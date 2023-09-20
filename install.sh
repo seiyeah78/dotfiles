@@ -2,6 +2,24 @@
 
 DOTPATH=~/dotfiles
 
+unameout="$(uname -s)"
+case "${unameout}" in
+    linux*)     OS=linux;;
+    darwin*)    OS=mac;;
+    cygwin*)    OS=cygwin;;
+    mingw*)     OS=mingw;;
+    *)          OS="unknown:${unameout}"
+esac
+
+arch="$(uname -m)"
+case "${arch}" in
+  x86_64)      ARCH=intel;;
+  arm64*)      ARCH=arm;;
+  *)           ARCH="other:${arch}"
+esac
+
+echo OS: ${OS}, Arch: ${ARCH}
+
 eecho() {
   echo $1
   echo
@@ -103,6 +121,10 @@ if is_exists "brew"; then
   eecho "Homebrew is already installed!"
 else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ARCH="$(uname -m)"
+  if [ $ARCH == "arm64" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 fi
 
 if [ -e Brewfile ]; then

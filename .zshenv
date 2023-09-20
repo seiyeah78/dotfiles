@@ -7,6 +7,12 @@ OPENSSL_PATH="/usr/local/opt/openssl/bin"
 CURL_PATH="/usr/local/opt/curl/bin"
 MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
 MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
+if [ $(uname -m) = "arm64" ]; then
+  HOMEBREW_PATH=/opt/homebrew/bin
+else
+  HOMEBREW_PATH=''
+fi
+export RUNEWIDTH_EASTASIAN=0
 
 export ZHOMEDIR=$HOME/.config/zsh
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
@@ -32,7 +38,7 @@ export PROMPT_EOL_MARK=''
 
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
 
-CORE_PATH="/usr/local/bin:/usr/local/sbin:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
+CORE_PATH="/usr/local/bin:/usr/local/sbin:$HOMEBREW_PATH:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:$CURL_PATH:/usr/local/opt/grep/libexec/gnubin:$MYSCRIPT_DIR/bin:\
 $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin:\
 :/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:$GOPATH/bin:${HOME}/.fig/bin"
@@ -69,3 +75,4 @@ if [ -e ~/.zshenv.local ]; then
   source ~/.zshenv.local
 fi
 source "$HOME/.cargo/env"
+. "$HOME/.cargo/env"

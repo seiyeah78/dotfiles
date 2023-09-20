@@ -5,7 +5,6 @@ local gpus = wezterm.gui.enumerate_gpus()
 local font_name = wezterm.font_with_fallback({"RictyDiminishedDiscord Nerd Font", "The font with those symbols"})
 
 return {
-  default_prog = {'/usr/local/bin/zsh'},
   font = font_name,
   font_rules = {
     {
