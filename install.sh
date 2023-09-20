@@ -71,6 +71,7 @@ if is_exists "git"; then
     eecho "already exists dotfiles."
   else
     git clone --recursive "https://github.com/seiyeah78/dotfiles.git" "$DOTPATH"
+    INSTALL_BREW=1
   fi
 else
   eecho "git is required"
@@ -121,4 +122,27 @@ if is_exists "asdf"; then
     asdf install $l latest
   done
   exec $SHELL -l
+fi
+
+if is_exists "kubectl"; then
+  krew_path=${KREW_ROOT:-$HOME/.krew}
+  if [ -e $krew_path ]; then
+    (
+      set -x; cd "$(mktemp -d)" &&
+      OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+      ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+      KREW="krew-${OS}_${ARCH}" &&
+      curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+      tar zxvf "${KREW}.tar.gz" &&
+      ./"${KREW}" install krew
+    )
+    exec $SHELL -l
+    kubectl krew
+    if [ $? = 0 ] then;
+      plugins=("ctx ns view-secret resource-capacity rbac-tool")
+      for p in plugins ; do
+        kubectl krew install $p
+      done
+    fi
+  fi
 fi
