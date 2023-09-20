@@ -138,7 +138,7 @@ if is_exists "kubectl"; then
     )
     exec $SHELL -l
     kubectl krew
-    if [ $? = 0 ] then;
+    if [ $? = 0 ]; then
       plugins=("ctx ns view-secret resource-capacity rbac-tool")
       for p in plugins ; do
         kubectl krew install $p
