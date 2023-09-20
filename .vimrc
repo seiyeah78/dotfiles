@@ -339,6 +339,7 @@ vnoremap <leader>? y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 0)<cr>
 vnoremap <leader>! y:<C-U>Pbcopy0<CR> \| :call <SID>goog(expand(@"), 1)<cr>
 
 " ------------ vim-easyclip ------------
+let g:EasyClipUseGlobalPasteToggle = 0
 imap <c-v> <plug>EasyClipInsertModePaste
 cmap <c-v> <plug>EasyClipCommandModePaste
 let g:EasyClipShareYanks = 1
