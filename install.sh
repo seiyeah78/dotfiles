@@ -168,3 +168,7 @@ if is_exists "kubectl"; then
     fi
   fi
 fi
+
+if [ -e "~/.local/share/zinit/zinit.git" ]; then
+  curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh
+fi
