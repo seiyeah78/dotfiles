@@ -495,6 +495,6 @@ command! -bang -nargs=* ToggleConceal call s:toggle_conceal(<q-args>, <bang>0)
 " change foldmethod when insertmode
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-autocmd BufWritePre * normal :StripWhiteSpace
+" autocmd BufWritePre * normal :StripWhiteSpace
 
 command! Jqf %!jq '.'

@@ -12,7 +12,6 @@ GRTAGS
 GTAGS
 projections.json
 .ignore
-.envrc
 .solargraph.yml
 pyrightconfig.json
 vendor/
