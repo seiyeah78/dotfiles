@@ -44,9 +44,9 @@ return {
           interval = 1000,
           follow_files = true
         },
-        attach_to_untracked               = true,
-        current_line_blame                = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_opts           = {
+        attach_to_untracked = true,
+        current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame_opts = {
           virt_text = true,
           virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
           delay = 1000,
@@ -54,11 +54,11 @@ return {
         current_line_blame_formatter_opts = {
           relative_time = false
         },
-        sign_priority                     = 6,
-        update_debounce                   = 100,
-        status_formatter                  = nil, -- Use default
-        max_file_length                   = 40000,
-        preview_config                    = {
+        sign_priority = 6,
+        update_debounce = 100,
+        status_formatter = nil, -- Use default
+        max_file_length = 40000,
+        preview_config = {
           -- Options passed to nvim_open_win
           border = 'single',
           style = 'minimal',
@@ -66,7 +66,7 @@ return {
           row = 0,
           col = 1
         },
-        yadm                              = {
+        yadm = {
           enable = false
         },
       }
@@ -79,18 +79,17 @@ return {
     },
     config = function()
       -- local cb = require'diffview.config'.diffview_callback
-      require 'diffview'.setup {
+      require'diffview'.setup {
         file_panel = {
           win_config = {
-            position = "left",    -- One of 'left', 'right', 'top', 'bottom'
-            width = 35,           -- Only applies when position is 'left' or 'right'
-            height = 10           -- Only applies when position is 'top' or 'bottom'
+            position = "left",          -- One of 'left', 'right', 'top', 'bottom'
+            width = 35,                 -- Only applies when position is 'left' or 'right'
+            height = 10                 -- Only applies when position is 'top' or 'bottom'
           },
-          listing_style = "list", -- One of 'list' or 'tree'
-          tree_options = {
-            -- Only applies when listing_style is 'tree'
+          listing_style = "list",       -- One of 'list' or 'tree'
+          tree_options = {              -- Only applies when listing_style is 'tree'
             flatten_dirs = false,
-            folder_statuses = "always" -- One of 'never', 'only_folded' or 'always'.
+            folder_statuses = "always"  -- One of 'never', 'only_folded' or 'always'.
           }
         },
         key_bindings = {
