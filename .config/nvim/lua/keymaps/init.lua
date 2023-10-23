@@ -152,12 +152,6 @@ function! s:setup_git_messenger_popup() abort
 endfunction
 autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
 
-" ------------- scratch.vim ----------------
-nmap gs :<C-U>Scratch<CR>
-xmap gs <plug>(scratch-selection-reuse)
-
-" -------- switch.vim --------
-let g:switch_mapping = ''
 function! s:Switching(reverse)
   let opt = a:reverse ? [{'reverse': 1}, "\<C-X>"] : [{}, "\<C-A>"]
   let char = matchstr(getline('.'), '\%' . col('.') . 'c.')
@@ -169,11 +163,8 @@ function! s:Switching(reverse)
 
   if !switch#Switch(opt[0])
     execute "normal! ".opt[1]
-    end
-  endfunction
-  nnoremap <silent><C-A> :call <SID>Switching(v:false)<CR>
-  nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
-
-  " ランタイムを読み込む
-  set rtp+=/usr/local/opt/fzf
+  end
+endfunction
+nnoremap <silent><C-A> :call <SID>Switching(v:false)<CR>
+nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
 ]])

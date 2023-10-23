@@ -237,7 +237,6 @@ return {
     event = 'BufEnter',
     dependencies = { 'kevinhwang91/nvim-hlslens' },
     config = function()
-      local colors = require("tokyonight.colors").setup()
       require('scrollbar').setup({
         handle = {
           text = "  ",
