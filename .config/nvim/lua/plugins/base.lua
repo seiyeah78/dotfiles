@@ -30,7 +30,6 @@ return {
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
   'AndrewRadev/switch.vim',
-  'tpope/vim-projectionist',
   'segeljakt/vim-silicon',
   'towolf/vim-helm',
   'nvim-lua/plenary.nvim',
