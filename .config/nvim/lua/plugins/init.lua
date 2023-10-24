@@ -424,3 +424,8 @@ require("hlargs").setup({
       { fg = "#8FB272" },
     },
 })
+
+require('ibl').setup({
+  scope = { enabled = true },
+  viewport_buffer = { min = 10, max = 100 }
+})
