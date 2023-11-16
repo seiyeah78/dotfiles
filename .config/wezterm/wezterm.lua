@@ -38,6 +38,7 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   adjust_window_size_when_changing_font_size = true,
   window_close_confirmation = "NeverPrompt",
+  audible_bell = "Disabled",
   keys = {
     { key = '-', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない
     { key = '=', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない

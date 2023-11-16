@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 setopt hist_save_no_dups
 # ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
 setopt hist_ignore_all_dups
@@ -50,7 +43,6 @@ zinit ice wait=0 lucid as"program" pick="bin/git-fuzzy"; zinit light bigH/git-fu
 zinit ice wait=0 lucid as"program" cp"chrome-tab-activate -> fca" pick="fca"; zinit light Rasukarusan/fzf-chrome-active-tab
 zinit ice wait=0 lucid as"program" pick="chromeHistory.sh"; zinit light Rasukarusan/fzf-chrome-history
 zinit ice wait=0 lucid atload"export ASDF_USER_SHIMS=${ASDF_DATA_DIR:-$HOME/.asdf}/shims"; zinit light asdf-vm/asdf
-# zinit ice wait=0 lucid; zinit light wfxr/forgit
 
 zinit wait=0 lucid light-mode \
   atload="_zsh_autosuggest_start; \
@@ -71,6 +63,9 @@ zinit ice wait=0 lucid; zinit snippet OMZ::lib/completion.zsh
 zinit ice wait=0 lucid; zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit ice wait=0 lucid; zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+
+zinit ice as"completion"
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # prompt theme
 zinit ice depth=1 atload'source ~/.p10k.zsh'

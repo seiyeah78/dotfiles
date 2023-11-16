@@ -19,6 +19,7 @@ vendor/
 .config/*
 pkg/*
 logs/*
+*.tfstate.*.backup
 !.config/alacritty
 !.config/nvim
 !.config/snippets
