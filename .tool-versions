@@ -1,5 +1,5 @@
 python 3.11.6
 ruby 3.2.2
 nodejs 20.8.1
-kubectl 1.24.13
+kubectl 1.25.16
 awscli 2.13.29
