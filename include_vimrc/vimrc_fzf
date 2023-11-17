@@ -45,8 +45,12 @@ xnoremap <silent> <leader>rg  y:Rg <C-R>"<CR>
 let g:fzf_files_options = '-i --tiebreak=end,index ' .$FZF_PREVIEW_OPTS
 let g:fzf_buffers_jump = 1
 
-autocmd VimEnter * nnoremap <silent><expr><leader>F (expand('%') =~ 'NERD_tree' ? "\<C-W>\<C-W>" : '').':FilesMru'.(!empty(expand('<cword>')) ? '--query='.expand('<cword>') : '').'<CR>'
-autocmd VimEnter * nnoremap <silent><expr><C-P> (coc#pum#visible() ? "\<C-P>" : expand('%') =~ 'NERD_tree' ? "\<C-W>\<C-W>" : '').":FilesMru<CR>"
+autocmd VimEnter * nnoremap <silent><expr><leader>F (expand('%') =~ 'NvimTree' ? "\<C-W>\<C-W>" : '').':FilesMru'.(!empty(expand('<cword>')) ? '--query='.expand('<cword>') : '').'<CR>'
+if has('mac')
+  autocmd VimEnter * nnoremap <silent><expr><C-P> (coc#pum#visible() ? "\<C-P>" : expand('%') =~ 'NvimTree' ? "\<C-W>\<C-W>" : '').":FilesMru<CR>"
+else
+  autocmd VimEnter * nnoremap <silent><expr><C-P> (coc#pum#visible() ? "\<C-P>" : expand('%') =~ 'NvimTree' ? "\<C-W>\<C-W>" : '').":Telescope find_files hidden=true <CR>"
+endif
 autocmd VimEnter * nnoremap <leader>b :<C-U>Buffers<CR>
 if(has('nvim'))
   autocmd FileType fzf tunmap <ESC>

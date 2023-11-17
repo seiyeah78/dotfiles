@@ -14,6 +14,8 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'github/copilot.vim'
 Plug 'keaising/im-select.nvim'
 Plug 'm-demare/hlargs.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'romgrk/nvim-treesitter-context'
