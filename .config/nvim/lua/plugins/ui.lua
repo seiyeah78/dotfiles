@@ -117,6 +117,12 @@ return {
     {
       'RRethy/vim-illuminate',
       config = function()
+        vim.cmd([[
+          hi illuminatedWord ctermbg=239 guibg=Gray30
+          hi IlluminatedWordText ctermbg=239 guibg=Gray30
+          hi IlluminatedWordRead ctermbg=239 guibg=Gray30
+          hi IlluminatedWordWrite ctermbg=239 guibg=Gray30
+        ]])
         -- default configuration
         require('illuminate').configure({
           -- providers: provider used to get references in the buffer, ordered by priority
@@ -126,7 +132,7 @@ return {
             'regex',
           },
           -- delay: delay in milliseconds
-          delay = 100,
+          delay = 800,
           -- filetype_overrides: filetype specific overrides.
           -- The keys are strings to represent the filetype while the values are tables that
           -- supports the same keys passed to .configure except for filetypes_denylist and filetypes_allowlist

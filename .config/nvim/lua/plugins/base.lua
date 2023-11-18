@@ -1,6 +1,9 @@
 return {
   {
     'junegunn/fzf.vim',
+    build = function()
+      vim.cmd([[ call fzf#install() ]])
+    end,
     dependencies = {
       'junegunn/fzf',
     },
@@ -20,7 +23,6 @@ return {
   'tpope/vim-abolish',
   'tpope/vim-repeat',
   'ntpeters/vim-better-whitespace',
-  'tomtom/tcomment_vim',
   {
     'kana/vim-textobj-user',
     dependencies = {
@@ -33,10 +35,15 @@ return {
   'andymass/vim-matchup',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
-  'machakann/vim-highlightedyank',
+  {
+    'machakann/vim-highlightedyank',
+    config = function()
+      vim.api.nvim_set_hl(0, "HighlightedyankRegion", { bg = "#005f00" })
+      vim.cmd([[ let g:highlightedyank_highlight_duration = 500 ]])
+    end
+  },
   'mtth/scratch.vim',
   'AndrewRadev/switch.vim',
-  'metakirby5/codi.vim',
   'tpope/vim-projectionist',
   'segeljakt/vim-silicon',
   'towolf/vim-helm',
@@ -61,18 +68,4 @@ return {
   'rust-lang/rust.vim',
   'hashivim/vim-terraform',
   'NvChad/nvim-colorizer.lua',
-  'gkeep/iceberg-dark',
-  'joshdick/onedark.vim',
-  'rhysd/vim-color-spring-night',
-  'arcticicestudio/nord-vim',
-  'romainl/Apprentice',
-  'mhartington/oceanic-next',
-  {
-    'haishanh/night-owl.vim',
-    config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme night-owl]])
-    end
-  },
-  'sainnhe/sonokai',
 }

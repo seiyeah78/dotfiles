@@ -117,25 +117,6 @@ hi MatchParenCur cterm=NONE gui=NONE
 hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
 hi MatchWordCur cterm=underline gui=underline
 
-" ----------- highlightedyank setting ----------------
-let g:highlightedyank_highlight_duration = 500
-hi HighlightedyankRegion ctermbg=22 guibg=#005f00
-
-" ------------vim-illuminate setting-----------------
-hi illuminatedWord ctermbg=239 guibg=Gray30
-hi IlluminatedWordText ctermbg=239 guibg=Gray30
-hi IlluminatedWordRead ctermbg=239 guibg=Gray30
-hi IlluminatedWordWrite ctermbg=239 guibg=Gray30
-let g:Illuminate_highlightUnderCursor = 0
-let g:Illuminate_delay = 800
-
-" ----- indent blankline -------
-" let g:indent_blankline_colorful = 1
-let g:indent_blankline_show_current_context = v:true
-let g:indent_blankline_use_treesitter = v:true
-let g:indent_blankline_viewport_buffer = 10
-" let g:indent_blankline_vscode_rainbow_mode = 0
-
 " ==============terminal setting==========
 
   let g:terminal_color_0  = "#1b2b34" "black
