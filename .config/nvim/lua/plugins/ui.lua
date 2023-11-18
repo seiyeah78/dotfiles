@@ -6,14 +6,22 @@ return {
       'nvim-tree/nvim-tree.lua',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
       config = function()
+        local function my_on_attach(bufnr)
+          local api = require "nvim-tree.api"
+          local function opts(desc)
+            return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          end
+          -- default mappings
+          api.config.mappings.default_on_attach(bufnr)
+          -- custom mappings
+          vim.keymap.set('n', '<C-s>', api.node.open.horizontal, opts('Open: Horizontal Split'))
+        end
         require("nvim-tree").setup({
           hijack_netrw = false,
-          view = {
-            mappings = {
-              list = {
-                { key = "<C-s>", action = "split" }
-              },
-            },
+          sync_root_with_cwd = true,
+          update_focused_file = {
+            enable = false,
+            update_root = true
           },
           actions = {
             open_file = {
@@ -21,7 +29,8 @@ return {
                 enable = false
               }
             }
-          }
+          },
+          on_attach = my_on_attach
         })
       end
     },
@@ -158,15 +167,31 @@ return {
           min_count_to_highlight = 1,
         })
       end,
-      {
-        'keaising/im-select.nvim',
-        config = function()
+    },
+    {
+      'keaising/im-select.nvim',
+      config = function()
+        if vim.fn.has('mac') == 1 then
           require('im_select').setup {
-            default_im_select    = "com.google.inputmethod.Japanese.Roman",
-            disable_auto_restore = 1,
+            -- IM will be set to `default_im_select` in `normal` mode(`EnterVim` or `InsertLeave`)
+            -- For Windows/WSL, default: "1033", aka: English US Keyboard
+            -- For macOS, default: "com.apple.keylayout.ABC", aka: US
+            -- You can use `im-select` in cli to get the IM's name you preferred
+            default_im_select   = "com.google.inputmethod.Japanese.Roman",
+            -- Set to 1 if you don't want restore IM status when `InsertEnter`
+            set_previous_events = { "InsertEnter" }
           }
         end
-      }
+      end
+    },
+    {
+      'lukas-reineke/indent-blankline.nvim',
+      config = function()
+        require('ibl').setup({
+          scope = { enabled = true },
+          viewport_buffer = { min = 10, max = 100 }
+        })
+      end
     }
   }
 }

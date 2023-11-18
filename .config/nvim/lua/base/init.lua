@@ -84,7 +84,7 @@ if vim.fn.exists('$ASDF_USER_SHIMS') then
   let_g.python_host_prog = vim.env.HOME .. '/.asdf/shims/python2'
   vim.cmd([[
     let g:python3_host_version = split(system("python3 --version 2>&1"))[1]
-    let g:coc_node_path = split(system("asdf where nodejs 16.17.1"))[0] . '/bin/node'
+    let g:coc_node_path = split(system("asdf where nodejs 20.8.1"))[0] . '/bin/node'
   ]])
 end
 

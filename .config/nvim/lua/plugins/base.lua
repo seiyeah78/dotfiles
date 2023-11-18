@@ -41,7 +41,6 @@ return {
   'segeljakt/vim-silicon',
   'towolf/vim-helm',
   'nvim-lua/plenary.nvim',
-  'lukas-reineke/indent-blankline.nvim',
   'kevinhwang91/nvim-bqf',
   'github/copilot.vim',
   'neovim/nvim-lspconfig',
