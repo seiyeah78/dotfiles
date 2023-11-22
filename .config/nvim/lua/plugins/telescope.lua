@@ -1,3 +1,4 @@
+require("utils")
 local plugins = {
   'fzf',
   'yank_history'
@@ -16,6 +17,15 @@ return {
       vim.keymap.set('n', '<leader>b', builtin.buffers, {})
       require('telescope').setup {
         defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            vertical = {
+              height = 0.95,
+              preview_cutoff = 40,
+              prompt_position = "bottom",
+              width = 0.95
+            }
+          },
           -- Default configuration for telescope goes here:
           -- config_key = value,
           borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
@@ -30,13 +40,9 @@ return {
           }
         },
         pickers = {
-          -- Default configuration for builtin pickers goes here:
-          -- picker_name = {
-          --   picker_config_key = value,
-          --   ...
-          -- }
-          -- Now the picker_config_key will be applied every time you call this
-          -- builtin picker
+          find_files = {
+            find_command = Split(vim.env.FZF_DEFAULT_COMMAND, ' ')
+          }
         },
         extensions = {
           fzf = {
