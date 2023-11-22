@@ -5,6 +5,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = function()
+      vim.keymap.set({ "n" }, "<Leader>ga", ':DiffviewFileHistory % <CR>', { silent = true })
       require('gitsigns').setup {
         signs                             = {
           add          = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },

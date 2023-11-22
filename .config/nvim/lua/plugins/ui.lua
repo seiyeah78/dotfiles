@@ -15,6 +15,8 @@ return {
           api.config.mappings.default_on_attach(bufnr)
           -- custom mappings
           vim.keymap.set('n', '<C-s>', api.node.open.horizontal, opts('Open: Horizontal Split'))
+          vim.keymap.set('n', '<leader><S-n><S-n>', ':NvimTreeToggle<CR>', {})
+          vim.keymap.set('n', '<leader><S-n>f', ':NvimTreeFindFile<CR>', {})
         end
         require("nvim-tree").setup({
           hijack_netrw = false,

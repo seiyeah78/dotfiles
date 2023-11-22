@@ -1,34 +1,7 @@
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-P>', ':Telescope find_files hidden=true <CR>', {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>b', builtin.buffers, {})
--- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader><S-n><S-n>', ':NvimTreeToggle<CR>', {})
-vim.keymap.set('n', '<leader><S-n>f', ':NvimTreeFindFile<CR>', {})
-
-
 -- yanky mapping ---
-vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
-vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
-vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
-vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-vim.keymap.set({ "n", "i" }, "<C-Y><C-Y>", ':Telescope yank_history<CR>', {})
 
-vim.keymap.set({ "n" }, "<Leader>ga", ':DiffviewFileHistory % <CR>', { silent = true })
 
 vim.cmd([[
-" ---------------tcomment_vim setting -----------"
-" disable default mappings
-let g:tcomment_maps = 0
-noremap <C-_><C-_> :TComment<CR>
-inoremap <C-_><C-_> <C-O>:TComment<CR>
-noremap <C-_>b :TCommentBlock<CR>
-inoremap <C-_>b <C-\><C-O>:TCommentBlock mode=#<CR>
-noremap <C-_>i v:TCommentInline mode=I#<cr>
-inoremap <C-_>i <C-\><C-O>:TCommentInline mode=I#<cr>
-nmap <C-_>u <Plug>(TComment_Uncommentc)
-vmap <C-_>u <Plug>(TComment_Uncommentc)
-
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
 
@@ -39,8 +12,6 @@ imap <F1> <nop>
 " ESC to Normal mode in terminal
 autocmd TermOpen * tnoremap <Esc> <C-\><C-N>
 
-"ctrl-j to ESC
-imap <C-J> <ESC>
 
 " Use <C-Space>. 使うときは<C-@>にマッピングする
 map <C-Space>  <C-@>
@@ -210,16 +181,6 @@ function! s:Switching(reverse)
   nnoremap <silent><C-A> :call <SID>Switching(v:false)<CR>
   nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
 
-  " https://github.com/wellle/targets.vim/issues/257
-  let g:targets_nl = ['n', 'N']
-
-  function! s:toggle_conceal(arg, is_bang)
-    let level = &conceallevel
-    let toggle = level != 0 ? 0 : 2
-    let &conceallevel=toggle
-  endfunction
-  command! -bang -nargs=* ToggleConceal call s:toggle_conceal(<q-args>, <bang>0)
-
   " ランタイムを読み込む
   set rtp+=/usr/local/opt/fzf
 
@@ -311,45 +272,4 @@ function! s:Switching(reverse)
 
     autocmd VimEnter * command! -bang -nargs=* Ag call s:exec_grep_command(<q-args>, <bang>0, 'Ag')
     autocmd VimEnter * command! -bang -nargs=* Rg call s:exec_grep_command(<q-args>, <bang>0, 'Rg')
-
-    " command for git grep
-    " fzf#vim#grep(command, with_column, [options], [fullscreen])
-    command! -bang -nargs=* GGrep
-          \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0, <bang>0)
-
-    function! s:tags_sink(line)
-      let parts = split(a:line, '\t\zs')
-      let excmd = matchstr(parts[2:], '^.*\ze;"\t')
-      execute 'silent e' parts[1][:-2]
-      let [magic, &magic] = [&magic, 0]
-      execute excmd
-      let &magic = magic
-    endfunction
-
-    function! s:tags(query)
-      if empty(tagfiles())
-        echohl WarningMsg
-        echom 'Preparing tags'
-        echohl None
-      endif
-      " 優先度の高いtagfileだけ使う
-      let tagfile = tagfiles()[0]
-      " let proc = 'perl -ne ''unless (/^\!/) { s/^(.*?)\t(.*?)\t/'.s:yellow('\1', 'Function').'\t'.s:blue('\2', 'String').'\t/; print }'' '
-      let copt = '--ansi '
-
-      if !empty(a:query)
-        let query_option = ' --query='.shellescape(a:query)
-      else
-        let query_option = ''
-      endif
-
-      call fzf#run({
-            \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
-            \            '| grep -v -a ^!',
-            \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index '.
-            \            '--prompt="TTags> "'.query_option,
-            \ 'down':    '40%',
-            \ 'sink':    function('s:tags_sink')})
-    endfunction
-    command! -nargs=* TTags call s:tags(<q-args>)
 ]])
