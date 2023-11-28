@@ -2,7 +2,7 @@
 local wezterm = require 'wezterm';
 local gpus = wezterm.gui.enumerate_gpus()
 -- font = wezterm.font("RictyDiminishedDiscord Nerd Font"), -- 自分の好きなフォントいれる
-local font_name = wezterm.font_with_fallback({"RictyDiminishedDiscord Nerd Font", "The font with those symbols"})
+local font_name = wezterm.font_with_fallback({ "RictyDiminishedDiscord Nerd Font", "The font with those symbols" })
 
 return {
   font = font_name,
@@ -17,7 +17,7 @@ return {
     saturation = 1.2,
     brightness = 1.5,
   },
-  use_ime = true, -- これがないとIME動かない
+  use_ime = true,     -- これがないとIME動かない
   prefer_egl = false, -- これ入れるとrenderingが早くなる
   webgpu_preferred_adapter = gpus[1],
   -- front_end = "WebGpu",
