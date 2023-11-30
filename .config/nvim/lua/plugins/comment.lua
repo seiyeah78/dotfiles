@@ -14,7 +14,7 @@ return {
           ---Line-comment toggle keymap
           line = '<C-_><C-_>',
           ---Block-comment toggle keymap
-          block = '<C-_>c',
+          block = '<C-_><C-_>',
         },
         ---LHS of operator-pending mappings in NORMAL and VISUAL mode
         opleader = {

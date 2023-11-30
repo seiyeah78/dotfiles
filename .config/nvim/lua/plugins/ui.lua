@@ -5,19 +5,12 @@ return {
     {
       'nvim-tree/nvim-tree.lua',
       dependencies = { 'nvim-tree/nvim-web-devicons' },
+      keys = {
+        { "<leader><S-n>f",     "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
+        { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>",   desc = "NvimTreeToggle" },
+      },
+      event = 'VeryLazy',
       config = function()
-        local function my_on_attach(bufnr)
-          local api = require "nvim-tree.api"
-          local function opts(desc)
-            return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-          end
-          -- default mappings
-          api.config.mappings.default_on_attach(bufnr)
-          -- custom mappings
-          vim.keymap.set('n', '<C-s>', api.node.open.horizontal, opts('Open: Horizontal Split'))
-          vim.keymap.set('n', '<leader><S-n><S-n>', ':NvimTreeToggle<CR>', {})
-          vim.keymap.set('n', '<leader><S-n>f', ':NvimTreeFindFile<CR>', {})
-        end
         require("nvim-tree").setup({
           hijack_netrw = false,
           sync_root_with_cwd = true,
@@ -32,7 +25,16 @@ return {
               }
             }
           },
-          on_attach = my_on_attach
+          on_attach = function(bufnr)
+            local api = require "nvim-tree.api"
+            local function opts(desc)
+              return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+            end
+            -- default mappings
+            api.config.mappings.default_on_attach(bufnr)
+            -- custom mappings
+            vim.keymap.set('n', '<C-s>', api.node.open.horizontal, opts('Open: Horizontal Split'))
+          end
         })
       end
     },
@@ -72,14 +74,12 @@ return {
       config = function()
         local npairs = require('nvim-autopairs')
         local Rule = require('nvim-autopairs.rule')
-
         npairs.setup({
           map_cr = false,
           map_c_h = true,
           map_c_w = true,
           fast_wrap = {},
         })
-
         -- add autopairs role
         local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
         npairs.add_rules {
@@ -119,12 +119,6 @@ return {
     {
       'RRethy/vim-illuminate',
       config = function()
-        vim.cmd([[
-          hi illuminatedWord ctermbg=239 guibg=Gray30
-          hi IlluminatedWordText ctermbg=239 guibg=Gray30
-          hi IlluminatedWordRead ctermbg=239 guibg=Gray30
-          hi IlluminatedWordWrite ctermbg=239 guibg=Gray30
-        ]])
         -- default configuration
         require('illuminate').configure({
           -- providers: provider used to get references in the buffer, ordered by priority
@@ -175,6 +169,14 @@ return {
           min_count_to_highlight = 1,
         })
       end,
+      on_attach = function()
+        vim.cmd([[
+          hi illuminatedWord ctermbg=239 guibg=Gray30
+          hi IlluminatedWordText ctermbg=239 guibg=Gray30
+          hi IlluminatedWordRead ctermbg=239 guibg=Gray30
+          hi IlluminatedWordWrite ctermbg=239 guibg=Gray30
+        ]])
+      end
     },
     {
       'keaising/im-select.nvim',
