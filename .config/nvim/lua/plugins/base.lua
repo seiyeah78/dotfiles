@@ -9,11 +9,6 @@ return {
     },
   },
   { 'neoclide/coc.nvim', branch = 'release' },
-  {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-  },
   'mg979/vim-visual-multi',
   'tpope/vim-obsession',
   'tpope/vim-endwise',
@@ -35,13 +30,6 @@ return {
   'andymass/vim-matchup',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
-  {
-    'machakann/vim-highlightedyank',
-    config = function()
-      vim.api.nvim_set_hl(0, "HighlightedyankRegion", { bg = "#005f00" })
-      vim.cmd([[ let g:highlightedyank_highlight_duration = 500 ]])
-    end
-  },
   'mtth/scratch.vim',
   'AndrewRadev/switch.vim',
   'tpope/vim-projectionist',
