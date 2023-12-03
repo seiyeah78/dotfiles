@@ -88,6 +88,22 @@ if vim.fn.exists('$ASDF_USER_SHIMS') then
   ]])
 end
 
+-- ハイライト
+-- https://jdhao.github.io/2020/09/22/highlight_groups_cleared_in_nvim/
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, 'TextYankPostColor', { bg = "#56514e" })
+  end,
+})
+vim.api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({ higroup = "TextYankPostColor", timeout = 500 })
+  end,
+  desc = "Highlight yank",
+})
+
 
 vim.cmd([[
 " カーソルの位置を復元する

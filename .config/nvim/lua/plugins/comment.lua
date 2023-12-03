@@ -14,14 +14,14 @@ return {
           ---Line-comment toggle keymap
           line = '<C-_><C-_>',
           ---Block-comment toggle keymap
-          block = '<C-_><C-_>',
+          block = '<C-_>b',
         },
         ---LHS of operator-pending mappings in NORMAL and VISUAL mode
         opleader = {
           ---Line-comment keymap
-          line = '<C-_>c',
+          line = '<C-_><C-_>',
           ---Block-comment keymap
-          block = '<C-_>cb',
+          block = '<C-_>b',
         },
         ---LHS of extra mappings
         extra = {
@@ -42,8 +42,6 @@ return {
         },
         ---Function to call before (un)comment
         pre_hook = nil,
-        ---Function to call after (un)comment
-
       })
     end
   }
