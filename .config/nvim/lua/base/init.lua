@@ -127,14 +127,6 @@ vim.cmd([[
     au BufEnter * if empty(&buftype) | call system('tmux rename-window "[vim]"'.expand('%:t:S')) | endif
     au VimLeave * call system('tmux set-window automatic-rename on')
   endif
-" ----------- matchup plugin setting ---------------
-let g:matchup_matchparen_deferred = 1
-let g:matchup_matchparen_offscreen = {'method': 'popup'}
-hi MatchParen ctermfg=166 guifg=darkorange2 cterm=italic gui=italic
-hi MatchParenCur cterm=NONE gui=NONE
-hi MatchWord ctermfg=166 guifg=darkorange2 cterm=NONE gui=NONE
-hi MatchWordCur cterm=underline gui=underline
-
 " ==============terminal setting==========
 
   let g:terminal_color_0  = "#1b2b34" "black
