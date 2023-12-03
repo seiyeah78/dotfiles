@@ -40,17 +40,11 @@ return {
     },
     {
       'cappyzawa/trim.nvim',
-      config = function()
-        require('trim').setup({
-          ft_blocklist = { 'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive', 'fugitiveblame',
-            'nerdtree', 'NvimTree' },
-          trim_last_line = true,
-          -- if you want to remove multiple blank lines
-          -- patterns = {
-          --   [[%s/\(\n\n\)\n\+/\1/]],   -- replace multiple blank lines with a single line
-          -- },
-        })
-      end
+      opts = {
+        ft_blocklist = { 'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive', 'fugitiveblame',
+          'nerdtree', 'NvimTree' },
+        trim_last_line = true,
+      },
     },
     {
       'gelguy/wilder.nvim',

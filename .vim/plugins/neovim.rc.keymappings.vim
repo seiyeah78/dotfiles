@@ -178,12 +178,6 @@ endfunction
 autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
 
 " ------------- scratch.vim ----------------
-let g:scratch_autohide = 0
-let g:scratch_insert_autohide = 0
-let g:scratch_no_mappings = 0
-nmap gs :<C-U>Scratch<CR>
-xmap gs <plug>(scratch-selection-reuse)
-
 " -------- switch.vim --------
 let g:switch_mapping = ''
 function! s:Switching(reverse)

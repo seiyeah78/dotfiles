@@ -93,7 +93,9 @@ end
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
-    vim.api.nvim_set_hl(0, 'TextYankPostColor', { bg = "#56514e" })
+    vim.api.nvim_set_hl(0, 'TextYankPostColor', {
+      bg = "#56514e",
+    })
   end,
 })
 vim.api.nvim_create_autocmd("TextYankPost", {

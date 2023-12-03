@@ -17,7 +17,6 @@ return {
   'thinca/vim-qfreplace',
   'tpope/vim-abolish',
   'tpope/vim-repeat',
-  'ntpeters/vim-better-whitespace',
   {
     'kana/vim-textobj-user',
     dependencies = {
@@ -30,9 +29,17 @@ return {
   'andymass/vim-matchup',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
-  'mtth/scratch.vim',
+  {
+    'mtth/scratch.vim',
+    config = function()
+      vim.cmd([[
+        let g:scratch_autohide = 0
+        let g:scratch_insert_autohide = 0
+        let g:scratch_no_mappings = 0
+    ]])
+    end
+  },
   'AndrewRadev/switch.vim',
-  'tpope/vim-projectionist',
   'segeljakt/vim-silicon',
   'towolf/vim-helm',
   'nvim-lua/plenary.nvim',

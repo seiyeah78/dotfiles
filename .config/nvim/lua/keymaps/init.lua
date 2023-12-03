@@ -12,7 +12,6 @@ imap <F1> <nop>
 " ESC to Normal mode in terminal
 autocmd TermOpen * tnoremap <Esc> <C-\><C-N>
 
-
 " Use <C-Space>. 使うときは<C-@>にマッピングする
 map <C-Space>  <C-@>
 cmap <C-Space>  <C-@>
@@ -157,9 +156,6 @@ endfunction
 autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
 
 " ------------- scratch.vim ----------------
-let g:scratch_autohide = 0
-let g:scratch_insert_autohide = 0
-let g:scratch_no_mappings = 0
 nmap gs :<C-U>Scratch<CR>
 xmap gs <plug>(scratch-selection-reuse)
 
