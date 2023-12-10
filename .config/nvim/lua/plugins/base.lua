@@ -1,13 +1,4 @@
 return {
-  {
-    'junegunn/fzf.vim',
-    build = function()
-      vim.cmd([[ call fzf#install() ]])
-    end,
-    dependencies = {
-      'junegunn/fzf',
-    },
-  },
   { 'neoclide/coc.nvim', branch = 'release' },
   'mg979/vim-visual-multi',
   'tpope/vim-obsession',
