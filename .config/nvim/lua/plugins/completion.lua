@@ -54,7 +54,6 @@ return {
 
         cmp.setup({
           snippet = {
-            -- REQUIRED - you must specify a snippet engine
             expand = function(args)
               require('luasnip').lsp_expand(args.body)
             end,
@@ -67,14 +66,18 @@ return {
             ["<C-p>"] = cmp.mapping.select_prev_item(),
             ["<C-n>"] = cmp.mapping.select_next_item(),
             ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-l>'] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                return cmp.complete_common_string()
+              end
+              fallback()
+            end, { 'i', 'c' }),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           }),
           sources = cmp.config.sources({
             { name = 'nvim_lsp' },
             { name = 'luasnip' }, -- For luasnip users.
-            -- { name = 'ultisnips' }, -- For ultisnips users.
-            -- { name = 'snippy' }, -- For snippy users.
           }, {
             { name = 'buffer' },
           }),
@@ -83,7 +86,6 @@ return {
           },
         })
 
-        -- Set configuration for specific filetype.
         cmp.setup.filetype('gitcommit', {
           sources = cmp.config.sources({
             { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
