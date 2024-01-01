@@ -40,19 +40,18 @@ return {
       "Filetypes",
     },
     keys = {
-      { "<leader>ag",    "<cmd>Ag <C-R><C-W><CR>" },
-      { "<leader>AG",    "<cmd>Ag <C-R><C-A><CR>" },
-      { "<leader>ag",    "y<cmd>Ag <C-R><CR>",           mode = "x" },
-      { "<leader>rg",    "<cmd>Rg <C-R><C-W><CR>" },
-      { "<leader>RG",    "<cmd>Rg <C-R><C-A><CR>" },
-      { "<leader>rg",    "y<cmd>Rg <C-R><CR>",           mode = "x" },
-      { "<leader><tab>", "<Plug>(fzf-map-n)",            noremap = false },
-      { "<leader><tab>", "<Plug>(fzf-map-x)",            noremap = false, mode = "x" },
-      { "<leader><tab>", "<Plug>(fzf-map-o)",            noremap = false, mode = "o" },
-      { "<C-X<C-W>",     "<Plug>(fzf-complete-word)",    mode = "i" },
-      { "<C-X<C-P>",     "<Plug>(fzf-complete-file-ag)", mode = "i" },
-      { "<C-X<C-L>",     "<Plug>(fzf-complete-line)",    mode = "i" },
-
+      { "<leader>ag",    ":Ag <C-R><C-W><CR>" },
+      { "<leader>AG",    ":Ag <C-R><C-A><CR>" },
+      { "<leader>ag",    "y:Ag <C-R><CR>",               mode = "x" },
+      { "<leader>rg",    ":Rg <C-R><C-W><CR>" },
+      { "<leader>RG",    ":Rg <C-R><C-A><CR>" },
+      { "<leader>rg",    "y:Rg <C-R><CR>",               mode = "x" },
+      { "<leader><tab>", "<Plug>(fzf-maps-n)",           noremap = false },
+      { "<leader><tab>", "<Plug>(fzf-maps-x)",           noremap = false, mode = "x" },
+      { "<leader><tab>", "<Plug>(fzf-maps-o)",           noremap = false, mode = "o" },
+      { "<C-X<C-W>",     "<Plug>(fzf-complete-word)",    noremap = false, mode = "i" },
+      { "<C-X<C-P>",     "<Plug>(fzf-complete-file-ag)", noremap = false, mode = "i" },
+      { "<C-X<C-L>",     "<Plug>(fzf-complete-line)",    noremap = false, mode = "i" },
     },
     config = function()
       vim.api.nvim_create_autocmd("FileType", {
@@ -81,52 +80,13 @@ return {
       else
         vim.g.fzf_layout = { window = { width = 0.7, height = 0.5 } }
       end
-      vim.g.fzf_files_options = '-i --tiebreak=end,index' .. vim.env.FZF_PREVIEW_OPTS
+      vim.g.fzf_files_options = '-i --tiebreak=end,index ' .. vim.env.FZF_PREVIEW_OPTS
       vim.g.fzf_buffers_jump = 1
-
-      vim.cmd([[
-        let g:fzf_action = {
-              \ 'ctrl-s': 'split',
-              \ 'ctrl-v': 'vsplit',
-              \ 'ctrl-g': 'tabnew'
-              \ }
-      " Augmenting Ag command using fzf#vim#with_preview function
-      " プロンプト表示を「コマンド名（検索文字列）> 」みたいにする
-      function! s:exec_grep_command(arg, is_bang, command_name)
-        let tokens = split(a:arg)
-        let opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
-        let query = join(filter(copy(tokens), 'v:val !~ "^-"'))
-
-        let fzf_options = {'options': ''}
-        let cul_dir = ' (' . getcwd() . ') '
-
-        let display_search_str = '> "'
-        if !empty(query)
-          let display_search_str = '['.query.']> "'
-        endif
-
-        let fzf_options.options .= ' --prompt="'.a:command_name. cul_dir. display_search_str
-
-        if a:is_bang
-          let fzf_options = fzf#vim#with_preview(fzf_options, 'up:60%')
-        else
-          let fzf_options = fzf#vim#with_preview(fzf_options, 'right:50%:hidden', '?')
-          end
-
-          if a:command_name == 'Ag'
-            call fzf#vim#ag(query, opts. ' --hidden --skip-vcs-ignores --path-to-ignore ~/.ignore', fzf_options, a:is_bang)
-          else
-            call fzf#vim#grep(
-                  \  'rg --column --line-number --hidden --no-heading --color always --no-ignore --ignore-file ~/.ignore '.shellescape(query),
-                  \  1,
-                  \  fzf_options,
-                  \  a:is_bang)
-          endif
-        end
-        autocmd VimEnter * command! -bang -nargs=* Rg call s:exec_grep_command(<q-args>, <bang>0, 'Rg')
-        autocmd VimEnter * command! -bang -nargs=* Ag call s:exec_grep_command(<q-args>, <bang>0, 'Ag')
-        endfunction
-      ]])
+      vim.g.fzf_action = {
+        ['ctrl-s'] = 'split',
+        ['ctrl-v'] = 'vsplit',
+        ['ctrl-g'] = 'tabnew'
+      }
     end
   },
 }

@@ -1,5 +1,4 @@
 return {
-  { 'neoclide/coc.nvim', branch = 'release' },
   'mg979/vim-visual-multi',
   'tpope/vim-obsession',
   'tpope/vim-endwise',

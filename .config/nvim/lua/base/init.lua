@@ -11,6 +11,7 @@ vim.language = "en_us"
 local let_g = vim.go
 local set = vim.opt
 
+set.signcolumn = 'yes'
 set.number = true
 set.ignorecase = true
 set.smartcase = true
