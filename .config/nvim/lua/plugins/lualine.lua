@@ -36,7 +36,7 @@ return {
             end
           } },
           lualine_b = { 'branch', 'diff', 'diagnostics' },
-          lualine_c = { 'ObsessionStatus', 'filename' },
+          lualine_c = { 'ObsessionStatus', 'filename', require('lsp-progress').progress },
           lualine_x = { 'encoding', 'fileformat', 'filetype' },
           lualine_y = { 'progress' },
           lualine_z = { 'location' }

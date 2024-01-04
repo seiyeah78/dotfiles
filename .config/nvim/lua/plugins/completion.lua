@@ -37,6 +37,7 @@ return {
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
+        { 'zbirenbaum/copilot-cmp'},
       },
       keys = {
         { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
@@ -77,6 +78,7 @@ return {
           }),
           sources = cmp.config.sources({
             { name = 'nvim_lsp' },
+            { name = 'copilot' },
             { name = 'luasnip' }, -- For luasnip users.
           }, {
             { name = 'buffer' },
@@ -99,5 +101,5 @@ return {
         )
       end
     }
-  }
+  },
 }

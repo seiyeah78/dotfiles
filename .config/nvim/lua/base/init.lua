@@ -78,7 +78,6 @@ else
   vim.o.t_EI = "<Esc>]50;CursorShape=0x7"
 end
 if vim.fn.has('gui_running') then
-  set.lazyredraw = true
   set.ttyfast = true
 end
 if vim.fn.exists('$ASDF_USER_SHIMS') then
