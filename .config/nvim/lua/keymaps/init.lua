@@ -1,6 +1,3 @@
--- yanky mapping ---
-
-
 vim.cmd([[
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる
