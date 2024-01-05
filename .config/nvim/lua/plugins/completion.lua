@@ -14,6 +14,7 @@ return {
     dependencies = {
       { "williamboman/mason.nvim" },
       { "neovim/nvim-lspconfig" },
+      { 'hrsh7th/cmp-nvim-lsp' },
     },
     config = function()
       require('mason-lspconfig').setup_handlers({ function(server)
@@ -37,12 +38,12 @@ return {
       require('mason-null-ls').setup({
         ensure_installed = { 'prettierd', 'black' },
         handlers = {},
-    })
+      })
     end,
   },
   {
     'L3MON4D3/LuaSnip',
-    dependencies = {'saadparwaiz1/cmp_luasnip'}
+    dependencies = { 'saadparwaiz1/cmp_luasnip' }
   },
   {
     {
@@ -51,7 +52,8 @@ return {
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
-        { 'zbirenbaum/copilot-cmp'},
+        { 'zbirenbaum/copilot-cmp' },
+        { 'onsails/lspkind.nvim' }
       },
       keys = {
         { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
@@ -64,9 +66,14 @@ return {
         { "ge", "<cmd>lua vim.lsp.buf.open_float()<CR>" },
       },
       config = function()
-        -- Set up nvim-cmp.
-        local cmp = require 'cmp'
-
+        local cmp = require('cmp')
+        local lspkind = require('lspkind')
+        lspkind.init({
+          mode = 'symbol',
+          preset = 'codicons',
+          maxwidth = 50,
+          ellipsis_char = '...',
+        })
         cmp.setup({
           snippet = {
             expand = function(args)
@@ -79,7 +86,9 @@ return {
           },
           mapping = cmp.mapping.preset.insert({
             ["<C-p>"] = cmp.mapping.select_prev_item(),
+            ["<S-TAB>"] = cmp.mapping.select_prev_item(),
             ["<C-n>"] = cmp.mapping.select_next_item(),
+            ["<TAB>"] = cmp.mapping.select_next_item(),
             ['<C-Space>'] = cmp.mapping.complete(),
             ['<C-l>'] = cmp.mapping(function(fallback)
               if cmp.visible() then
@@ -88,23 +97,33 @@ return {
               fallback()
             end, { 'i', 'c' }),
             ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
           }),
           sources = cmp.config.sources({
             { name = 'nvim_lsp' },
             { name = 'copilot' },
-            { name = 'luasnip' }, -- For luasnip users.
+            { name = 'luasnip' },
           }, {
             { name = 'buffer' },
           }),
-          experimental = {
-            ghost_text = true,
-          },
+          formatting = {
+            format = function(entry, vim_item)
+              vim_item.kind = lspkind.presets.default[vim_item.kind]
+              vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                luasnip = "[Snippet]",
+                buffer = "[Buffer]",
+                path = "[Path]",
+              })[entry.source.name]
+
+              return vim_item
+            end
+          }
         })
 
         cmp.setup.filetype('gitcommit', {
           sources = cmp.config.sources({
-            { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+            { name = 'git' },
           }, {
             { name = 'buffer' },
           })
