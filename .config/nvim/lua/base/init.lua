@@ -148,6 +148,42 @@ vim.cmd([[
   let g:terminal_color_background="#1b2b34" "background
   let g:terminal_color_foreground="#c1c6cf" "foreground
 
+" dim using tmux
+if exists('$TMUX')
+  function! ReturnHighlightTerm(group)
+    " Store output of group to variable
+    let output = execute('hi ' . a:group)
+    return split(output, 'xxx ')[-1]
+  endfunction
+
+  " let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment', 'mkdCodeDelimiter']
+  let s:list = ['Normal']
+  let g:background_colors = {}
+  for key in s:list
+    try
+      let s:init = ReturnHighlightTerm(key)
+    catch
+      continue
+    endtry
+    if(stridx(s:init, 'links to') == -1)
+      let g:background_colors[key] = s:init
+    end
+  endfor
+
+  function! UpdateBackGround(enter)
+    for key in keys(g:background_colors)
+      let l:setting = a:enter ? g:background_colors[key] : 'ctermbg=NONE guibg=NONE'
+      if l:setting != 'cleared'
+        execute('hi ' . key . ' '. l:setting)
+      end
+    endfor
+  endfunction
+
+  autocmd FocusGained * call UpdateBackGround(v:true)
+  autocmd FocusLost * call UpdateBackGround(v:false)
+  command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+end
+
 " indent setting
 augroup fileTypeIndent
   autocmd!
