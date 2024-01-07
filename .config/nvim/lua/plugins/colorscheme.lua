@@ -7,6 +7,7 @@ return {
     config = function()
       require('tokyonight').setup({
         style = "moon",
+        -- defaultでは境界線の色がないため
         on_colors = function(colors)
           colors.border = "#565f89"
         end
