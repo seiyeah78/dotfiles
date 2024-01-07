@@ -1,15 +1,14 @@
 return {
-  'gkeep/iceberg-dark',
-  'joshdick/onedark.vim',
-  'rhysd/vim-color-spring-night',
-  'arcticicestudio/nord-vim',
-  'romainl/Apprentice',
-  'mhartington/oceanic-next',
   {
-    'haishanh/night-owl.vim',
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
     config = function()
-      vim.cmd([[colorscheme night-owl]])
+      require('tokyonight').setup({
+        style = "moon"
+      })
+      vim.cmd [[colorscheme tokyonight]]
     end
-  },
-  'sainnhe/sonokai',
+  }
 }

@@ -24,7 +24,7 @@ return {
   font_size = 14,
   initial_cols = 150,
   initial_rows = 60,
-  color_scheme = "NightOwl (Gogh)", -- 自分の好きなテーマ探す https://wezfurlong.org/wezterm/colorschemes/index.html
+  color_scheme = "Tokyo Night Storm", -- 自分の好きなテーマ探す https://wezfurlong.org/wezterm/colorschemes/index.html
   colors = {
     cursor_fg = '#000000',
     cursor_bg = '#FFFFFF',

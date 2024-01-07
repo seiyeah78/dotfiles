@@ -71,7 +71,7 @@ return {
         callback = function()
           vim.keymap.set('n', '<leader>b', "<cmd>Buffers<CR>")
           vim.api.nvim_create_user_command('Colors',
-            "<cmd> call fzf#vim#colors({'left': '~15%', 'options': '--reverse --margin 20%,0'})",
+            ":call fzf#vim#colors({'left': '~15%', 'options': '--reverse --margin 20%,0'})",
             { bang = true })
         end,
       })
