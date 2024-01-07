@@ -156,5 +156,20 @@ return {
         vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
       )
     end
+  },
+  {
+    'aznhe21/actions-preview.nvim',
+    event = "VeryLazy",
+    dependencies = { 'kosayoda/nvim-lightbulb' },
+    config = function()
+      vim.keymap.set({ "v", "n" }, "<leader>ca", require("actions-preview").code_actions)
+      require("actions-preview").setup {
+        diff = {
+          algorithm = "patience",
+          ignore_whitespace = true,
+        },
+        telescope = require("telescope.themes").get_dropdown { winblend = 10 },
+      }
+    end
   }
 }
