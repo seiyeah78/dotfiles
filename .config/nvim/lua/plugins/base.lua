@@ -27,6 +27,7 @@ return {
       vim.api.nvim_set_hl(0, 'MatchParenCur', {}) -- NONEと同じ
     end
   },
+
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
   {
@@ -36,7 +37,7 @@ return {
         let g:scratch_autohide = 0
         let g:scratch_insert_autohide = 0
         let g:scratch_no_mappings = 0
-    ]])
+      ]])
     end
   },
   'AndrewRadev/switch.vim',
