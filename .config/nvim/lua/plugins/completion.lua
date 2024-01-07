@@ -11,6 +11,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim" },
       { "neovim/nvim-lspconfig" },
@@ -43,6 +44,7 @@ return {
   },
   {
     'L3MON4D3/LuaSnip',
+    event = 'InsertEnter',
     dependencies = {
       'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets'
@@ -54,6 +56,7 @@ return {
   },
   {
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
@@ -73,6 +76,7 @@ return {
     },
     config = function()
       local cmp = require('cmp')
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local lspkind = require('lspkind')
       lspkind.init({
         mode = 'symbol',
@@ -80,6 +84,10 @@ return {
         maxwidth = 50,
         ellipsis_char = '...',
       })
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -159,7 +167,7 @@ return {
   },
   {
     'aznhe21/actions-preview.nvim',
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = { 'kosayoda/nvim-lightbulb' },
     config = function()
       vim.keymap.set({ "v", "n" }, "<leader>ca", require("actions-preview").code_actions)

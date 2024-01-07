@@ -4,8 +4,8 @@ return {
   'rhysd/git-messenger.vim',
   {
     'lewis6991/gitsigns.nvim',
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
-      vim.keymap.set({ "n" }, "<Leader>ga", ':DiffviewFileHistory % <CR>', { silent = true })
       require('gitsigns').setup {
         signs                             = {
           add          = { text = '│' },
@@ -74,6 +74,9 @@ return {
   },
   {
     'sindrets/diffview.nvim',
+    keys = {
+      { "<Leader>ga", ":DiffviewFileHistory % <CR>", { silent = true } },
+    },
     config = function()
       -- local cb = require'diffview.config'.diffview_callback
       require 'diffview'.setup {

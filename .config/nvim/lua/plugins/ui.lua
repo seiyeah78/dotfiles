@@ -1,6 +1,10 @@
 return {
   {
     'nvim-tree/nvim-tree.lua',
+    cmd = {
+      "NvimTreeFindFile",
+      "NvimTreeToggle",
+    },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { "<leader><S-n>f",     "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
@@ -37,6 +41,7 @@ return {
   },
   {
     'cappyzawa/trim.nvim',
+    event = "BufEnter",
     opts = {
       ft_blocklist = { 'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive', 'fugitiveblame',
         'nerdtree', 'NvimTree' },
@@ -45,6 +50,7 @@ return {
   },
   {
     'gelguy/wilder.nvim',
+    event = 'CmdlineEnter',
     config = function()
       local wilder = require('wilder')
       wilder.setup({
@@ -64,11 +70,11 @@ return {
   },
   {
     'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     config = function()
       local npairs = require('nvim-autopairs')
       local Rule = require('nvim-autopairs.rule')
       npairs.setup({
-        map_cr = false,
         map_c_h = true,
         map_c_w = true,
         fast_wrap = {},
@@ -100,6 +106,7 @@ return {
   },
   {
     'keaising/im-select.nvim',
+    evnet = 'VeryLazy',
     config = function()
       if vim.fn.has('mac') == 1 then
         require('im_select').setup {
@@ -116,6 +123,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
+    event = 'BufEnter',
     config = function()
       require('ibl').setup({
         scope = { enabled = true },
@@ -125,6 +133,7 @@ return {
   },
   {
     "folke/trouble.nvim",
+    cmd = { "Trouble", "TroubleToggle" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       open_split = { "<c-s>" },
@@ -133,6 +142,7 @@ return {
   },
   {
     'm-demare/hlargs.nvim',
+    event = "VeryLazy",
     config = function()
       require('hlargs').setup()
     end
@@ -203,5 +213,23 @@ return {
         let g:winresizer_horiz_resize = 2
       ]])
     end
-  }
+  },
+  {
+    'miversen33/sunglasses.nvim',
+    opts = {
+      filter_percent = 0.15
+    }
+  },
+  {
+    'andymass/vim-matchup',
+    event = 'VeryLazy',
+    config = function()
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.api.nvim_set_hl(0, 'MatchParen', { fg = "darkorange2" })
+      vim.api.nvim_set_hl(0, 'MatchWord', { fg = "darkorange2" })
+      vim.api.nvim_set_hl(0, 'MatchWordCur', { underline = true })
+      vim.api.nvim_set_hl(0, 'MatchParenCur', {}) -- NONEと同じ
+    end
+  },
 }

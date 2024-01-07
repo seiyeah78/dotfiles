@@ -7,6 +7,7 @@ local plugins = {
 return {
   {
     'nvim-telescope/telescope.nvim',
+    event = 'VeryLazy',
     tag = '0.1.4',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -60,6 +61,7 @@ return {
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
+    event = 'VeryLazy',
     build = 'make',
     dependencies = {
       'nvim-telescope/telescope.nvim'
