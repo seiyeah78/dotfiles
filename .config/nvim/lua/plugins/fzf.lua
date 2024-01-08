@@ -42,10 +42,10 @@ return {
     keys = {
       { "<leader>ag",    ":Ag <C-R><C-W><CR>" },
       { "<leader>AG",    ":Ag <C-R><C-A><CR>" },
-      { "<leader>ag",    "y:Ag <C-R><CR>",               mode = "x" },
+      { "<leader>ag",    "y:Ag <C-R>\"<CR>",             mode = "x" },
       { "<leader>rg",    ":Rg <C-R><C-W><CR>" },
       { "<leader>RG",    ":Rg <C-R><C-A><CR>" },
-      { "<leader>rg",    "y:Rg <C-R><CR>",               mode = "x" },
+      { "<leader>rg",    "y:Rg <C-R>\"<CR>",             mode = "x" },
       { "<leader><tab>", "<Plug>(fzf-maps-n)",           noremap = false },
       { "<leader><tab>", "<Plug>(fzf-maps-x)",           noremap = false, mode = "x" },
       { "<leader><tab>", "<Plug>(fzf-maps-o)",           noremap = false, mode = "o" },
