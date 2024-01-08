@@ -42,10 +42,9 @@ return {
   'Vimjas/vim-python-pep8-indent',
   'vim-python/python-syntax',
   'raimon49/requirements.txt.vim',
-  'rhysd/vim-gfm-syntax',
-  'fatih/vim-go',
-  'rust-lang/rust.vim',
-  'hashivim/vim-terraform',
+  { 'fatih/vim-go',           ft = "go" },
+  { 'rust-lang/rust.vim',     ft = 'rust' },
+  { 'hashivim/vim-terraform', ft = 'terraform' },
   {
     'NvChad/nvim-colorizer.lua',
     event = { "BufReadPre", "BufNewFile" },
