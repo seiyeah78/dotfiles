@@ -1,5 +1,17 @@
 return {
   'mg979/vim-visual-multi',
+  {
+    'haya14busa/vim-asterisk',
+    event = 'VeryLazy',
+    config = function()
+      vim.cmd([[
+        map *  <Plug>(asterisk-z*)
+        map #  <Plug>(asterisk-z#)
+        map g* <Plug>(asterisk-gz*)
+        map g# <Plug>(asterisk-gz#)
+      ]])
+    end
+  },
   'tpope/vim-obsession',
   'tpope/vim-endwise',
   'junegunn/vim-easy-align',
@@ -17,16 +29,6 @@ return {
   'AndrewRadev/splitjoin.vim',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
-  {
-    'mtth/scratch.vim',
-    config = function()
-      vim.cmd([[
-        let g:scratch_autohide = 0
-        let g:scratch_insert_autohide = 0
-        let g:scratch_no_mappings = 0
-      ]])
-    end
-  },
   'AndrewRadev/switch.vim',
   'segeljakt/vim-silicon',
   'towolf/vim-helm',

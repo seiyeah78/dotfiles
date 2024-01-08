@@ -232,4 +232,31 @@ return {
       vim.api.nvim_set_hl(0, 'MatchParenCur', {}) -- NONEと同じ
     end
   },
+  {
+    'petertriho/nvim-scrollbar',
+    event = 'BufEnter',
+    dependencies = { 'kevinhwang91/nvim-hlslens' },
+    config = function()
+      local colors = require("tokyonight.colors").setup()
+      require('scrollbar').setup({
+        handle = {
+          text = "  ",
+          blend = 85,
+          highlight = 'TermCursor',
+        },
+        marks = {
+          Search = { text = { "--", "==" } },
+          Error = { text = { "--", "==" } },
+          Warn = { text = { "--", "==" } },
+          Info = { text = { "--", "==" } },
+          Hint = { text = { "--", "==" } },
+          Misc = { text = { "--", "==" } },
+        },
+        handlers = {
+          cursor = false
+        }
+      })
+      require('scrollbar.handlers.search').setup()
+    end
+  }
 }
