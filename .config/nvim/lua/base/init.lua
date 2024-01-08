@@ -156,8 +156,7 @@ if exists('$TMUX')
     return split(output, 'xxx ')[-1]
   endfunction
 
-  " let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment', 'mkdCodeDelimiter']
-  let s:list = ['Normal']
+  let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment', 'mkdCodeDelimiter']
   let g:background_colors = {}
   for key in s:list
     try
@@ -173,13 +172,11 @@ if exists('$TMUX')
   function! UpdateBackGround(enter)
     for key in keys(g:background_colors)
       let l:setting = a:enter ? g:background_colors[key] : 'ctermbg=NONE guibg=NONE'
-      if l:setting != 'cleared'
-        execute('hi ' . key . ' '. l:setting)
-      end
+      execute('hi ' . key . ' '. l:setting)
     endfor
   endfunction
 
-  autocmd FocusGained * call UpdateBackGround(v:true)
+  " autocmd FocusGained * call UpdateBackGround(v:true)
   autocmd FocusLost * call UpdateBackGround(v:false)
   command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 end
