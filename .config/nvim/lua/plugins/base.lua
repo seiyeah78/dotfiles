@@ -1,17 +1,5 @@
 return {
   'mg979/vim-visual-multi',
-  {
-    'haya14busa/vim-asterisk',
-    event = 'VeryLazy',
-    config = function()
-      vim.cmd([[
-        map *  <Plug>(asterisk-z*)
-        map #  <Plug>(asterisk-z#)
-        map g* <Plug>(asterisk-gz*)
-        map g# <Plug>(asterisk-gz#)
-      ]])
-    end
-  },
   'tpope/vim-obsession',
   'tpope/vim-endwise',
   'junegunn/vim-easy-align',
@@ -38,6 +26,11 @@ return {
   'Vimjas/vim-python-pep8-indent',
   'vim-python/python-syntax',
   'raimon49/requirements.txt.vim',
+  'tpope/vim-rails',
+  'tpope/vim-rbenv',
+  'slim-template/vim-slim',
+  'tpope/vim-bundler',
+  'vim-ruby/vim-ruby',
   { 'fatih/vim-go',           ft = "go" },
   { 'rust-lang/rust.vim',     ft = 'rust' },
   { 'hashivim/vim-terraform', ft = 'terraform' },
