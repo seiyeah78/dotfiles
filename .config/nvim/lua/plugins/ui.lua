@@ -237,11 +237,11 @@ return {
   {
     'kevinhwang91/nvim-hlslens',
     dependencies = {
-      'haya14busa/vim-asterisk',
-      'romainl/vim-cool'
+      'haya14busa/vim-asterisk'
     },
     config = function()
       local kopts = { noremap = true, silent = true }
+      vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohl <CR>', {})
       vim.api.nvim_set_keymap('n', 'n',
         [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
         kopts)
@@ -271,12 +271,13 @@ return {
           highlight = 'TermCursor',
         },
         marks = {
+          Cursor = { highlight = 'TermCursor' },
           Search = { text = { "--", "==" } },
           Error = { text = { "--", "==" } },
           Warn = { text = { "--", "==" } },
           Info = { text = { "--", "==" } },
           Hint = { text = { "--", "==" } },
-          Misc = { text = { "--", "==" } },
+          Misc = { highlight = 'TermCursor', text = { "--", "==" } },
         },
         handlers = {
           cursor = false

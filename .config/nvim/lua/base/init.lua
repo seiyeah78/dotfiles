@@ -148,27 +148,35 @@ if exists('$TMUX')
     return split(output, 'xxx ')[-1]
   endfunction
 
-  let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment', 'mkdCodeDelimiter']
   let g:background_colors = {}
-  for key in s:list
-    try
-      let s:init = ReturnHighlightTerm(key)
-    catch
-      continue
-    endtry
-    if(stridx(s:init, 'links to') == -1)
-      let g:background_colors[key] = s:init
-    end
-  endfor
+  function! StoreBackGroundColors()
+    let s:list = ['Normal', 'SignColumn', 'LineNr', 'NonText', 'SpecialKey', 'EndOfBuffer', 'shComment', 'mkdCodeDelimiter']
+
+    for key in s:list
+      try
+        let s:init = ReturnHighlightTerm(key)
+      catch
+        continue
+      endtry
+      if(stridx(s:init, 'links to') == -1)
+        let g:background_colors[key] = s:init == 'cleared' ? 'NONE' : s:init
+      end
+    endfor
+  endfunction
 
   function! UpdateBackGround(enter)
+    if empty(g:background_colors)
+      return
+    end
     for key in keys(g:background_colors)
       let l:setting = a:enter ? g:background_colors[key] : 'ctermbg=NONE guibg=NONE'
       execute('hi ' . key . ' '. l:setting)
     endfor
   endfunction
 
-  " autocmd FocusGained * call UpdateBackGround(v:true)
+  " ColorSchemeがアタッチされてから取得する
+  autocmd ColorScheme * call StoreBackGroundColors()
+  autocmd FocusGained * call UpdateBackGround(v:true)
   autocmd FocusLost * call UpdateBackGround(v:false)
   command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 end
