@@ -6,6 +6,12 @@ return {
     event = { "WinNew", "WinLeave", "BufRead" },
     config = function()
       require("mason").setup({})
+      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+      end
     end,
     opts = {},
   },

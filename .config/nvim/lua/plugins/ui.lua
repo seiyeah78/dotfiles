@@ -137,8 +137,10 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       open_split = { "<c-s>" },
-      open_tab = { "<c-t>" }
-    }
+      open_tab = { "<c-g>" },
+      icons = false,
+      use_lsp_diagnostic_signs = true,
+    },
   },
   {
     'm-demare/hlargs.nvim',
