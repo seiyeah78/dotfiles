@@ -219,7 +219,10 @@ return {
   {
     'miversen33/sunglasses.nvim',
     opts = {
-      filter_percent = 0.15
+      filter_percent = 0.15,
+      excluded_filetypes = {
+        'aerial'
+      }
     }
   },
   {
@@ -240,6 +243,8 @@ return {
       'haya14busa/vim-asterisk'
     },
     config = function()
+      require('hlslens').setup()
+
       local kopts = { noremap = true, silent = true }
       vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohl <CR>', {})
       vim.api.nvim_set_keymap('n', 'n',
@@ -281,9 +286,23 @@ return {
         },
         handlers = {
           cursor = false
+        },
+        excluded_filetypes = {
+          "TelescopeResults"
         }
       })
       require('scrollbar.handlers.search').setup()
+    end
+  },
+  {
+    'stevearc/aerial.nvim',
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+    config = function()
+      require('aerial').setup({})
+      vim.api.nvim_set_hl(0, 'AerialLine', { link = 'DiffText' })
     end
   }
 }

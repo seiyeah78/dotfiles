@@ -3,7 +3,8 @@ local plugins = {
   'fzf',
   'yank_history',
   'frecency',
-  'smart_open'
+  'smart_open',
+  'aerial'
 }
 
 return {
@@ -21,11 +22,12 @@ return {
       require('telescope').setup {
         defaults = {
           layout_strategy = 'vertical',
+          sorting_strategy = "ascending",
           layout_config = {
             vertical = {
               height = 0.95,
               preview_cutoff = 40,
-              prompt_position = "bottom",
+              prompt_position = "top",
               width = 0.95
             }
           },
@@ -45,7 +47,16 @@ return {
         pickers = {
           find_files = {
             find_command = Split(vim.env.FZF_DEFAULT_COMMAND, ' ')
-          }
+          },
+          live_grep = {
+            additional_args = {
+              "--hidden",
+              "--no-heading",
+              "--no-ignore",
+              "--ignore-file",
+              vim.fs.normalize("~/.ignore"), -- チルダをそのまま解釈できない。絶対パスにする
+            }
+          },
         },
         extensions = {
           fzf = {
@@ -61,7 +72,17 @@ return {
             filename_first = false,
             ignore_patterns = { "*.git/*", "*/tmp/*", "*/nodle_modules/*" },
           },
-
+          frecency = {
+            show_unindexed = true,
+          },
+          aerial = {
+            -- Display symbols as <root>.<parent>.<symbol>
+            show_nesting = {
+              ["_"] = false, -- This key will be the default
+              json = true,   -- You can set the option for specific filetypes
+              yaml = true,
+            },
+          },
         }
       }
       for i = 1, #plugins do
@@ -87,6 +108,7 @@ return {
   {
     'danielfalk/smart-open.nvim',
     branch = "0.2.x",
+    event = 'VeryLazy',
     dependencies = {
       "kkharji/sqlite.lua",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
