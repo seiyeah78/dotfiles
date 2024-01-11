@@ -41,6 +41,9 @@ return {
               -- e.g. git_{create, delete, ...}_branch for the git_branches picker
               ["<C-s>"] = "file_split",
               ["<esc>"] = actions.close,
+              ["<C-u>"] = false,
+              ["<C-a>"] = { "<home>", type = "command" },
+              ["<C-e>"] = { "<end>", type = "command" }
             }
           }
         },

@@ -239,6 +239,7 @@ return {
   },
   {
     'kevinhwang91/nvim-hlslens',
+    event = 'VeryLazy',
     dependencies = {
       'haya14busa/vim-asterisk'
     },
@@ -296,6 +297,9 @@ return {
   },
   {
     'stevearc/aerial.nvim',
+    cmd = {
+      'AerialToggle', 'AerialOpen'
+    },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons"
