@@ -113,7 +113,10 @@ return {
             vim.cmd([[ :SunglassesDisable ]])
           end,
           view_closed = function(_)
-            vim.cmd([[ :SunglassesEnable ]])
+            vim.cmd([[
+              execute ':SunglassesEnable'
+              execute ':SunglassesRefresh'
+            ]])
           end
         }
       }
