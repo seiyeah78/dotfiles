@@ -1,14 +1,16 @@
 require("utils")
 local plugins = {
   'fzf',
-  'yank_history'
+  'yank_history',
+  'frecency',
+  'smart_open'
 }
 
 return {
   {
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
-    tag = '0.1.4',
+    tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local actions = require("telescope.actions")
@@ -51,7 +53,15 @@ return {
             override_generic_sorter = true, -- override the generic sorter
             override_file_sorter = true,    -- override the file sorter
             case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-          }
+          },
+          smart_open = {
+            match_algorithm = "fzf",
+            cwd_only = true,
+            show_scores = true,
+            filename_first = false,
+            ignore_patterns = { "*.git/*", "*/tmp/*", "*/nodle_modules/*" },
+          },
+
         }
       }
       for i = 1, #plugins do
@@ -66,5 +76,20 @@ return {
     dependencies = {
       'nvim-telescope/telescope.nvim'
     }
+  },
+  {
+    'nvim-telescope/telescope-frecency.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-telescope/telescope.nvim'
+    }
+  },
+  {
+    'danielfalk/smart-open.nvim',
+    branch = "0.2.x",
+    dependencies = {
+      "kkharji/sqlite.lua",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
   },
 }
