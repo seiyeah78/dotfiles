@@ -24,13 +24,7 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet prtemplate "basic pull request template" b
-## Why
-- ${1}
-
-## Issue
-- ${2}
-
-## Note
-- ${3}
-endsnippet
+snippet mock_controller "mock controller instance" b
+  mock = described_class.new
+  allow(described_class).to receive(:new).and_return(mock)
+  allow(mock).to receive(:${1:instance_method_name}).and_return(${2:true})

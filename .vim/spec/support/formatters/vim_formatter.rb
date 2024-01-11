@@ -35,3 +35,5 @@ class VimFormatter < RSpec::Core::Formatters::BaseTextFormatter
     msg.gsub("\n", ' ').gsub(/ {2,}/, ' ')
   end
 end
+
+a
