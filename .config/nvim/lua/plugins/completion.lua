@@ -200,6 +200,16 @@ return {
     dependencies = { 'kosayoda/nvim-lightbulb' },
     config = function()
       vim.keymap.set({ "v", "n" }, "<leader>ca", require("actions-preview").code_actions)
+      require("nvim-lightbulb").setup({
+        priority = 1000,
+        autocmd = { enabled = true },
+        sign = {
+          enabled = false
+        },
+        virtual_text = {
+          enabled = true
+        }
+      })
       require("actions-preview").setup {
         diff = {
           algorithm = "patience",
