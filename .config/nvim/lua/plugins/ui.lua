@@ -217,15 +217,6 @@ return {
     end
   },
   {
-    'miversen33/sunglasses.nvim',
-    opts = {
-      filter_percent = 0.15,
-      excluded_filetypes = {
-        'aerial'
-      }
-    }
-  },
-  {
     'andymass/vim-matchup',
     event = 'VeryLazy',
     config = function()

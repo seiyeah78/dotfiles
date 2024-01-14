@@ -16,9 +16,10 @@ return {
     config = function()
       local actions = require("telescope.actions")
       local builtin = require("telescope.builtin")
-      vim.keymap.set('n', '<C-P>', ':Telescope find_files <CR>', {})
+      vim.keymap.set('n', '<C-P>', ':Telescope smart_open <CR>', {})
+      vim.keymap.set('n', '<leader>ff', ':Telescope find_files <CR>', {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
       require('telescope').setup {
         defaults = {
           layout_strategy = 'vertical',
@@ -26,9 +27,8 @@ return {
           layout_config = {
             vertical = {
               height = 0.95,
-              preview_cutoff = 40,
               prompt_position = "top",
-              width = 0.95
+              width = 0.75
             }
           },
           -- Default configuration for telescope goes here:

@@ -12,6 +12,7 @@ local let_g = vim.go
 local set = vim.opt
 
 set.signcolumn = 'yes'
+set.cursorline = true
 set.number = true
 set.ignorecase = true
 set.smartcase = true
