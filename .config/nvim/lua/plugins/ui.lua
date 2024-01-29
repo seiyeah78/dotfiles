@@ -235,8 +235,6 @@ return {
       'haya14busa/vim-asterisk'
     },
     config = function()
-      require('hlslens').setup()
-
       local kopts = { noremap = true, silent = true }
       vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohl <CR>', {})
       vim.api.nvim_set_keymap('n', 'n',
