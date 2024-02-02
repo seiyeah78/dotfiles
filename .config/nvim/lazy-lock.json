@@ -49,6 +49,7 @@
   "python-syntax": { "branch": "master", "commit": "2cc00ba72929ea5f9456a26782db57fb4cc56a65" },
   "requirements.txt.vim": { "branch": "master", "commit": "f7abd4d5dd1fe1625108dbb4e9ad3f29213b80e3" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
+  "semshi": { "branch": "master", "commit": "cc40bb91e6d85ca42e6280c24c19f62ce9e30b95" },
   "smart-open.nvim": { "branch": "0.2.x", "commit": "026091fe7f9b283aa1f5f4bb8c56aa5bcad43dbd" },
   "splitjoin.vim": { "branch": "main", "commit": "503e56ed103b58b6bd0880a3e61225c8b1c40033" },
   "sqlite.lua": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },

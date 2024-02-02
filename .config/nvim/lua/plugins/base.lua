@@ -28,8 +28,6 @@ return {
         auto_enable = true,
         auto_resize_height = true, -- highly recommended enable
         preview = {
-          win_height = 12,
-          win_vheight = 12,
           delay_syntax = 80,
           border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
           show_title = false,
@@ -82,4 +80,12 @@ return {
     'NvChad/nvim-colorizer.lua',
     event = { "BufReadPre", "BufNewFile" },
   },
+  {
+    "wookayin/semshi",
+    build = ":UpdateRemotePlugins",
+    version = "*",    -- Recommended to use the latest release
+    init = function() -- example, skip if you're OK with the default config
+      vim.g['semshi#error_sign'] = false
+    end,
+  }
 }
