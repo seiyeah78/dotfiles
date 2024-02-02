@@ -108,7 +108,7 @@ return {
     },
     keys = {
       { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
-      { "gd", "<cmd>lua vim.lsp.buf.definition()<CR>" },
+      { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
       { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
       { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
       { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },

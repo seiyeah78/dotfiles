@@ -25,6 +25,24 @@ return {
       vim.keymap.set('n', '<leader>ff', ':Telescope find_files <CR>', {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<C-W>d',
+        function()
+          require('telescope.builtin').lsp_definitions({
+            jump_type = 'split',
+            reuse_win = true,
+          })
+        end,
+        { desc = 'Goto definition split. ' }
+      )
+      vim.keymap.set('n', '<C-W>v',
+        function()
+          require('telescope.builtin').lsp_definitions({
+            jump_type = 'vsplit',
+            reuse_win = true,
+          })
+        end,
+        { desc = 'Goto definition' }
+      )
       require('telescope').setup {
         defaults = {
           layout_strategy = 'vertical',
