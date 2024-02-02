@@ -16,7 +16,12 @@ return {
     config = function()
       local actions = require("telescope.actions")
       local builtin = require("telescope.builtin")
-      vim.keymap.set('n', '<C-P>', ':Telescope smart_open <CR>', {})
+      vim.keymap.set('n', '<C-P>', function()
+        require('telescope').extensions.smart_open.smart_open {
+          cwd_only = true,
+          filename_first = false,
+        }
+      end, {})
       vim.keymap.set('n', '<leader>ff', ':Telescope find_files <CR>', {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
@@ -72,7 +77,6 @@ return {
             match_algorithm = "fzf",
             cwd_only = true,
             show_scores = true,
-            filename_first = false,
             ignore_patterns = { "*.git/*", "*/tmp/*", "*/nodle_modules/*" },
           },
           frecency = {
