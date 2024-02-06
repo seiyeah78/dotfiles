@@ -1,6 +1,6 @@
 vim.cmd("autocmd!")
+vim.cmd('language en_US')
 vim.scriptencoding = "utf-8"
-vim.language = "en_us"
 -- vim.o.{option}: :let &{option-name}のように動作します
 -- vim.go.{option}: :let &g:{option-name}のように動作します
 -- vim.bo.{option}: バッファローカルオプションの場合:let &l:{option-name}のように動作します

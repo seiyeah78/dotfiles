@@ -108,17 +108,7 @@ return {
             -- ["k"] = cb("select_prev_entry"),
           }
         },
-        hooks = {
-          view_opened = function(_)
-            vim.cmd([[ :SunglassesDisable ]])
-          end,
-          view_closed = function(_)
-            vim.cmd([[
-              execute ':SunglassesEnable'
-              execute ':SunglassesRefresh'
-            ]])
-          end
-        }
+        hooks = {}
       }
     end
   },
