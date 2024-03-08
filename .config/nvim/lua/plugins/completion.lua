@@ -56,7 +56,19 @@ return {
     },
     config = function()
       require('mason-null-ls').setup({
-        ensure_installed = { 'prettierd', 'black' },
+        ensure_installed = {
+          'prettierd',
+          'black',
+          'flake8',
+          'gopls',
+          'jsonlint',
+          'lua-language-server',
+          'pyright',
+          'ruby-lsp',
+          'terraform-ls',
+          'typescript-language-server',
+          'actionlint'
+        },
         handlers = {},
       })
     end,
