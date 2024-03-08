@@ -117,15 +117,10 @@ return {
       { "ge", "<cmd>lua vim.lsp.buf.open_float()<CR>" },
     },
     config = function()
+      require("copilot_cmp").setup()
       local cmp = require('cmp')
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local lspkind = require('lspkind')
-      lspkind.init({
-        mode = 'symbol',
-        preset = 'codicons',
-        maxwidth = 50,
-        ellipsis_char = '...',
-      })
       cmp.event:on(
         'confirm_done',
         cmp_autopairs.on_confirm_done()
@@ -155,34 +150,36 @@ return {
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
+        { name = 'nvim_lsp', priority = 8 },
         sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'copilot' },
-          { name = 'luasnip' },
+          { name = 'copilot', priority = 9 },
+          { name = 'luasnip', priority = 5 },
         }, {
-          { name = 'buffer' },
+          { name = 'buffer', priority = 7 },
         }),
         formatting = {
-          format = function(entry, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind]
-            vim_item.menu = ({
-              nvim_lsp = "[LSP]",
-              luasnip = "[Snippet]",
-              buffer = "[Buffer]",
-              path = "[Path]",
-            })[entry.source.name]
-
-            return vim_item
-          end
+          format = lspkind.cmp_format({
+            max_width = 50,
+            symbol_map = { Copilot = "" }
+          }),
+          -- before = function(entry, vim_item)
+          --   vim_item.kind = lspkind.presets.default[vim_item.kind]
+          --   vim_item.menu = ({
+          --     nvim_lsp = "[LSP]",
+          --     luasnip = "[Snippet]",
+          --     buffer = "[Buffer]",
+          --     path = "[Path]",
+          --   })[entry.source.name]
+          --   return vim_item
+          -- end
         }
       })
-
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
           { name = 'git' },
-          { name = 'luasnip' },
+          { name = 'luasnip', priority = 10 },
         }, {
-          { name = 'buffer' },
+          { name = 'buffer', priority = 9 },
         })
       })
 
@@ -192,7 +189,6 @@ return {
           { name = 'buffer' }
         }
       })
-
       -- cmp.setup.cmdline(':', {
       --   mapping = cmp.mapping.preset.cmdline(),
       --   sources = cmp.config.sources({
@@ -206,6 +202,16 @@ return {
         vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
       )
     end
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
   },
   {
     'aznhe21/actions-preview.nvim',

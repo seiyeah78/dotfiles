@@ -64,7 +64,6 @@ return {
       })
     end
   },
-  'github/copilot.vim',
   'Vimjas/vim-python-pep8-indent',
   'vim-python/python-syntax',
   'raimon49/requirements.txt.vim',
