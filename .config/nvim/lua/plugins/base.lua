@@ -79,12 +79,12 @@ return {
     'NvChad/nvim-colorizer.lua',
     event = { "BufReadPre", "BufNewFile" },
   },
-  {
-    "wookayin/semshi",
-    build = ":UpdateRemotePlugins",
-    version = "*",    -- Recommended to use the latest release
-    init = function() -- example, skip if you're OK with the default config
-      vim.g['semshi#error_sign'] = false
-    end,
-  }
+  -- {
+  --   "wookayin/semshi",
+  --   build = ":UpdateRemotePlugins",
+  --   version = "*",    -- Recommended to use the latest release
+  --   init = function() -- example, skip if you're OK with the default config
+  --     vim.g['semshi#error_sign'] = false
+  --   end,
+  -- }
 }

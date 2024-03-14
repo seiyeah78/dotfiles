@@ -162,10 +162,10 @@ return {
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
-        { name = 'nvim_lsp', priority = 8 },
         sources = cmp.config.sources({
-          { name = 'copilot', priority = 9 },
-          { name = 'luasnip', priority = 5 },
+          { name = 'nvim_lsp', priority = 8 },
+          { name = 'copilot',  priority = 9 },
+          { name = 'luasnip',  priority = 5 },
         }, {
           { name = 'buffer', priority = 7 },
         }),
