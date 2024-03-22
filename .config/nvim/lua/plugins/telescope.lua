@@ -99,6 +99,7 @@ return {
           },
           frecency = {
             show_unindexed = true,
+            auto_validate = false,
           },
           aerial = {
             -- Display symbols as <root>.<parent>.<symbol>
