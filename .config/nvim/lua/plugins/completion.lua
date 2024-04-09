@@ -16,11 +16,26 @@ return {
     opts = {},
   },
   {
+    "neovim/nvim-lspconfig",
+    config = function()
+      vim.diagnostic.config({
+        update_in_insert = false,
+        virtual_text = false,
+        signs = true,
+        underline = true,
+        severity_sort = true,
+        float = {
+          source = "always", -- Or "if_many"
+          border = 'rounded'
+        },
+      })
+    end
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim" },
-      { "neovim/nvim-lspconfig" },
       { 'hrsh7th/cmp-nvim-lsp' },
     },
     config = function()
@@ -210,9 +225,9 @@ return {
       --   })
       -- })
 
-      vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
-      )
+      -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      --   vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
+      -- )
     end
   },
   {
@@ -248,6 +263,17 @@ return {
         },
         telescope = require("telescope.themes").get_dropdown { winblend = 10 },
       }
+    end
+  },
+  {
+    "RRethy/nvim-treesitter-endwise",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        endwise = {
+          enable = true,
+        },
+      })
     end
   }
 }

@@ -298,4 +298,12 @@ return {
       vim.api.nvim_set_hl(0, 'AerialLine', { link = 'DiffText' })
     end
   },
+  {
+    'dgagn/diagflow.nvim',
+    event = 'LspAttach',
+    opts = {
+      placement = 'inline',
+      scope = 'line',
+    },
+  },
 }

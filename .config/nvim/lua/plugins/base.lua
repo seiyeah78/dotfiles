@@ -1,7 +1,6 @@
 return {
   'mg979/vim-visual-multi',
   'tpope/vim-obsession',
-  'tpope/vim-endwise',
   'junegunn/vim-easy-align',
   'thinca/vim-qfreplace',
   'tpope/vim-abolish',
@@ -18,7 +17,10 @@ return {
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
   'AndrewRadev/switch.vim',
-  'segeljakt/vim-silicon',
+  {
+    "krivahtoo/silicon.nvim",
+    build = "./install.sh build"
+  },
   'towolf/vim-helm',
   'nvim-lua/plenary.nvim',
   {
@@ -64,17 +66,17 @@ return {
       })
     end
   },
-  'Vimjas/vim-python-pep8-indent',
-  'vim-python/python-syntax',
-  'raimon49/requirements.txt.vim',
-  'tpope/vim-rails',
-  'tpope/vim-rbenv',
-  'slim-template/vim-slim',
-  'tpope/vim-bundler',
-  'vim-ruby/vim-ruby',
-  { 'fatih/vim-go',           ft = "go" },
-  { 'rust-lang/rust.vim',     ft = 'rust' },
-  { 'hashivim/vim-terraform', ft = 'terraform' },
+  { 'raimon49/requirements.txt.vim' },
+  { 'Vimjas/vim-python-pep8-indent', ft = 'python' },
+  { 'vim-python/python-syntax',      ft = 'python' },
+  { 'tpope/vim-rails',               ft = 'ruby' },
+  { 'tpope/vim-rbenv',               ft = 'ruby' },
+  { 'slim-template/vim-slim',        ft = 'ruby' },
+  { 'tpope/vim-bundler',             ft = 'ruby' },
+  { 'vim-ruby/vim-ruby',             ft = 'ruby' },
+  { 'fatih/vim-go',                  ft = "go" },
+  { 'rust-lang/rust.vim',            ft = 'rust' },
+  { 'hashivim/vim-terraform',        ft = 'terraform' },
   {
     'NvChad/nvim-colorizer.lua',
     event = { "BufReadPre", "BufNewFile" },
