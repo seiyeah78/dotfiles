@@ -24,8 +24,7 @@ vendor/
 coc-settings.json
 .config/*
 .netrwhist
-!.config/nvim/coc-settings.json
-!.config/snippets/
+!.config/nvim/
 !my_alt_functions.json
 !my_application_functions.json
 silicon*
