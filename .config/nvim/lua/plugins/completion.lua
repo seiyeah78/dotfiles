@@ -133,16 +133,16 @@ return {
       { 'zbirenbaum/copilot-cmp' },
       { 'onsails/lspkind.nvim' }
     },
-    keys = {
-      { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
-      { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
-      { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
-      { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
-      { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
-      { "gn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
-      { "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
-      { "ge", "<cmd>lua vim.lsp.buf.open_float()<CR>" },
-    },
+    -- keys = {
+    --   { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
+    --   { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
+    --   { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
+    --   { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
+    --   { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
+    --   { "gn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
+    --   { "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
+    --   { "ge", "<cmd>lua vim.lsp.buf.open_float()<CR>" },
+    -- },
     config = function()
       require("copilot_cmp").setup()
       local cmp = require('cmp')
@@ -231,12 +231,87 @@ return {
     end
   },
   {
+    'nvimdev/lspsaga.nvim',
+    event = 'LspAttach',
+    dependencies = { 'nvim-lspconfig' },
+    keys = {
+      { "D",  "<cmd>Lspsaga hover_doc<CR>" },
+      { "gd", "<cmd>Lspsaga goto_definition<CR>" },
+      { "gD", "<cmd>Lspsaga peek_definition<CR>" },
+      { "gr", "<cmd>Lspsaga finder<CR>" },
+      { "gn", "<cmd>Lspsaga rename<CR>" },
+      -- { "ga", "<cmd>Lspsaga code_action<CR>" },
+      { "gl", "<cmd>Lspsaga show_line_diagnostics<CR>" },
+    },
+    config = function()
+      local keys = {
+        edit = { '<CR>', 'o' },
+        vsplit = '<C-v>',
+        split = '<C-s>',
+        tabe = '<C-g>e',
+        close = '<C-c>k',
+        quit = { 'q', '<C-W>c' },
+        shuttle = '<C-w><C-w>',
+        toggle_or_req = 'u',
+        toggle_or_open = { '<CR>', 'o' },
+      }
+      -- https://github.com/nvimdev/lspsaga.nvim/blob/main/lua/lspsaga/init.lua
+      require('lspsaga').setup({
+        border_stype = 'rounded',
+        symbol_in_winbar = {
+          enable = false,
+        },
+        show_outline = {
+          win_iwidth = 50,
+          auto_preview = false,
+        },
+        lightbulb = {
+          enable = false,
+          enable_in_insert = false,
+          sign = false,
+          debounce = 500
+        },
+        diagnostic = {
+          enable = true,
+          diagnostic_only_current = true,
+          extend_relatedInformation = true
+        },
+        definition = {
+          width = 0.6,
+          height = 0.5,
+          save_pos = false,
+          keys = keys,
+        },
+        callhierarchy = {
+          layout = 'float',
+          left_width = 0.2,
+          keys = keys,
+        },
+        finder = {
+          max_height = 0.5,
+          left_width = 0.4,
+          methods = {},
+          default = 'tyd+ref+imp',
+          layout = 'float',
+          silent = false,
+          filter = {},
+          fname_sub = nil,
+          sp_inexist = true,
+          sp_global = true,
+          ly_botright = true,
+          keys = keys,
+        },
+      })
+    end,
+  },
+  {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        suggestion = { enabled = false },
+        suggestion = { enabled = true },
         panel = { enabled = false },
+        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") .. "/bin/node", -- Node.js version must be > 18.x
       })
     end,
   },
@@ -245,7 +320,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { 'kosayoda/nvim-lightbulb' },
     config = function()
-      vim.keymap.set({ "v", "n" }, "<leader>ca", require("actions-preview").code_actions)
+      vim.keymap.set({ "v", "n" }, "ga", require("actions-preview").code_actions)
       require("nvim-lightbulb").setup({
         priority = 1000,
         autocmd = { enabled = true },
@@ -256,13 +331,6 @@ return {
           enabled = true
         }
       })
-      require("actions-preview").setup {
-        diff = {
-          algorithm = "patience",
-          ignore_whitespace = true,
-        },
-        telescope = require("telescope.themes").get_dropdown { winblend = 10 },
-      }
     end
   },
   {

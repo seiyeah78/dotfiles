@@ -1,7 +1,13 @@
 return {
   'mg979/vim-visual-multi',
   'tpope/vim-obsession',
-  'junegunn/vim-easy-align',
+  {
+    'junegunn/vim-easy-align',
+    keys = {
+      { "<leader>ga", ":EasyAlign<CR>", mode = { "x", "n" } },
+    },
+    cmd = { 'EasyAlign' },
+  },
   'thinca/vim-qfreplace',
   'tpope/vim-abolish',
   'tpope/vim-repeat',
@@ -19,7 +25,11 @@ return {
   'AndrewRadev/switch.vim',
   {
     "krivahtoo/silicon.nvim",
-    build = "./install.sh build"
+    build = "./install.sh build",
+    cmd = 'Silicon',
+    config = function()
+      require('silicon').setup({})
+    end,
   },
   'towolf/vim-helm',
   'nvim-lua/plenary.nvim',

@@ -6,9 +6,6 @@ command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボード�
 nmap <F1> <nop>
 imap <F1> <nop>
 
-" ESC to Normal mode in terminal
-autocmd TermOpen * tnoremap <Esc> <C-\><C-N>
-
 " Use <C-Space>. 使うときは<C-@>にマッピングする
 map <C-Space>  <C-@>
 cmap <C-Space>  <C-@>
@@ -77,11 +74,6 @@ nmap <C-h> <C-w>h
 noremap <silent><C-w>s :<C-u>split<CR>
 noremap <silent><C-w>v :<C-u>vsplit<CR>
 
-" ----------- winresizer setting -------------
-let g:winresizer_start_key = '<C-w>e'
-let g:winresizer_vert_resize = 3
-let g:winresizer_horiz_resize = 2
-
 " Move visual block (eclipseみたいなアレ)
 vnoremap <silent>J :m'>+1<CR>gv=gv
 vnoremap <silent>K :m-2<CR>gv=gv
@@ -105,19 +97,6 @@ inoremap <C-f> <Right>
 vmap < <gv
 vmap > >gv
 
-" Open current line on GitHub
-nnoremap <Leader>go :GBrowse<CR>
-vnoremap <Leader>go :GBrowse<CR>
-nnoremap <Leader>gv :GV!<CR>
-
-" git add current file
-noremap <Leader>gs :Git<CR>
-noremap <Leader>gF :GFiles?<CR>
-noremap <Leader>gb :Git blame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-nmap ]g <Plug>(GitGutterNextHunk)
-nmap [g <Plug>(GitGutterPrevHunk)
-
 " =============== vim-visual-multi ============
 let g:VM_manual_infoline = 0
 let g:VM_leader=','
@@ -127,35 +106,13 @@ let g:VM_maps["Add Cursor Up"]   = '<M-k>'
 let g:VM_maps["Add Cursor Down"] = '<M-j>'
 "
 function! VM_Start()
-  HighlightedyankOff
 endfunction
 fun! VM_Exit()
-  HighlightedyankOn
 endfun
-
-"=============vim-easy-align setting============
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-nmap <C-w>m <Plug>(git-messenger)
-
-let g:git_messenger_include_diff = 'current'
-let g:git_messenger_always_into_popup = v:true
-let g:git_messenger_max_popup_height = 100
-function! s:setup_git_messenger_popup() abort
-  " Your favorite configuration here
-  " For example, set go back/forward history to <C-o>/<C-i>
-  nmap <buffer><ESC> q
-  nmap <buffer><C-o> o
-  nmap <buffer><C-i> O
-endfunction
-autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
 
 function! s:Switching(reverse)
   let opt = a:reverse ? [{'reverse': 1}, "\<C-X>"] : [{}, "\<C-A>"]
   let char = matchstr(getline('.'), '\%' . col('.') . 'c.')
-
   if char =~# '^\d\+$'
     execute "normal! ".opt[1]
     return

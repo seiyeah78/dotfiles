@@ -29,8 +29,6 @@ return {
       "Windows",
       "Locate",
       "History",
-      "History",
-      "History",
       "Snippets",
       "Commits",
       "BCommits",

@@ -1,7 +1,46 @@
 return {
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-  'rhysd/git-messenger.vim',
+  {
+    'tpope/vim-fugitive',
+    dependencies = {
+      'tpope/vim-rhubarb',
+    },
+    config = function()
+      vim.cmd([[
+        " Open current line on GitHub
+        nnoremap <Leader>go :GBrowse<CR>
+        vnoremap <Leader>go :GBrowse<CR>
+        nnoremap <Leader>gv :GV!<CR>
+
+        " git add current file
+        noremap <Leader>gs :Git<CR>
+        noremap <Leader>gF :GFiles?<CR>
+        noremap <Leader>gb :Git blame<CR>
+        noremap <Leader>gd :Gvdiff<CR>
+      ]])
+    end,
+  },
+  {
+    'rhysd/git-messenger.vim',
+    keys = {
+      "<C-w>m", "<Plug>(git-messenger)", mode = "n"
+    },
+    cmd = { 'GitMessenger' },
+    config = function()
+      vim.cmd([[
+        let g:git_messenger_include_diff = 'current'
+        let g:git_messenger_always_into_popup = v:true
+        let g:git_messenger_max_popup_height = 100
+        function! s:setup_git_messenger_popup() abort
+          " Your favorite configuration here
+          " For example, set go back/forward history to <C-o>/<C-i>
+          nmap <buffer><ESC> q
+          nmap <buffer><C-o> o
+          nmap <buffer><C-i> O
+        endfunction
+        autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
+      ]])
+    end
+  },
   {
     'lewis6991/gitsigns.nvim',
     event = { "BufReadPre", "BufNewFile" },
