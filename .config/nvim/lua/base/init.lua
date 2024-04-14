@@ -108,6 +108,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight yank",
 })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.keymap.set("t", "<ESC>", "<C-\\><C-N>", { noremap = true })
+  end,
+})
+
 
 vim.cmd([[
 " カーソルの位置を復元する

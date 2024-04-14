@@ -178,9 +178,10 @@ return {
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
-          { name = 'nvim_lsp', priority = 8 },
-          { name = 'copilot',  priority = 9 },
-          { name = 'luasnip',  priority = 5 },
+          { name = 'nvim_lsp',               priority = 8 },
+          { name = 'copilot',                priority = 9 },
+          { name = 'luasnip',                priority = 5 },
+          { name = 'nvim_lsp_signature_help' },
         }, {
           { name = 'buffer', priority = 7 },
         }),
@@ -189,16 +190,6 @@ return {
             max_width = 50,
             symbol_map = { Copilot = "" }
           }),
-          -- before = function(entry, vim_item)
-          --   vim_item.kind = lspkind.presets.default[vim_item.kind]
-          --   vim_item.menu = ({
-          --     nvim_lsp = "[LSP]",
-          --     luasnip = "[Snippet]",
-          --     buffer = "[Buffer]",
-          --     path = "[Path]",
-          --   })[entry.source.name]
-          --   return vim_item
-          -- end
         }
       })
       cmp.setup.filetype('gitcommit', {
@@ -250,7 +241,7 @@ return {
         split = '<C-s>',
         tabe = '<C-g>e',
         close = '<C-c>k',
-        quit = { 'q', '<C-W>c' },
+        quit = { 'q', '<C-W>c', '<ECS>' },
         shuttle = '<C-w><C-w>',
         toggle_or_req = 'u',
         toggle_or_open = { '<CR>', 'o' },
@@ -271,6 +262,12 @@ return {
           sign = false,
           debounce = 500
         },
+        hover = {
+          max_width = 0.9,
+          max_height = 0.8,
+          open_link = 'gx',
+          open_cmd = '!chrome',
+        },
         diagnostic = {
           enable = true,
           diagnostic_only_current = true,
@@ -279,7 +276,7 @@ return {
         definition = {
           width = 0.6,
           height = 0.5,
-          save_pos = false,
+          save_pos = true,
           keys = keys,
         },
         callhierarchy = {
@@ -289,7 +286,7 @@ return {
         },
         finder = {
           max_height = 0.5,
-          left_width = 0.4,
+          left_width = 0.5,
           methods = {},
           default = 'tyd+ref+imp',
           layout = 'float',
@@ -343,5 +340,14 @@ return {
         },
       })
     end
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {
+      bind = false,
+      hint_enable = false,
+      floating_window_off_x = 0
+    },
   }
 }

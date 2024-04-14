@@ -98,12 +98,6 @@ return {
           vim.keymap.del("t", "<ECS>")
         end,
       })
-      vim.api.nvim_create_autocmd("TermOpen", {
-        pattern = "*",
-        callback = function()
-          vim.keymap.set("t", "<ECS>", "<C-\\><C-N>", { noremap = true })
-        end,
-      })
       vim.api.nvim_create_autocmd("VimEnter", {
         pattern = "*",
         callback = function()
