@@ -47,7 +47,16 @@ return {
   {
     'NvChad/nvim-colorizer.lua',
     event = { "BufReadPre", "BufNewFile" },
-    config = true
+    opts = {
+      filetypes = {
+        '*', -- Highlight all files, but customize some others.
+        "!help",
+        "!dashboard",
+        "!dashpreview",
+        "!NvimTree",
+        "!coc-explorer",
+      },
+    }
   },
   -- {
   --   "wookayin/semshi",
