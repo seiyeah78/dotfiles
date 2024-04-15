@@ -67,4 +67,11 @@ return {
       require("nvim-surround").setup({})
     end
   },
+  {
+    'Wansmer/treesj',
+    event = "VeryLazy",
+    keys = { '<space>m', '<space>j', '<space>s' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = true
+  }
 }

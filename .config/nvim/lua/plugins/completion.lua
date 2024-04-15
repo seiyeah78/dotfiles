@@ -162,6 +162,7 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+
         mapping = cmp.mapping.preset.insert({
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<S-TAB>"] = cmp.mapping.select_prev_item(),
@@ -175,8 +176,9 @@ return {
             fallback()
           end, { 'i', 'c' }),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<CR>'] = cmp.mapping.confirm({ select = false }),
         }),
+
         sources = cmp.config.sources({
           { name = 'nvim_lsp',               priority = 8 },
           { name = 'copilot',                priority = 9 },

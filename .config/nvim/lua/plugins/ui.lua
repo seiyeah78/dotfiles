@@ -10,7 +10,6 @@ return {
       { "<leader><S-n>f",     "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
       { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>",   desc = "NvimTreeToggle" },
     },
-    event = 'VeryLazy',
     config = function()
       require("nvim-tree").setup({
         hijack_netrw = false,
@@ -51,6 +50,9 @@ return {
   {
     'gelguy/wilder.nvim',
     event = 'CmdlineEnter',
+    dependencies = {
+      'romgrk/fzy-lua-native'
+    },
     config = function()
       local wilder = require('wilder')
       wilder.setup({
@@ -58,14 +60,26 @@ return {
         next_key = '<TAB>',
         previous_key = '<S-TAB>',
       })
-      wilder.set_option('renderer', wilder.popupmenu_renderer({
+      wilder.set_option('use_python_remote_plugin', 0)
+      wilder.set_option('pipeline', {
+        wilder.branch(
+          wilder.cmdline_pipeline({
+            fuzzy = 1,
+            fuzzy_filter = wilder.lua_fzy_filter(),
+          }),
+          wilder.vim_search_pipeline()
+        )
+      })
+
+      wilder.set_option('renderer', wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
+        border = 'rounded',
         highlighter = wilder.basic_highlighter(),
         left = { ' ', wilder.popupmenu_devicons() },
         right = { ' ', wilder.popupmenu_scrollbar() },
         highlights = {
           accent = wilder.make_hl('WilderAccent', 'Pmenu', { { a = 1 }, { a = 1 }, { foreground = '#f4468f' } }),
-        },
-      }))
+        }
+      })))
     end
   },
   {
@@ -146,7 +160,26 @@ return {
     'm-demare/hlargs.nvim',
     event = "VeryLazy",
     config = function()
-      require('hlargs').setup()
+      require('hlargs').setup({
+        color = "#ef9062",
+        use_colorpalette = true,
+        sequential_colorpalette = true,
+        colorpalette = {
+          { fg = "#ef9062" },
+          { fg = "#35D27F" },
+          { fg = "#EB75D6" },
+          { fg = "#E5D180" },
+          { fg = "#8997F5" },
+          { fg = "#D49DA5" },
+          { fg = "#7FEC35" },
+          { fg = "#F6B223" },
+          { fg = "#F67C1B" },
+          { fg = "#BBEA87" },
+          { fg = "#EEF06D" },
+          { fg = "#8FB272" },
+        },
+        excluded_filetypes = { "lua", "rust", "typescript", "typescriptreact", "javascript", "javascriptreact" },
+      })
     end
   },
   {
@@ -207,7 +240,7 @@ return {
   {
     "simeji/winresizer",
     keys = {
-      { "<C-w>e", ":WinResizeStartResize<CR>" }
+      { "<C-w>e", ":WinResizerStartResize<CR>" }
     },
     config = function()
       vim.cmd([[
@@ -283,19 +316,47 @@ return {
       })
       require('scrollbar.handlers.search').setup()
     end
-  },
-  {
-    'stevearc/aerial.nvim',
-    cmd = {
-      'AerialToggle', 'AerialOpen'
-    },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      require('aerial').setup({})
-      vim.api.nvim_set_hl(0, 'AerialLine', { link = 'DiffText' })
-    end
-  },
+  }, {
+  'kevinhwang91/nvim-bqf',
+  config = function()
+    require('bqf').setup({
+      auto_enable = true,
+      auto_resize_height = true, -- highly recommended enable
+      preview = {
+        delay_syntax = 80,
+        border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
+        show_title = false,
+        should_preview_cb = function(bufnr, qwinid)
+          local ret = true
+          local bufname = vim.api.nvim_buf_get_name(bufnr)
+          local fsize = vim.fn.getfsize(bufname)
+          if fsize > 100 * 1024 then
+            -- skip file size greater than 100k
+            ret = false
+          elseif bufname:match('^fugitive://') then
+            -- skip fugitive buffer
+            ret = false
+          end
+          return ret
+        end
+      },
+      -- make `drop` and `tab drop` to become preferred
+      func_map = {
+        drop = 'o',
+        openc = 'O',
+        split = '<C-s>',
+        tabdrop = '<C-t>',
+        -- set to empty string to disable
+        tabc = '',
+        ptogglemode = 'z,',
+      },
+      filter = {
+        fzf = {
+          action_for = { ['ctrl-s'] = 'split' },
+          extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', 'fzf mode> ' }
+        }
+      }
+    })
+  end
+}
 }

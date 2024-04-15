@@ -4,14 +4,13 @@ local plugins = {
   'yank_history',
   'frecency',
   'smart_open',
-  'aerial'
 }
 
 return {
   {
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
-    tag = '0.1.5',
+    tag = '0.1.6',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local actions = require("telescope.actions")
@@ -100,14 +99,6 @@ return {
           frecency = {
             show_unindexed = true,
             auto_validate = false,
-          },
-          aerial = {
-            -- Display symbols as <root>.<parent>.<symbol>
-            show_nesting = {
-              ["_"] = false, -- This key will be the default
-              json = true,   -- You can set the option for specific filetypes
-              yaml = true,
-            },
           },
         }
       }

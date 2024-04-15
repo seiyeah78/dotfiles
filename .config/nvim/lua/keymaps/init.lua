@@ -6,9 +6,9 @@ command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボード�
 nmap <F1> <nop>
 imap <F1> <nop>
 
-" Use <C-Space>. 使うときは<C-@>にマッピングする
-map <C-Space>  <C-@>
-cmap <C-Space>  <C-@>
+" " Use <C-Space>. 使うときは<C-@>にマッピングする
+" map <C-Space>  <C-@>
+" cmap <C-Space>  <C-@>
 
 " ---- Yank and send to clipbord --------
 nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
