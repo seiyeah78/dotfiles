@@ -104,7 +104,7 @@ return {
           vim.keymap.set('n', '<leader>b', "<cmd>Buffers<CR>")
         end,
       })
-      if vim.fn.exists('$TMUX') then
+      if vim.fn.exists('$TMUX') == 1 then
         vim.g.fzf_layout = { tmux = vim.env.FZF_TMUX_OPTS }
       else
         vim.g.fzf_layout = { window = { width = 0.7, height = 0.5 } }

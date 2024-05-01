@@ -23,7 +23,7 @@ return {
             'markdown',
             'swift',
             'beancount',
-            'gitcommit'
+            'dockerfile'
           }
         },
         indent = {
@@ -32,7 +32,6 @@ return {
             'python',
             'yaml',
             'ruby',
-            'gitcommit'
           }
         },
         autotag = {
