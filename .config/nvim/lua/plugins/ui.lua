@@ -39,6 +39,42 @@ return {
     end
   },
   {
+    'stevearc/oil.nvim',
+    cmd = "Oil",
+    opts = {
+      keymaps = {
+        ["g?"] = "actions.show_help",
+        ["<CR>"] = "actions.select",
+        ["<C-s>"] = "actions.select_vsplit",
+        ["<C-g"] = "actions.select_split",
+        ["<C-t>"] = "actions.select_tab",
+        ["<C-c>"] = "actions.close",
+        ["<C-l>"] = "actions.refresh",
+        ["-"] = "actions.parent",
+        ["_"] = "actions.open_cwd",
+        ["C-]"] = "actions.cd",
+        ["~"] = "actions.tcd",
+        ["gp"] = "actions.preview",
+        ["gs"] = "actions.change_sort",
+        ["gx"] = "actions.open_external",
+        ["g."] = "actions.toggle_hidden",
+        ["g\\"] = "actions.toggle_trash",
+      },
+      use_default_keymaps = false
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "shortcuts/no-neck-pain.nvim",
+    version = "*",
+    opts = {
+      width = 125,
+      autocmd = {
+        skipEnteringNoNeckPainBuffer = true
+      }
+    }
+  },
+  {
     'cappyzawa/trim.nvim',
     event = "BufEnter",
     opts = {
@@ -56,7 +92,7 @@ return {
     config = function()
       local wilder = require('wilder')
       wilder.setup({
-        modes = { ':', '/', '?' },
+        modes = { ':' },
         next_key = '<TAB>',
         previous_key = '<S-TAB>',
       })
@@ -164,8 +200,8 @@ return {
     config = function()
       require('hlargs').setup({
         color = "#ef9062",
-        use_colorpalette = true,
-        sequential_colorpalette = true,
+        use_colorpalette = false,
+        sequential_colorpalette = false,
         colorpalette = {
           { fg = "#ef9062" },
           { fg = "#35D27F" },

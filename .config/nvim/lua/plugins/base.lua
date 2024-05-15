@@ -4,7 +4,7 @@ return {
   {
     'junegunn/vim-easy-align',
     keys = {
-      { "<leader>ga", ":EasyAlign<CR>", mode = { "x", "n" } },
+      { "<leader>ea", ":EasyAlign<CR>", mode = { "x", "n" } },
     },
     cmd = { 'EasyAlign' },
   },
