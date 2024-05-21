@@ -41,13 +41,19 @@ return {
     config = function()
       require('mason-lspconfig').setup_handlers({
         function(server)
+          local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+          client_capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          }
           local opt = {
             capabilities = require('cmp_nvim_lsp').default_capabilities(
-              vim.lsp.protocol.make_client_capabilities()
+              client_capabilities
             )
           }
-          require('lspconfig')[server].setup(opt)
-          require("lspconfig").pyright.setup {
+          local lsp_config = require("lspconfig")
+          lsp_config[server].setup(opt)
+          lsp_config.pyright.setup {
             settings = {
               python = {
                 venvPath = ".",
