@@ -69,26 +69,26 @@ set.shortmess:remove({ 's', 'S' })
 set.incsearch = true
 set.hlsearch = true
 set.diffopt = "internal,filler,algorithm:histogram,indent-heuristic"
-vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
-vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
-set.termguicolors = true
-if vim.fn.exists('$TMUX') then
-  vim.o.t_SI = "<Esc>Ptmux;<Esc><Esc>]50;CursorShape=1x7<Esc>"
-  vim.o.t_EI = "<Esc>Ptmux;<Esc><Esc>]50;CursorShape=0x7<Esc>"
-else
-  vim.o.t_SI = "<Esc>]50;CursorShape=1x7"
-  vim.o.t_EI = "<Esc>]50;CursorShape=0x7"
-end
-if vim.fn.has('gui_running') then
-  set.ttyfast = true
-end
-if vim.fn.exists('$ASDF_USER_SHIMS') then
-  let_g.python_host_prog = vim.env.HOME .. '/.asdf/shims/python2'
-  vim.cmd([[
-    let g:python3_host_version = split(system("python3 --version 2>&1"))[1]
-    let g:coc_node_path = split(system("asdf where nodejs 20.8.1"))[0] . '/bin/node'
-  ]])
-end
+-- vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+-- vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+-- set.termguicolors = true
+-- if vim.fn.exists('$TMUX') then
+--   vim.o.t_SI = "<Esc>Ptmux;<Esc><Esc>]50;CursorShape=1x7<Esc>"
+--   vim.o.t_EI = "<Esc>Ptmux;<Esc><Esc>]50;CursorShape=0x7<Esc>"
+-- else
+--   vim.o.t_SI = "<Esc>]50;CursorShape=1x7"
+--   vim.o.t_EI = "<Esc>]50;CursorShape=0x7"
+-- end
+-- if vim.fn.has('gui_running') then
+--   set.ttyfast = true
+-- end
+-- if vim.fn.exists('$ASDF_USER_SHIMS') then
+--   let_g.python_host_prog = vim.env.HOME .. '/.asdf/shims/python2'
+--   vim.cmd([[
+--     let g:python3_host_version = split(system("python3 --version 2>&1"))[1]
+--     let g:coc_node_path = split(system("asdf where nodejs 20.8.1"))[0] . '/bin/node'
+--   ]])
+-- end
 
 -- ハイライト
 -- https://jdhao.github.io/2020/09/22/highlight_groups_cleared_in_nvim/

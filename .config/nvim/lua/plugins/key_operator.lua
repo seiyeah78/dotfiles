@@ -56,7 +56,8 @@ return {
       vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
       vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
       vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-      vim.keymap.set({ "n", "i" }, "<C-Y><C-Y>", '<C-O>:<C-U>Telescope yank_history<CR>', {})
+      vim.keymap.set("i", "<C-Y><C-Y>", '<C-O>:<C-U>Telescope yank_history<CR>', {})
+      vim.keymap.set("n", "<C-Y><C-Y>", ':<C-U>Telescope yank_history<CR>', {})
     end
   },
   {
