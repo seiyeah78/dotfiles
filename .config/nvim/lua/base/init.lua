@@ -69,6 +69,8 @@ set.shortmess:remove({ 's', 'S' })
 set.incsearch = true
 set.hlsearch = true
 set.diffopt = "internal,filler,algorithm:histogram,indent-heuristic"
+set.lazyredraw = true
+set.ttyfast = true
 -- vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
 -- vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
 -- set.termguicolors = true
@@ -117,37 +119,40 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 
 vim.cmd([[
-" カーソルの位置を復元する
-  augroup redhat
-    " In text files, always limit the width of text to 78 characters
-    autocmd BufRead *.txt set tw=78
-    " When editing a file, always jump to the last cursor position
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \   exe "normal! g'\"" |
-    \ endif
-    autocmd FileType pullrequest normal! gg0
-    autocmd FileType gitcommit normal! gg0
-    autocmd VimEnter COMMIT_EDITMSG  normal! gg0
-  augroup END
+" jqによるフォーマット"
+command! Jqf %!jq '.'
 
-  " Automatic rename of tmux window
-  if exists('$TMUX') && !exists('$NORENAME')
-    au BufEnter * if empty(&buftype) | call system('tmux rename-window "[vim]"'.expand('%:t:S')) | endif
-    au VimLeave * call system('tmux set-window automatic-rename on')
-  endif
+" カーソルの位置を復元する
+augroup redhat
+  " In text files, always limit the width of text to 78 characters
+  autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+  autocmd FileType pullrequest normal! gg0
+  autocmd FileType gitcommit normal! gg0
+  autocmd VimEnter COMMIT_EDITMSG  normal! gg0
+augroup END
+
+" Automatic rename of tmux window
+if exists('$TMUX') && !exists('$NORENAME')
+  au BufEnter * if empty(&buftype) | call system('tmux rename-window "[vim]"'.expand('%:t:S')) | endif
+  au VimLeave * call system('tmux set-window automatic-rename on')
+endif
 
 " ==============terminal setting==========
-  let g:terminal_color_0  = "#1b2b34" "black
-  let g:terminal_color_1  = "#ed5f67" "red
-  let g:terminal_color_2  = "#9ac895" "green
-  let g:terminal_color_3  = "#fbc963" "yellow
-  let g:terminal_color_4  = "#669acd" "blue
-  let g:terminal_color_5  = "#c695c6" "magenta
-  let g:terminal_color_6  = "#5fb4b4" "cyan
-  let g:terminal_color_7  = "#c1c6cf" "white
-  let g:terminal_color_background="#1b2b34" "background
-  let g:terminal_color_foreground="#c1c6cf" "foreground
+let g:terminal_color_0  = "#1b2b34" "black
+let g:terminal_color_1  = "#ed5f67" "red
+let g:terminal_color_2  = "#9ac895" "green
+let g:terminal_color_3  = "#fbc963" "yellow
+let g:terminal_color_4  = "#669acd" "blue
+let g:terminal_color_5  = "#c695c6" "magenta
+let g:terminal_color_6  = "#5fb4b4" "cyan
+let g:terminal_color_7  = "#c1c6cf" "white
+let g:terminal_color_background="#1b2b34" "background
+let g:terminal_color_foreground="#c1c6cf" "foreground
 
 " dim using tmux
 if exists('$TMUX')

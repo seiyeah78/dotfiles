@@ -306,7 +306,8 @@ function openpr() {
 
   # commit hash => find open pr included it.
   local default_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} | cut -d/ -f2)
-  local details=$(git log --merges --oneline --reverse --ancestry-path $git_hash...$default_branch 2>/dev/null)
+  local details=$(git log --merges --no-patch --oneline --reverse --ancestry-path $git_hash...$default_branch 2>/dev/null)
+
   _open_pull_request_from_commit_details $details
 
   if [ $? != 0  ]; then

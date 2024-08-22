@@ -1,6 +1,6 @@
 local opts = {
   defaults = {
-    lazy = false,
+    lazy = true,
   },
   performance = {
     cache = {
