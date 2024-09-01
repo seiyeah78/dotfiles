@@ -96,8 +96,8 @@ return {
               },
             },
             on_attach = function(client, _)
-              client.server_capabilities.documentFormattingProvider = false
-              client.server_capabilities.documentRangeFormattingProvider = false
+              -- client.server_capabilities.documentFormattingProvider = false
+              -- client.server_capabilities.documentRangeFormattingProvider = false
             end,
           }))
         end,
@@ -117,32 +117,32 @@ return {
       vim.lsp.inlay_hint.enable(true)
     end
   },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
-    },
-    config = function()
-      require('mason-null-ls').setup({
-        ensure_installed = {
-          'prettierd',
-          'black',
-          'flake8',
-          'gopls',
-          'jsonlint',
-          'lua-language-server',
-          'pyright',
-          -- 'ruby-lsp',
-          'terraform-ls',
-          'typescript-language-server',
-          'actionlint'
-        },
-        handlers = {},
-      })
-    end,
-  },
+  -- {
+  --   "jay-babu/mason-null-ls.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   dependencies = {
+  --     "williamboman/mason.nvim",
+  --     "nvimtools/none-ls.nvim",
+  --   },
+  --   config = function()
+  --     require('mason-null-ls').setup({
+  --       ensure_installed = {
+  --         'prettierd',
+  --         'black',
+  --         'flake8',
+  --         'gopls',
+  --         'jsonlint',
+  --         'lua-language-server',
+  --         'pyright',
+  --         -- 'ruby-lsp',
+  --         'terraform-ls',
+  --         'typescript-language-server',
+  --         'actionlint'
+  --       },
+  --       handlers = {},
+  --     })
+  --   end,
+  -- },
   {
     'L3MON4D3/LuaSnip',
     event = 'InsertEnter',

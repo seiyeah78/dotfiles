@@ -29,10 +29,6 @@ set.autoindent = true
 set.smartindent = true
 set.errorbells = false
 set.fileformat = "unix"
--- set.vb = "t_vb="
--- set.t_Co = 256
--- set.t_ut = nil
--- set.t_BE = nil
 set.laststatus = 3
 set.showmode = false
 set.backspace = "indent,eol,start"
