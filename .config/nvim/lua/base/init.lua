@@ -9,9 +9,9 @@ vim.lsp.set_log_level("off")
 -- vim.opt.{option}: :setのように動作します
 -- vim.opt_global.{option}: :setglobalのように動作します
 -- vim.opt_local.{option}: :setlocalのように動作します
-local let_g = vim.go
 local set = vim.opt
 
+vim.g.editorconfig = true
 set.signcolumn = 'yes'
 set.cursorline = true
 set.number = true
