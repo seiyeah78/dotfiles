@@ -32,8 +32,11 @@ return {
         'terraform-ls',
         'typescript-language-server',
         'vue-language-server',
-        'yamlfmt'
+        'yamlfmt',
         -- 'ruby-lsp',
+        'delve',
+        'debugpy',
+        'js-debug-adapter',
       }
     },
   },
@@ -129,4 +132,20 @@ return {
       vim.lsp.inlay_hint.enable(true)
     end
   },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-nvim-dap").setup({
+        automatic_setup = true,
+        ensure_installed = { "python", "delve" },
+        handlers = {
+          function(config)
+            require('mason-nvim-dap').default_setup(config)
+          end,
+        },
+      })
+    end
+  }
 }

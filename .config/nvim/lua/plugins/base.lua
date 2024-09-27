@@ -41,7 +41,7 @@ return {
   { 'slim-template/vim-slim',        ft = 'ruby' },
   { 'tpope/vim-bundler',             ft = 'ruby' },
   { 'vim-ruby/vim-ruby',             ft = 'ruby' },
-  { 'fatih/vim-go',                  ft = "go" },
+  -- { 'fatih/vim-go',                  ft = "go" },
   { 'rust-lang/rust.vim',            ft = 'rust' },
   { 'hashivim/vim-terraform',        ft = 'terraform' },
   {
