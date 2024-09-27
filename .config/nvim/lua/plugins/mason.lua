@@ -102,7 +102,7 @@ return {
               "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
           local filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-          lspconfig.tsserver.setup(vim.tbl_deep_extend("force", common_opts, {
+          lspconfig.ts_ls.setup(vim.tbl_deep_extend("force", common_opts, {
             root_dir = util.root_pattern('tsconfig.json', 'package.json', 'nuxt.config.ts', 'uno.config.ts', '.git'),
             filetypes = filetypes,
             init_options = {
