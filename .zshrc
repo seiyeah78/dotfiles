@@ -149,7 +149,7 @@ SAVEHIST=100000
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
 # fi

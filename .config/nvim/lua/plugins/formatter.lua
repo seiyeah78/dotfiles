@@ -36,16 +36,19 @@ return {
     end,
   },
   {
-    "rshkarin/mason-nvim-lint",
-    dependencies = {
-      "mfussenegger/nvim-lint",
-      "williamboman/mason.nvim",
-    },
+    "mfussenegger/nvim-lint",
     event = "VeryLazy",
     config = function()
+      local lint = require("lint")
+      lint.linters_by_ft = {
+        json = { 'eslint_d' },
+        markdown = { 'markdownlint' },
+        sh = { 'shellcheck' },
+        sql = { 'sqlfluff' },
+      }
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
-          require("lint").try_lint()
+          lint.try_lint()
         end,
       })
     end

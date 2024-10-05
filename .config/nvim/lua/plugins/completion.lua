@@ -57,6 +57,8 @@ return {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
       { 'zbirenbaum/copilot-cmp' },
       { 'onsails/lspkind.nvim' }
     },
@@ -71,7 +73,6 @@ return {
     --   { "ge", "<cmd>lua vim.lsp.buf.open_float()<CR>" },
     -- },
     config = function()
-      require("copilot_cmp").setup()
       local cmp = require('cmp')
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local lspkind = require('lspkind')
@@ -80,6 +81,10 @@ return {
         cmp_autopairs.on_confirm_done()
       )
       cmp.setup({
+        preselect = cmp.PreselectMode.None, -- 補完開始時に選択させない
+        -- completion = {
+        --   completeopt = "menu,menuone,noneselect"
+        -- },
         snippet = {
           expand = function(args)
             require('luasnip').lsp_expand(args.body)
@@ -107,16 +112,15 @@ return {
         }),
 
         sources = cmp.config.sources({
-          { name = 'nvim_lsp',               priority = 8 },
-          { name = 'copilot',                priority = 9 },
-          { name = 'luasnip',                priority = 5 },
-          { name = 'nvim_lsp_signature_help' },
+          { name = 'nvim_lsp', priority = 100, max_item_count = 20 },
+          { name = 'luasnip',  priority = 50,  max_item_count = 10 },
+          { name = 'copilot',  priority = 0 },
         }, {
-          { name = 'buffer', priority = 7 },
+          { name = 'buffer', priority = 70 },
         }),
         formatting = {
           format = lspkind.cmp_format({
-            max_width = 50,
+            max_width = 10,
             symbol_map = { Copilot = "" }
           }),
         }
@@ -129,10 +133,17 @@ return {
           { name = 'buffer', priority = 9 },
         })
       })
-
+      cmp.setup.filetype({ 'typescript', 'typescriptreact' }, {
+        window = {
+          documentation = cmp.config.disable
+        }
+      })
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
+          { name = 'nvim_lsp_document_symbol' }
+        },
+        {
           { name = 'buffer' }
         }
       })
@@ -148,6 +159,7 @@ return {
       -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       --   vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
       -- )
+      require("copilot_cmp").setup()
     end
   },
   {
@@ -194,12 +206,12 @@ return {
         },
         hover = {
           max_width = 0.9,
-          max_height = 0.8,
+          max_height = 1.0,
           open_link = 'gx',
           open_cmd = '!chrome',
         },
         diagnostic = {
-          enable = true,
+          enable = false, -- falseにしないとnvim-lintの診断と重複して出てしまう(存在しないオプションだけど)
           diagnostic_only_current = true,
           extend_relatedInformation = true
         },
@@ -320,9 +332,21 @@ return {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
     opts = {
-      bind = false,
+      bind = true,
       hint_enable = false,
-      floating_window_off_x = 0
+      floating_window_off_x = 0,
+      hint_prefix = "🦊 ",
+      hi_parameter = "Search",
+    },
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      tsserver_locale = "jp",
     },
   }
 }

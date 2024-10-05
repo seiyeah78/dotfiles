@@ -5,7 +5,7 @@ return {
     cmd = { "Mason", "MasonInstall" },
     event = { "WinNew", "WinLeave", "BufRead" },
     config = function()
-      require("mason").setup({})
+      require("mason").setup()
       local signs = { Error = "", Warn = "", Hint = "", Info = " " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
@@ -30,31 +30,32 @@ return {
         'ruff',
         'solargraph',
         'terraform-ls',
-        'typescript-language-server',
+        -- 'typescript-language-server',
         'vue-language-server',
         'yamlfmt',
         -- 'ruby-lsp',
         'delve',
         'debugpy',
         'js-debug-adapter',
+        'sqlfluff'
       }
     },
   },
   {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    "rshkarin/mason-nvim-lint",
     dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
+      { "williamboman/mason.nvim" },
+      { "mfussenegger/nvim-lint" },
     },
-    config = true
+    config = function()
+      require('mason-nvim-lint').setup()
+    end
   },
   {
     "williamboman/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim" },
-      { 'hrsh7th/cmp-nvim-lsp' },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -130,22 +131,6 @@ return {
         end
       })
       vim.lsp.inlay_hint.enable(true)
-    end
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    event = "VeryLazy",
-    dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("mason-nvim-dap").setup({
-        automatic_setup = true,
-        ensure_installed = { "python", "delve" },
-        handlers = {
-          function(config)
-            require('mason-nvim-dap').default_setup(config)
-          end,
-        },
-      })
     end
   }
 }
