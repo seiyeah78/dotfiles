@@ -1,0 +1,45 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet parallel_cha "parralel with channel and gorutine" b
+	// channelとgorutineによる並列処理
+	var wg sync.WaitGroup
+	// 並列度
+	const maxConcurrencyNum = ${3}
+	slots := make(chan struct{}, maxConcurrencyNum)
+	defer close(slots)
+
+	for _, linkId := range uniqLinkIds {
+		wg.Add(1)
+		slots <- struct{}{}
+		go func(${2}) { // ※で指定された関数の引数（foo Intなどを書く）
+			defer wg.Done()
+			// 並列処理したい処理を書く
+      ${4}
+			<-slots
+		}(${1}) // ※ gorutineの引数
+	}
+	wg.Wait()
