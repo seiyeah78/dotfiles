@@ -31,3 +31,5 @@ silicon*
 .tool-versions
 .ipynb_checkpoints
 wt/
+lefthook.yml
+.env.orig

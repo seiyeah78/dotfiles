@@ -58,7 +58,6 @@ return {
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
       { 'zbirenbaum/copilot-cmp' },
       { 'onsails/lspkind.nvim' }
     },
@@ -168,8 +167,9 @@ return {
     dependencies = { 'nvim-lspconfig' },
     keys = {
       { "D",  "<cmd>Lspsaga hover_doc<CR>" },
-      { "gd", "<cmd>Lspsaga goto_definition<CR>" },
+      -- { "gd", "<cmd>Lspsaga goto_definition<CR>" },
       { "gD", "<cmd>Lspsaga peek_definition<CR>" },
+      { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
       { "gr", "<cmd>Lspsaga finder<CR>" },
       { "gn", "<cmd>Lspsaga rename<CR>" },
       -- { "ga", "<cmd>Lspsaga code_action<CR>" },
@@ -318,17 +318,6 @@ return {
     end
   },
   {
-    "RRethy/nvim-treesitter-endwise",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        endwise = {
-          enable = true,
-        },
-      })
-    end
-  },
-  {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
     opts = {
@@ -345,8 +334,6 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {
-      tsserver_locale = "jp",
-    },
+    opts = {},
   }
 }

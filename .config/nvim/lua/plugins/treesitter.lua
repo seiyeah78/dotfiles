@@ -3,7 +3,6 @@ local api = vim.api
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = { 'windwp/nvim-ts-autotag' },
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -27,16 +26,13 @@ return {
           }
         },
         indent = {
-          enable = true,
+          enable = false,
           disable = {
             'python',
             'yaml',
             'ruby',
           }
         },
-        autotag = {
-          enable = true
-        }
       }
     end
   },
@@ -80,4 +76,21 @@ return {
       })
     end
   },
+  {
+    "RRethy/nvim-treesitter-endwise",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        endwise = {
+          enable = true,
+        },
+      })
+    end
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  }
 }

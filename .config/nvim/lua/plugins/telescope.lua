@@ -10,7 +10,7 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
-    tag = '0.1.6',
+    tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local actions = require("telescope.actions")
@@ -24,6 +24,9 @@ return {
       vim.keymap.set('n', '<leader>ff', ':Telescope find_files <CR>', {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', 'gd', function()
+        require('telescope.builtin').lsp_definitions({ reuse_win = true })
+      end, {})
       vim.keymap.set('n', '<C-W>d',
         function()
           require('telescope.builtin').lsp_definitions({
@@ -31,7 +34,7 @@ return {
             reuse_win = true,
           })
         end,
-        { desc = 'Goto definition split. ' }
+        { desc = 'Goto definition split.' }
       )
       vim.keymap.set('n', '<C-W>v',
         function()

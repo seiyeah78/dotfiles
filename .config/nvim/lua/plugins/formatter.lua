@@ -45,6 +45,7 @@ return {
         markdown = { 'markdownlint' },
         sh = { 'shellcheck' },
         sql = { 'sqlfluff' },
+        go = { 'golangcilint' }
       }
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()

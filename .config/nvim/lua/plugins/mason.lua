@@ -37,7 +37,8 @@ return {
         'delve',
         'debugpy',
         'js-debug-adapter',
-        'sqlfluff'
+        'sqlfluff',
+        'golangcilint'
       }
     },
   },
@@ -98,25 +99,25 @@ return {
             end,
           }))
         end,
-        ["ts_ls"] = function()
-          local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path() ..
-              "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
-
-          local filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-          lspconfig.ts_ls.setup(vim.tbl_deep_extend("force", common_opts, {
-            root_dir = util.root_pattern('tsconfig.json', 'package.json', 'nuxt.config.ts', 'uno.config.ts', '.git'),
-            filetypes = filetypes,
-            init_options = {
-              plugins = {
-                {
-                  name = "@vue/typescript-plugin",
-                  location = vue_typescript_plugin,
-                  languages = filetypes,
-                },
-              },
-            },
-          }))
-        end,
+        -- ["ts_ls"] = function()
+        --   local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path() ..
+        --       "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+        --
+        --   local filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
+        --   lspconfig.ts_ls.setup(vim.tbl_deep_extend("force", common_opts, {
+        --     root_dir = util.root_pattern('tsconfig.json', 'package.json', 'nuxt.config.ts', 'uno.config.ts', '.git'),
+        --     filetypes = filetypes,
+        --     init_options = {
+        --       plugins = {
+        --         {
+        --           name = "@vue/typescript-plugin",
+        --           location = vue_typescript_plugin,
+        --           languages = filetypes,
+        --         },
+        --       },
+        --     },
+        --   }))
+        -- end,
         ["lua_ls"] = function()
           lspconfig.lua_ls.setup(vim.tbl_deep_extend("force", common_opts, {
             settings = {
