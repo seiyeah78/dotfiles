@@ -32,6 +32,7 @@ return {
         'terraform-ls',
         -- 'typescript-language-server',
         'vue-language-server',
+        'vtsls',
         'yamlfmt',
         -- 'ruby-lsp',
         'delve',
@@ -57,6 +58,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim" },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'yioneko/nvim-vtsls' },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -129,9 +132,28 @@ return {
               },
             },
           }))
+        end,
+        ["vtsls"] = function()
+          lspconfig.vtsls.setup(vim.tbl_deep_extend("force", common_opts, require("vtsls").lspconfig))
         end
       })
       vim.lsp.inlay_hint.enable(true)
     end
-  }
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-nvim-dap").setup({
+        automatic_setup = true,
+        ensure_installed = { "python", "delve" },
+        handlers = {
+          function(config)
+            require('mason-nvim-dap').default_setup(config)
+          end,
+        },
+      })
+    end
+  },
 }
