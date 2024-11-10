@@ -25,11 +25,9 @@ return {
   'AndrewRadev/switch.vim',
   {
     "krivahtoo/silicon.nvim",
-    build = "./install.sh build",
+    build = "./install.sh",
     cmd = 'Silicon',
-    config = function()
-      require('silicon').setup({})
-    end,
+    config = true,
   },
   'towolf/vim-helm',
   'nvim-lua/plenary.nvim',
@@ -37,11 +35,8 @@ return {
   { 'Vimjas/vim-python-pep8-indent', ft = 'python' },
   { 'vim-python/python-syntax',      ft = 'python' },
   { 'tpope/vim-rails',               ft = 'ruby' },
-  { 'tpope/vim-rbenv',               ft = 'ruby' },
   { 'slim-template/vim-slim',        ft = 'ruby' },
-  { 'tpope/vim-bundler',             ft = 'ruby' },
   { 'vim-ruby/vim-ruby',             ft = 'ruby' },
-  -- { 'fatih/vim-go',                  ft = "go" },
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
@@ -61,22 +56,26 @@ return {
     ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   },
-  { 'rust-lang/rust.vim',     ft = 'rust' },
-  { 'hashivim/vim-terraform', ft = 'terraform' },
   {
-    'NvChad/nvim-colorizer.lua',
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      filetypes = {
-        '*', -- Highlight all files, but customize some others.
-        "!help",
-        "!dashboard",
-        "!dashpreview",
-        "!NvimTree",
-        "!coc-explorer",
-      },
-    }
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false,   -- This plugin is already lazy
+    ft = { 'rust' },
   },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    event = "BufEnter",
+    opts = {
+      exclude_filetypes = {
+        "help",
+        "dashboard",
+        "dashpreview",
+        "NvimTree",
+        "coc-explorer",
+      },
+      exclude_buftypes = {}
+    }
+  }
   -- {
   --   "wookayin/semshi",
   --   build = ":UpdateRemotePlugins",

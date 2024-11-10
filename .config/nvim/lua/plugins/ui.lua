@@ -65,16 +65,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
-    "shortcuts/no-neck-pain.nvim",
-    version = "*",
-    opts = {
-      width = 125,
-      autocmd = {
-        skipEnteringNoNeckPainBuffer = true
-      }
-    }
-  },
-  {
     'cappyzawa/trim.nvim',
     event = "BufEnter",
     opts = {

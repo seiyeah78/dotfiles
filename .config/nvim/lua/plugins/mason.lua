@@ -156,4 +156,23 @@ return {
       })
     end
   },
+  {
+    'yioneko/nvim-vtsls',
+    event = 'VeryLazy',
+    config = function()
+      -- autocmdを使ってfiletypeがluaのときにのみコマンドを作成
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+        callback = function()
+          vim.api.nvim_create_user_command(
+            'OrganizeImport',
+            function()
+              vim.cmd('VtsExec organize_imports')
+            end,
+            {} -- コマンドオプション（必要に応じて設定）
+          )
+        end
+      })
+    end
+  },
 }

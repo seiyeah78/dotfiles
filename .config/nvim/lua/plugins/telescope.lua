@@ -3,9 +3,7 @@ local plugins = {
   'fzf',
   'yank_history',
   'frecency',
-  'smart_open',
 }
-
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -15,21 +13,15 @@ return {
     config = function()
       local actions = require("telescope.actions")
       local builtin = require("telescope.builtin")
-      vim.keymap.set('n', '<C-P>', function()
-        require('telescope').extensions.smart_open.smart_open {
-          cwd_only = true,
-          filename_first = false,
-        }
-      end, {})
-      vim.keymap.set('n', '<leader>ff', ':Telescope find_files <CR>', {})
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<C-P>', function() builtin.find_files() end, {})
+      vim.keymap.set('n', '<leader>fg', function() builtin.live_grep() end, {})
+      vim.keymap.set('n', '<leader>fb', function() builtin.buffers() end, {})
       vim.keymap.set('n', 'gd', function()
-        require('telescope.builtin').lsp_definitions({ reuse_win = true })
+        builtin.lsp_definitions({ reuse_win = true })
       end, {})
       vim.keymap.set('n', '<C-W>d',
         function()
-          require('telescope.builtin').lsp_definitions({
+          builtin.lsp_definitions({
             jump_type = 'split',
             reuse_win = true,
           })
@@ -38,7 +30,7 @@ return {
       )
       vim.keymap.set('n', '<C-W>v',
         function()
-          require('telescope.builtin').lsp_definitions({
+          builtin.lsp_definitions({
             jump_type = 'vsplit',
             reuse_win = true,
           })
@@ -93,12 +85,6 @@ return {
             override_file_sorter = true,    -- override the file sorter
             case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
           },
-          smart_open = {
-            match_algorithm = "fzf",
-            cwd_only = true,
-            show_scores = true,
-            ignore_patterns = { "*.git/*", "*/tmp/*", "*/nodle_modules/*" },
-          },
           frecency = {
             show_unindexed = true,
             auto_validate = false,
@@ -126,11 +112,13 @@ return {
     }
   },
   {
-    'danielfalk/smart-open.nvim',
-    event = 'VeryLazy',
+    'prochri/telescope-all-recent.nvim',
     dependencies = {
+      "nvim-telescope/telescope.nvim",
       "kkharji/sqlite.lua",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- optional, if using telescope for vim.ui.select
+      "stevearc/dressing.nvim"
     },
-  },
+    opts = {}
+  }
 }

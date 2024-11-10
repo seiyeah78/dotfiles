@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    evnet = "LspAttach",
     config = function()
       vim.diagnostic.config({
         update_in_insert = false,
@@ -171,7 +172,7 @@ return {
       { "gD", "<cmd>Lspsaga peek_definition<CR>" },
       { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
       { "gr", "<cmd>Lspsaga finder<CR>" },
-      { "gn", "<cmd>Lspsaga rename<CR>" },
+      { "gm", "<cmd>Lspsaga rename<CR>" },
       -- { "ga", "<cmd>Lspsaga code_action<CR>" },
       { "gl", "<cmd>Lspsaga show_line_diagnostics<CR>" },
     },
@@ -281,10 +282,8 @@ return {
   },
   {
     "hedyhli/outline.nvim",
-    event = "VeryLazy",
+    cmd = "Outline",
     config = function()
-      -- Example mapping to toggle outline
-      require('outline').setup({})
       vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
     end,
   },
@@ -319,7 +318,7 @@ return {
   },
   {
     "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {
       bind = true,
       hint_enable = false,
@@ -331,9 +330,4 @@ return {
       require("lsp_signature").setup(opts)
     end
   },
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  --   opts = {},
-  -- }
 }

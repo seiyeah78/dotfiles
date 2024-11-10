@@ -45,6 +45,7 @@ function! s:zoom()
 endfunction
 nnoremap <silent> <leader>z :call <sid>zoom()<CR>
 
+
 " ----------------------------------------------------------------------------
 " <Leader>?/! | Google it / Feeling lucky
 " ----------------------------------------------------------------------------
