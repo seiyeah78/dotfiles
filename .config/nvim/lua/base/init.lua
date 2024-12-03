@@ -11,6 +11,7 @@ vim.lsp.set_log_level("off")
 local set = vim.opt
 
 vim.g.editorconfig = true
+vim.o.regexpengine = 0
 set.signcolumn = 'yes'
 set.regexpengine = 0
 set.cursorline = true

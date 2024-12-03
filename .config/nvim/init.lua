@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- lazy.nvimをsetupするとなぜかregexpengineが1になってしまうので順番を変更
 require('config')
 require('autocmds')
 require('keymaps')

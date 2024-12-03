@@ -1,1 +1,1 @@
-autocmd FileType typescriptreact set filetype=typescript.tsx
+" autocmd FileType typescriptreact set filetype=typescript.tsx

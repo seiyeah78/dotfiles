@@ -33,6 +33,9 @@ return {
             'ruby',
           }
         },
+        matchup = {
+          enable = true,
+        },
       }
     end
   },

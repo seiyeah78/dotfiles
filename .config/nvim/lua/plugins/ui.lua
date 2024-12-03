@@ -210,8 +210,8 @@ return {
     config = function()
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      vim.api.nvim_set_hl(0, 'MatchParen', { fg = "darkorange2" })
-      vim.api.nvim_set_hl(0, 'MatchWord', { fg = "darkorange2" })
+      -- vim.api.nvim_set_hl(0, 'MatchParen', { fg = "lightblue2" })
+      -- vim.api.nvim_set_hl(0, 'MatchWord', { fg = "lightblue2" })
       vim.api.nvim_set_hl(0, 'MatchWordCur', { underline = true })
       vim.api.nvim_set_hl(0, 'MatchParenCur', {}) -- NONEと同じ
     end

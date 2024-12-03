@@ -33,3 +33,4 @@ silicon*
 wt/
 lefthook.yml
 .env.orig
+private.pem

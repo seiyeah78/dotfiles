@@ -294,7 +294,8 @@ return {
       require("copilot").setup({
         suggestion = { enabled = true },
         panel = { enabled = false },
-        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") .. "/bin/node", -- Node.js version must be > 18.x
+        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") ..
+            "/bin/node", -- Node.js version must be > 18.x
       })
     end,
   },

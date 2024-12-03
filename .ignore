@@ -20,6 +20,8 @@ vendor/
 .config/*
 pkg/*
 logs/*
+.next*
+_next/
 *.tfstate.*.backup
 !.config/alacritty
 !.config/nvim
