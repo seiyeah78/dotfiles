@@ -11,24 +11,24 @@ imap <F1> <nop>
 " cmap <C-Space>  <C-@>
 
 " ---- Yank and send to clipbord --------
-nnoremap YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
-vnoremap YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
+nnoremap <silent> YY yy:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
+vnoremap <silent> YY y:<C-U>Pbcopy0<CR>:echomsg "Copy to Clipbord!"<CR>
 
 " ---- Press space twice to save --------
 noremap <space><space> :<C-U>w<CR>
 
 " ----- Tabs ----
-nnoremap ]t :tabn<CR>
-nnoremap [t :tabp<CR>
+nnoremap <silent> ]t :tabn<CR>
+nnoremap <silent> [t :tabp<CR>
 
 " ----- Buffers ----
-nnoremap ]b :bnext<CR>
-nnoremap [b :bprev<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [b :bprev<CR>
 
-nnoremap ]q :cnext<CR>zz
-nnoremap [q :cprev<CR>zz
-nnoremap ]l :lnext<CR>zz
-nnoremap [l :lprev<CR>zz
+nnoremap <silent> ]q :cnext<CR>zz
+nnoremap <silent> [q :cprev<CR>zz
+nnoremap <silent> ]l :lnext<CR>zz
+nnoremap <silent> [l :lprev<CR>zz
 
 function! Strip(input_string)
   return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')

@@ -58,24 +58,29 @@ return {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
       { 'zbirenbaum/copilot-cmp' },
       { 'onsails/lspkind.nvim' }
     },
-    -- keys = {
-    --   { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
-    --   { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
-    --   { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
-    --   { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
-    --   { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
-    --   { "gn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
-    --   { "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
-    --   { "ge", "<cmd>lua vim.lsp.buf.open_float()<CR>" },
-    -- },
+    keys = {
+      -- { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
+      -- { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
+      -- { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
+      -- { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
+      -- { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
+      -- { "gn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
+      -- { "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
+      { "gl", "<cmd>lua vim.diagnostic.open_float()<CR>" },
+    },
     config = function()
       local cmp = require('cmp')
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local lspkind = require('lspkind')
+      ---Return view is visible or not.
+      cmp.visible = function()
+        return cmp.core.view:visible() or vim.fn.pumvisible() == 1
+      end
       cmp.event:on(
         'confirm_done',
         cmp_autopairs.on_confirm_done()
@@ -147,18 +152,15 @@ return {
           { name = 'buffer' }
         }
       })
-      -- cmp.setup.cmdline(':', {
-      --   mapping = cmp.mapping.preset.cmdline(),
-      --   sources = cmp.config.sources({
-      --     { name = 'path' }
-      --   }, {
-      --     { name = 'cmdline' }
-      --   })
-      -- })
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+      })
 
-      -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      --   vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
-      -- )
       require("copilot_cmp").setup()
     end
   },
@@ -173,8 +175,6 @@ return {
       { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
       { "gr", "<cmd>Lspsaga finder<CR>" },
       { "gm", "<cmd>Lspsaga rename<CR>" },
-      -- { "ga", "<cmd>Lspsaga code_action<CR>" },
-      { "gl", "<cmd>Lspsaga show_line_diagnostics<CR>" },
     },
     config = function()
       local keys = {
@@ -282,10 +282,10 @@ return {
   },
   {
     "hedyhli/outline.nvim",
-    cmd = "Outline",
-    config = function()
-      vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
-    end,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
   },
   {
     "zbirenbaum/copilot.lua",
@@ -314,6 +314,12 @@ return {
           enabled = true
         }
       })
+    end
+  },
+  {
+    'dmmulroy/ts-error-translator.nvim',
+    config = function()
+      require('ts-error-translator').setup()
     end
   },
   {

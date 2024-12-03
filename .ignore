@@ -9,6 +9,7 @@
 .tox/
 .serverless
 .mypy*
+.next/
 __pycache__
 public/packs/
 public/packs-test/

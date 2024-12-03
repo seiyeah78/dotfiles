@@ -74,43 +74,6 @@ return {
     },
   },
   {
-    'gelguy/wilder.nvim',
-    event = 'CmdlineEnter',
-    dependencies = {
-      'romgrk/fzy-lua-native'
-    },
-    config = function()
-      local wilder = require('wilder')
-      wilder.setup({
-        modes = { ':' },
-        next_key = '<TAB>',
-        previous_key = '<S-TAB>',
-      })
-
-      -- 何もせずに終了するとabortして書き込みできなくなる
-      -- wilder.set_option('use_python_remote_plugin', 0)
-      wilder.set_option('pipeline', {
-        wilder.branch(
-          wilder.cmdline_pipeline({
-            fuzzy = 1,
-            fuzzy_filter = wilder.lua_fzy_filter(),
-          }),
-          wilder.vim_search_pipeline()
-        )
-      })
-
-      wilder.set_option('renderer', wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-        border = 'rounded',
-        highlighter = wilder.basic_highlighter(),
-        left = { ' ', wilder.popupmenu_devicons() },
-        right = { ' ', wilder.popupmenu_scrollbar() },
-        highlights = {
-          accent = wilder.make_hl('WilderAccent', 'Pmenu', { { a = 1 }, { a = 1 }, { foreground = '#f4468f' } }),
-        }
-      })))
-    end
-  },
-  {
     'keaising/im-select.nvim',
     evnet = 'VeryLazy',
     config = function()
@@ -141,7 +104,8 @@ return {
     "folke/trouble.nvim",
     cmd = { "Trouble" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
+    opts = {
+    },
     -- opts = {
     --   open_split = { "<c-s>" },
     --   open_tab = { "<c-g>" },

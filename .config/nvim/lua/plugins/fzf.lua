@@ -1,11 +1,13 @@
 return {
   {
     'junegunn/fzf',
-    version = '0.52.1', -- fixed for MacOS
     lazy = false,
     build = function()
       vim.cmd([[ call fzf#install() ]])
     end,
+    dependencies = {
+      "ibhagwan/fzf-lua"
+    }
   },
   {
     'junegunn/fzf.vim',

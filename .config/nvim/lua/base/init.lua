@@ -1,4 +1,3 @@
-vim.cmd("autocmd!")
 vim.cmd('language en_US')
 vim.scriptencoding = "utf-8"
 vim.lsp.set_log_level("off")
@@ -13,6 +12,7 @@ local set = vim.opt
 
 vim.g.editorconfig = true
 set.signcolumn = 'yes'
+set.regexpengine = 0
 set.cursorline = true
 set.number = true
 set.ignorecase = true
@@ -57,7 +57,7 @@ set.undofile = true
 set.hidden = true
 set.wildmenu = true
 -- like bash complete with tab
-set.wildmode = "longest,full"
+set.wildmode = { "longest:full", "full" }
 set.wrapscan = true
 set.updatetime = 1000
 set.tags:append(".git/tags")
@@ -65,8 +65,9 @@ set.shortmess:remove({ 's', 'S' })
 set.incsearch = true
 set.hlsearch = true
 set.diffopt = "internal,filler,algorithm:histogram,indent-heuristic"
-set.lazyredraw = true
+-- set.lazyredraw = true
 set.ttyfast = true
+set.wildmenu = true
 -- vim.o.t_8f = "<Esc>[38;2;%lu;%lu;%lum"
 -- vim.o.t_8b = "<Esc>[48;2;%lu;%lu;%lum"
 -- set.termguicolors = true

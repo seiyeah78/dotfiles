@@ -134,7 +134,14 @@ return {
           }))
         end,
         ["vtsls"] = function()
-          lspconfig.vtsls.setup(vim.tbl_deep_extend("force", common_opts, require("vtsls").lspconfig))
+          lspconfig.vtsls.setup(vim.tbl_deep_extend("force", common_opts, require("vtsls").lspconfig, {
+            handlers = {
+              ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+                require("ts-error-translator").translate_diagnostics(err, result, ctx, config)
+                vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+              end,
+            },
+          }))
         end
       })
       vim.lsp.inlay_hint.enable(true)
