@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- lazy.nvimをsetupするとなぜかregexpengineが1になってしまうので順番を変更
-require('config')
 require('autocmds')
 require('keymaps')
+require('config')
 require('base')
