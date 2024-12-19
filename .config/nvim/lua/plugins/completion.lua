@@ -117,9 +117,10 @@ return {
         }),
 
         sources = cmp.config.sources({
-          { name = 'nvim_lsp', priority = 100, max_item_count = 20 },
-          { name = 'luasnip',  priority = 50,  max_item_count = 10 },
-          { name = 'copilot',  priority = 0 },
+          { name = 'nvim_lsp',       priority = 100, max_item_count = 20 },
+          { name = 'luasnip',        priority = 50,  max_item_count = 10 },
+          { name = 'copilot',        priority = 0 },
+          { name = 'render-markdown' }
         }, {
           { name = 'buffer', priority = 70 },
         }),
