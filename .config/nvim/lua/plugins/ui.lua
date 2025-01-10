@@ -266,7 +266,8 @@ return {
           cursor = false
         },
         excluded_filetypes = {
-          "TelescopeResults"
+          "TelescopeResults",
+          "NvimTree"
         }
       })
       require('scrollbar.handlers.search').setup()

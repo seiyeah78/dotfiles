@@ -90,17 +90,17 @@ return {
             endif
           endfunction
 
-          autocmd VimEnter * command! -bang -nargs=* Ag call s:exec_grep_command(<q-args>, <bang>0, 'Ag')
-          autocmd VimEnter * command! -bang -nargs=* Rg call s:exec_grep_command(<q-args>, <bang>0, 'Rg')
+          command! -bang -nargs=* Ag call s:exec_grep_command(<q-args>, <bang>0, 'Ag')
+          command! -bang -nargs=* Rg call s:exec_grep_command(<q-args>, <bang>0, 'Rg')
 
 
       ]])
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "fzf",
-        callback = function()
-          vim.keymap.del("t", "<ECS>")
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("FileType", {
+      --   pattern = "fzf",
+      --   callback = function()
+      --     vim.keymap.del("t", "<ECS>")
+      --   end,
+      -- })
       vim.api.nvim_create_autocmd("VimEnter", {
         pattern = "*",
         callback = function()
