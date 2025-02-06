@@ -59,7 +59,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim" },
-      { 'hrsh7th/cmp-nvim-lsp' },
       { 'yioneko/nvim-vtsls' },
     },
     config = function()
@@ -72,9 +71,6 @@ return {
         lineFoldingOnly = true,
       }
       local common_opts = {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(
-          client_capabilities
-        )
       }
       require('mason-lspconfig').setup_handlers({
         function(server)

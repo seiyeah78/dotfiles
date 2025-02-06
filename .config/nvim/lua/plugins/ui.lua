@@ -269,6 +269,8 @@ return {
           "TelescopeResults",
           "NvimTree",
           "DressingInput,"
+          "blink-cmp-menu",
+          "blink-cmp-documentation"
         }
       })
       require('scrollbar.handlers.search').setup()

@@ -20,7 +20,6 @@ return {
     'L3MON4D3/LuaSnip',
     event = 'InsertEnter',
     dependencies = {
-      'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets'
     },
     config = function()
@@ -51,120 +50,120 @@ return {
       end, { silent = true })
     end
   },
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-cmdline' },
-      { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-      { 'zbirenbaum/copilot-cmp' },
-      { 'onsails/lspkind.nvim' }
-    },
-    keys = {
-      -- { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
-      -- { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
-      -- { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
-      -- { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
-      -- { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
-      -- { "gn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
-      -- { "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
-      { "gl", "<cmd>lua vim.diagnostic.open_float()<CR>" },
-    },
-    config = function()
-      local cmp = require('cmp')
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local lspkind = require('lspkind')
-      ---Return view is visible or not.
-      cmp.visible = function()
-        return cmp.core.view:visible() or vim.fn.pumvisible() == 1
-      end
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
-      cmp.setup({
-        preselect = cmp.PreselectMode.None, -- 補完開始時に選択させない
-        -- completion = {
-        --   completeopt = "menu,menuone,noneselect"
-        -- },
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-
-        mapping = cmp.mapping.preset.insert({
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<S-TAB>"] = cmp.mapping.select_prev_item(),
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<TAB>"] = cmp.mapping.select_next_item(),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-l>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              return cmp.complete_common_string()
-            end
-            fallback()
-          end, { 'i', 'c' }),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        }),
-
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp',       priority = 100, max_item_count = 20 },
-          { name = 'luasnip',        priority = 50,  max_item_count = 10 },
-          { name = 'copilot',        priority = 0 },
-          { name = 'render-markdown' }
-        }, {
-          { name = 'buffer', priority = 70 },
-        }),
-        formatting = {
-          format = lspkind.cmp_format({
-            max_width = 10,
-            symbol_map = { Copilot = "" }
-          }),
-        }
-      })
-      cmp.setup.filetype('gitcommit', {
-        sources = cmp.config.sources({
-          { name = 'git' },
-          { name = 'luasnip', priority = 10 },
-        }, {
-          { name = 'buffer', priority = 9 },
-        })
-      })
-      cmp.setup.filetype({ 'typescript', 'typescriptreact' }, {
-        window = {
-          documentation = cmp.config.disable
-        }
-      })
-      cmp.setup.cmdline({ '/', '?' }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'nvim_lsp_document_symbol' }
-        },
-        {
-          { name = 'buffer' }
-        }
-      })
-      cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = 'path' }
-        }, {
-          { name = 'cmdline' }
-        })
-      })
-
-      require("copilot_cmp").setup()
-    end
-  },
+  -- {
+  --   'hrsh7th/nvim-cmp',
+  --   event = 'InsertEnter',
+  --   dependencies = {
+  --     { 'hrsh7th/cmp-nvim-lsp' },
+  --     { 'hrsh7th/cmp-buffer' },
+  --     { 'hrsh7th/cmp-path' },
+  --     { 'hrsh7th/cmp-cmdline' },
+  --     { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+  --     { 'zbirenbaum/copilot-cmp' },
+  --     { 'onsails/lspkind.nvim' }
+  --   },
+  --   keys = {
+  --     -- { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
+  --     -- { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
+  --     -- { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
+  --     -- { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
+  --     -- { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
+  --     -- { "gn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
+  --     -- { "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
+  --     { "gl", "<cmd>lua vim.diagnostic.open_float()<CR>" },
+  --   },
+  --   config = function()
+  --     local cmp = require('cmp')
+  --     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+  --     local lspkind = require('lspkind')
+  --     ---Return view is visible or not.
+  --     cmp.visible = function()
+  --       return cmp.core.view:visible() or vim.fn.pumvisible() == 1
+  --     end
+  --     cmp.event:on(
+  --       'confirm_done',
+  --       cmp_autopairs.on_confirm_done()
+  --     )
+  --     cmp.setup({
+  --       preselect = cmp.PreselectMode.None, -- 補完開始時に選択させない
+  --       -- completion = {
+  --       --   completeopt = "menu,menuone,noneselect"
+  --       -- },
+  --       snippet = {
+  --         expand = function(args)
+  --           require('luasnip').lsp_expand(args.body)
+  --         end,
+  --       },
+  --       window = {
+  --         completion = cmp.config.window.bordered(),
+  --         documentation = cmp.config.window.bordered(),
+  --       },
+  --
+  --       mapping = cmp.mapping.preset.insert({
+  --         ["<C-p>"] = cmp.mapping.select_prev_item(),
+  --         ["<S-TAB>"] = cmp.mapping.select_prev_item(),
+  --         ["<C-n>"] = cmp.mapping.select_next_item(),
+  --         ["<TAB>"] = cmp.mapping.select_next_item(),
+  --         ['<C-Space>'] = cmp.mapping.complete(),
+  --         ['<C-l>'] = cmp.mapping(function(fallback)
+  --           if cmp.visible() then
+  --             return cmp.complete_common_string()
+  --           end
+  --           fallback()
+  --         end, { 'i', 'c' }),
+  --         ['<C-e>'] = cmp.mapping.abort(),
+  --         ['<CR>'] = cmp.mapping.confirm({ select = false }),
+  --       }),
+  --
+  --       sources = cmp.config.sources({
+  --         { name = 'nvim_lsp',       priority = 100, max_item_count = 20 },
+  --         { name = 'luasnip',        priority = 50,  max_item_count = 10 },
+  --         { name = 'copilot',        priority = 0 },
+  --         { name = 'render-markdown' }
+  --       }, {
+  --         { name = 'buffer', priority = 70 },
+  --       }),
+  --       formatting = {
+  --         format = lspkind.cmp_format({
+  --           max_width = 10,
+  --           symbol_map = { Copilot = "" }
+  --         }),
+  --       }
+  --     })
+  --     cmp.setup.filetype('gitcommit', {
+  --       sources = cmp.config.sources({
+  --         { name = 'git' },
+  --         { name = 'luasnip', priority = 10 },
+  --       }, {
+  --         { name = 'buffer', priority = 9 },
+  --       })
+  --     })
+  --     cmp.setup.filetype({ 'typescript', 'typescriptreact' }, {
+  --       window = {
+  --         documentation = cmp.config.disable
+  --       }
+  --     })
+  --     cmp.setup.cmdline({ '/', '?' }, {
+  --       mapping = cmp.mapping.preset.cmdline(),
+  --       sources = {
+  --         { name = 'nvim_lsp_document_symbol' }
+  --       },
+  --       {
+  --         { name = 'buffer' }
+  --       }
+  --     })
+  --     cmp.setup.cmdline(':', {
+  --       mapping = cmp.mapping.preset.cmdline(),
+  --       sources = cmp.config.sources({
+  --         { name = 'path' }
+  --       }, {
+  --         { name = 'cmdline' }
+  --       })
+  --     })
+  --
+  --     require("copilot_cmp").setup()
+  --   end
+  -- },
   {
     'nvimdev/lspsaga.nvim',
     event = 'LspAttach',
@@ -326,18 +325,18 @@ return {
       require('ts-error-translator').setup()
     end
   },
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "InsertEnter",
-    opts = {
-      bind = true,
-      hint_enable = false,
-      floating_window_off_x = 0,
-      hint_prefix = "🦊 ",
-      hi_parameter = "Search",
-    },
-    config = function(_, opts)
-      require("lsp_signature").setup(opts)
-    end
-  },
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   event = "InsertEnter",
+  --   opts = {
+  --     bind = true,
+  --     hint_enable = false,
+  --     floating_window_off_x = 0,
+  --     hint_prefix = "🦊 ",
+  --     hi_parameter = "Search",
+  --   },
+  --   config = function(_, opts)
+  --     require("lsp_signature").setup(opts)
+  --   end
+  -- },
 }
