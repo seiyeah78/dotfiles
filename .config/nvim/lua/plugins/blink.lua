@@ -9,8 +9,15 @@ return {
     opts = {
       keymap = {
         preset = "enter",
-        cmdline = {
-          preset = "super-tab",
+      },
+      cmdline = {
+        keymap = {
+          preset = "cmdline",
+        },
+        completion = {
+          menu = {
+            auto_show = true
+          }
         }
       },
       appearance = {
