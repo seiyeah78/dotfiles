@@ -3,6 +3,7 @@ local plugins = {
   'fzf',
   'yank_history',
   'frecency',
+  'media_files'
 }
 return {
   {
@@ -89,6 +90,10 @@ return {
             show_unindexed = true,
             auto_validate = false,
           },
+          media_files = {
+            filetypes = { "png", "jpg", "mp4", "mkv", "webm", "webp", "pdf", "epub" },
+            find_cmd = "rg",
+          },
         }
       }
       for i = 1, #plugins do
@@ -120,5 +125,12 @@ return {
       "stevearc/dressing.nvim"
     },
     opts = {}
+  },
+  {
+    'nvim-telescope/telescope-media-files.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-telescope/telescope.nvim'
+    }
   }
 }
