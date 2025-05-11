@@ -121,4 +121,23 @@ return {
       }
     end
   },
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require('fzf-lua').setup({
+        winopts = {
+          preview = {
+            default = "bat",
+          },
+        },
+        grep = {
+          cmd = "rg",
+          file_icons = false,
+          color_icons = false,
+          git_icons = false,
+        },
+      })
+    end
+  }
 }

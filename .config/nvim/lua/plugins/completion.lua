@@ -303,7 +303,7 @@ return {
   },
   {
     'aznhe21/actions-preview.nvim',
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
     dependencies = { 'kosayoda/nvim-lightbulb' },
     config = function()
       vim.keymap.set({ "v", "n" }, "ga", require("actions-preview").code_actions)

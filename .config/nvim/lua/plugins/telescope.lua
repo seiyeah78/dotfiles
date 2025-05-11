@@ -3,7 +3,6 @@ local plugins = {
   'fzf',
   'yank_history',
   'frecency',
-  'media_files'
 }
 return {
   {
@@ -126,11 +125,11 @@ return {
     },
     opts = {}
   },
-  {
-    'nvim-telescope/telescope-media-files.nvim',
-    event = 'VeryLazy',
-    dependencies = {
-      'nvim-telescope/telescope.nvim'
-    }
-  }
+  -- {
+  --   'nvim-telescope/telescope-media-files.nvim',
+  --   event = 'VeryLazy',
+  --   dependencies = {
+  --     'nvim-telescope/telescope.nvim'
+  --   }
+  -- }
 }

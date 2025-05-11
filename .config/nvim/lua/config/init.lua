@@ -2,6 +2,10 @@ local opts = {
   defaults = {
     lazy = false,
   },
+  rocks = {
+    disabled = false,
+    hererocks = false
+  },
   performance = {
     cache = {
       enabled = true,

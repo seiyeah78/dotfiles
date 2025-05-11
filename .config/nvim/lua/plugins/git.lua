@@ -44,7 +44,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     tag='v1.0.2',
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
     config = function()
       require('gitsigns').setup {
         signs                   = {
