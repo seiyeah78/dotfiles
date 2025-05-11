@@ -268,7 +268,7 @@ return {
         excluded_filetypes = {
           "TelescopeResults",
           "NvimTree",
-          "DressingInput,"
+          "DressingInput",
           "blink-cmp-menu",
           "blink-cmp-documentation"
         }
