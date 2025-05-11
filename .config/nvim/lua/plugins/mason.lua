@@ -1,6 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
+    tag='v1.11.0',
     build = ":MasonUpdate",
     cmd = { "Mason", "MasonInstall" },
     event = { "WinNew", "WinLeave", "BufRead" },
@@ -56,6 +57,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    tag="v1.32.0",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim" },
@@ -70,11 +72,11 @@ return {
         dynamicRegistration = false,
         lineFoldingOnly = true,
       }
-      local common_opts = {
-      }
       require('mason-lspconfig').setup_handlers({
         function(server)
-          lspconfig[server].setup(common_opts)
+          lspconfig[server].setup({
+            capabilities = client_capabilities,
+          })
         end,
         -- サーバごとに個別設定を入れることができる
         ["pyright"] = function()
