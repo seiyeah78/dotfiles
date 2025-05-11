@@ -115,6 +115,10 @@ alias groot='cd $(git rev-parse --show-toplevel)'
 alias gpf='f(){ print -z " git push --force-with-lease --force-if-includes ${1:-origin} $(git symbolic-ref --short HEAD)" }; f'
 alias gpO='gpf origin'
 alias gpU='gpf upstream'
+alias lg='lazygit'
+
+
+##### k8s #####
 
 alias k='kubectl'
 alias kc='kubectl ctx'
@@ -156,3 +160,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ### End of Zinit's installer chunk
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/seiya.ouchi/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

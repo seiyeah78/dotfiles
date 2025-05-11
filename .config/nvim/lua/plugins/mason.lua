@@ -39,7 +39,6 @@ return {
         'debugpy',
         'js-debug-adapter',
         'sqlfluff',
-        'golangcilint'
       }
     },
   },
@@ -49,9 +48,11 @@ return {
       { "williamboman/mason.nvim" },
       { "mfussenegger/nvim-lint" },
     },
-    config = function()
-      require('mason-nvim-lint').setup()
-    end
+    opt = {
+      ensure_installed = {
+        'golangcilint'
+      }
+    }
   },
   {
     "williamboman/mason-lspconfig.nvim",

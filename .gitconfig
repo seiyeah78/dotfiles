@@ -25,7 +25,7 @@
   co = checkout
   cb = checkout -b
   w = worktree
-  cop = !git checkout $(git branch --sort=-committerdate --format=' %(committerdate:iso8601)%09%(refname:lstrip=2)'| peco | sed -e \"s/\\* //g\" | awk '{print $4}')
+  cop = !git checkout $(TZ=Asia/Tokyo git branch --sort=-committerdate --format=' %(committerdate:iso8601-local)%09%(refname:lstrip=2)'| peco | sed -e \"s/\\* //g\" | awk '{print $4}')
   fetch-pr-upstream = !sh -c 'git fetch upstream pull/$1/head:pr-$1' -
   lg = log --graph --pretty=format:'%C(auto)%h -%d %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   create-wt = "!f() { !git worktree add git_worktree/$1 $1; }; f"

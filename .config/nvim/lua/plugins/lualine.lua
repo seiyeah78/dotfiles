@@ -12,11 +12,6 @@ return {
           theme = 'tokyonight',
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
-          disabled_filetypes = {
-            statusline = {},
-            winbar = { 'NvimTree', 'fugitive', 'fugitive' },
-          },
-          ignore_focus = {},
           always_divide_middle = true,
           globalstatus = true,
           refresh = {

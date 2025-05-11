@@ -64,6 +64,7 @@ export FZF_TMUX_OPTS='-p80%,70% -xC -yC'
 export THOR_MERGE=vimdiff
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd)
 export GIST_USER=seiyeah78
+export TZ=Asia/Tokyo
 
 if [ -e ~/.zshenv.local ]; then
   source ~/.zshenv.local

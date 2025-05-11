@@ -41,6 +41,12 @@ return {
         numhl =
         'DapBreakpoint'
       })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "dap-float",
+        callback = function()
+          vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>close!<CR>", { noremap = true, silent = true })
+        end
+      })
       vim.keymap.set('n', '<Leader>df', function()
         widgets.centered_float(widgets.frames)
       end)
@@ -48,6 +54,7 @@ return {
         widgets.centered_float(widgets.scopes)
       end)
       dap.listeners.before.attach.dapui_config = function()
+        vim.cmd("NvimTreeClose")
         dapui.open()
       end
       dap.listeners.before.launch.dapui_config = function()

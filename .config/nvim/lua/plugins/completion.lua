@@ -184,7 +184,7 @@ return {
         split = '<C-s>',
         tabe = '<C-g>e',
         close = '<C-c>k',
-        quit = { 'q', '<C-W>c', '<ECS>' },
+        quit = { 'q', '<C-W>c', '<ESC>' },
         shuttle = '<C-w><C-w>',
         toggle_or_req = 'u',
         toggle_or_open = { '<CR>', 'o' },
@@ -283,17 +283,19 @@ return {
   },
   {
     "hedyhli/outline.nvim",
+    lazy = true,
     cmd = { "Outline", "OutlineOpen" },
     keys = { -- Example mapping to toggle outline
       { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
     },
+    opts = {},
   },
   {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        suggestion = { enabled = true },
+        suggestion = { enabled = false },
         panel = { enabled = false },
         copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") ..
             "/bin/node", -- Node.js version must be > 18.x

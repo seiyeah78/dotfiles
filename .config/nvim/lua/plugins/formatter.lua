@@ -18,6 +18,7 @@ return {
           json = { "prettierd" },
           jsonc = { "prettierd" },
           yaml = { "prettierd" },
+          css = { "prettierd" },
         },
         format_on_save = {
           timeout_ms = 2000,
