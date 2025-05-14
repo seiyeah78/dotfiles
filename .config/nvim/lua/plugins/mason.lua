@@ -7,6 +7,7 @@ local lsps = {
   'jsonlint',
   'lua_ls',
   'prettierd',
+  'golangci-lint-langserver',
   'pyright',
   'ruff',
   'solargraph',
