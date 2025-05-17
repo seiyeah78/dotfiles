@@ -191,7 +191,21 @@ return {
       -- https://github.com/nvimdev/lspsaga.nvim/blob/main/lua/lspsaga/init.lua
       require('lspsaga').setup({
         request_timeout = 500,
-        border_stype = 'rounded',
+        ui = {
+          winbar_prefix = '',
+          border = vim.o.winborder,
+          devicon = true,
+          foldericon = true,
+          title = true,
+          expand = '⊞',
+          collapse = '⊟',
+          code_action = '💡',
+          lines = { '┗', '┣', '┃', '━', '┏' },
+          kind = nil,
+          button = { '', '' },
+          imp_sign = '󰳛 ',
+          use_nerd = true,
+        },
         symbol_in_winbar = {
           enable = false,
         },

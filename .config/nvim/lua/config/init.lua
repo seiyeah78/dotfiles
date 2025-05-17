@@ -16,5 +16,8 @@ local opts = {
     enabled = false,
     notify = false, -- get a notification when changes are found
   },
+  ui = {
+    border = vim.o.winborder
+  }
 }
 require("lazy").setup("plugins", opts)

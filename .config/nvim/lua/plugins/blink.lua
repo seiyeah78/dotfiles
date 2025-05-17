@@ -4,20 +4,38 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       "giuxtaposition/blink-cmp-copilot",
+      "zbirenbaum/copilot.lua",
     },
     version = '*',
     opts = {
+      enabled = function() return not vim.tbl_contains({ "AvantePromptInput" }, vim.bo.filetype) end,
       keymap = {
         preset = "enter",
       },
       cmdline = {
         keymap = {
           preset = "cmdline",
+          ['<CR>'] = {
+            function(cmp)
+              if cmp.snippet_active() then
+                return cmp.accept()
+              else
+                return cmp.accept_and_enter()
+              end
+            end,
+            'fallback'
+          },
         },
         completion = {
+          list = {
+            selection = {
+              preselect = false,
+              auto_insert = true,
+            }
+          },
           menu = {
-            auto_show = true
-          }
+            auto_show = true,
+          },
         }
       },
       appearance = {
@@ -35,9 +53,7 @@ return {
         list = {
           selection = {
             preselect = false,
-            auto_insert = function(ctx)
-              return ctx.mode ~= 'cmdline' and not require('blink.cmp').snippet_active({ direction = 1 })
-            end
+            auto_insert = false,
           }
         },
         accept = {
@@ -46,8 +62,12 @@ return {
         menu = {
           scrollbar = false,
           border = 'single',
+          draw = {
+            columns = { { "label", "label_description" }, { "kind_icon", "kind", gap = 1 } }
+          }
         },
         documentation = {
+          auto_show = true,
           window = {
             scrollbar = false,
             border = 'single',
@@ -59,17 +79,25 @@ return {
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       snippets = { preset = 'luasnip' },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
         providers = {
           copilot = {
             name = "copilot",
             module = "blink-cmp-copilot",
             score_offset = 100,
             async = true,
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                item.kind_icon = ''
+                item.kind_name = 'Copilot'
+              end
+              return items
+            end
           },
         },
       },
     },
+    fuzzy = { implementation = "prefer_rust_with_warning" },
     opts_extend = { "sources.default" }
   }
 }

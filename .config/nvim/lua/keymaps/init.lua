@@ -125,4 +125,5 @@ function! s:Switching(reverse)
 endfunction
 nnoremap <silent><C-A> :call <SID>Switching(v:false)<CR>
 nnoremap <silent><C-X> :call <SID>Switching(v:true)<CR>
+nnoremap <silent>gl :<C-U>lua vim.diagnostic.open_float()<CR>
 ]])
