@@ -193,7 +193,7 @@ return {
         request_timeout = 500,
         ui = {
           winbar_prefix = '',
-          border = vim.o.winborder,
+          --   border = vim.o.winborder,
           devicon = true,
           foldericon = true,
           title = true,
