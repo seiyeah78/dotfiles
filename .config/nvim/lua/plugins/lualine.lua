@@ -14,11 +14,6 @@ return {
           section_separators = { left = '', right = '' },
           always_divide_middle = true,
           globalstatus = true,
-          refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-          }
         },
         sections = {
           lualine_a = { {
@@ -31,7 +26,10 @@ return {
               end
             end
           } },
-          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_b = { 'branch', 'diff', 'diagnostics', function()
+            return require('arrow.statusline')
+                .text_for_statusline_with_icons()
+          end },
           lualine_c = {
             'ObsessionStatus',
             { 'filename', path = 1 },

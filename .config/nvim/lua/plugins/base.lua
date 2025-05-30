@@ -1,6 +1,5 @@
 return {
   'mg979/vim-visual-multi',
-  'tpope/vim-obsession',
   {
     'junegunn/vim-easy-align',
     keys = {
@@ -11,14 +10,6 @@ return {
   'thinca/vim-qfreplace',
   'tpope/vim-abolish',
   'tpope/vim-repeat',
-  {
-    'kana/vim-textobj-user',
-    dependencies = {
-      'terryma/vim-expand-region',
-      'kana/vim-textobj-line',
-      'kana/vim-textobj-entire',
-    }
-  },
   'AndrewRadev/splitjoin.vim',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
@@ -76,12 +67,4 @@ return {
       exclude_buftypes = {}
     }
   }
-  -- {
-  --   "wookayin/semshi",
-  --   build = ":UpdateRemotePlugins",
-  --   version = "*",    -- Recommended to use the latest release
-  --   init = function() -- example, skip if you're OK with the default config
-  --     vim.g['semshi#error_sign'] = false
-  --   end,
-  -- }
 }

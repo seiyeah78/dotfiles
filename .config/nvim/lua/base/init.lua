@@ -61,7 +61,7 @@ set.wildmenu = true
 -- like bash complete with tab
 set.wildmode = { "longest:full", "full" }
 set.wrapscan = true
-set.updatetime = 1000
+-- set.updatetime = 1000
 set.tags:append(".git/tags")
 set.shortmess:remove({ 's', 'S' })
 set.incsearch = true
