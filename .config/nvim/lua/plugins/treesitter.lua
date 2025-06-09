@@ -5,8 +5,29 @@ return {
     'nvim-treesitter/nvim-treesitter',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-        ignore_install = { "haskell", "beancount", "swift", "gitcommit", "wing", "vimdoc", "hcl" },
+        ensure_installed = {
+          "bash",
+          "dockerfile",
+          "go",
+          "helm",
+          "html",
+          "http",
+          "javascript",
+          "json",
+          "markdown",
+          "python",
+          "ruby",
+          "rust",
+          "rust",
+          "sql",
+          "terraform",
+          "toml",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "yaml",
+        },               -- one of "all", "maintained" (parsers with maintainers), or a list of languages
         highlight = {
           enable = true, -- false will disable the whole extension
           disable = {
@@ -71,11 +92,11 @@ return {
       }
       api.nvim_create_autocmd({ 'CursorHold' }, {
         pattern = '*',
-        command = 'TSContextEnable',
+        command = 'TSContext enable',
       })
       api.nvim_create_autocmd({ 'CursorMoved' }, {
         pattern = '*',
-        command = 'TSContextDisable',
+        command = 'TSContext disable',
       })
     end
   },
