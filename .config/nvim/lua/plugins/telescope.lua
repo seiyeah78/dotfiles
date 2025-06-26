@@ -124,7 +124,25 @@ return {
       -- optional, if using telescope for vim.ui.select
       "stevearc/dressing.nvim"
     },
-    opts = {}
+    opts = {
+      scoring = {
+        -- recency_modifier = {                 -- 「最近使った」スコアの加算ルール（frecencyに類似）
+        --   [1] = { age = 120, value = 120 },  -- 過去2時間以内なら +120
+        --   [2] = { age = 240, value = 100 },  -- 過去4時間以内なら +100
+        --   [3] = { age = 1440, value = 80 },  -- 過去1日以内なら +80
+        --   [4] = { age = 4320, value = 60 },  -- 過去3日以内なら +60
+        --   [5] = { age = 10080, value = 40 }, -- 過去1週間以内なら +40
+        --   [6] = { age = 43200, value = 20 }, -- 過去1ヶ月以内なら +20
+        --   [7] = { age = 129600, value = 10 } -- 過去90日以内なら +10
+        -- },
+        boost_factor = 0.001 -- 「最近使ったスコア」の強化倍率（スコアにどの程度影響を与えるか）
+      },
+      -- pickers = {                            -- allows you to overwrite the default settings for each picker
+      --   find_files = {                       -- enable man_pages picker. Disable cwd and use frecency sorting.
+      --     sorting = "recent"
+      --   },
+      -- }
+    }
   },
   -- {
   --   'nvim-telescope/telescope-media-files.nvim',

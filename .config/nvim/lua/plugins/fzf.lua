@@ -46,6 +46,7 @@ return {
       { "<leader>ag",    "y:Ag <C-R>\"<CR>",             mode = "x" },
       { "<leader>rg",    ":Rg <C-R><C-W><CR>" },
       { "<leader>RG",    ":Rg <C-R><C-A><CR>" },
+      { "<leader>b",     "<cmd>Buffers<CR>" },
       { "<leader>rg",    "y:Rg <C-R>\"<CR>",             mode = "x" },
       { "<leader><tab>", "<Plug>(fzf-maps-n)",           noremap = false },
       { "<leader><tab>", "<Plug>(fzf-maps-x)",           noremap = false, mode = "x" },
@@ -101,12 +102,6 @@ return {
       --     vim.keymap.del("t", "<ECS>")
       --   end,
       -- })
-      vim.api.nvim_create_autocmd("VimEnter", {
-        pattern = "*",
-        callback = function()
-          vim.keymap.set('n', '<leader>b', "<cmd>Buffers<CR>")
-        end,
-      })
       if vim.fn.exists('$TMUX') == 1 then
         vim.g.fzf_layout = { tmux = vim.env.FZF_TMUX_OPTS }
       else
