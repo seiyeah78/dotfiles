@@ -3,7 +3,7 @@
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
-    vim.api.nvim_set_hl(0, 'TextYankPostColor', {
+    vim.api.nvim_set_hl(0, "TextYankPostColor", {
       bg = "#56514e",
     })
   end,
@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
-    vim.highlight.on_yank({ higroup = "TextYankPostColor", timeout = 500 })
+    vim.hl.on_yank({ higroup = "TextYankPostColor", timeout = 500 })
   end,
   desc = "Highlight yank",
 })
@@ -22,7 +22,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --     vim.keymap.set("t", "<ESC>", "<C-\\><C-N>", { noremap = true })
 --   end,
 -- })
-
 
 vim.cmd([[
 " jqによるフォーマット"

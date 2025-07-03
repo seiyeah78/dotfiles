@@ -4,7 +4,7 @@ local opts = {
   },
   rocks = {
     disabled = false,
-    hererocks = false
+    hererocks = false,
   },
   performance = {
     cache = {
@@ -17,7 +17,7 @@ local opts = {
     notify = false, -- get a notification when changes are found
   },
   ui = {
-    border = vim.o.winborder
-  }
+    border = vim.o.winborder,
+  },
 }
 require("lazy").setup("plugins", opts)

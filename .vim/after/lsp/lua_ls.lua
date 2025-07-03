@@ -2,9 +2,9 @@ return {
   settings = {
     Lua = {
       diagnostics = {
-        unusedLocalExclude = { '_*' },
-        globals = { 'vim' }
-      }
-    }
-  }
+        unusedLocalExclude = { "_*" },
+        globals = { "vim" },
+      },
+    },
+  },
 }

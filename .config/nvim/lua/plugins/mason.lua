@@ -1,24 +1,24 @@
 local lsps = {
-  'actionlint',
-  'biome',
-  'black',
-  'flake8',
-  'gopls',
-  'jsonlint',
-  'lua_ls',
-  'prettierd',
-  'golangci-lint-langserver',
-  'pyright',
-  'ruff',
-  'solargraph',
-  'terraform-ls',
-  'vue-language-server',
-  'vtsls',
-  'yamlfmt',
-  'delve',
-  'debugpy',
-  'js-debug-adapter',
-  'sqlfluff',
+  "actionlint",
+  "biome",
+  "black",
+  "flake8",
+  "gopls",
+  "jsonlint",
+  "lua_ls",
+  "prettierd",
+  "golangci-lint-langserver",
+  "pyright",
+  "ruff",
+  "solargraph",
+  "terraform-ls",
+  "vue-language-server",
+  "vtsls",
+  "yamlfmt",
+  "delve",
+  "debugpy",
+  "js-debug-adapter",
+  "sqlfluff",
 }
 
 return {
@@ -29,18 +29,29 @@ return {
     event = { "WinNew", "WinLeave", "BufRead" },
     config = function()
       require("mason").setup()
-      local signs = { Error = "", Warn = "", Hint = "", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
-      end
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = "",
+          },
+          numhl = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            [vim.diagnostic.severity.INFO] = "",
+          },
+        },
+      })
     end,
   },
   {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    cmd = { 'MasonToolsInstall', 'MasonToolsUpdate', 'MasonToolsClean' },
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
     opts = {
-      ensure_installed = lsps
+      ensure_installed = lsps,
     },
   },
   {
@@ -51,15 +62,15 @@ return {
       { "mfussenegger/nvim-lint" },
     },
     opt = {
-      ensure_installed = lsps
-    }
+      ensure_installed = lsps,
+    },
   },
   {
     "mason-org/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "mason-org/mason.nvim" },
-      { 'yioneko/nvim-vtsls' },
+      { "yioneko/nvim-vtsls" },
     },
     config = function()
       -- vim.lsp.config('*', {
@@ -71,7 +82,7 @@ return {
       --   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
       -- end
       vim.lsp.enable(lsps)
-    end
+    end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -83,29 +94,29 @@ return {
         ensure_installed = { "python", "delve" },
         handlers = {
           function(config)
-            require('mason-nvim-dap').default_setup(config)
+            require("mason-nvim-dap").default_setup(config)
           end,
         },
       })
-    end
+    end,
   },
   {
-    'yioneko/nvim-vtsls',
-    event = 'VeryLazy',
+    "yioneko/nvim-vtsls",
+    event = "VeryLazy",
     config = function()
       -- autocmdを使ってfiletypeがluaのときにのみコマンドを作成
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
         callback = function()
           vim.api.nvim_create_user_command(
-            'OrganizeImport',
+            "OrganizeImport",
             function()
-              vim.cmd('VtsExec organize_imports')
+              vim.cmd("VtsExec organize_imports")
             end,
             {} -- コマンドオプション（必要に応じて設定）
           )
-        end
+        end,
       })
-    end
+    end,
   },
 }

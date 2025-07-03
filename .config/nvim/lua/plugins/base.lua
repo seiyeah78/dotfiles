@@ -11,7 +11,10 @@ return {
   'AndrewRadev/splitjoin.vim',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
-  'AndrewRadev/switch.vim',
+  {
+    'AndrewRadev/switch.vim',
+    event = 'VeryLazy'
+  },
   {
     "krivahtoo/silicon.nvim",
     build = "./install.sh",
