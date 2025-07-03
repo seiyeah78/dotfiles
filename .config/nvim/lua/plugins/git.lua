@@ -43,7 +43,7 @@ return {
   },
   {
     'lewis6991/gitsigns.nvim',
-    tag='v1.0.2',
+    tag = 'v1.0.2',
     -- event = { "BufReadPre", "BufNewFile" },
     config = function()
       require('gitsigns').setup {
@@ -108,6 +108,7 @@ return {
   },
   {
     'sindrets/diffview.nvim',
+    event = "VeryLazy",
     keys = {
       { "<Leader>ga", ":DiffviewFileHistory % <CR>", { silent = true } },
     },
