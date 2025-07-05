@@ -2,7 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    tab = 'v0.0.15',
+    tab = "v0.0.15",
     build = "make",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
@@ -12,7 +12,7 @@ return {
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",      -- for providers='copilot'
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -30,19 +30,10 @@ return {
       },
     },
     config = function()
-      require('avante').setup({
+      require("avante").setup({
         provider = "openai",
-        hints = { enabled = false }
+        hints = { enabled = false },
       })
-    end
-  },
-  {
-    -- Make sure to set this up properly if you have lazy=true
-    'MeanderingProgrammer/render-markdown.nvim',
-    tag = "v7.7.0",
-    opts = {
-      file_types = { "markdown", "Avante" },
-    },
-    ft = { "markdown", "Avante" },
+    end,
   },
 }
