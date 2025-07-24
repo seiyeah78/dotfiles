@@ -39,6 +39,15 @@ return {
     end
   },
   {
+    'nvim-tree/nvim-web-devicons',
+    opts = {
+      override_by_extension = {
+        ["tsx"] = vim.tbl_deep_extend('force', {}, require("nvim-web-devicons").get_icons()['tsx'],
+          { color = "#7198d9", })
+      },
+    }
+  },
+  {
     'stevearc/oil.nvim',
     cmd = "Oil",
     opts = {

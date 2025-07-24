@@ -95,7 +95,7 @@ vmap > >gv
 let g:VM_manual_infoline = 0
 let g:VM_leader=','
 let g:VM_maps = {}
-" let g:VM_maps["Add Cursor At Word"] = 'g<cr>'
+let g:VM_maps["I Return"] = '<s-cr>'
 let g:VM_maps["Add Cursor Up"]   = '<M-k>'
 let g:VM_maps["Add Cursor Down"] = '<M-j>'
 "

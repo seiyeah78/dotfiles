@@ -1,24 +1,38 @@
 local lsps = {
-  "actionlint",
-  "biome",
+  'gopls',
+  'lua_ls',
+  'golangci-lint-langserver',
+  'pyright',
+  'solargraph',
+  'terraform-ls',
+  'vue-language-server',
+  'vtsls',
+  'delve',
+  'debugpy',
+  'js-debug-adapter',
+}
+
+local formatters = {
   "black",
-  "flake8",
-  "gopls",
-  "jsonlint",
-  "lua_ls",
-  "prettierd",
-  "golangci-lint-langserver",
-  "pyright",
-  "ruff",
-  "solargraph",
-  "terraform-ls",
-  "vue-language-server",
-  "vtsls",
+  "markdownlint",
+  "prettier",
   "yamlfmt",
-  "delve",
-  "debugpy",
-  "js-debug-adapter",
+}
+
+local linters = {
+  "actionlint",
+  "codespell",
+  "eslint_d",
+  "flake8",
+  "golangci-lint",
+  "hadolint",
+  "jsonlint",
+  "markdownlint",
+  "ruff",
+  "shellcheck",
   "sqlfluff",
+  "tflint",
+  "vale",
 }
 
 return {
@@ -26,32 +40,16 @@ return {
     "mason-org/mason.nvim",
     build = ":MasonUpdate",
     cmd = { "Mason", "MasonInstall" },
-    event = { "WinNew", "WinLeave", "BufRead" },
+    event = { "WinNew", "WinLeave", "BufRead", "BufEnter" },
     config = function()
       require("mason").setup()
-      vim.diagnostic.config({
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = " ",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.INFO] = " ",
-            [vim.diagnostic.severity.HINT] = "",
-          },
-          numhl = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.HINT] = "",
-            [vim.diagnostic.severity.INFO] = "",
-          },
-        },
-      })
     end,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
     opts = {
-      ensure_installed = lsps,
+      ensure_installed = vim.tbl_deep_extend('force', {}, lsps, formatters, linters),
     },
   },
   {
@@ -61,9 +59,9 @@ return {
       { "mason-org/mason-lspconfig.nvim" },
       { "mfussenegger/nvim-lint" },
     },
-    opt = {
-      ensure_installed = lsps,
-    },
+    config = function()
+      require("mason-nvim-lint").setup()
+    end
   },
   {
     "mason-org/mason-lspconfig.nvim",
@@ -82,7 +80,24 @@ return {
       --   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
       -- end
       vim.lsp.enable(lsps)
-    end,
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.HINT] = "",
+          },
+          numhl = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            [vim.diagnostic.severity.INFO] = "",
+          },
+        },
+      })
+    end
   },
   {
     "jay-babu/mason-nvim-dap.nvim",

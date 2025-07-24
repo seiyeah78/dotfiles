@@ -29,10 +29,17 @@ return {
         },
       },
     },
+    -- https://github.com/yetone/avante.nvim?tab=readme-ov-file#default-setup-configuration
     config = function()
       require("avante").setup({
         provider = "openai",
+        mode = "legacy",
         hints = { enabled = false },
+        providers = {
+          openai = {
+            system_prompt = "あなたは有能なプログラミングアシスタントです。すべての返答は日本語で行ってください。",
+          },
+        },
       })
     end,
   },

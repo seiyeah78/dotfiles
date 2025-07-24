@@ -46,9 +46,13 @@ return {
         markdown = { 'markdownlint' },
         sh = { 'shellcheck' },
         sql = { 'sqlfluff' },
-        go = { 'golangcilint' }
+        go = { 'golangcilint' },
+        javascript = { 'eslint_d' },
+        typescript = { 'eslint_d' },
+        javascriptreact = { 'eslint_d' },
+        typescriptreact = { 'eslint_d' }
       }
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+      vim.api.nvim_create_autocmd({ "CursorHold" }, {
         callback = function()
           lint.try_lint()
         end,

@@ -40,7 +40,6 @@ return {
             'haskell',
             'vim',
             'html',
-            'markdown',
             'swift',
             'beancount',
             'dockerfile'

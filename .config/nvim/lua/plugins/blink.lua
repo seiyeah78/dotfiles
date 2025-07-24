@@ -58,7 +58,17 @@ return {
           }
         },
         accept = {
-          auto_brackets = { enabled = true },
+          auto_brackets = {
+            enabled = true,
+            kind_resolution = {
+              enabled = true,
+              -- blocked_filetypes = { 'typescript', 'typescriptreact' }
+            },
+            semantic_token_resolution = {
+              enabled = true,
+              blocked_filetypes = { 'typescript', 'typescriptreact' }
+            }
+          },
         },
         menu = {
           scrollbar = false,
