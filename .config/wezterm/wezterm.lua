@@ -6,6 +6,8 @@ local font_name = wezterm.font_with_fallback({ "Bizin Gothic NF", "The font with
 
 return {
   font = font_name,
+  -- window_background_opacity = 0.8,
+  macos_window_background_blur = 20,
   font_rules = {
     {
       font = font_name,

@@ -79,7 +79,6 @@ return {
       --   require("ts-error-translator").translate_diagnostics(err, result, ctx)
       --   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
       -- end
-      vim.lsp.enable(lsps)
       vim.diagnostic.config({
         virtual_text = true,
         signs = {
@@ -97,6 +96,7 @@ return {
           },
         },
       })
+      vim.lsp.enable(lsps)
     end
   },
   {
