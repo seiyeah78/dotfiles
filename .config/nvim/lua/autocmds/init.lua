@@ -23,6 +23,30 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --   end,
 -- })
 
+
+-- タイミングによっては反映されないケースがある模様
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
+        },
+        numhl = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.HINT] = "",
+          [vim.diagnostic.severity.INFO] = "",
+        },
+      },
+    })
+  end,
+})
+
 vim.cmd([[
 " jqによるフォーマット"
 command! Jqf %!jq '.'

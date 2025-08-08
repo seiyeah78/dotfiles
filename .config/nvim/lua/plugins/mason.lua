@@ -57,10 +57,33 @@ return {
     dependencies = {
       { "mason-org/mason.nvim" },
       { "mason-org/mason-lspconfig.nvim" },
-      { "mfussenegger/nvim-lint" },
+      {
+        "mfussenegger/nvim-lint",
+        event = "VeryLazy",
+        config = function()
+          local lint = require("lint")
+          lint.linters_by_ft = {
+            json = { 'eslint_d' },
+            sh = { 'shellcheck' },
+            sql = { 'sqlfluff' },
+            go = { 'golangcilint' },
+            javascript = { 'eslint_d' },
+            typescript = { 'eslint_d' },
+            javascriptreact = { 'eslint_d' },
+            typescriptreact = { 'eslint_d' }
+          }
+          vim.api.nvim_create_autocmd({ "CursorHold" }, {
+            callback = function()
+              lint.try_lint()
+            end,
+          })
+        end
+      },
     },
     config = function()
-      require("mason-nvim-lint").setup()
+      require("mason-nvim-lint").setup({
+        automatic_installation = true,
+      })
     end
   },
   {
@@ -79,23 +102,6 @@ return {
       --   require("ts-error-translator").translate_diagnostics(err, result, ctx)
       --   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
       -- end
-      vim.diagnostic.config({
-        virtual_text = true,
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.INFO] = "",
-            [vim.diagnostic.severity.HINT] = "",
-          },
-          numhl = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.HINT] = "",
-            [vim.diagnostic.severity.INFO] = "",
-          },
-        },
-      })
       vim.lsp.enable(lsps)
     end
   },
