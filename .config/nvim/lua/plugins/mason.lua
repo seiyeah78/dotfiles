@@ -4,7 +4,7 @@ local lsps = {
   'golangci-lint-langserver',
   'pyright',
   'solargraph',
-  'terraform-ls',
+  'terraformls',
   'vue-language-server',
   'vtsls',
   'delve',
@@ -22,7 +22,7 @@ local formatters = {
 local linters = {
   "actionlint",
   "codespell",
-  "eslint_d",
+  { 'eslint_d', version = '13.1.2' },
   "flake8",
   "golangci-lint",
   "hadolint",
@@ -30,11 +30,15 @@ local linters = {
   "markdownlint",
   "ruff",
   "shellcheck",
-  "sqlfluff",
+  -- "sqlfluff",
   "tflint",
   "vale",
 }
 
+local ensure_installed = {}
+vim.list_extend(ensure_installed, lsps)
+vim.list_extend(ensure_installed, formatters)
+vim.list_extend(ensure_installed, linters)
 return {
   {
     "mason-org/mason.nvim",
@@ -49,7 +53,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
     opts = {
-      ensure_installed = vim.tbl_deep_extend('force', {}, lsps, formatters, linters),
+      ensure_installed = ensure_installed,
     },
   },
   {
@@ -65,7 +69,7 @@ return {
           lint.linters_by_ft = {
             json = { 'eslint_d' },
             sh = { 'shellcheck' },
-            sql = { 'sqlfluff' },
+            -- sql = { 'sqlfluff' },
             go = { 'golangcilint' },
             javascript = { 'eslint_d' },
             typescript = { 'eslint_d' },
