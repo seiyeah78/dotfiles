@@ -223,6 +223,19 @@ return {
       -- vim.api.nvim_set_hl(0, 'MatchWord', { fg = "lightblue2" })
       vim.api.nvim_set_hl(0, 'MatchWordCur', { underline = true })
       vim.api.nvim_set_hl(0, 'MatchParenCur', {}) -- NONEと同じ
+
+
+      vim.api.nvim_create_augroup("matchup_matchparen_disable_ft", { clear = true })
+
+      -- kulala_uiで勝手に閉じてしまうので無効化
+      vim.api.nvim_create_autocmd("FileType", {
+        group = "matchup_matchparen_disable_ft",
+        pattern = "json.kulala_ui",
+        callback = function()
+          vim.b.matchup_matchparen_fallback = 0
+          vim.b.matchup_matchparen_enabled = 0
+        end,
+      })
     end
   },
   {

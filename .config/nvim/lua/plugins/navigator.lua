@@ -13,7 +13,7 @@ return {
     },
     opts = {
       show_icons = true,
-      always_show_path = false,
+      always_show_path = true,
       separate_by_branch = false,   -- Bookmarks will be separated by git branch
       hide_handbook = false,        -- set to true to hide the shortcuts on menu.
       hide_buffer_handbook = false, --set to true to hide shortcuts on buffer menu
@@ -57,7 +57,7 @@ return {
       },
       separate_save_and_remove = false,                                    -- if true, will remove the toggle and create the save/remove keymaps.
       leader_key = ";",
-      buffer_leader_key = 'm',                                             -- Per Buffer Mappings
+      buffer_leader_key = 'g;',                                            -- Per Buffer Mappings
       save_key = "cwd",                                                    -- what will be used as root to save the bookmarks. Can be also `git_root` and `git_root_bare`.
       global_bookmarks = false,                                            -- if true, arrow will save files globally (ignores separate_by_branch)
       index_keys = "123456789zxcbnmZXVBNM,afghjklAFGHJKLwrtyuiopWRTYUIOP", -- keys mapped to bookmark index, i.e. 1st bookmark will be accessible by 1, and 12th - by c

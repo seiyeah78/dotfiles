@@ -1,11 +1,12 @@
 return {
   {
     'saghen/blink.cmp',
-    event='VeryLazy',
+    event = 'VeryLazy',
     dependencies = {
       'rafamadriz/friendly-snippets',
       "giuxtaposition/blink-cmp-copilot",
       "zbirenbaum/copilot.lua",
+      'L3MON4D3/LuaSnip',
     },
     version = '*',
     opts = {

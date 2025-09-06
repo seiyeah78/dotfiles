@@ -67,7 +67,7 @@ return {
         config = function()
           local lint = require("lint")
           lint.linters_by_ft = {
-            json = { 'eslint_d' },
+            -- json = { 'eslint_d' },
             sh = { 'shellcheck' },
             -- sql = { 'sqlfluff' },
             go = { 'golangcilint' },
