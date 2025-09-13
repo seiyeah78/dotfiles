@@ -1,14 +1,14 @@
 return {
   {
-    'nvim-tree/nvim-tree.lua',
+    "nvim-tree/nvim-tree.lua",
     cmd = {
       "NvimTreeFindFile",
       "NvimTreeToggle",
     },
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader><S-n>f",     "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
-      { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>",   desc = "NvimTreeToggle" },
+      { "<leader><S-n>f", "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
+      { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTreeToggle" },
     },
     config = function()
       require("nvim-tree").setup({
@@ -16,39 +16,43 @@ return {
         sync_root_with_cwd = true,
         update_focused_file = {
           enable = false,
-          update_root = true
+          update_root = true,
         },
         actions = {
           open_file = {
             window_picker = {
-              enable = false
-            }
-          }
+              enable = false,
+            },
+          },
         },
         on_attach = function(bufnr)
-          local api = require "nvim-tree.api"
+          local api = require("nvim-tree.api")
           local function opts(desc)
             return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
           end
           -- default mappings
           api.config.mappings.default_on_attach(bufnr)
           -- custom mappings
-          vim.keymap.set('n', '<C-s>', api.node.open.horizontal, opts('Open: Horizontal Split'))
-        end
+          vim.keymap.set("n", "<C-s>", api.node.open.horizontal, opts("Open: Horizontal Split"))
+        end,
       })
-    end
+    end,
   },
   {
-    'nvim-tree/nvim-web-devicons',
+    "nvim-tree/nvim-web-devicons",
     opts = {
       override_by_extension = {
-        ["tsx"] = vim.tbl_deep_extend('force', {}, require("nvim-web-devicons").get_icons()['tsx'],
-          { color = "#7198d9", })
+        ["tsx"] = vim.tbl_deep_extend(
+          "force",
+          {},
+          require("nvim-web-devicons").get_icons()["tsx"],
+          { color = "#7198d9" }
+        ),
       },
-    }
+    },
   },
   {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
     cmd = "Oil",
     opts = {
       keymaps = {
@@ -69,62 +73,72 @@ return {
         ["g."] = "actions.toggle_hidden",
         ["g\\"] = "actions.toggle_trash",
       },
-      use_default_keymaps = false
+      use_default_keymaps = false,
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
-    'cappyzawa/trim.nvim',
+    "cappyzawa/trim.nvim",
     event = "BufEnter",
     opts = {
-      ft_blocklist = { 'diff', 'git', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'fugitive', 'fugitiveblame',
-        'nerdtree', 'NvimTree' },
+      ft_blocklist = {
+        "diff",
+        "git",
+        "gitcommit",
+        "unite",
+        "qf",
+        "help",
+        "markdown",
+        "fugitive",
+        "fugitiveblame",
+        "nerdtree",
+        "NvimTree",
+      },
       trim_last_line = true,
     },
   },
   {
-    'keaising/im-select.nvim',
-    evnet = 'VeryLazy',
+    "keaising/im-select.nvim",
+    evnet = "VeryLazy",
     config = function()
-      if vim.fn.has('mac') == 1 then
-        require('im_select').setup {
+      if vim.fn.has("mac") == 1 then
+        require("im_select").setup({
           -- IM will be set to `default_im_select` in `normal` mode(`EnterVim` or `InsertLeave`)
           -- For Windows/WSL, default: "1033", aka: English US Keyboard
           -- For macOS, default: "com.apple.keylayout.ABC", aka: US
           -- You can use `im-select` in cli to get the IM's name you preferred
-          default_im_select   = "com.google.inputmethod.Japanese.Roman",
+          default_im_select = "com.google.inputmethod.Japanese.Roman",
           -- Set to 1 if you don't want restore IM status when `InsertEnter`
-          set_previous_events = { "InsertEnter" }
-        }
+          set_previous_events = { "InsertEnter" },
+        })
       end
-    end
+    end,
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    event = 'BufEnter',
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufEnter",
     config = function()
-      require('ibl').setup({
+      require("ibl").setup({
         scope = { enabled = true },
-        viewport_buffer = { min = 10, max = 100 }
+        viewport_buffer = { min = 10, max = 100 },
       })
-    end
+    end,
   },
   {
     "folke/trouble.nvim",
     cmd = { "Trouble" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-    },
+    opts = {},
     -- opts = {
     --   open_split = { "<c-s>" },
     --   open_tab = { "<c-g>" },
     -- },
   },
   {
-    'm-demare/hlargs.nvim',
+    "m-demare/hlargs.nvim",
     event = "VeryLazy",
     config = function()
-      require('hlargs').setup({
+      require("hlargs").setup({
         color = "#ef9062",
         use_colorpalette = false,
         sequential_colorpalette = false,
@@ -144,11 +158,11 @@ return {
         },
         excluded_filetypes = { "lua", "rust", "typescript", "typescriptreact", "javascript", "javascriptreact" },
       })
-    end
+    end,
   },
   {
-    'linrongbin16/lsp-progress.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "linrongbin16/lsp-progress.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lsp-progress").setup({
         client_format = function(client_name, spinner, series_messages)
@@ -181,10 +195,7 @@ return {
             end)
             local builder = {}
             for _, cli in ipairs(lsp_clients) do
-              if type(cli) == "table"
-                  and type(cli.name) == "string"
-                  and string.len(cli.name) > 0
-              then
+              if type(cli) == "table" and type(cli.name) == "string" and string.len(cli.name) > 0 then
                 if messages_map[cli.name] then
                   table.insert(builder, stringify(cli.name, messages_map[cli.name]))
                 else
@@ -199,31 +210,30 @@ return {
           return ""
         end,
       })
-    end
+    end,
   },
   {
     "simeji/winresizer",
     keys = {
-      { "<C-w>e", ":WinResizerStartResize<CR>" }
+      { "<C-w>e", ":WinResizerStartResize<CR>" },
     },
     config = function()
       vim.cmd([[
         let g:winresizer_vert_resize = 3
         let g:winresizer_horiz_resize = 2
       ]])
-    end
+    end,
   },
   {
-    'andymass/vim-matchup',
-    event = 'VeryLazy',
+    "andymass/vim-matchup",
+    event = "VeryLazy",
     config = function()
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       -- vim.api.nvim_set_hl(0, 'MatchParen', { fg = "lightblue2" })
       -- vim.api.nvim_set_hl(0, 'MatchWord', { fg = "lightblue2" })
-      vim.api.nvim_set_hl(0, 'MatchWordCur', { underline = true })
-      vim.api.nvim_set_hl(0, 'MatchParenCur', {}) -- NONEと同じ
-
+      vim.api.nvim_set_hl(0, "MatchWordCur", { underline = true })
+      vim.api.nvim_set_hl(0, "MatchParenCur", {}) -- NONEと同じ
 
       vim.api.nvim_create_augroup("matchup_matchparen_disable_ft", { clear = true })
 
@@ -236,66 +246,72 @@ return {
           vim.b.matchup_matchparen_enabled = 0
         end,
       })
-    end
+    end,
   },
   {
-    'kevinhwang91/nvim-hlslens',
-    event = 'VeryLazy',
+    "kevinhwang91/nvim-hlslens",
+    event = "VeryLazy",
     dependencies = {
-      'haya14busa/vim-asterisk'
+      "haya14busa/vim-asterisk",
     },
     config = function()
       local kopts = { noremap = true, silent = true }
-      vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohl <CR>', {})
-      vim.api.nvim_set_keymap('n', 'n',
+      vim.api.nvim_set_keymap("n", "<ESC><ESC>", ":nohl <CR>", {})
+      vim.api.nvim_set_keymap(
+        "n",
+        "n",
         [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-        kopts)
-      vim.api.nvim_set_keymap('n', 'N',
+        kopts
+      )
+      vim.api.nvim_set_keymap(
+        "n",
+        "N",
         [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-        kopts)
-      vim.api.nvim_set_keymap('n', '*', [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('n', '#', [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('n', 'g*', [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('n', 'g#', [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]], {})
+        kopts
+      )
+      vim.api.nvim_set_keymap("n", "*", [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap("n", "#", [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap("n", "g*", [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap("n", "g#", [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]], {})
 
-      vim.api.nvim_set_keymap('x', '*', [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('x', '#', [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('x', 'g*', [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]], {})
-      vim.api.nvim_set_keymap('x', 'g#', [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]], {})
-    end
+      vim.api.nvim_set_keymap("x", "*", [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap("x", "#", [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap("x", "g*", [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]], {})
+      vim.api.nvim_set_keymap("x", "g#", [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]], {})
+    end,
   },
   {
-    'petertriho/nvim-scrollbar',
-    event = 'BufEnter',
-    dependencies = { 'kevinhwang91/nvim-hlslens' },
+    "petertriho/nvim-scrollbar",
+    event = "BufEnter",
+    dependencies = { "kevinhwang91/nvim-hlslens" },
     config = function()
-      require('scrollbar').setup({
+      require("scrollbar").setup({
         handle = {
           text = "  ",
           blend = 85,
-          highlight = 'TermCursor',
+          highlight = "TermCursor",
         },
         marks = {
-          Cursor = { highlight = 'TermCursor' },
+          Cursor = { highlight = "TermCursor" },
           Search = { text = { "--", "==" } },
           Error = { text = { "--", "==" } },
           Warn = { text = { "--", "==" } },
           Info = { text = { "--", "==" } },
           Hint = { text = { "--", "==" } },
-          Misc = { highlight = 'TermCursor', text = { "--", "==" } },
+          Misc = { highlight = "TermCursor", text = { "--", "==" } },
         },
         handlers = {
-          cursor = false
+          cursor = false,
         },
         excluded_filetypes = {
           "TelescopeResults",
           "NvimTree",
           "DressingInput",
           "blink-cmp-menu",
-          "blink-cmp-documentation"
-        }
+          "blink-cmp-documentation",
+        },
       })
-      require('scrollbar.handlers.search').setup()
-    end
+      require("scrollbar.handlers.search").setup()
+    end,
   },
 }
