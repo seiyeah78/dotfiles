@@ -7,8 +7,8 @@ return {
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader><S-n>f", "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
-      { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTreeToggle" },
+      { "<leader><S-n>f",     "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
+      { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>",   desc = "NvimTreeToggle" },
     },
     config = function()
       require("nvim-tree").setup({
@@ -281,9 +281,42 @@ return {
     end,
   },
   {
-    "petertriho/nvim-scrollbar",
-    event = "BufEnter",
-    dependencies = { "kevinhwang91/nvim-hlslens" },
+    "chrisgrieser/nvim-origami",
+    event = "VeryLazy",
+    opts = {
+      foldKeymaps = {
+        setup = true, -- modifies `h`, `l`, and `$`
+        hOnlyOpensOnFirstColumn = true,
+      },
+    }, -- needed even when using default config
+
+    -- recommended: disable vim's auto-folding
+    init = function()
+      vim.o.foldcolumn = '1'
+      vim.o.foldlevel = 99 -- Using ufo provider needs a large value, feel free to decrease
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+    end,
+  },
+  {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        relculright = true,
+        segments = {
+          { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+          { text = { "%s" },                  click = "v:lua.ScSa" },
+          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+        },
+      })
+    end,
+  },
+  {
+    'petertriho/nvim-scrollbar',
+    event = 'BufEnter',
+    dependencies = { 'kevinhwang91/nvim-hlslens' },
     config = function()
       require("scrollbar").setup({
         handle = {
@@ -309,7 +342,8 @@ return {
           "DressingInput",
           "blink-cmp-menu",
           "blink-cmp-documentation",
-        },
+          "Avante*"
+        }
       })
       require("scrollbar.handlers.search").setup()
     end,

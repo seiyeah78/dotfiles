@@ -8,6 +8,7 @@ return {
     cmd = { 'EasyAlign' },
   },
   'tpope/vim-repeat',
+  'tpope/vim-abolish',
   'AndrewRadev/splitjoin.vim',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
