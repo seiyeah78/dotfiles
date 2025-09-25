@@ -311,7 +311,7 @@ return {
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
-        bt_ignore = { 'terminal', 'nofile', 'ddu-ff', 'ddu-ff-filter' },
+        bt_ignore = { 'terminal', 'nofile', 'ddu-ff', 'ddu-ff-filter', 'gitcommit' },
         relculright = true,
         segments = {
           { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
