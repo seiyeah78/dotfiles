@@ -282,14 +282,15 @@ return {
   },
   {
     "chrisgrieser/nvim-origami",
-    event = "VeryLazy",
     opts = {
       foldKeymaps = {
-        setup = true, -- modifies `h`, `l`, and `$`
-        hOnlyOpensOnFirstColumn = true,
+        setup = false,
       },
+      autoFold = {
+        enable = true,
+        kinds = { "imports" },
+      }
     }, -- needed even when using default config
-
     -- recommended: disable vim's auto-folding
     init = function()
       vim.o.foldcolumn = '1'
@@ -298,15 +299,22 @@ return {
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
     end,
+    config = function(_, opts)
+      require("origami").setup(opts)
+      vim.keymap.set("n", "$", function() require("origami").dollar() end)
+      vim.keymap.set("n", "l", function() require("origami").l() end)
+    end
   },
   {
     "luukvbaal/statuscol.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
+        bt_ignore = { 'terminal', 'nofile', 'ddu-ff', 'ddu-ff-filter' },
         relculright = true,
         segments = {
-          { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
           { text = { "%s" },                  click = "v:lua.ScSa" },
           { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
         },

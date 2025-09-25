@@ -66,6 +66,37 @@ return {
         event = "VeryLazy",
         config = function()
           local lint = require("lint")
+
+          -- eslint_d のパス解決関数
+          -- eslint_dが13.1.2より新しい場合、設定ファイルが必要で「Error: Could not find config file」が出てしまう
+          -- プロジェクト内にeslintがある場合は、そちらを優先する
+          local function get_eslint_d()
+            local cwd = vim.fn.getcwd()
+            local local_eslint_d = cwd .. "/node_modules/.bin/eslint_d"
+            local local_eslint = cwd .. "/node_modules/.bin/eslint"
+
+            if vim.fn.executable(local_eslint_d) == 1 then
+              return local_eslint_d
+            elseif vim.fn.executable(local_eslint) == 1 then
+              return local_eslint
+            else
+              -- Mason 管理の eslint_d
+              return vim.fn.stdpath("data") .. "/mason/bin/eslint_d"
+            end
+          end
+
+          local eslint_d_original = vim.deepcopy(lint.linters.eslint_d)
+
+          lint.linters.eslint_d = {
+            cmd = get_eslint_d(),
+            stdin = eslint_d_original.stdin,
+            args = eslint_d_original.args,
+            stream = eslint_d_original.stream,
+            ignore_exitcode = eslint_d_original.ignore_exitcode,
+            env = eslint_d_original.env,
+            parser = eslint_d_original.parser,
+          }
+
           lint.linters_by_ft = {
             -- json = { 'eslint_d' },
             sh = { 'shellcheck' },
