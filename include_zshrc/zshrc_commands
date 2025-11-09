@@ -325,3 +325,8 @@ function _open_pull_request_from_commit_details() {
     return 1;
   fi
 }
+
+# copy branch name
+function cpb() {
+  git rev-parse --abbrev-ref HEAD  C
+}
