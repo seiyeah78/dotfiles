@@ -1,0 +1,59 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet bol_reactcontext "boilerplate for React Context" b
+  import { createContext, useContext, ReactNode } from 'react'
+
+  // contextの作成(stateをここで作る場合)
+  const MyContext = createContext<{
+    num: number
+  } | null>(null)
+
+  // contextの作成(reducerを別で作り、hooksから読み込む場合)
+  // ReturnTypeを使うと return {...}の型を自動で取得できる
+  // const MyContext = createContext<ReturnType<typeof useMyReducer> | null>(null)
+
+  // Providerの作成
+  type ProviderProps = {
+    children: ReactNode
+    props1: number
+  }
+
+  export const MyReducerProvider = ({ children, props1 }: ProviderProps) => {
+    console.log(props1)
+    return <MyContext.Provider value={{num: 1} /* or useMyReducer() */}>{children}</MyContext.Provider>
+  }
+
+  // 直接useContextで参照しないように別関数で取得する
+  export const useMyReducerContext = () => {
+    const context = useContext(MyContext)
+
+    if (!context) {
+      throw new Error('Contextの外でuseMyReducerContextが呼ばれました')
+    }
+
+    return context
+  }

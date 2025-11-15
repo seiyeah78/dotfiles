@@ -1,0 +1,92 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet bol_usereducer "boilerplate for create useReducer" b
+  import { useMemo, useReducer } from 'react'
+
+  // Stateの型定義
+  type State = {
+    value1: number
+    value2: string
+  };
+
+  // Actionの型定義
+  type Action =
+    | {
+        type: 'HOGE'
+        payload: number
+      }
+    | {
+        type: 'FUGA'
+        payload: string
+      }
+    | {
+        type: 'PIYO'
+        payload: {
+          num: number
+          str: string
+        }
+      }
+
+  // state更新用の関数reducer
+  const reducer = (state: State, action: Action) => {
+    switch (action.type) {
+      case 'HOGE':
+        return {
+          ...state,
+          value1: action.payload
+        };
+      case 'FUGA':
+        return {
+          ...state,
+          value2: action.payload
+        };
+      case 'PIYO':
+        return {
+          ...state,
+          value1: action.payload.num,
+          value2: action.payload.str
+        }
+      default:
+        return state
+    }
+  }
+
+  // useReducerの初期値を設定する関数
+  const initialState = () => {
+    return {
+      value1: 0,
+      value2: ''
+    }
+  }
+
+  export const useMyReducer = () => {
+    const [state, dispatch] = useReducer(reducer, initialState());
+
+    const func1 = useMemo(() => dispatch({ type: 'HOGE', payload: 1 }), [dispatch])
+
+    return { state, dispatch, func1 }
+  }

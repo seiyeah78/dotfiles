@@ -11,44 +11,50 @@ return {
         severity_sort = true,
         float = {
           source = "always", -- Or "if_many"
-          border = 'rounded'
+          border = "rounded",
         },
       })
-    end
+    end,
   },
   {
-    'L3MON4D3/LuaSnip',
-    event = 'InsertEnter',
+    "L3MON4D3/LuaSnip",
+    event = "InsertEnter",
     dependencies = {
-      'rafamadriz/friendly-snippets'
+      "rafamadriz/friendly-snippets",
     },
     config = function()
       require("luasnip/loaders/from_vscode").lazy_load()
       require("luasnip.loaders.from_snipmate").lazy_load()
       local ls = require("luasnip")
-      vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
+      vim.keymap.set({ "i" }, "<C-K>", function()
+        ls.expand()
+      end, { silent = true })
       vim.keymap.set({ "i", "s" }, "<TAB>", function()
         if ls.expand_or_jumpable() then
           ls.jump(1)
         else
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<TAB>', true, true, true), 'n')
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<TAB>", true, true, true), "n")
         end
       end, { silent = true })
       vim.keymap.set({ "i", "s" }, "<S-TAB>", function()
         if ls.expand_or_jumpable() then
           ls.jump(-1)
         else
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<S-TAB>', true, true, true), 'n')
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<S-TAB>", true, true, true), "n")
         end
       end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<C-J>", function()
+        ls.jump(1)
+      end, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<C-K>", function()
+        ls.jump(-1)
+      end, { silent = true })
       vim.keymap.set({ "i", "s" }, "<C-E>", function()
         if ls.choice_active() then
           ls.change_choice(1)
         end
       end, { silent = true })
-    end
+    end,
   },
   -- {
   --   'hrsh7th/nvim-cmp',
@@ -165,11 +171,11 @@ return {
   --   end
   -- },
   {
-    'nvimdev/lspsaga.nvim',
-    event = 'LspAttach',
-    dependencies = { 'nvim-lspconfig' },
+    "nvimdev/lspsaga.nvim",
+    event = "LspAttach",
+    dependencies = { "nvim-lspconfig" },
     keys = {
-      { "D",  "<cmd>Lspsaga hover_doc<CR>" },
+      { "D", "<cmd>Lspsaga hover_doc<CR>" },
       -- { "gd", "<cmd>Lspsaga goto_definition<CR>" },
       { "gD", "<cmd>Lspsaga peek_definition<CR>" },
       { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
@@ -178,32 +184,32 @@ return {
     },
     config = function()
       local keys = {
-        edit = { '<CR>', 'o' },
-        vsplit = '<C-v>',
-        split = '<C-s>',
-        tabe = '<C-g>e',
-        close = '<C-c>k',
-        quit = { 'q', '<C-W>c', '<ESC>' },
-        shuttle = '<C-w><C-w>',
-        toggle_or_req = 'u',
-        toggle_or_open = { '<CR>', 'o' },
+        edit = { "<CR>", "o" },
+        vsplit = "<C-v>",
+        split = "<C-s>",
+        tabe = "<C-g>e",
+        close = "<C-c>k",
+        quit = { "q", "<C-W>c", "<ESC>" },
+        shuttle = "<C-w><C-w>",
+        toggle_or_req = "u",
+        toggle_or_open = { "<CR>", "o" },
       }
       -- https://github.com/nvimdev/lspsaga.nvim/blob/main/lua/lspsaga/init.lua
-      require('lspsaga').setup({
+      require("lspsaga").setup({
         request_timeout = 500,
         ui = {
-          winbar_prefix = '',
+          winbar_prefix = "",
           --   border = vim.o.winborder,
           devicon = true,
           foldericon = true,
           title = true,
-          expand = '⊞',
-          collapse = '⊟',
-          code_action = '💡',
-          lines = { '┗', '┣', '┃', '━', '┏' },
+          expand = "⊞",
+          collapse = "⊟",
+          code_action = "💡",
+          lines = { "┗", "┣", "┃", "━", "┏" },
           kind = nil,
-          button = { '', '' },
-          imp_sign = '󰳛 ',
+          button = { "", "" },
+          imp_sign = "󰳛 ",
           use_nerd = true,
         },
         symbol_in_winbar = {
@@ -217,18 +223,18 @@ return {
           enable = false,
           enable_in_insert = false,
           sign = false,
-          debounce = 500
+          debounce = 500,
         },
         hover = {
           max_width = 0.9,
           max_height = 1.0,
-          open_link = 'gx',
-          open_cmd = '!chrome',
+          open_link = "gx",
+          open_cmd = "!chrome",
         },
         diagnostic = {
           enable = false, -- falseにしないとnvim-lintの診断と重複して出てしまう(存在しないオプションだけど)
           diagnostic_only_current = true,
-          extend_relatedInformation = true
+          extend_relatedInformation = true,
         },
         definition = {
           width = 0.6,
@@ -237,7 +243,7 @@ return {
           keys = keys,
         },
         callhierarchy = {
-          layout = 'float',
+          layout = "float",
           left_width = 0.2,
           keys = keys,
         },
@@ -245,8 +251,8 @@ return {
           max_height = 0.5,
           left_width = 0.3,
           methods = {},
-          default = 'tyd+ref+imp',
-          layout = 'float',
+          default = "tyd+ref+imp",
+          layout = "float",
           silent = false,
           filter = {},
           fname_sub = nil,
@@ -259,40 +265,41 @@ return {
     end,
   },
   {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
     config = function()
-      local npairs = require('nvim-autopairs')
-      local Rule = require('nvim-autopairs.rule')
+      local npairs = require("nvim-autopairs")
+      local Rule = require("nvim-autopairs.rule")
       npairs.setup({
         map_c_h = true,
         map_c_w = true,
         fast_wrap = {},
       })
       -- add autopairs role
-      local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
-      npairs.add_rules {
-        Rule(' ', ' ')
-            :with_pair(function(opts)
-              local pair = opts.line:sub(opts.col - 1, opts.col)
-              return vim.tbl_contains({
-                brackets[1][1] .. brackets[1][2],
-                brackets[2][1] .. brackets[2][2],
-                brackets[3][1] .. brackets[3][2],
-              }, pair)
-            end)
-      }
+      local brackets = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
+      npairs.add_rules({
+        Rule(" ", " "):with_pair(function(opts)
+          local pair = opts.line:sub(opts.col - 1, opts.col)
+          return vim.tbl_contains({
+            brackets[1][1] .. brackets[1][2],
+            brackets[2][1] .. brackets[2][2],
+            brackets[3][1] .. brackets[3][2],
+          }, pair)
+        end),
+      })
       for _, bracket in pairs(brackets) do
-        npairs.add_rules {
-          Rule(bracket[1] .. ' ', ' ' .. bracket[2])
-              :with_pair(function() return false end)
-              :with_move(function(opts)
-                return opts.prev_char:match('.%' .. bracket[2]) ~= nil
-              end)
-              :use_key(bracket[2])
-        }
+        npairs.add_rules({
+          Rule(bracket[1] .. " ", " " .. bracket[2])
+            :with_pair(function()
+              return false
+            end)
+            :with_move(function(opts)
+              return opts.prev_char:match(".%" .. bracket[2]) ~= nil
+            end)
+            :use_key(bracket[2]),
+        })
       end
-    end
+    end,
   },
   {
     "hedyhli/outline.nvim",
@@ -310,34 +317,33 @@ return {
       require("copilot").setup({
         suggestion = { enabled = false },
         panel = { enabled = false },
-        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") ..
-            "/bin/node", -- Node.js version must be > 18.x
+        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") .. "/bin/node", -- Node.js version must be > 18.x
       })
     end,
   },
   {
-    'aznhe21/actions-preview.nvim',
+    "aznhe21/actions-preview.nvim",
     -- event = { "BufReadPre", "BufNewFile" },
-    dependencies = { 'kosayoda/nvim-lightbulb' },
+    dependencies = { "kosayoda/nvim-lightbulb" },
     config = function()
       vim.keymap.set({ "v", "n" }, "ga", require("actions-preview").code_actions)
       require("nvim-lightbulb").setup({
         priority = 1000,
         autocmd = { enabled = true },
         sign = {
-          enabled = false
+          enabled = false,
         },
         virtual_text = {
-          enabled = true
-        }
+          enabled = true,
+        },
       })
-    end
+    end,
   },
   {
-    'dmmulroy/ts-error-translator.nvim',
+    "dmmulroy/ts-error-translator.nvim",
     config = function()
-      require('ts-error-translator').setup()
-    end
+      require("ts-error-translator").setup()
+    end,
   },
   -- {
   --   "ray-x/lsp_signature.nvim",
