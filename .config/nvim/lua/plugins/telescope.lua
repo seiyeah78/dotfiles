@@ -3,6 +3,7 @@ local plugins = {
   'fzf',
   'yank_history',
   'frecency',
+  'luasnip'
 }
 return {
   {
@@ -115,6 +116,14 @@ return {
       'nvim-telescope/telescope.nvim'
     }
   },
+  {
+    "benfowler/telescope-luasnip.nvim",
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    }
+  },
+
   {
     'prochri/telescope-all-recent.nvim',
     event = 'VeryLazy',

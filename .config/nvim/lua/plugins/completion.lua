@@ -25,151 +25,31 @@ return {
     config = function()
       require("luasnip/loaders/from_vscode").lazy_load()
       require("luasnip.loaders.from_snipmate").lazy_load()
-      local ls = require("luasnip")
-      vim.keymap.set({ "i" }, "<C-K>", function()
-        ls.expand()
-      end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<TAB>", function()
-        if ls.expand_or_jumpable() then
-          ls.jump(1)
-        else
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<TAB>", true, true, true), "n")
-        end
-      end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<S-TAB>", function()
-        if ls.expand_or_jumpable() then
-          ls.jump(-1)
-        else
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<S-TAB>", true, true, true), "n")
-        end
-      end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-J>", function()
-        ls.jump(1)
-      end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-K>", function()
-        ls.jump(-1)
-      end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-E>", function()
-        if ls.choice_active() then
-          ls.change_choice(1)
-        end
-      end, { silent = true })
-    end,
+      -- local ls = require("luasnip")
+      -- vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
+      -- vim.keymap.set({ "i", "s" }, "<TAB>", function()
+      --   if ls.expand_or_jumpable() then
+      --     ls.jump(1)
+      --   else
+      --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<TAB>', true, true, true), 'n')
+      --   end
+      -- end, { silent = true })
+      -- vim.keymap.set({ "i", "s" }, "<S-TAB>", function()
+      --   if ls.expand_or_jumpable() then
+      --     ls.jump(-1)
+      --   else
+      --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<S-TAB>', true, true, true), 'n')
+      --   end
+      -- end, { silent = true })
+      -- vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
+      -- vim.keymap.set({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
+      -- vim.keymap.set({ "i", "s" }, "<C-E>", function()
+      --   if ls.choice_active() then
+      --     ls.change_choice(1)
+      --   end
+      -- end, { silent = true })
+    end
   },
-  -- {
-  --   'hrsh7th/nvim-cmp',
-  --   event = 'InsertEnter',
-  --   dependencies = {
-  --     { 'hrsh7th/cmp-nvim-lsp' },
-  --     { 'hrsh7th/cmp-buffer' },
-  --     { 'hrsh7th/cmp-path' },
-  --     { 'hrsh7th/cmp-cmdline' },
-  --     { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-  --     { 'zbirenbaum/copilot-cmp' },
-  --     { 'onsails/lspkind.nvim' }
-  --   },
-  --   keys = {
-  --     -- { "D",  "<cmd>lua vim.lsp.buf.hover()<CR>" },
-  --     -- { "gd", "<cmd>lua vim.lsp.buf.definition({reuse_win = true})<CR>" },
-  --     -- { "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>" },
-  --     -- { "gr", "<cmd>lua vim.lsp.buf.references()<CR>" },
-  --     -- { "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>" },
-  --     -- { "gn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
-  --     -- { "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>" },
-  --     { "gl", "<cmd>lua vim.diagnostic.open_float()<CR>" },
-  --   },
-  --   config = function()
-  --     local cmp = require('cmp')
-  --     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-  --     local lspkind = require('lspkind')
-  --     ---Return view is visible or not.
-  --     cmp.visible = function()
-  --       return cmp.core.view:visible() or vim.fn.pumvisible() == 1
-  --     end
-  --     cmp.event:on(
-  --       'confirm_done',
-  --       cmp_autopairs.on_confirm_done()
-  --     )
-  --     cmp.setup({
-  --       preselect = cmp.PreselectMode.None, -- 補完開始時に選択させない
-  --       -- completion = {
-  --       --   completeopt = "menu,menuone,noneselect"
-  --       -- },
-  --       snippet = {
-  --         expand = function(args)
-  --           require('luasnip').lsp_expand(args.body)
-  --         end,
-  --       },
-  --       window = {
-  --         completion = cmp.config.window.bordered(),
-  --         documentation = cmp.config.window.bordered(),
-  --       },
-  --
-  --       mapping = cmp.mapping.preset.insert({
-  --         ["<C-p>"] = cmp.mapping.select_prev_item(),
-  --         ["<S-TAB>"] = cmp.mapping.select_prev_item(),
-  --         ["<C-n>"] = cmp.mapping.select_next_item(),
-  --         ["<TAB>"] = cmp.mapping.select_next_item(),
-  --         ['<C-Space>'] = cmp.mapping.complete(),
-  --         ['<C-l>'] = cmp.mapping(function(fallback)
-  --           if cmp.visible() then
-  --             return cmp.complete_common_string()
-  --           end
-  --           fallback()
-  --         end, { 'i', 'c' }),
-  --         ['<C-e>'] = cmp.mapping.abort(),
-  --         ['<CR>'] = cmp.mapping.confirm({ select = false }),
-  --       }),
-  --
-  --       sources = cmp.config.sources({
-  --         { name = 'nvim_lsp',       priority = 100, max_item_count = 20 },
-  --         { name = 'luasnip',        priority = 50,  max_item_count = 10 },
-  --         { name = 'copilot',        priority = 0 },
-  --         { name = 'render-markdown' }
-  --       }, {
-  --         { name = 'buffer', priority = 70 },
-  --       }),
-  --       formatting = {
-  --         format = lspkind.cmp_format({
-  --           max_width = 10,
-  --           symbol_map = { Copilot = "" }
-  --         }),
-  --       }
-  --     })
-  --     cmp.setup.filetype('gitcommit', {
-  --       sources = cmp.config.sources({
-  --         { name = 'git' },
-  --         { name = 'luasnip', priority = 10 },
-  --       }, {
-  --         { name = 'buffer', priority = 9 },
-  --       })
-  --     })
-  --     cmp.setup.filetype({ 'typescript', 'typescriptreact' }, {
-  --       window = {
-  --         documentation = cmp.config.disable
-  --       }
-  --     })
-  --     cmp.setup.cmdline({ '/', '?' }, {
-  --       mapping = cmp.mapping.preset.cmdline(),
-  --       sources = {
-  --         { name = 'nvim_lsp_document_symbol' }
-  --       },
-  --       {
-  --         { name = 'buffer' }
-  --       }
-  --     })
-  --     cmp.setup.cmdline(':', {
-  --       mapping = cmp.mapping.preset.cmdline(),
-  --       sources = cmp.config.sources({
-  --         { name = 'path' }
-  --       }, {
-  --         { name = 'cmdline' }
-  --       })
-  --     })
-  --
-  --     require("copilot_cmp").setup()
-  --   end
-  -- },
   {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
@@ -315,10 +195,29 @@ return {
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") .. "/bin/node", -- Node.js version must be > 18.x
+        suggestion = {
+          enabled = true,      -- Ensure this is true
+          auto_trigger = true, -- Consider enabling for automatic suggestions
+          accept = false
+        },
+        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") ..
+            "/bin/node", -- Node.js version must be > 18.x
       })
+
+      -- キーマップを設定(blink等他の補完系プラグインとバッティングする可能性あり)
+      vim.keymap.set("i", '<Tab>', function()
+        -- copilotがサジェストしていれば真
+        if require("copilot.suggestion").is_visible() then
+          require("copilot.suggestion").accept()
+        else
+          -- キーコードをneovimが解釈可能な形式に変換
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+        end
+      end, {
+        -- コマンドラインへ表示しない
+        silent = true,
+      }
+      )
     end,
   },
   {

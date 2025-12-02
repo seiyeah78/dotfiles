@@ -58,8 +58,8 @@ return {
       keymaps = {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
-        ["<C-s>"] = "actions.select_vsplit",
-        ["<C-g"] = "actions.select_split",
+        ["<C-v>"] = "actions.select_vsplit",
+        ["<C-s>"] = "actions.select_split",
         ["<C-t>"] = "actions.select_tab",
         ["<C-c>"] = "actions.close",
         ["<C-l>"] = "actions.refresh",
@@ -312,6 +312,7 @@ return {
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
         bt_ignore = { 'terminal', 'nofile', 'ddu-ff', 'ddu-ff-filter', 'gitcommit' },
+        ft_ignore = { 'oil' },
         relculright = true,
         segments = {
           { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
