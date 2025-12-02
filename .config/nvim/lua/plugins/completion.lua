@@ -55,7 +55,7 @@ return {
     event = "LspAttach",
     dependencies = { "nvim-lspconfig" },
     keys = {
-      { "D", "<cmd>Lspsaga hover_doc<CR>" },
+      { "D",  "<cmd>Lspsaga hover_doc<CR>" },
       -- { "gd", "<cmd>Lspsaga goto_definition<CR>" },
       { "gD", "<cmd>Lspsaga peek_definition<CR>" },
       { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
@@ -170,13 +170,13 @@ return {
       for _, bracket in pairs(brackets) do
         npairs.add_rules({
           Rule(bracket[1] .. " ", " " .. bracket[2])
-            :with_pair(function()
-              return false
-            end)
-            :with_move(function(opts)
-              return opts.prev_char:match(".%" .. bracket[2]) ~= nil
-            end)
-            :use_key(bracket[2]),
+              :with_pair(function()
+                return false
+              end)
+              :with_move(function(opts)
+                return opts.prev_char:match(".%" .. bracket[2]) ~= nil
+              end)
+              :use_key(bracket[2]),
         })
       end
     end,
@@ -200,8 +200,8 @@ return {
           auto_trigger = true, -- Consider enabling for automatic suggestions
           accept = false
         },
-        copilot_node_command = vim.fn.system("asdf where nodejs 20.8.1"):gsub("\n$", "") ..
-            "/bin/node", -- Node.js version must be > 18.x
+        copilot_node_command = vim.fn.system("asdf where nodejs 22.20.0"):gsub("\n$", "") ..
+            "/bin/node", -- Node.js version must be >= 22.x
       })
 
       -- キーマップを設定(blink等他の補完系プラグインとバッティングする可能性あり)
