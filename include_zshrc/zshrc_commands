@@ -1,31 +1,13 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-function fbacklog() {
-  #順番：標準入力、expectのコマンド、取得結果
-  local out="$(ruby -S backlog_access.rb myissue | fzf-tmux -d 30% --ansi --no-sort --reverse --print-query --expect=ctrl-s,ctrl-o,ctrl-b,ctrl-y,enter)"
-
-  local q="$(head -1 <<< $out)" #標準入力
-  local k="$(head -2 <<< $out | tail -1)" #except指定の文字列
-  local str="$(head -3 <<< "$out" | tail -1)" #取得結果
-  local issue_num="$(echo $str | cut -d' ' -f1)"
-
-  case "$k" in
-    "ctrl-y" | "enter")
-        echo $str C
-        echo "Copy to ClipBoard!"
-        ;;
-    "ctrl-s" | "ctrl-o")
-        open "${BACKLOG_PROJECT}/view/${issue_num}"
-        ;;
-    "ctrl-b" )
-        local tracking=`git tracking-branch`
-        local cmd="git branch feature/${issue_num}"
-        if [[ -z "${issue_num}" ]]; then
-          return 0;
-        fi
-        print -z "${cmd} ${tracking}"
-        ;;
-  esac
+# yazi finder
+function y() {
+	tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 function fshow() {
