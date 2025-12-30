@@ -2,19 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     evnet = "LspAttach",
-    config = function()
-      vim.diagnostic.config({
-        update_in_insert = false,
-        virtual_text = false,
-        signs = true,
-        underline = true,
-        severity_sort = true,
-        float = {
-          source = "always", -- Or "if_many"
-          border = "rounded",
-        },
-      })
-    end,
+    config = function() end,
   },
   {
     "L3MON4D3/LuaSnip",
@@ -25,37 +13,14 @@ return {
     config = function()
       require("luasnip/loaders/from_vscode").lazy_load()
       require("luasnip.loaders.from_snipmate").lazy_load()
-      -- local ls = require("luasnip")
-      -- vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
-      -- vim.keymap.set({ "i", "s" }, "<TAB>", function()
-      --   if ls.expand_or_jumpable() then
-      --     ls.jump(1)
-      --   else
-      --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<TAB>', true, true, true), 'n')
-      --   end
-      -- end, { silent = true })
-      -- vim.keymap.set({ "i", "s" }, "<S-TAB>", function()
-      --   if ls.expand_or_jumpable() then
-      --     ls.jump(-1)
-      --   else
-      --     vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<S-TAB>', true, true, true), 'n')
-      --   end
-      -- end, { silent = true })
-      -- vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
-      -- vim.keymap.set({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
-      -- vim.keymap.set({ "i", "s" }, "<C-E>", function()
-      --   if ls.choice_active() then
-      --     ls.change_choice(1)
-      --   end
-      -- end, { silent = true })
-    end
+    end,
   },
   {
     "nvimdev/lspsaga.nvim",
     event = "LspAttach",
     dependencies = { "nvim-lspconfig" },
     keys = {
-      { "D",  "<cmd>Lspsaga hover_doc<CR>" },
+      { "D", "<cmd>Lspsaga hover_doc<CR>" },
       -- { "gd", "<cmd>Lspsaga goto_definition<CR>" },
       { "gD", "<cmd>Lspsaga peek_definition<CR>" },
       { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
@@ -112,9 +77,9 @@ return {
           open_cmd = "!chrome",
         },
         diagnostic = {
-          enable = false, -- falseにしないとnvim-lintの診断と重複して出てしまう(存在しないオプションだけど)
-          diagnostic_only_current = true,
-          extend_relatedInformation = true,
+          enable = false,
+          diagnostic_only_current = false,
+          extend_relatedInformation = false,
         },
         definition = {
           width = 0.6,
@@ -170,13 +135,13 @@ return {
       for _, bracket in pairs(brackets) do
         npairs.add_rules({
           Rule(bracket[1] .. " ", " " .. bracket[2])
-              :with_pair(function()
-                return false
-              end)
-              :with_move(function(opts)
-                return opts.prev_char:match(".%" .. bracket[2]) ~= nil
-              end)
-              :use_key(bracket[2]),
+            :with_pair(function()
+              return false
+            end)
+            :with_move(function(opts)
+              return opts.prev_char:match(".%" .. bracket[2]) ~= nil
+            end)
+            :use_key(bracket[2]),
         })
       end
     end,
@@ -196,16 +161,15 @@ return {
     config = function()
       require("copilot").setup({
         suggestion = {
-          enabled = true,      -- Ensure this is true
+          enabled = true, -- Ensure this is true
           auto_trigger = true, -- Consider enabling for automatic suggestions
-          accept = false
+          accept = false,
         },
-        copilot_node_command = vim.fn.system("asdf where nodejs 22.20.0"):gsub("\n$", "") ..
-            "/bin/node", -- Node.js version must be >= 22.x
+        copilot_node_command = vim.fn.system("asdf where nodejs 22.20.0"):gsub("\n$", "") .. "/bin/node", -- Node.js version must be >= 22.x
       })
 
       -- キーマップを設定(blink等他の補完系プラグインとバッティングする可能性あり)
-      vim.keymap.set("i", '<Tab>', function()
+      vim.keymap.set("i", "<Tab>", function()
         -- copilotがサジェストしていれば真
         if require("copilot.suggestion").is_visible() then
           require("copilot.suggestion").accept()
@@ -216,8 +180,7 @@ return {
       end, {
         -- コマンドラインへ表示しない
         silent = true,
-      }
-      )
+      })
     end,
   },
   {

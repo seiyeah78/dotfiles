@@ -1,4 +1,4 @@
-vim.cmd('language en_US')
+vim.cmd("language en_US")
 vim.scriptencoding = "utf-8"
 vim.lsp.set_log_level("off")
 -- vim.o.{option}: :let &{option-name}のように動作します
@@ -12,8 +12,8 @@ local set = vim.opt
 
 vim.g.editorconfig = true
 vim.o.regexpengine = 0
-vim.o.winborder = 'bold'
-set.signcolumn = 'yes'
+vim.o.winborder = "bold"
+set.signcolumn = "yes"
 set.regexpengine = 0
 set.cursorline = true
 set.number = true
@@ -37,7 +37,7 @@ set.backspace = "indent,eol,start"
 set.splitbelow = true
 set.splitright = true
 set.list = true
-set.listchars = 'tab:¦_'
+set.listchars = "tab:¦_"
 set.scrolloff = 4
 -- １行辺りsyntax解析する文字数
 set.synmaxcol = 600
@@ -63,7 +63,7 @@ set.wildmode = { "longest:full", "full" }
 set.wrapscan = true
 -- set.updatetime = 1000
 set.tags:append(".git/tags")
-set.shortmess:remove({ 's', 'S' })
+set.shortmess:remove({ "s", "S" })
 set.incsearch = true
 set.hlsearch = true
 set.diffopt = "internal,filler,algorithm:histogram,indent-heuristic"

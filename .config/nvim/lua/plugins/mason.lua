@@ -1,15 +1,15 @@
 local lsps = {
-  'gopls',
-  'lua_ls',
-  'golangci-lint-langserver',
-  'pyright',
-  'solargraph',
-  'terraformls',
-  'vue-language-server',
-  'vtsls',
-  'delve',
-  'debugpy',
-  'js-debug-adapter',
+  "gopls",
+  "lua_ls",
+  "golangci-lint-langserver",
+  "pyright",
+  "solargraph",
+  "terraformls",
+  "vue-language-server",
+  "vtsls",
+  "delve",
+  "debugpy",
+  "js-debug-adapter",
 }
 
 local formatters = {
@@ -22,7 +22,7 @@ local formatters = {
 local linters = {
   "actionlint",
   "codespell",
-  { 'eslint_d', version = '13.1.2' },
+  { "eslint_d", version = "13.1.2" },
   "flake8",
   "golangci-lint",
   "hadolint",
@@ -99,27 +99,27 @@ return {
 
           lint.linters_by_ft = {
             -- json = { 'eslint_d' },
-            sh = { 'shellcheck' },
+            sh = { "shellcheck" },
             -- sql = { 'sqlfluff' },
-            go = { 'golangcilint' },
-            javascript = { 'eslint_d' },
-            typescript = { 'eslint_d' },
-            javascriptreact = { 'eslint_d' },
-            typescriptreact = { 'eslint_d' }
+            go = { "golangcilint" },
+            javascript = { "eslint_d" },
+            typescript = { "eslint_d" },
+            javascriptreact = { "eslint_d" },
+            typescriptreact = { "eslint_d" },
           }
           vim.api.nvim_create_autocmd({ "CursorHold" }, {
             callback = function()
               lint.try_lint()
             end,
           })
-        end
+        end,
       },
     },
     config = function()
       require("mason-nvim-lint").setup({
         automatic_installation = true,
       })
-    end
+    end,
   },
   {
     "mason-org/mason-lspconfig.nvim",
@@ -129,16 +129,8 @@ return {
       { "yioneko/nvim-vtsls" },
     },
     config = function()
-      -- vim.lsp.config('*', {
-      --   capabilities = require('blink.cmp').get_lsp_capabilities(),
-      --   root_makers = { ".git" }
-      -- })
-      -- vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
-      --   require("ts-error-translator").translate_diagnostics(err, result, ctx)
-      --   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
-      -- end
       vim.lsp.enable(lsps)
-    end
+    end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",

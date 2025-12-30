@@ -23,12 +23,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --   end,
 -- })
 
-
 -- タイミングによっては反映されないケースがある模様
-vim.api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd("LspAttach", {
   callback = function()
     vim.diagnostic.config({
-      virtual_text = true,
+      virtual_text = false,
+      underline = true,
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = "",
