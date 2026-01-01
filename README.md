@@ -7,7 +7,7 @@ macOS向けの開発環境構築用dotfilesです。Neovim、tmux、zsh、各種
 - **エディタ**: Neovim with lazy.nvim (LSP, completion, git integration)
 - **シェル**: zsh with zinit + Powerlevel10k
 - **ターミナルマルチプレクサ**: tmux
-- **パッケージ管理**: Homebrew, asdf, aqua
+- **パッケージ管理**: Homebrew, mise, aqua
 - **開発ツール**: Docker, Kubernetes, Go, Python, Node.js, Ruby
 - **便利ツール**: fzf, ripgrep, lazygit, bat, eza, ghq
 
@@ -24,7 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/seiyeah78/dotfiles/master/install.s
 3. dotfilesのシンボリックリンク作成
 4. Homebrewのインストール
 5. Brewfileからのパッケージインストール (オプション)
-6. asdfのセットアップ (Python, Ruby, Node.js, AWS CLI等)
+6. miseのセットアップ (Python, Ruby, Node.js, AWS CLI等)
 
 ## 手動インストール
 
@@ -102,7 +102,7 @@ cd ~/dotfiles
   - fast-syntax-highlighting (シンタックスハイライト)
   - zsh-autopair (括弧自動補完)
   - z.lua (ディレクトリジャンプ)
-- **バージョン管理**: asdf
+- **バージョン管理**: mise
 
 設定ファイル: `.zshrc`, `.zshenv`, `.p10k.zsh`
 
@@ -206,5 +206,5 @@ exec zsh
 - [Neovim](https://neovim.io/)
 - [zinit](https://github.com/zdharma-continuum/zinit)
 - [Homebrew](https://brew.sh/)
-- [asdf](https://asdf-vm.com/)
+- [mise](https://mise.jdx.dev/)
 - [aqua](https://aquaproj.github.io/)

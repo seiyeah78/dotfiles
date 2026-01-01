@@ -53,7 +53,7 @@
     "terminal.integrated.fontFamily": "RictyDiminishedDiscordNerdFontComplete-Regular",
     "ruby.format": "rubocop",
     "ruby.intellisense": "rubyLocate",
-    "ruby.interpreter.commandPath": "/Users/se-ya/.asdf/shims/ruby",
+    "ruby.interpreter.commandPath": "/Users/se-ya/.local/share/mise/shims/ruby",
     "ruby.useLanguageServer": true,
     "typescript.implementationsCodeLens.enabled": true,
     "solargraph.autoformat": true,
@@ -69,7 +69,7 @@
     "editor.peekWidgetDefaultFocus": "editor",
     "references.preferredLocation": "view",
     "editor.definitionLinkOpensInPeek": true,
-    "solargraph.commandPath": "/Users/se-ya/.asdf/shims/solargraph",
+    "solargraph.commandPath": "/Users/se-ya/.local/share/mise/shims/solargraph",
     "vscode-neovim.highlightGroups.highlights": {
 
         "Directory": "vim",

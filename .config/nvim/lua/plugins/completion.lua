@@ -165,7 +165,7 @@ return {
           auto_trigger = true, -- Consider enabling for automatic suggestions
           accept = false,
         },
-        copilot_node_command = vim.fn.system("asdf where nodejs 22.20.0"):gsub("\n$", "") .. "/bin/node", -- Node.js version must be >= 22.x
+        copilot_node_command = vim.fn.system("mise where nodejs@22.20.0"):gsub("\n$", "") .. "/bin/node", -- Node.js version must be >= 22.x
       })
 
       -- キーマップを設定(blink等他の補完系プラグインとバッティングする可能性あり)

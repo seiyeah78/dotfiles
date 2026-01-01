@@ -135,15 +135,20 @@ if [ -e Brewfile ]; then
   fi
 fi
 
-# asdf plugins
-if is_exists "asdf"; then
-  langs=("python ruby nodejs awscli kubectl terraform")
+# mise
+if is_exists "mise"; then
+  eecho "mise is already installed!"
+else
+  brew install mise
+  ~/.local/bin/mise activate zsh
+fi
 
-  for l in $langs; do
-    asdf plugin-add $l
-    asdf install $l latest
-  done
-  exec $SHELL -l
+if [ -e .tool-versions ]; then
+  if [ ! -z "$INSTALL_BREW" ]; then
+    mise install
+  else
+    eecho "Skip install tools."
+  fi
 fi
 
 if is_exists "kubectl"; then
