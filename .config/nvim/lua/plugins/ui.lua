@@ -7,8 +7,8 @@ return {
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader><S-n>f", "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
-      { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTreeToggle" },
+      { "<leader><S-n>f",     "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeFindFile" },
+      { "<leader><S-n><S-n>", "<cmd>NvimTreeToggle<CR>",   desc = "NvimTreeToggle" },
     },
     config = function()
       require("nvim-tree").setup({
@@ -122,7 +122,7 @@ return {
         scope = {
           enabled = true,
           show_start = false, -- Optional: hides the start line highlighting completely
-          show_end = false, -- Optional: hides the end line highlighting completely
+          show_end = false,   -- Optional: hides the end line highlighting completely
         },
         viewport_buffer = { min = 10, max = 100 },
       })
@@ -301,7 +301,7 @@ return {
       vim.o.foldlevel = 99 -- Using ufo provider needs a large value, feel free to decrease
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
-      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+      -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
     end,
     config = function(_, opts)
       require("origami").setup(opts)
@@ -318,13 +318,52 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local builtin = require("statuscol.builtin")
+      -- fold column の見た目を完全に再現する関数
+      local function custom_fold_symbol()
+        local lnum = vim.v.lnum
+        local fold_level = vim.fn.foldlevel(lnum)
+
+        -- fold がない行
+        if fold_level == 0 then
+          return "  "
+        end
+
+        local closed = vim.fn.foldclosed(lnum)
+
+        -- 閉じているfoldの先頭行（foldopen記号の代わり）
+        if closed == lnum then
+          return ""
+        end
+
+        -- foldが開いている場合: 開始行はfoldopen、内部は│でつなぐ
+        if closed == -1 then
+          -- foldの開始行
+          if vim.fn.foldlevel(lnum) > vim.fn.foldlevel(lnum - 1) then
+            return ""
+          end
+
+          -- fold 内部行（空白で縦線を表示）
+          if vim.fn.foldlevel(lnum) > 0 then
+            return "  "
+          end
+        end
+
+        return "  "
+      end
       require("statuscol").setup({
         bt_ignore = { "terminal", "nofile", "ddu-ff", "ddu-ff-filter", "gitcommit" },
         ft_ignore = { "oil" },
         relculright = true,
         segments = {
-          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
-          { text = { "%s" }, click = "v:lua.ScSa" },
+          {
+            text = {
+              custom_fold_symbol,
+              "",
+            },
+            click = "v:lua.ScFa",
+            hl = "FoldColumn",
+          },
+          { text = { "%s" },                  click = "v:lua.ScSa" },
           { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
         },
       })
@@ -384,12 +423,12 @@ return {
       -- Neovimのハイライトグループ名または "#RRGGBB" 形式の16進数カラーを使用
       hi = {
         error = "DiagnosticError", -- エラー診断のハイライト
-        warn = "DiagnosticWarn", -- 警告診断のハイライト
-        info = "DiagnosticInfo", -- 情報診断のハイライト
-        hint = "DiagnosticHint", -- ヒント診断のハイライト
-        arrow = "NonText", -- 診断を指す矢印のハイライト
+        warn = "DiagnosticWarn",   -- 警告診断のハイライト
+        info = "DiagnosticInfo",   -- 情報診断のハイライト
+        hint = "DiagnosticHint",   -- ヒント診断のハイライト
+        arrow = "NonText",         -- 診断を指す矢印のハイライト
         background = "CursorLine", -- 診断の背景ハイライト
-        mixing_color = "None", -- 背景とブレンドする色 (または "None")
+        mixing_color = "None",     -- 背景とブレンドする色 (または "None")
       },
 
       -- プラグインを無効にするファイルタイプのリスト
@@ -398,7 +437,7 @@ return {
       options = {
         -- 診断のソースを表示 (例: "lua_ls", "pyright")
         show_source = {
-          enabled = true, -- ソース名の表示を有効化
+          enabled = true,  -- ソース名の表示を有効化
           if_many = false, -- 同じ診断に複数のソースが存在する場合のみソースを表示
         },
 
@@ -420,19 +459,19 @@ return {
         -- 注意: display_count = true を使用する場合、multilines.enabled = true で複数行診断を有効にする必要があります
         --       常に表示したい場合は、multilines.always_show = true も設定できます
         add_messages = {
-          messages = true, -- 完全な診断メッセージを表示
-          display_count = true, -- カーソルが行にない場合、メッセージの代わりに診断数を表示
-          use_max_severity = false, -- カウント時、最も深刻な診断のみを表示
+          messages = true,             -- 完全な診断メッセージを表示
+          display_count = true,        -- カーソルが行にない場合、メッセージの代わりに診断数を表示
+          use_max_severity = false,    -- カウント時、最も深刻な診断のみを表示
           show_multiple_glyphs = true, -- 同じ深刻度の複数の診断に対して複数のアイコンを表示
         },
 
         -- 複数行診断の設定
         multilines = {
-          enabled = true, -- 複数行診断メッセージのサポートを有効化
-          always_show = true, -- 複数行診断のすべての行に常にメッセージを表示
+          enabled = true,          -- 複数行診断メッセージのサポートを有効化
+          always_show = true,      -- 複数行診断のすべての行に常にメッセージを表示
           trim_whitespaces = true, -- 各行の先頭・末尾の空白を削除
-          tabstop = 4, -- タブを展開する際のスペース数
-          severity = nil, -- 深刻度で複数行診断をフィルタリング (例: { vim.diagnostic.severity.ERROR })
+          tabstop = 4,             -- タブを展開する際のスペース数
+          severity = nil,          -- 深刻度で複数行診断をフィルタリング (例: { vim.diagnostic.severity.ERROR })
         },
 
         -- カーソル下だけでなく、現在のカーソル行のすべての診断を表示
@@ -444,7 +483,7 @@ return {
         -- LSP relatedInformation からの関連診断を表示
         show_related = {
           enabled = false, -- 関連診断の表示を有効化
-          max_count = 5, -- 診断ごとに表示する関連診断の最大数
+          max_count = 5,   -- 診断ごとに表示する関連診断の最大数
         },
 
         -- 挿入モードで診断表示を有効化
@@ -457,13 +496,13 @@ return {
         -- ウィンドウ幅を超えるメッセージの処理
         overflow = {
           mode = "wrap", -- "wrap": 行に分割、"none": 切り詰めなし、"oneline": 単一行を維持
-          padding = 5, -- 折り返しを早めにトリガーするための追加文字数
+          padding = 5,   -- 折り返しを早めにトリガーするための追加文字数
         },
 
         -- 長いメッセージを別々の行に分割
         break_line = {
           enabled = false, -- 自動改行を有効化
-          after = 30, -- 改行を挿入する前の文字数
+          after = 30,      -- 改行を挿入する前の文字数
         },
 
         -- 診断メッセージをフォーマットするカスタム関数

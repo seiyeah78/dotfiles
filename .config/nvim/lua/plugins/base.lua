@@ -12,6 +12,7 @@ return {
   'AndrewRadev/splitjoin.vim',
   'tyru/open-browser.vim',
   'mattn/emmet-vim',
+  'rbtnn/vim-ambiwidth',
   {
     'AndrewRadev/switch.vim',
     event = 'VeryLazy'
