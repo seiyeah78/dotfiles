@@ -1,18 +1,22 @@
 -- https://wezfurlong.org/wezterm/config/files.html
 local wezterm = require("wezterm")
 local gpus = wezterm.gui.enumerate_gpus()
--- font = wezterm.font("RictyDiminishedDiscord Nerd Font"), -- 自分の好きなフォントいれる
-local font_name = wezterm.font_with_fallback({ "HackGen Console NF", "The font with those symbols" })
+local font = wezterm.font("HackGen Console NF")
+local font_with_fallback = wezterm.font_with_fallback({
+  { family = "Nerd Font Symbols", scale = 0.95 }, -- Adjust scale for icons
+  { family = "Noto Color Emoji",  scale = 0.95 }, -- Adjust scale for emojis
+})
 
 return {
-  font = font_name,
+  font = font,
+  font_with_fallback = font_with_fallback,
   underline_thickness = 2,
   -- window_background_opacity = 0.8,
   macos_window_background_blur = 20,
   font_rules = {
     {
-      font = font_name,
       italic = false,
+      font = font
     },
   },
   foreground_text_hsb = {
@@ -24,7 +28,7 @@ return {
   prefer_egl = false, -- これ入れるとrenderingが早くなる
   webgpu_preferred_adapter = gpus[1],
   -- front_end = "WebGpu",
-  font_size = 13,
+  font_size = 13.5,
   initial_cols = 150,
   initial_rows = 60,
   color_scheme = "Tokyo Night Storm", -- 自分の好きなテーマ探す https://wezfurlong.org/wezterm/colorschemes/index.html
