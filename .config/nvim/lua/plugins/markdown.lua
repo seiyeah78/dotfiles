@@ -24,6 +24,20 @@ return {
     tag = "v8.5.0",
     opts = {
       file_types = { "markdown", "Avante" },
+      completions = {
+        lsp = { enabled = false },
+        blink = { enable = false }
+      },
+      code = {
+        sign = true,
+        language_name = false,
+        border = 'none'
+      },
+      anti_conceal = {
+        enabled = false,        -- 有効化
+        disabled_modes = false, -- 無効化モード
+      },
+
     },
     ft = { "markdown", "Avante" },
   },

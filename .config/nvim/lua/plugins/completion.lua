@@ -20,7 +20,7 @@ return {
     event = "LspAttach",
     dependencies = { "nvim-lspconfig" },
     keys = {
-      { "D", "<cmd>Lspsaga hover_doc<CR>" },
+      { "D",  "<cmd>Lspsaga hover_doc<CR>" },
       -- { "gd", "<cmd>Lspsaga goto_definition<CR>" },
       { "gD", "<cmd>Lspsaga peek_definition<CR>" },
       { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
@@ -33,7 +33,7 @@ return {
         vsplit = "<C-v>",
         split = "<C-s>",
         tabe = "<C-g>e",
-        close = "<C-c>k",
+        -- close = "<C-c>k",
         quit = { "q", "<C-W>c", "<ESC>" },
         shuttle = "<C-w><C-w>",
         toggle_or_req = "u",
@@ -135,13 +135,13 @@ return {
       for _, bracket in pairs(brackets) do
         npairs.add_rules({
           Rule(bracket[1] .. " ", " " .. bracket[2])
-            :with_pair(function()
-              return false
-            end)
-            :with_move(function(opts)
-              return opts.prev_char:match(".%" .. bracket[2]) ~= nil
-            end)
-            :use_key(bracket[2]),
+              :with_pair(function()
+                return false
+              end)
+              :with_move(function(opts)
+                return opts.prev_char:match(".%" .. bracket[2]) ~= nil
+              end)
+              :use_key(bracket[2]),
         })
       end
     end,
@@ -161,7 +161,7 @@ return {
     config = function()
       require("copilot").setup({
         suggestion = {
-          enabled = true, -- Ensure this is true
+          enabled = true,      -- Ensure this is true
           auto_trigger = true, -- Consider enabling for automatic suggestions
           accept = false,
         },
