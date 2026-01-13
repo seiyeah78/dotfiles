@@ -332,14 +332,14 @@ return {
 
         -- 閉じているfoldの先頭行（foldopen記号の代わり）
         if closed == lnum then
-          return ""
+          return " "
         end
 
         -- foldが開いている場合: 開始行はfoldopen、内部は│でつなぐ
         if closed == -1 then
           -- foldの開始行
           if vim.fn.foldlevel(lnum) > vim.fn.foldlevel(lnum - 1) then
-            return ""
+            return " "
           end
 
           -- fold 内部行（空白で縦線を表示）
