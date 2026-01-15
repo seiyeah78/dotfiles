@@ -1,53 +1,53 @@
 require("utils")
 local plugins = {
-  'fzf',
-  'yank_history',
-  'frecency',
-  'luasnip'
+  "fzf",
+  "yank_history",
+  "frecency",
+  "luasnip",
 }
 return {
   {
-    'nvim-telescope/telescope.nvim',
-    event = 'VeryLazy',
-    tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
+    tag = "0.1.8",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local actions = require("telescope.actions")
       local builtin = require("telescope.builtin")
-      vim.keymap.set('n', '<C-P>', function() builtin.find_files() end, {})
-      vim.keymap.set('n', '<leader>fg', function() builtin.live_grep() end, {})
-      vim.keymap.set('n', '<leader>fb', function() builtin.buffers() end, {})
-      vim.keymap.set('n', 'gd', function()
+      vim.keymap.set("n", "<C-P>", function()
+        builtin.find_files()
+      end, {})
+      vim.keymap.set("n", "<leader>fg", function()
+        builtin.live_grep()
+      end, {})
+      vim.keymap.set("n", "<leader>fb", function()
+        builtin.buffers()
+      end, {})
+      vim.keymap.set("n", "gd", function()
         builtin.lsp_definitions({ reuse_win = true })
       end, {})
-      vim.keymap.set('n', '<C-W>d',
-        function()
-          builtin.lsp_definitions({
-            jump_type = 'split',
-            reuse_win = true,
-          })
-        end,
-        { desc = 'Goto definition split.' }
-      )
-      vim.keymap.set('n', '<C-W>v',
-        function()
-          builtin.lsp_definitions({
-            jump_type = 'vsplit',
-            reuse_win = true,
-          })
-        end,
-        { desc = 'Goto definition' }
-      )
-      require('telescope').setup {
+      vim.keymap.set("n", "<C-W>d", function()
+        builtin.lsp_definitions({
+          jump_type = "split",
+          reuse_win = true,
+        })
+      end, { desc = "Goto definition split." })
+      vim.keymap.set("n", "<C-W>v", function()
+        builtin.lsp_definitions({
+          jump_type = "vsplit",
+          reuse_win = true,
+        })
+      end, { desc = "Goto definition" })
+      require("telescope").setup({
         defaults = {
-          layout_strategy = 'vertical',
+          layout_strategy = "vertical",
           sorting_strategy = "ascending",
           layout_config = {
             vertical = {
               height = 0.95,
               prompt_position = "top",
-              width = 0.75
-            }
+              width = 0.75,
+            },
           },
           -- Default configuration for telescope goes here:
           -- config_key = value,
@@ -61,13 +61,13 @@ return {
               ["<esc>"] = actions.close,
               ["<C-u>"] = false,
               ["<C-a>"] = { "<home>", type = "command" },
-              ["<C-e>"] = { "<end>", type = "command" }
-            }
-          }
+              ["<C-e>"] = { "<end>", type = "command" },
+            },
+          },
         },
         pickers = {
           find_files = {
-            find_command = Split(vim.env.FZF_DEFAULT_COMMAND, ' ')
+            find_command = Split(vim.env.FZF_DEFAULT_COMMAND, " "),
           },
           live_grep = {
             additional_args = {
@@ -76,15 +76,15 @@ return {
               "--no-ignore",
               "--ignore-file",
               vim.fs.normalize("~/.ignore"), -- チルダをそのまま解釈できない。絶対パスにする
-            }
+            },
           },
         },
         extensions = {
           fzf = {
-            fuzzy = true,                   -- false will only do exact matching
+            fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true,    -- override the file sorter
-            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           },
           frecency = {
             show_unindexed = true,
@@ -94,44 +94,44 @@ return {
             filetypes = { "png", "jpg", "mp4", "mkv", "webm", "webp", "pdf", "epub" },
             find_cmd = "rg",
           },
-        }
-      }
+        },
+      })
       for i = 1, #plugins do
-        require('telescope').load_extension(plugins[i])
+        require("telescope").load_extension(plugins[i])
       end
-    end
+    end,
   },
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    event = 'VeryLazy',
-    build = 'make',
+    "nvim-telescope/telescope-fzf-native.nvim",
+    event = "VeryLazy",
+    build = "make",
     dependencies = {
-      'nvim-telescope/telescope.nvim'
-    }
+      "nvim-telescope/telescope.nvim",
+    },
   },
   {
-    'nvim-telescope/telescope-frecency.nvim',
-    event = 'VeryLazy',
+    "nvim-telescope/telescope-frecency.nvim",
+    event = "VeryLazy",
     dependencies = {
-      'nvim-telescope/telescope.nvim'
-    }
+      "nvim-telescope/telescope.nvim",
+    },
   },
   {
     "benfowler/telescope-luasnip.nvim",
-    event = 'VeryLazy',
+    event = "VeryLazy",
     dependencies = {
-      'nvim-telescope/telescope.nvim',
-    }
+      "nvim-telescope/telescope.nvim",
+    },
   },
 
   {
-    'prochri/telescope-all-recent.nvim',
-    event = 'VeryLazy',
+    "prochri/telescope-all-recent.nvim",
+    event = "VeryLazy",
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "kkharji/sqlite.lua",
       -- optional, if using telescope for vim.ui.select
-      "stevearc/dressing.nvim"
+      "stevearc/dressing.nvim",
     },
     opts = {
       scoring = {
@@ -144,14 +144,14 @@ return {
         --   [6] = { age = 43200, value = 20 }, -- 過去1ヶ月以内なら +20
         --   [7] = { age = 129600, value = 10 } -- 過去90日以内なら +10
         -- },
-        boost_factor = 0.001 -- 「最近使ったスコア」の強化倍率（スコアにどの程度影響を与えるか）
+        boost_factor = 0.001, -- 「最近使ったスコア」の強化倍率（スコアにどの程度影響を与えるか）
       },
       -- pickers = {                            -- allows you to overwrite the default settings for each picker
       --   find_files = {                       -- enable man_pages picker. Disable cwd and use frecency sorting.
       --     sorting = "recent"
       --   },
       -- }
-    }
+    },
   },
   -- {
   --   'nvim-telescope/telescope-media-files.nvim',

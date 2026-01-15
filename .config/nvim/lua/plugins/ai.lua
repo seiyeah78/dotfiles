@@ -21,6 +21,12 @@ return {
           model = "claude-sonnet-4.5",
         },
       },
+      acp_providers = {
+        ["opencode"] = {
+          command = "opencode",
+          args = { "acp" },
+        },
+      },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
