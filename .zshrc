@@ -44,7 +44,10 @@ zinit light-mode for \
 
 zinit ice wait=0 lucid; zinit light zsh-users/zsh-completions
 zinit ice wait=0 lucid; zinit light b4b4r07/emoji-cli
-zinit ice wait=0 lucid; zinit light skywind3000/z.lua
+zinit ice as"command" from"gh-r" \
+    atclone"./zoxide init zsh > init.zsh" \
+    atpull"%atclone" src"init.zsh"
+zinit light ajeetdsouza/zoxide
 zinit ice wait=0 lucid; zinit light hlissner/zsh-autopair
 zinit ice wait=0 lucid as"program" pick="bin/git-fuzzy"; zinit light bigH/git-fuzzy
 zinit ice wait=0 lucid as"program" cp"chrome-tab-activate -> fca" pick="fca"; zinit light Rasukarusan/fzf-chrome-active-tab

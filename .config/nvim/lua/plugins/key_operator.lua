@@ -73,6 +73,8 @@ return {
     event = "VeryLazy",
     keys = { '<space>m', '<space>j', '<space>s' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = true
+    opts = {
+      max_join_length = 300,
+    }
   }
 }
