@@ -33,11 +33,13 @@ return {
         vsplit = "<C-v>",
         split = "<C-s>",
         tabe = "<C-g>e",
-        -- close = "<C-c>k",
+        close = "<C-c>k",
         quit = { "q", "<C-W>c", "<ESC>" },
         shuttle = "<C-w><C-w>",
         toggle_or_req = "u",
         toggle_or_open = { "<CR>", "o" },
+        scroll_down = { "<C-f>", "<PageDown>" },
+        scroll_up = { "<C-b>", "<PageUp>" },
       }
       -- https://github.com/nvimdev/lspsaga.nvim/blob/main/lua/lspsaga/init.lua
       require("lspsaga").setup({

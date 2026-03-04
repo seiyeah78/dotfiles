@@ -97,6 +97,8 @@ alias vim='nvim'
 alias ls='ls -G'
 
 alias dc='docker compose'
+alias dec='devcontainer'
+alias dp='devpod'
 
 # すべてのファイルを検索する
 alias ag='ag --hidden --skip-vcs-ignores'

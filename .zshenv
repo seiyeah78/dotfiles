@@ -47,7 +47,7 @@ $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME
 # DEFAULTでfzf.vimも反映する
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
 # .ignoreファイルで無視リストを作成できる
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow --no-messages --ignore-file ~/.ignore'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --follow --no-messages --ignore-case --ignore-file ~/.ignore'
 export FZF_DEFAULT_OPTS="
   --reverse
   --tiebreak=index
