@@ -1,4 +1,4 @@
-vim.cmd("language en_US")
+-- vim.cmd("language en_US")
 vim.scriptencoding = "utf-8"
 vim.lsp.set_log_level("off")
 -- vim.o.{option}: :let &{option-name}のように動作します

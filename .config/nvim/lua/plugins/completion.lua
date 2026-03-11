@@ -204,11 +204,14 @@ return {
     end,
   },
   {
-    "dmmulroy/ts-error-translator.nvim",
-    config = function()
-      require("ts-error-translator").setup()
-    end,
-  },
+    "youyoumu/pretty-ts-errors.nvim",
+    opts = {
+      -- your configuration options
+      auto_open = false,   -- Automatically show errors on hover
+      lazy_window = true,
+    },
+  }
+
   -- {
   --   "ray-x/lsp_signature.nvim",
   --   event = "InsertEnter",

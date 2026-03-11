@@ -140,22 +140,21 @@ return {
       },
     },
   },
-  {
-    'coder/claudecode.nvim',
-    dependencies = {
-      "folke/snacks.nvim",
-      {
-        "esensar/nvim-dev-container",
-        config = true,
-      }
-    },
-    opts = {
-      host = "127.0.0.1",
-      port_range = { min = 47270, max = 47270 },
-      terminal = {
-        provider = "none"
-      }
-    },
-    config = true,
-  }
+  -- {
+  --   'coder/claudecode.nvim',
+  --   dependencies = {
+  --     "folke/snacks.nvim",
+  --     {
+  --       "esensar/nvim-dev-container",
+  --       config = true,
+  --     }
+  --   },
+  --   opts = {
+  --     port_range = { min = 47270, max = 47270 },
+  --     terminal = {
+  --       provider = "none",
+  --     }
+  --   },
+  --   config = true,
+  -- }
 }
