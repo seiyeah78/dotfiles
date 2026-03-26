@@ -1,7 +1,7 @@
 # zmodload zsh/zprof && zprof
 
 # User configuration
-GIT_DIFF_HIGHLIGHT="/usr/local/share/git-core/contrib/diff-highlight"
+GIT_DIFF_HIGHLIGHT="/opt/homebrew/share/git-core/contrib/diff-highlight"
 MYSCRIPT_DIR="/project/macro/scripts"
 OPENSSL_PATH="/usr/local/opt/openssl/bin"
 CURL_PATH="/usr/local/opt/curl/bin"

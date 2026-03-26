@@ -143,12 +143,10 @@ else
   ~/.local/bin/mise activate zsh
 fi
 
-if [ -e .tool-versions ]; then
-  if [ ! -z "$INSTALL_BREW" ]; then
-    mise install
-  else
-    eecho "Skip install tools."
-  fi
+if [ -e ~/.tool-versions ]; then
+  mise install
+else
+  eecho "Not fund .tool-versions. skip mise install"
 fi
 
 if is_exists "kubectl"; then
@@ -173,6 +171,12 @@ if is_exists "kubectl"; then
     fi
   fi
 fi
+
+# cargo
+if [ -e "$HOME/.cargo/env" ]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
+
 
 if [ -e "~/.local/share/zinit/zinit.git" ]; then
   curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh
