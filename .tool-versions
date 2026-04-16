@@ -1,5 +1,5 @@
 python 3.11.6
-ruby 3.2.2
+ruby 4.0.1
 nodejs 22.20.0
 kubectl 1.31.1
 awscli 2.31.2

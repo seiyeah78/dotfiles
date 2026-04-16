@@ -1,13 +1,9 @@
 bundler
 pry
 pry-doc
-ej
 ripper-tags
 overcommit
-sass_lint
 compass
 colorls
 neovim
 tmuxinator
-solargraph
-

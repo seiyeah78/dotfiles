@@ -48,7 +48,8 @@ return {
   window_close_confirmation = "NeverPrompt",
   audible_bell = "Disabled",
   keys = {
-    { key = "-", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない
-    { key = "=", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない
+    { key = "-", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },    -- バインドを変更しない
+    { key = "=", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },    -- バインドを変更しない
+    { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString '\x1b[13;2u' } -- Shift+Enterの特殊コード
   },
 }

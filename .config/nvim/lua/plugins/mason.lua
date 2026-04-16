@@ -3,13 +3,14 @@ local lsps = {
   "lua_ls",
   "golangci-lint-langserver",
   "pyright",
-  "solargraph",
+  "ruby_lsp",
   "terraformls",
   "vue-language-server",
   "vtsls",
   "delve",
   "debugpy",
   "js-debug-adapter",
+  "tsp_server",
 }
 
 local formatters = {
@@ -39,6 +40,7 @@ local ensure_installed = {}
 vim.list_extend(ensure_installed, lsps)
 vim.list_extend(ensure_installed, formatters)
 vim.list_extend(ensure_installed, linters)
+
 return {
   {
     "mason-org/mason.nvim",
@@ -129,6 +131,14 @@ return {
       { "yioneko/nvim-vtsls" },
     },
     config = function()
+      vim.lsp.config('ruby_lsp', {
+        -- offsetEncoding を一貫させるための設定
+        capabilities = {
+          general = {
+            positionEncodings = { "utf-16" }
+          }
+        }
+      })
       vim.lsp.enable(lsps)
     end,
   },
