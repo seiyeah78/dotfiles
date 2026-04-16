@@ -139,7 +139,14 @@ return {
           }
         }
       })
-      vim.lsp.enable(lsps)
+      vim.api.nvim_create_autocmd("VimEnter", {
+        once = true,
+        callback = function()
+          vim.schedule(function()
+            vim.lsp.enable(lsps)
+          end)
+        end,
+      })
     end,
   },
   {

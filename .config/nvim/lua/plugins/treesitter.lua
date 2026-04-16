@@ -92,7 +92,6 @@ return {
 
       require("nvim-treesitter-endwise").init()
       vim.api.nvim_create_user_command("TSInstallInfo", function()
-        local ts = require("nvim-treesitter")
         local parser_defs = require("nvim-treesitter.parsers")
 
         -- 全parser一覧（install可能なもの）
