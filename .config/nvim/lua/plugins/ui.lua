@@ -230,26 +230,26 @@ return {
   },
   {
     "andymass/vim-matchup",
-    event = "VeryLazy",
-    config = function()
+    init = function()
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      -- vim.api.nvim_set_hl(0, 'MatchParen', { fg = "lightblue2" })
-      -- vim.api.nvim_set_hl(0, 'MatchWord', { fg = "lightblue2" })
-      vim.api.nvim_set_hl(0, "MatchWordCur", { underline = true })
-      vim.api.nvim_set_hl(0, "MatchParenCur", {}) -- NONEと同じ
 
-      vim.api.nvim_create_augroup("matchup_matchparen_disable_ft", { clear = true })
+      -- kulala_uiで勝手に閉じてしまうのを無効化
+      local group = vim.api.nvim_create_augroup("matchup_matchparen_disable_ft", { clear = true })
 
-      -- kulala_uiで勝手に閉じてしまうので無効化
       vim.api.nvim_create_autocmd("FileType", {
-        group = "matchup_matchparen_disable_ft",
+        group = group,
         pattern = "json.kulala_ui",
-        callback = function()
-          vim.b.matchup_matchparen_fallback = 0
-          vim.b.matchup_matchparen_enabled = 0
+        callback = function(args)
+          vim.b[args.buf].matchup_matchparen_fallback = 0
+          vim.b[args.buf].matchup_matchparen_enabled = 0
         end,
       })
+    end,
+
+    config = function()
+      vim.api.nvim_set_hl(0, "MatchWordCur", { underline = true })
+      vim.api.nvim_set_hl(0, "MatchParenCur", {})
     end,
   },
   {
