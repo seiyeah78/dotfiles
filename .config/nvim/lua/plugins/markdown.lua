@@ -41,4 +41,16 @@ return {
     },
     ft = { "markdown", "Avante" },
   },
+  {
+    'jakewvincent/mkdnflow.nvim',
+    opts = {
+      modules = {
+        lists = true, -- ここが false になっていないか確認
+      },
+      mappings = {
+        MkdnNewListItem = { 'i', '<CR>' },  -- インサートモードのEnterに機能を割り当て
+      }
+    },
+    ft = { "markdown" }
+  }
 }

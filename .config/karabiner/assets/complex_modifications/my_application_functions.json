@@ -4,7 +4,7 @@
     {
       "description": "control + bfnp = Emacs key bindings [control+keys] (rev 10)",
       "manipulators": [
-         {
+        {
           "conditions": [
             {
               "bundle_identifiers": [
@@ -48,7 +48,8 @@
                 "^org\\.macosforge\\.xquartz\\.X11$",
                 "^org\\.macports\\.X11$",
                 "^com\\.sublimetext\\.",
-                "^com\\.microsoft\\.VSCode$"
+                "^com\\.microsoft\\.VSCode$",
+                "com\\.cmuxterm\\.app$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -56,14 +57,8 @@
           "from": {
             "key_code": "b",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ],
-              "optional": [
-                "caps_lock",
-                "shift",
-                "option"
-              ]
+              "mandatory": ["control"],
+              "optional": ["caps_lock", "shift", "option"]
             }
           },
           "to": [
@@ -125,14 +120,8 @@
           "from": {
             "key_code": "f",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ],
-              "optional": [
-                "caps_lock",
-                "shift",
-                "option"
-              ]
+              "mandatory": ["control"],
+              "optional": ["caps_lock", "shift", "option"]
             }
           },
           "to": [
@@ -194,14 +183,8 @@
           "from": {
             "key_code": "n",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ],
-              "optional": [
-                "caps_lock",
-                "shift",
-                "option"
-              ]
+              "mandatory": ["control"],
+              "optional": ["caps_lock", "shift", "option"]
             }
           },
           "to": [
@@ -263,14 +246,8 @@
           "from": {
             "key_code": "p",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ],
-              "optional": [
-                "caps_lock",
-                "shift",
-                "option"
-              ]
+              "mandatory": ["control"],
+              "optional": ["caps_lock", "shift", "option"]
             }
           },
           "to": [
@@ -294,13 +271,8 @@
           "from": {
             "key_code": "a",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ],
-              "optional": [
-                "caps_lock",
-                "shift"
-              ]
+              "mandatory": ["control"],
+              "optional": ["caps_lock", "shift"]
             }
           },
           "to": [
@@ -324,13 +296,8 @@
           "from": {
             "key_code": "e",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ],
-              "optional": [
-                "caps_lock",
-                "shift"
-              ]
+              "mandatory": ["control"],
+              "optional": ["caps_lock", "shift"]
             }
           },
           "to": [
@@ -366,9 +333,7 @@
           "from": {
             "key_code": "p",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ]
+              "mandatory": ["control"]
             }
           },
           "to": [
@@ -398,9 +363,7 @@
           "from": {
             "key_code": "n",
             "modifiers": {
-              "mandatory": [
-                "control"
-              ]
+              "mandatory": ["control"]
             }
           },
           "to": [
@@ -418,9 +381,7 @@
           "type": "basic",
           "conditions": [
             {
-              "bundle_identifiers": [
-                "^io\\.alacritty$"
-              ],
+              "bundle_identifiers": ["^io\\.alacritty$"],
               "type": "frontmost_application_if"
             }
           ],

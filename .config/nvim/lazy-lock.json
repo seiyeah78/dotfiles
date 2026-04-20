@@ -39,6 +39,7 @@
   "mason-nvim-lint": { "branch": "main", "commit": "cafbc5d82d8eb4af0daf0057332a325ddf2f436b" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc" },
   "mason.nvim": { "branch": "main", "commit": "b03fb0f20bc1d43daf558cda981a2be22e73ac42" },
+  "mkdnflow.nvim": { "branch": "main", "commit": "f20732686f70f60f18f09f4befe984ae63a99201" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-autopairs": { "branch": "master", "commit": "59bce2eef357189c3305e25bc6dd2d138c1683f5" },
   "nvim-bqf": { "branch": "main", "commit": "c282a62bec6c0621a1ef5132aa3f4c9fc4dcc2c7" },
@@ -107,6 +108,6 @@
   "vim-slim": { "branch": "master", "commit": "a0a57f75f20a03d5fa798484743e98f4af623926" },
   "vim-table-mode": { "branch": "master", "commit": "bb025308a45c67c7c8f0763ba37bc2ee3f534df0" },
   "vim-visual-multi": { "branch": "master", "commit": "a6975e7c1ee157615bbc80fc25e4392f71c344d4" },
-  "winresizer": { "branch": "master", "commit": "9bd559a03ccec98a458e60c705547119eb5350f3" },
+  "winresizer": { "branch": "master", "commit": "299076f7f79e2e2f7706b2dfacbb3c074ce53257" },
   "yanky.nvim": { "branch": "main", "commit": "784188e0a7363e762e53140f39124d786aec0832" }
 }

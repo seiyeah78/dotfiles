@@ -3,8 +3,18 @@ return {
     "rmagatti/auto-session",
     lazy = false,
     opts = {
-      suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/", "~/projects", "~/codes" },
-      close_filetypes_on_save = { 'checkhealth', 'qf' }
+      close_unsupported_windows = true,
+      suppressed_dirs = {
+        "~/",
+        "~/Projects",
+        "~/Downloads",
+        "/",
+        "~/projects",
+        "~/codes",
+        "/private/var",
+        "/tmp",
+      },
+      close_filetypes_on_save = { 'checkhealth', 'qf', 'fugitiveblame', 'gitcommit' }
     },
     config = function(_, opts)
       require('auto-session').setup(opts)

@@ -28,6 +28,7 @@ return {
         "terraform",
         "toml",
         "tsx",
+        "lua",
         "typescript",
         "vim",
         "vimdoc",
@@ -52,7 +53,7 @@ return {
       local indent_disable = {
         python = true,
         yaml = true,
-        ruby = true,
+        ruby = false,
       }
 
       local ts = require("nvim-treesitter")
@@ -81,8 +82,7 @@ return {
             end
 
             if not indent_disable[lang] and not indent_disable[ft] then
-              vim.bo[args.buf].indentexpr =
-              "v:lua.require'nvim-treesitter'.indentexpr()"
+              vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             else
               vim.bo[args.buf].indentexpr = ""
             end

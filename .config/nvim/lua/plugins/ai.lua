@@ -86,6 +86,8 @@ return {
   },
   {
     "olimorris/codecompanion.nvim",
+    cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
+    lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
