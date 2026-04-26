@@ -1,10 +1,10 @@
 local system_prompt =
-"あなたは優秀なプログラミングアシスタントです。すべての応答は日本語で行ってください。コードのコメントも日本語で記述してください。"
+  "あなたは優秀なプログラミングアシスタントです。すべての応答は日本語で行ってください。コードのコメントも日本語で記述してください。"
 return {
   {
     "yetone/avante.nvim",
     build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-        or "make",
+      or "make",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
@@ -28,26 +28,34 @@ return {
         },
       },
       input = {
-        height = 12
+        height = 12,
       },
       windows = {
+        input = {
+          height = 12,
+        },
         edit = {
           start_insert = true, -- Start insert mode when opening the edit window
         },
         ask = {
           start_insert = false, -- Start insert mode when opening the ask window
-        }
-      }
+          floating = false,
+        },
+        sidebar_header = {
+          enabled = true,
+          rounded = true,
+        },
+      },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-      "folke/snacks.nvim",             -- for input provider snacks
-      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "folke/snacks.nvim", -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",

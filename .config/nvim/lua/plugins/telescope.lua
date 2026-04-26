@@ -3,7 +3,6 @@ local plugins = {
   "fzf",
   "yank_history",
   "frecency",
-  "luasnip",
 }
 return {
   {
@@ -81,10 +80,10 @@ return {
         },
         extensions = {
           fzf = {
-            fuzzy = true,                   -- false will only do exact matching
+            fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true,    -- override the file sorter
-            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           },
           frecency = {
             show_unindexed = true,
@@ -116,14 +115,13 @@ return {
       "nvim-telescope/telescope.nvim",
     },
   },
-  {
-    "benfowler/telescope-luasnip.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-
+  -- {
+  --   "benfowler/telescope-luasnip.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- },
   {
     "prochri/telescope-all-recent.nvim",
     event = "VeryLazy",

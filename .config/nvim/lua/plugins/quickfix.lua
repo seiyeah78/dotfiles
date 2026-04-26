@@ -1,18 +1,18 @@
 return {
   {
-    'stevearc/quicker.nvim',
-    event = "FileType qf",
+    "stevearc/quicker.nvim",
+    ft = "qf",
     opts = {},
   },
   {
-    'kevinhwang91/nvim-bqf',
+    "kevinhwang91/nvim-bqf",
     config = function()
-      require('bqf').setup({
+      require("bqf").setup({
         auto_enable = true,
         auto_resize_height = true, -- highly recommended enable
         preview = {
           delay_syntax = 80,
-          border = { '┏', '━', '┓', '┃', '┛', '━', '┗', '┃' },
+          border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
           show_title = false,
           should_preview_cb = function(bufnr, qwinid)
             local ret = true
@@ -21,30 +21,30 @@ return {
             if fsize > 100 * 1024 then
               -- skip file size greater than 100k
               ret = false
-            elseif bufname:match('^fugitive://') then
+            elseif bufname:match("^fugitive://") then
               -- skip fugitive buffer
               ret = false
             end
             return ret
-          end
+          end,
         },
         -- make `drop` and `tab drop` to become preferred
         func_map = {
-          drop = 'o',
-          openc = 'O',
-          split = '<C-s>',
-          tabdrop = '<C-t>',
+          drop = "o",
+          openc = "O",
+          split = "<C-s>",
+          tabdrop = "<C-t>",
           -- set to empty string to disable
-          tabc = '',
-          ptogglemode = 'z,',
+          tabc = "",
+          ptogglemode = "z,",
         },
         filter = {
           fzf = {
-            action_for = { ['ctrl-s'] = 'split' },
-            extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', 'fzf mode> ' }
-          }
-        }
+            action_for = { ["ctrl-s"] = "split" },
+            extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "fzf mode> " },
+          },
+        },
       })
-    end
-  }
+    end,
+  },
 }

@@ -20,7 +20,7 @@ return {
     event = "LspAttach",
     dependencies = { "nvim-lspconfig" },
     keys = {
-      { "D",  "<cmd>Lspsaga hover_doc<CR>" },
+      { "D", "<cmd>Lspsaga hover_doc<CR>" },
       -- { "gd", "<cmd>Lspsaga goto_definition<CR>" },
       { "gD", "<cmd>Lspsaga peek_definition<CR>" },
       { "gt", "<cmd>Lspsaga goto_type_definition<CR>" },
@@ -137,13 +137,13 @@ return {
       for _, bracket in pairs(brackets) do
         npairs.add_rules({
           Rule(bracket[1] .. " ", " " .. bracket[2])
-              :with_pair(function()
-                return false
-              end)
-              :with_move(function(opts)
-                return opts.prev_char:match(".%" .. bracket[2]) ~= nil
-              end)
-              :use_key(bracket[2]),
+            :with_pair(function()
+              return false
+            end)
+            :with_move(function(opts)
+              return opts.prev_char:match(".%" .. bracket[2]) ~= nil
+            end)
+            :use_key(bracket[2]),
         })
       end
     end,
@@ -163,7 +163,7 @@ return {
     config = function()
       require("copilot").setup({
         suggestion = {
-          enabled = true,      -- Ensure this is true
+          enabled = true, -- Ensure this is true
           auto_trigger = true, -- Consider enabling for automatic suggestions
           accept = false,
         },
@@ -207,10 +207,10 @@ return {
     "youyoumu/pretty-ts-errors.nvim",
     opts = {
       -- your configuration options
-      auto_open = false,   -- Automatically show errors on hover
+      auto_open = false, -- Automatically show errors on hover
       lazy_window = true,
     },
-  }
+  },
 
   -- {
   --   "ray-x/lsp_signature.nvim",
