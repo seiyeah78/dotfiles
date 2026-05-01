@@ -36,11 +36,6 @@ cd ~/dotfiles
 ```
 
 ### 2. インストールスクリプトの実行
-
-|a|a|a|
-|-|-|-|
-|`a`|a|a|
-
 ```sh
 # dotfilesのシンボリックリンクのみ
 ./install.sh
