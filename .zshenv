@@ -38,11 +38,13 @@ export PROMPT_EOL_MARK=''
 
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
 
+export MISE_HOME="$HOME/.local/share/mise/shims"
+export PATH="$MISE_HOME:$PATH"
+
 CORE_PATH="/usr/local/bin:/usr/local/sbin:$HOMEBREW_PATH:$MYSQL_PATH:$GIT_DIFF_HIGHLIGHT:$JAVA_HOME/bin:\
 $OPENSSL_PATH:$CURL_PATH:/usr/local/opt/grep/libexec/gnubin:$MYSCRIPT_DIR/bin:\
 $HOME/.anyenv/bin:$MAC_VIM_PATH:$HOME/go/bin:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin:\
 :/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.poetry/bin:$GOPATH/bin:${HOME}/.fig/bin:$HOME/.local/share/mise/shims:$HOME/.opencode/bin"
-
 
 # DEFAULTでfzf.vimも反映する
 # export FZF_DEFAULT_COMMAND='ag --hidden  --ignore .git -g ""'
@@ -70,5 +72,6 @@ export TZ=Asia/Tokyo
 if [ -e ~/.zshenv.local ]; then
   source ~/.zshenv.local
 fi
+
 source "$HOME/.cargo/env"
 . "$HOME/.cargo/env"

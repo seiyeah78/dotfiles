@@ -116,10 +116,11 @@ function is_vscode_terminal() { [[ $TERM_PROGRAM = "vscode" ]]; }
 function is_screen_or_tmux_running() { is_screen_running || is_tmux_runnning; }
 function shell_has_started_interactively() { [ ! -z "$PS1" ]; }
 function is_ssh_running() { [ ! -z "$SSH_CONECTION" ]; }
+function is_cmux_running() { [ ! -z "$CMUX_SOCKET" ]; }
 
 function tmux_attach_session()
 {
-    if is_screen_or_tmux_running; then
+    if is_screen_or_tmux_running || is_cmux_running; then
         ! is_exists 'tmux' && return 1
 
         if is_tmux_runnning; then
@@ -130,6 +131,8 @@ function tmux_attach_session()
             #echo "${fg_bold[red]}  |_| |_|  |_|\___//_/\_\ ${reset_color}"
         elif is_screen_running; then
             echo "This is on screen."
+        elif is_cmux_running; then
+            echo "cmux terminal. not exec tmux attach-session"
         fi
     else
         if shell_has_started_interactively && ! is_ssh_running && ! is_vscode_terminal; then
