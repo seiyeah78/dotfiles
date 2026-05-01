@@ -3,10 +3,12 @@ local wezterm = require("wezterm")
 local gpus = wezterm.gui.enumerate_gpus()
 
 local font_with_fallback = wezterm.font_with_fallback({
+  -- 1. 最優先の英数・日本語
   { family = "HackGen Console NF" },
-  { family = "HackGen Console NF", assume_emoji_presentation = true },
-  { family = "Noto Color Emoji",   scale = 0.95 }, -- Adjust scale for emojis
-  { family = "Nerd Font Symbols",  scale = 0.95 }, -- Adjust scale for icons
+  -- 2. アイコン専用（もしHackGenのアイコンより優先したい場合）
+  { family = "JetBrainsMonoNL Nerd Font" },
+  -- 3. カラー絵文字（強制的にカラーにする設定を添えて）
+  { family = "Symbols Nerd Font Mono",   scale = 0.9 },
 })
 
 return {
@@ -47,9 +49,10 @@ return {
   adjust_window_size_when_changing_font_size = true,
   window_close_confirmation = "NeverPrompt",
   audible_bell = "Disabled",
+  notification_handling = "AlwaysShow",
   keys = {
-    { key = "-", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },    -- バインドを変更しない
-    { key = "=", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },    -- バインドを変更しない
-    { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString '\x1b[13;2u' } -- Shift+Enterの特殊コード
+    { key = "-",     mods = "CTRL",  action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない
+    { key = "=",     mods = "CTRL",  action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない
+    { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString '\x1b[13;2u' },  -- Shift+Enterの特殊コード
   },
 }

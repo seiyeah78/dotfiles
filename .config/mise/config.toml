@@ -1,2 +1,2 @@
-[settings]
-legacy_version_file = true
+[tools]
+awscli = { version = "2.31.2", symlink_bins = "true" }

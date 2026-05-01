@@ -61,6 +61,13 @@ return {
               ["<C-u>"] = false,
               ["<C-a>"] = { "<home>", type = "command" },
               ["<C-e>"] = { "<end>", type = "command" },
+              ["<C-f>"] = function()
+                vim.api.nvim_feedkeys(
+                  vim.api.nvim_replace_termcodes("<Right>", true, false, true),
+                  "n",
+                  true
+                )
+              end,
             },
           },
         },

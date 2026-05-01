@@ -49,7 +49,7 @@
                 "^org\\.macports\\.X11$",
                 "^com\\.sublimetext\\.",
                 "^com\\.microsoft\\.VSCode$",
-                "com\\.cmuxterm\\.app$"
+                "^com\\.cmuxterm\\.app$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -112,7 +112,8 @@
                 "^org\\.macosforge\\.xquartz\\.X11$",
                 "^org\\.macports\\.X11$",
                 "^com\\.sublimetext\\.",
-                "^com\\.microsoft\\.VSCode$"
+                "^com\\.microsoft\\.VSCode$",
+                "^com\\.cmuxterm\\.app$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -175,7 +176,8 @@
                 "^org\\.macosforge\\.xquartz\\.X11$",
                 "^org\\.macports\\.X11$",
                 "^com\\.sublimetext\\.",
-                "^com\\.microsoft\\.VSCode$"
+                "^com\\.microsoft\\.VSCode$",
+                "^com\\.cmuxterm\\.app$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -238,7 +240,8 @@
                 "^org\\.macosforge\\.xquartz\\.X11$",
                 "^org\\.macports\\.X11$",
                 "^com\\.sublimetext\\.",
-                "^com\\.microsoft\\.VSCode$"
+                "^com\\.microsoft\\.VSCode$",
+                "^com\\.cmuxterm\\.app$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -325,7 +328,8 @@
                 "^com\\.microsoft\\.VSCode$",
                 "^io\\.alacritty$",
                 "^org\\.alacritty$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^com\\.cmuxterm\\.app$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -355,7 +359,8 @@
                 "^com\\.microsoft\\.VSCode$",
                 "^io\\.alacritty$",
                 "^org\\.alacritty$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^com\\.cmuxterm\\.app$"
               ],
               "type": "frontmost_application_unless"
             }

@@ -55,6 +55,33 @@ return {
     ft = { 'rust' },
   },
   {
+    "cajames/copy-reference.nvim",
+    opts = {
+      register = "+",      -- Clipboard register (+ for system clipboard)
+      use_git_root = true, -- Use git root for relative paths when in a git repo
+    },
+    keys = {
+      {
+        "Yr",
+        function()
+          vim.cmd("CopyReference file")
+          vim.notify("Copy file path to Clipboard!")
+        end,
+        mode = { "n", "v" },
+        desc = "Copy file path",
+      },
+      {
+        "Yl",
+        function()
+          vim.cmd("CopyReference line")
+          vim.notify("Copy file path with linenumber to Clipboard!")
+        end,
+        mode = { "n", "v" },
+        desc = "Copy file:line reference",
+      },
+    },
+  },
+  {
     'brenoprata10/nvim-highlight-colors',
     event = "BufEnter",
     opts = {
