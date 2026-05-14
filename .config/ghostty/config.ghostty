@@ -1,0 +1,102 @@
+# コントラスト
+minimum-contrast = 1
+
+theme = TokyoNight Storm
+
+background-opacity = 1
+unfocused-split-opacity = 0.8
+unfocused-split-fill = 181825
+
+unfocused-window-opacity = 1
+
+# カーソルの形状 (block, beam, underline から選択)
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+# カーソルを点滅させるかどうか
+cursor-style-blink = false
+
+# IME入力中の文字列に下線を表示（日本語入力を見やすくする）
+cursor-text = #000000
+
+# CSI u (fixterms)から旧来のASCIIで認識できるようにする
+keybind = ctrl+minus=text:\x1f
+
+# グローバルPrefix Like Tmux
+keybind = ctrl+t>z=toggle_split_zoom
+
+keybind = ctrl+t>h=goto_split:left
+keybind = ctrl+t>ctrl+h=goto_split:left
+keybind = ctrl+t>j=goto_split:down
+keybind = ctrl+t>ctrl+j=goto_split:down
+keybind = ctrl+t>k=goto_split:up
+keybind = ctrl+t>ctrl+k=goto_split:up
+keybind = ctrl+t>l=goto_split:right
+keybind = ctrl+t>ctrl+l=goto_split:right
+
+
+# Vim-mode keybindings for Ghostty.
+#
+# Note: We're missing a number of actions to produce a better vim experience.
+# This is what is possible today! But we plan on adding more actions to make
+# this even better in the future.
+
+# Entry point
+keybind = alt+v=activate_key_table:vim
+
+# Key table definition
+keybind = vim/
+
+# Line movement
+keybind = vim/j=scroll_page_lines:1
+keybind = vim/k=scroll_page_lines:-1
+
+# Page movement
+keybind = vim/ctrl+d=scroll_page_down
+keybind = vim/ctrl+u=scroll_page_up
+keybind = vim/ctrl+f=scroll_page_down
+keybind = vim/ctrl+b=scroll_page_up
+keybind = vim/shift+j=scroll_page_down
+keybind = vim/shift+k=scroll_page_up
+
+# Jump to top/bottom
+keybind = vim/g>g=scroll_to_top
+keybind = vim/shift+g=scroll_to_bottom
+
+# Search (if you want vim-style search entry)
+keybind = vim/slash=start_search
+keybind = vim/n=navigate_search:next
+
+# Copy mode / selection
+# Note we're missing a lot of actions here to make this more full featured.
+keybind = vim/v=copy_to_clipboard
+keybind = vim/y=copy_to_clipboard
+
+# Command Palette
+keybind = vim/shift+semicolon=toggle_command_palette
+
+# Exit
+keybind = vim/escape=deactivate_key_table
+keybind = vim/q=deactivate_key_table
+keybind = vim/i=deactivate_key_table
+
+keybind = vim/catch_all=ignore
+
+
+# 1. 通常モード時に「Ctrl+t ＋ 矢印キー」で、リサイズモード（キーテーブル）を起動する設定
+keybind = ctrl+t>left=activate_key_table:resize
+keybind = ctrl+t>down=activate_key_table:resize
+keybind = ctrl+t>up=activate_key_table:resize
+keybind = ctrl+t>right=activate_key_table:resize
+
+# 2. リサイズモード（キーテーブル名: resize）の中のキー定義
+# リサイズ量はデフォルトの「10」にしていますが、好みに応じて変更してください
+keybind = resize/left=resize_split:left,10
+keybind = resize/down=resize_split:down,10
+keybind = resize/up=resize_split:up,10
+keybind = resize/right=resize_split:right,10
+
+# 3. リサイズモードから抜ける（通常モードに戻る）ためのキー
+keybind = resize/enter=deactivate_key_table
+keybind = resize/escape=deactivate_key_table
