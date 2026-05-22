@@ -1,3 +1,7 @@
+env = TZ=Asia/Tokyo
+
+font-feature = -dlig
+
 # コントラスト
 minimum-contrast = 1
 

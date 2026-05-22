@@ -14,7 +14,7 @@ return {
         "/private/var",
         "/tmp",
       },
-      close_filetypes_on_save = { 'checkhealth', 'qf', 'fugitiveblame', 'gitcommit' }
+      close_filetypes_on_save = { 'checkhealth', 'qf', 'fugitiveblame', 'gitcommit', 'Outline' }
     },
     config = function(_, opts)
       require('auto-session').setup(opts)
