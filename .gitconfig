@@ -1,3 +1,6 @@
+[user]
+	name = se-ya
+	email = ketcoding@gmail.com
 [push]
   default = simple
 [core]
@@ -43,6 +46,7 @@
   tracking = !git co $(git tracking-name)
   bro = browse
   create-pr = !hub pull-request -o -b $(git tracking-name)
+ # create-pr = "!gh pr create -B $(git tracking-name)"
   showpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
   findpr = "!f() { git log --merges --reverse --ancestry-path $1...master | grep 'Merge pull request #' -B5 | head -n 6; }; f"
   # reflogから復元するalias
@@ -100,9 +104,6 @@
   line-numbers-right-style = cyan
   line-numbers-minus-style = 124
   line-numbers-plus-style = 28
-[user]
-	name = se-ya
-	email = ketcoding@gmail.com
 [mergetool]
 	keepBackup = false
 [init]

@@ -1,2 +1,5 @@
 [tools]
 awscli = { version = "2.31.2", symlink_bins = "true" }
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]

@@ -6,6 +6,16 @@ return {
       'JoosepAlviste/nvim-ts-context-commentstring'
     },
     config = function()
+      require('ts_context_commentstring').setup {
+        enable_autocmd = false,
+        languages = {
+          -- ここに登録されていない言語の設定を追加します
+          typespec = {
+            __default = '// %s',      -- 行コメント用 (gcc など)
+            __multiline = '/* %s */', -- ブロックコメント用 (gbc や 可視選択+gb など)
+          },
+        },
+      }
       require('Comment').setup({
         ---Add a space b/w comment and the line
         padding = true,

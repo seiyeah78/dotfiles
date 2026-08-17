@@ -2,6 +2,9 @@ env = TZ=Asia/Tokyo
 
 font-feature = -dlig
 
+# 1. 最優先の英数・日本語
+font-family = HackGen Console NF
+
 # コントラスト
 minimum-contrast = 1
 
@@ -26,6 +29,8 @@ cursor-text = #000000
 
 # CSI u (fixterms)から旧来のASCIIで認識できるようにする
 keybind = ctrl+minus=text:\x1f
+keybind = equal=text:=
+keybind = ctrl+equal=text:=
 
 # グローバルPrefix Like Tmux
 keybind = ctrl+t>z=toggle_split_zoom

@@ -14,11 +14,18 @@ return {
         "/private/var",
         "/tmp",
       },
-      close_filetypes_on_save = { 'checkhealth', 'qf', 'fugitiveblame', 'gitcommit', 'Outline' }
+      close_filetypes_on_save = { 'checkhealth', 'qf', 'fugitiveblame', 'gitcommit', 'Outline', 'OverseerOutput' },
+      -- 復元直後に強制的にウィンドウを等倍化するフックを追加
+      post_restore_cmds = {
+        function()
+          vim.cmd("wincmd =")
+        end
+      },
     },
     config = function(_, opts)
       require('auto-session').setup(opts)
-      vim.o.sessionoptions = "blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions"
+      vim.opt.sessionoptions:remove("terminal")
+      vim.o.sessionoptions = "blank,buffers,curdir,help,tabpages,terminal,localoptions"
     end,
   },
 }

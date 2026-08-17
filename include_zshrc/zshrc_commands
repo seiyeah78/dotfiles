@@ -135,7 +135,7 @@ function tmux_attach_session()
             echo "cmux terminal. not exec tmux attach-session"
         fi
     else
-        if shell_has_started_interactively && ! is_ssh_running && ! is_vscode_terminal; then
+        if shell_has_started_interactively && ! is_ssh_running && ! is_vscode_terminal && ! is_cmux_terminal; then
             if ! is_exists 'git'; then
                 echo 'Error: tmux command not found' 2>&1
                 return 1

@@ -1,3 +1,11 @@
+-- 無効化したいデフォルトキーマップを指定
+local default_keys = { "gra", "gri", "grn", "grr", "grt", "grx" }
+
+for _, key in ipairs(default_keys) do
+  -- args.buf を指定し、そのLSPバッファからのみキーマップを削除
+  pcall(vim.keymap.del, "n", key)
+end
+
 vim.cmd([[
 command! Pbcopy :let @*=@"  "最後にyank or 削除した内容をクリップボードに入れる
 command! Pbcopy0 :let @*=@0 "最後にyankした内容をクリップボードに入れる

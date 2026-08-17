@@ -13,6 +13,7 @@ return {
           javascript = { "biome", "prettierd", stop_after_first = true },
           typescriptreact = { "biome", "prettierd", stop_after_first = true },
           javascriptreact = { "biome", "prettierd", stop_after_first = true },
+          typespec = { "typespec", "prettierd", stop_after_first = true },
           vue = { "prettierd", "vue-language-server", stop_after_first = true },
           svelte = { "prettierd", stop_after_first = true },
           json = { "prettierd" },

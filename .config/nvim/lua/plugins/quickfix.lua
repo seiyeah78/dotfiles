@@ -14,7 +14,7 @@ return {
           delay_syntax = 80,
           border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
           show_title = false,
-          should_preview_cb = function(bufnr, qwinid)
+          should_preview_cb = function(bufnr, _)
             local ret = true
             local bufname = vim.api.nvim_buf_get_name(bufnr)
             local fsize = vim.fn.getfsize(bufname)
@@ -33,6 +33,7 @@ return {
           drop = "o",
           openc = "O",
           split = "<C-s>",
+          vsplit = '<C-g>',
           tabdrop = "<C-t>",
           -- set to empty string to disable
           tabc = "",
@@ -40,7 +41,10 @@ return {
         },
         filter = {
           fzf = {
-            action_for = { ["ctrl-s"] = "split" },
+            action_for = {
+              ["ctrl-s"] = "split",
+              ["ctrl-g"] = "vsplit",
+            },
             extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "fzf mode> " },
           },
         },

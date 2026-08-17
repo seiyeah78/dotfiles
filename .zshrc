@@ -91,6 +91,8 @@ eval "$(direnv hook zsh)"
 # global alias
 alias -g C="| /usr/bin/ruby -pe 'chomp if STDIN.eof?' | pbcopy"
 alias -g D="| delta --navigate"
+# 長過ぎるJSONを整形して短く表示する
+alias -g J="| jq 'walk(if type == \"string\" and length > 50 then .[0:50] + \"...\" else . end)'"
 
 alias vi='vim'
 alias vim='nvim'
@@ -182,3 +184,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+source /Users/seiya.ouchi/.daytona.completion_script.zsh
+
+. "$HOME/.moon/bin/env"
+unsetopt BEEP
+source /Users/seiya.ouchi/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script

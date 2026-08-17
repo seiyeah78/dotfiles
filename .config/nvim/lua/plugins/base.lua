@@ -1,5 +1,4 @@
 return {
-  'mg979/vim-visual-multi',
   {
     'junegunn/vim-easy-align',
     keys = {

@@ -1,6 +1,12 @@
 -- https://wezfurlong.org/wezterm/config/files.html
 local wezterm = require("wezterm")
+local path_utils = require("path_util")
 local gpus = wezterm.gui.enumerate_gpus()
+local sound_path = path_utils.normalize("~/dotfiles/misc/sounds/notification1.mp3")
+
+wezterm.on('bell', function()
+  wezterm.background_child_process { '/usr/bin/afplay', sound_path }
+end)
 
 local font_with_fallback = wezterm.font_with_fallback({
   -- 1. 最優先の英数・日本語
@@ -50,6 +56,27 @@ return {
   window_close_confirmation = "NeverPrompt",
   audible_bell = "Disabled",
   notification_handling = "AlwaysShow",
+  mouse_bindings = {
+    -- 1. 修飾キーなし (通常のホイールクリック)
+    { event = { Down = { streak = 1, button = 'Middle' } }, mods = 'NONE',  action = wezterm.action.Nop },
+    { event = { Up = { streak = 1, button = 'Middle' } },   mods = 'NONE',  action = wezterm.action.Nop },
+
+    -- 2. MacのCommandキー (SUPER) を伴う場合
+    { event = { Down = { streak = 1, button = 'Middle' } }, mods = 'SUPER', action = wezterm.action.Nop },
+    { event = { Up = { streak = 1, button = 'Middle' } },   mods = 'SUPER', action = wezterm.action.Nop },
+
+    -- 3. Shiftキーを伴う場合
+    { event = { Down = { streak = 1, button = 'Middle' } }, mods = 'SHIFT', action = wezterm.action.Nop },
+    { event = { Up = { streak = 1, button = 'Middle' } },   mods = 'SHIFT', action = wezterm.action.Nop },
+
+    -- 4. Controlキーを伴う場合
+    { event = { Down = { streak = 1, button = 'Middle' } }, mods = 'CTRL',  action = wezterm.action.Nop },
+    { event = { Up = { streak = 1, button = 'Middle' } },   mods = 'CTRL',  action = wezterm.action.Nop },
+
+    -- 5. Optionキー (ALT) を伴う場合
+    { event = { Down = { streak = 1, button = 'Middle' } }, mods = 'ALT',   action = wezterm.action.Nop },
+    { event = { Up = { streak = 1, button = 'Middle' } },   mods = 'ALT',   action = wezterm.action.Nop },
+  },
   keys = {
     { key = "-",     mods = "CTRL",  action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない
     { key = "=",     mods = "CTRL",  action = wezterm.action.DisableDefaultAssignment }, -- バインドを変更しない
