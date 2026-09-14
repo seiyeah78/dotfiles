@@ -103,15 +103,39 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+# .config 自体は実体として作成しておく
+mkdir -p "$HOME/.config"
+
 for f in .??*; do
   if [ "$f" == ".git" ] || [ "$f" == ".DS_Store" ]; then
     continue
   fi
 
+  # もし処理対象が ".config" ディレクトリだった場合
+  if [ "$f" == ".config" ]; then
+    # ~/.config/ の中身（各ツールの設定フォルダ）をループ処理する
+    # ※ $DOTPATH/.config/ が空でないか確認
+    if [ -d "$DOTPATH/.config" ]; then
+      for config_item in "$DOTPATH/.config"/* "$DOTPATH/.config"/.[!.]*; do
+        # 該当ファイル/フォルダが存在するかチェック（ワイルドカード展開対策）
+        [ -e "$config_item" ] || continue
+        
+        item_name=$(basename "$config_item")
+        # .git や .DS_Store はここでも除外
+        if [ "$item_name" == ".git" ] || [ "$item_name" == ".DS_Store" ] || [ "$item_name" == "*" ]; then
+          continue
+        fi
+
+        # 個別にリンクを貼る (~/.config/ツール名 -> $DOTPATH/.config/ツール名)
+        ln -snfv "$config_item" "$HOME/.config/$item_name"
+      done
+    fi
+    continue
+  fi
+
+  # 通常のドットファイル（.zshrc や .tmux.conf など）の処理
   if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
-    :
-    # mkdir -p ~/.backup
-    # mv "$HOME/$f" ~/.backup
+    : # 必要に応じてバックアップ処理
   fi
   ln -snfv "$DOTPATH/$f" "$HOME"
 done
