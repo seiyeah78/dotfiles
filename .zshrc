@@ -103,9 +103,7 @@ alias dec='devcontainer'
 alias dp='devpod'
 
 # すべてのファイルを検索する
-alias ag='ag --hidden --skip-vcs-ignores'
 alias rg='rg --hidden --no-ignore'
-alias agl="ag --pager='less -R'"
 alias k9s="LC_CTYPE=en_US.UTF-8 k9s"
 alias ctags="`brew --prefix`/bin/ctags"
 

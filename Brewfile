@@ -147,7 +147,6 @@ brew "ruby"
 brew "ruby-build"
 brew "sphinx-doc", link: false
 brew "starship"
-brew "the_silver_searcher"
 brew "thefuck"
 brew "tig"
 brew "tmux"
