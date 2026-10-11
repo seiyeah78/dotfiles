@@ -9,6 +9,7 @@ return {
           go = { "goimports" },
           bash = { "shfmt" },
           python = { "black", "ruff" },
+          ruby = { "rufo" },
           typescript = { "biome", "prettierd", stop_after_first = true },
           javascript = { "biome", "prettierd", stop_after_first = true },
           typescriptreact = { "biome", "prettierd", stop_after_first = true },
@@ -29,7 +30,7 @@ return {
           return { timeout_ms = 2000, lsp_format = "fallback" }
         end,
       })
-      vim.api.nvim_create_user_command('Format', function(args)
+      vim.api.nvim_create_user_command("Format", function(args)
         require("conform").format({ bufnr = args.buf })
       end, {})
       vim.api.nvim_create_user_command("FormatDisable", function(args)
@@ -39,7 +40,7 @@ return {
         else
           vim.g.disable_autoformat = true
         end
-        vim.print('Disable autoformat-on-save')
+        vim.print("Disable autoformat-on-save")
       end, {
         desc = "Disable autoformat-on-save",
         bang = true,
@@ -47,7 +48,7 @@ return {
       vim.api.nvim_create_user_command("FormatEnable", function()
         vim.b.disable_autoformat = false
         vim.g.disable_autoformat = false
-        vim.print('Re-enable autoformat-on-save')
+        vim.print("Re-enable autoformat-on-save")
       end, {
         desc = "Re-enable autoformat-on-save",
       })

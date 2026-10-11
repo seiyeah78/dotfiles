@@ -190,6 +190,8 @@ rm ~/.zcompdump*
 exec zsh
 ```
 
+[image](image.png)
+
 ## 必要要件
 
 - macOS (Intel / Apple Silicon)

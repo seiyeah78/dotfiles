@@ -128,8 +128,12 @@ alias k='kubectl'
 alias kc='kubectl ctx'
 alias kns='kubectl ns'
 
+#### other ####
+
 alias hosts='sudo vi /etc/hosts'
 alias vimrc='$EDITOR ~/.vimrc'
+alias wm='workmux'
+alias mux='tmuxinator'
 
 ############### Custom KeyBind ##############
 bindkey -e

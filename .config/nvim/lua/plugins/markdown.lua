@@ -1,12 +1,5 @@
 return {
   {
-    "iamcco/markdown-preview.nvim",
-    ft = { "markdown" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  },
-  {
     "godlygeek/tabular",
     ft = { "markdown" },
   },
@@ -25,91 +18,99 @@ return {
       file_types = { "markdown", "Avante" },
       completions = {
         lsp = { enabled = false },
-        blink = { enable = false }
+        blink = { enable = false },
       },
       code = {
         sign = true,
         language_name = false,
-        border = 'none'
+        border = "none",
       },
       anti_conceal = {
-        enabled = false,        -- 有効化
+        enabled = false, -- 有効化
         disabled_modes = false, -- 無効化モード
       },
-
     },
     ft = { "markdown", "Avante" },
   },
   {
-    'jakewvincent/mkdnflow.nvim',
+    "selimacerbas/mdkite.nvim",
+    -- a kitehost.nvim checkout under another dir name needs its spec to
+    -- say name = "kitehost.nvim", or lazy.nvim clones upstream beside it
+    dependencies = { "selimacerbas/kitehost.nvim" },
+    -- kitehost.nvim v2.0.0 or newer, the first release with its Host check
+    config = function()
+      require("mdkite").setup({
+        -- all optional; sane defaults shown
+        instance_mode = "takeover", -- "takeover" (one tab) or "multi" (tab per instance)
+        port = 0, -- 0 = auto (8421 for takeover, OS-assigned for multi)
+        open_browser = true,
+        default_theme = "dark", -- "dark" or "light"; initial preview theme
+        debounce_ms = 300,
+      })
+    end,
+  },
+  {
+    "jakewvincent/mkdnflow.nvim",
     ft = { "markdown", "gitcommit" },
     config = function()
-      require('mkdnflow').setup({
+      require("mkdnflow").setup({
         filetypes = {
           markdown = true,
           mdx = true,
           gitcommit = true,
         },
         mappings = {
-          MkdnEnter = { { 'n', 'v' }, '<CR>' },
-          MkdnExtendList = { { 'n', 'v' }, '<S-CR>' },
-          MkdnGoBack = { 'n', '<BS>' },
-          MkdnGoForward = { 'n', '<Del>' },
-          MkdnMoveSource = { 'n', '<leader>ms' },
-          MkdnNextLink = { 'n', '<Tab>' },
-          MkdnPrevLink = { 'n', '<S-Tab>' },
+          MkdnEnter = { { "n", "v" }, "<CR>" },
+          MkdnExtendList = { { "n", "v" }, "<S-CR>" },
+          MkdnGoBack = { "n", "<BS>" },
+          MkdnGoForward = { "n", "<Del>" },
+          MkdnMoveSource = { "n", "<leader>ms" },
+          MkdnNextLink = { "n", "<Tab>" },
+          MkdnPrevLink = { "n", "<S-Tab>" },
           MkdnFollowLink = false,
-          MkdnDestroyLink = { 'n', '<M-CR>' },
-          MkdnTagSpan = { 'v', '<M-CR>' },
-          MkdnYankAnchorLink = { 'n', 'yaa' },
-          MkdnYankFileAnchorLink = { 'n', 'yfa' },
-          MkdnNextHeading = { 'n', ']]' },
-          MkdnPrevHeading = { 'n', '[[' },
-          MkdnNextHeadingSame = { 'n', '][' },
-          MkdnPrevHeadingSame = { 'n', '[]' },
-          MkdnIncreaseHeading = { { 'n', 'v' }, '+' },
-          MkdnDecreaseHeading = { { 'n', 'v' }, '-' },
-          MkdnIncreaseHeadingOp = { { 'n', 'v' }, 'g+' },
-          MkdnDecreaseHeadingOp = { { 'n', 'v' }, 'g-' },
-          MkdnToggleToDo = { { 'n', 'v' }, '<C-Space>' },
-          MkdnNewListItem = { 'i', '<CR>' },
-          MkdnNewListItemBelowInsert = { 'n', 'o' },
-          MkdnNewListItemAboveInsert = { 'n', 'O' },
-          MkdnUpdateNumbering = { 'n', '<leader>nn' },
-          MkdnTableNextCell = { 'i', '<Tab>' },
-          MkdnTablePrevCell = { 'i', '<S-Tab>' },
+          MkdnDestroyLink = { "n", "<M-CR>" },
+          MkdnTagSpan = { "v", "<M-CR>" },
+          MkdnYankAnchorLink = { "n", "yaa" },
+          MkdnYankFileAnchorLink = { "n", "yfa" },
+          MkdnNextHeading = { "n", "]]" },
+          MkdnPrevHeading = { "n", "[[" },
+          MkdnNextHeadingSame = { "n", "][" },
+          MkdnPrevHeadingSame = { "n", "[]" },
+          MkdnIncreaseHeading = { { "n", "v" }, "+" },
+          MkdnDecreaseHeading = { { "n", "v" }, "-" },
+          MkdnIncreaseHeadingOp = { { "n", "v" }, "g+" },
+          MkdnDecreaseHeadingOp = { { "n", "v" }, "g-" },
+          MkdnToggleToDo = { { "n", "v" }, "<C-Space>" },
+          MkdnNewListItem = { "i", "<CR>" },
+          MkdnNewListItemBelowInsert = { "n", "o" },
+          MkdnNewListItemAboveInsert = { "n", "O" },
+          MkdnUpdateNumbering = { "n", "<leader>nn" },
+          MkdnTableNextCell = { "i", "<Tab>" },
+          MkdnTablePrevCell = { "i", "<S-Tab>" },
           MkdnTableNextRow = false,
-          MkdnTablePrevRow = { 'i', '<M-CR>' },
-          MkdnTableNewRowBelow = { 'n', '<leader>ir' },
-          MkdnTableNewRowAbove = { 'n', '<leader>iR' },
-          MkdnTableNewColAfter = { 'n', '<leader>ic' },
-          MkdnTableNewColBefore = { 'n', '<leader>iC' },
-          MkdnTableDeleteRow = { 'n', '<leader>dr' },
-          MkdnTableDeleteCol = { 'n', '<leader>dc' },
-          MkdnFoldSection = { 'n', '<leader>f' },
-          MkdnUnfoldSection = { 'n', '<leader>F' },
+          MkdnTablePrevRow = { "i", "<M-CR>" },
+          MkdnTableNewRowBelow = { "n", "<leader>ir" },
+          MkdnTableNewRowAbove = { "n", "<leader>iR" },
+          MkdnTableNewColAfter = { "n", "<leader>ic" },
+          MkdnTableNewColBefore = { "n", "<leader>iC" },
+          MkdnTableDeleteRow = { "n", "<leader>dr" },
+          MkdnTableDeleteCol = { "n", "<leader>dc" },
+          MkdnFoldSection = { "n", "<leader>f" },
+          MkdnUnfoldSection = { "n", "<leader>F" },
           MkdnTab = false,
           MkdnSTab = false,
-          MkdnIndentListItem = { 'i', '<C-t>' },
-          MkdnDedentListItem = { 'i', '<C-d>' },
+          MkdnIndentListItem = { "i", "<C-t>" },
+          MkdnDedentListItem = { "i", "<C-d>" },
           MkdnCreateLink = false,
-          MkdnCreateLinkFromClipboard = { { 'n', 'v' }, '<leader>p' },
+          MkdnCreateLinkFromClipboard = { { "n", "v" }, "<leader>p" },
         },
       })
-    end
+    end,
   },
   {
-    "delphinus/md-render.nvim",
-    version = "*",
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons", version = "*" }, -- optional: file type icons in code blocks
-      { "delphinus/budoux.lua",        version = "*" }, -- optional: CJK phrase-level line breaking
-    },
-    cmd = { "MdRender", "MdRenderToggle", "MdRenderToggleTab", "MdRenderDemo" },
-    keys = {
-      { "<leader>mp", "<Plug>(md-render-preview)",     desc = "Markdown preview (toggle)" },
-      { "<leader>mt", "<Plug>(md-render-preview-tab)", desc = "Markdown preview in tab (toggle)" },
-      { "<leader>md", "<Plug>(md-render-demo)",        desc = "Markdown render demo" },
-    },
-  }
+    "blackhat-7/vellum.nvim",
+    ft = "markdown",
+    keys = { { "<leader>mp", "<cmd>Vellum<cr>", desc = "Markdown preview" } },
+    opts = {},
+  },
 }

@@ -1,5 +1,8 @@
 [tools]
 awscli = { version = "2.31.2", symlink_bins = "true" }
+"gem:neovim" = "latest"
+"gem:ripper-tags" = "latest"
+"gem:tmuxinator" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

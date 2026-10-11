@@ -1,62 +1,55 @@
 return {
   {
-    'junegunn/vim-easy-align',
+    "junegunn/vim-easy-align",
     keys = {
       { "<leader>ea", ":EasyAlign<CR>", mode = { "x", "n" } },
     },
-    cmd = { 'EasyAlign' },
+    cmd = { "EasyAlign" },
   },
-  'tpope/vim-repeat',
-  'tpope/vim-abolish',
-  'AndrewRadev/splitjoin.vim',
-  'tyru/open-browser.vim',
-  'mattn/emmet-vim',
+  "tpope/vim-repeat",
+  "tpope/vim-abolish",
+  "AndrewRadev/splitjoin.vim",
+  "tyru/open-browser.vim",
+  "mattn/emmet-vim",
   {
-    'AndrewRadev/switch.vim',
-    event = 'VeryLazy'
+    "AndrewRadev/switch.vim",
+    event = "VeryLazy",
   },
-  {
-    "krivahtoo/silicon.nvim",
-    build = "./install.sh",
-    cmd = 'Silicon',
-    config = true,
-  },
-  'towolf/vim-helm',
-  { 'raimon49/requirements.txt.vim' },
-  { 'Vimjas/vim-python-pep8-indent', ft = 'python' },
-  { 'vim-python/python-syntax',      ft = 'python' },
-  { 'tpope/vim-rails',               ft = 'ruby' },
-  { 'slim-template/vim-slim',        ft = 'ruby' },
-  { 'vim-ruby/vim-ruby',             ft = 'ruby' },
+  "towolf/vim-helm",
+  { "raimon49/requirements.txt.vim" },
+  { "Vimjas/vim-python-pep8-indent", ft = "python" },
+  { "vim-python/python-syntax", ft = "python" },
+  { "tpope/vim-rails", ft = "ruby" },
+  { "slim-template/vim-slim", ft = "ruby" },
+  { "vim-ruby/vim-ruby", ft = "ruby" },
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
     },
     config = function()
       require("go").setup({
         lsp_inlay_hints = {
-          enable = false
+          enable = false,
         },
         diagnostic = false, -- for lspsaga
       })
     end,
     -- event = { "CmdlineEnter" },
-    ft = { "go", 'gomod' },
-    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
   {
-    'mrcjkb/rustaceanvim',
-    version = '^5', -- Recommended
-    lazy = false,   -- This plugin is already lazy
-    ft = { 'rust' },
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
+    lazy = false, -- This plugin is already lazy
+    ft = { "rust" },
   },
   {
     "cajames/copy-reference.nvim",
     opts = {
-      register = "+",      -- Clipboard register (+ for system clipboard)
+      register = "+", -- Clipboard register (+ for system clipboard)
       use_git_root = true, -- Use git root for relative paths when in a git repo
     },
     keys = {
@@ -81,7 +74,7 @@ return {
     },
   },
   {
-    'brenoprata10/nvim-highlight-colors',
+    "brenoprata10/nvim-highlight-colors",
     event = "BufEnter",
     opts = {
       exclude_filetypes = {
@@ -91,13 +84,13 @@ return {
         "NvimTree",
         "coc-explorer",
       },
-      exclude_buftypes = {}
-    }
+      exclude_buftypes = {},
+    },
   },
   {
-    'delphinus/cellwidths.nvim',
+    "delphinus/cellwidths.nvim",
     config = function()
-      require("cellwidths").setup {
+      require("cellwidths").setup({
         name = "user/custom",
         fallback = function(cw)
           -- 特定のテンプレートから追加・削除を行いたい場合は最初に load() を呼んで下さい。
@@ -115,7 +108,7 @@ return {
           -- cw.delete(0x2103)
           -- cw.delete { 0x2104, 0x2105, 0x2106 }
         end,
-      }
-    end
-  }
+      })
+    end,
+  },
 }

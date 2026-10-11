@@ -1,9 +1,4 @@
 bundler
-pry
-pry-doc
 ripper-tags
-overcommit
-compass
-colorls
 neovim
 tmuxinator

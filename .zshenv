@@ -8,7 +8,7 @@ CURL_PATH="/usr/local/opt/curl/bin"
 MYSQL_PATH="/usr/local/opt/mysql@5.6/bin"
 MAC_VIM_PATH="/Applications/MacVim.app/Contents/bin"
 if [ $(uname -m) = "arm64" ]; then
-  HOMEBREW_PATH=/opt/homebrew/bin
+  HOMEBREW_PATH=/opt/homebrew/bin:/opt/homebrew/sbin
 else
   HOMEBREW_PATH=''
 fi

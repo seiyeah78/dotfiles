@@ -1,10 +1,10 @@
 local system_prompt =
-"あなたは優秀なプログラミングアシスタントです。すべての応答は日本語で行ってください。コードのコメントも日本語で記述してください。"
+  "あなたは優秀なプログラミングアシスタントです。すべての応答は日本語で行ってください。コードのコメントも日本語で記述してください。"
 return {
   {
     "yetone/avante.nvim",
     build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-        or "make",
+      or "make",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
@@ -52,10 +52,10 @@ return {
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-      "folke/snacks.nvim",             -- for input provider snacks
-      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "folke/snacks.nvim", -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -98,7 +98,6 @@ return {
     lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
       "franco-ruggeri/codecompanion-spinner.nvim",
     },
     opts = {
@@ -155,14 +154,14 @@ return {
     dependencies = { "folke/snacks.nvim" },
     config = true,
     keys = {
-      { "<leader>a",  nil,                              desc = "AI/Claude Code" },
-      { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
-      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
-      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
+      { "<leader>a", nil, desc = "AI/Claude Code" },
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
       { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
       { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>",       desc = "Add current buffer" },
-      { "<leader>as", "<cmd>ClaudeCodeSend<cr>",        mode = "v",                  desc = "Send to Claude" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
       {
         "<leader>as",
         "<cmd>ClaudeCodeTreeAdd<cr>",
@@ -171,7 +170,7 @@ return {
       },
       -- Diff management
       { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>",   desc = "Deny diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     },
-  }
+  },
 }

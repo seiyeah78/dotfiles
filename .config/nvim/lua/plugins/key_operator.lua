@@ -1,6 +1,6 @@
 return {
   {
-    'gbprod/cutlass.nvim',
+    "gbprod/cutlass.nvim",
     opts = {
       cut_key = "m",
       override_del = true,
@@ -10,10 +10,10 @@ return {
         delete = "_",
         change = "_",
       },
-    }
+    },
   },
   {
-    'gbprod/yanky.nvim',
+    "gbprod/yanky.nvim",
     event = "VeryLazy",
     config = function()
       -- optsだとうまく反映されない
@@ -33,7 +33,7 @@ return {
           },
           telescope = {
             use_default_mappings = true, -- if default mappings should be used
-            mappings = nil,              -- nil to use default mappings or no mappings (see `use_default_mappings`)
+            mappings = nil, -- nil to use default mappings or no mappings (see `use_default_mappings`)
           },
         },
         system_clipboard = {
@@ -52,13 +52,13 @@ return {
         },
       })
       -- YankyPutBeforeにするとregisterに登録されない
-      vim.keymap.set({ 'x' }, 'p', '<Plug>(YankyPutBefore)')
+      vim.keymap.set({ "x" }, "p", "<Plug>(YankyPutBefore)")
       vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
       vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
       vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-      vim.keymap.set("i", "<C-Y><C-Y>", '<C-O>:<C-U>Telescope yank_history<CR>', {})
-      vim.keymap.set("n", "<C-Y><C-Y>", ':<C-U>Telescope yank_history<CR>', {})
-    end
+      vim.keymap.set("i", "<C-Y><C-Y>", "<C-O>:<C-U>Telescope yank_history<CR>", {})
+      vim.keymap.set("n", "<C-Y><C-Y>", ":<C-U>Telescope yank_history<CR>", {})
+    end,
   },
   {
     "kylechui/nvim-surround",
@@ -66,15 +66,14 @@ return {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({})
-    end
+    end,
   },
   {
-    'Wansmer/treesj',
+    "Wansmer/treesj",
     event = "VeryLazy",
-    keys = { '<space>m', '<space>j', '<space>s' },
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    keys = { "<space>m", "<space>j", "<space>s" },
     opts = {
       max_join_length = 300,
-    }
-  }
+    },
+  },
 }
