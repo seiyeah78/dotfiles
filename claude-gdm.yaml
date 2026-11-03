@@ -1,0 +1,20 @@
+# syntax=docker/sandbox-kit:3
+schemaVersion: "3"
+kind: workload
+displayName: "Claude GDM Base Workload"
+description: "Claude Code をベースにした独自の GDM ワークロード環境"
+
+# workload では、ベースとなるコンテナイメージと起動コマンドを必ず定義します
+capabilities:
+  - type: com.docker.sandbox/sbx@1
+  - type: com.docker.sandbox/network-policy@2
+    config:
+      runtime:
+        allow:
+          - github.com # GitHub には行ってよい
+          - hosts: [api.github.com]
+            methods: [GET, POST, PATCH, PUT, DELETE]
+        deny:
+          - hosts: [api.github.com]
+            methods: [DELETE]
+            paths: [/repos/**] # ただしリポジトリ削除は禁止（deny が優先）
