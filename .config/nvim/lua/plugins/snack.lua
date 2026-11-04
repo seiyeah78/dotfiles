@@ -7,6 +7,11 @@ return {
       input = {
         enabled = true,
       },
+      picker = {
+        enabled = true,
+        -- 必要に応じて vim.ui.select を snacks に置き換える
+        ui_select = true,
+      },
       styles = {
         input = {
           -- Change position relative to the cursor

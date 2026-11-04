@@ -18,7 +18,7 @@ return {
       system_prompt = system_prompt,
       providers = {
         copilot = {
-          model = "claude-sonnet-4.5",
+          model = "claude-sonnet-5",
         },
       },
       acp_providers = {

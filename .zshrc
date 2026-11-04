@@ -191,4 +191,3 @@ source /Users/seiya.ouchi/.daytona.completion_script.zsh
 
 . "$HOME/.moon/bin/env"
 unsetopt BEEP
-source /Users/seiya.ouchi/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script

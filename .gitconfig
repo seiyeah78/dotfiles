@@ -59,6 +59,7 @@
   rbi = rebase -i
   resetcu = !git lcu --oneline | grep -c '' | xargs -I % git reset HEAD~%
   aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+	stash-apply = "!f() { git stash apply \"stash^{/$1}\"; }; f"
 [merge]
   tool = vimdiff
 [mergetool]

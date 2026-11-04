@@ -22,7 +22,6 @@ vendor/
 .vim/plugins.local
 .ropeproject
 coc-settings.json
-.config/*
 .netrwhist
 !.config/nvim/
 !my_alt_functions.json

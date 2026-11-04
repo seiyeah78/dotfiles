@@ -66,7 +66,7 @@ export THOR_MERGE=vimdiff
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd)
 export GIST_USER=seiyeah78
 export TZ=Asia/Tokyo
-export LESS="-FRXQM"
+export LESS="-RXQM"
 
 if [ -e ~/.zshenv.local ]; then
   source ~/.zshenv.local
